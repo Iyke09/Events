@@ -40,6 +40,7 @@
 </style>
 </head>
 <body>
+	<div id="map" style="height:350px;" class="w3-grayscale-max"></div>
 	  <nav class="" role="navigation" style="background-color: #212F3C">
     <div class="nav-wrapper container">
       <a id="logo-container " href="index.html" class="brand-logo white-text">Andela</a>
@@ -55,7 +56,7 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-	  <div id="map" style="height:350px;" class="w3-grayscale-max"></div>
+	  
 
 
 	  <div class="container">
@@ -84,7 +85,6 @@
 	  			</div>
 
 	  			<div class="col s12 m12 l8">
-
 		  			<div class="right">
 		  				<i class="fa fa-star or"></i>
 		  				<i class="fa fa-star or"></i>
@@ -159,7 +159,7 @@
             var latlng = new google.maps.LatLng(latitude,longitude);
             var mapOptions = {
                 center: latlng,
-                zoom: 12,
+                zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -171,8 +171,8 @@
             console.log(google.maps.places)
             var request = {
                 location:latlng,
-                radius:10939,
-                types:['schools']
+                radius:100939,
+                types:['establishments']
             };
             nearByService.nearbySearch(request,searchNearby)
         }
