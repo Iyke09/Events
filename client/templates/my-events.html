@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Asap+Condensed" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="./css/auth.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Lobster|Satisfy" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./css/signup.css">
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
+<style type="text/css">
+	.fam{
+		font-family: 'Lobster',cursive;
+	}
+	.bg1{
+		padding: 8px;
+		margin-top: 0px;
+		margin-bottom: 85px;
+	}
+	.hr1{
+		width: 10%;
+		margin: auto;
+		border-bottom: 1px solid orange;
+	}
+	.or{
+		color: orange
+	}
+</style>
+</head>
+<body>
+	<div id="map" style="height:350px;" class="w3-grayscale-max"></div>
+	  <nav class="" role="navigation" style="background-color: #212F3C">
+    <div class="nav-wrapper container">
+      <a id="logo-container " href="./index.html" class="brand-logo white-text">Andela</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="active"><a href="./my-events.html">My Events</a></li>
+        <li><a href="./signin.html">Login</a></li>
+        <li class=""><a href="./signup.html">Register</a></li>
+        <li><a href="./add-events.html" class="tooltipped" data-position="right" data-delay="50" data-tooltip="add an event"><i class="material-icons">add</i></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#"></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+	  
+
+
+	  <div class="container">
+	  	<h3 class="fam">Today's Events</h3><hr>
+	  	<div class="row">
+	  		<div class="col s12">
+	  			<img 
+	  			class="responsive-img" src="https://static.pexels.com/photos/625644/pexels-photo-625644.jpeg" style="width: 100%;height: 350px">
+	  			<div class="blue-grey bg1 white-text row">
+	  				<div class="col s12">
+	  					<h6><i class="fa fa-calendar-o"></i>
+	  						<span style="margin-left: 4px">july 24, 2017 20:00</span>
+	  					</h6>
+	  				</div>
+	  			</div>
+	  		</div>
+
+	  		<div class="row"><br><br>
+	  		<h3 class="light fam col s12 center">Upcoming Events!...</h3>
+	  		<hr class="hr1">
+	  			<br><br>
+          	<div class="col s12">
+	  			<div class="col s12 m12 l4">
+	  				<img 
+	  			class="responsive-img" src="https://static.pexels.com/photos/265884/pexels-photo-265884.jpeg" style="width: 100%;height: 250px">
+	  			</div>
+
+	  			<div class="col s12 m12 l8">
+		  			<div class="right">
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  			</div>
+		  			<small style="color: grey">Created on: 14th july,2017</small>
+		  				<h5 class="light "><span style="margin-right: 4px;font-family: 'Satisfy', cursive;
+		  				">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		  				<i class="material-icons modal-trigger" data-target="modal1" href="#modal1">edit</i>
+		  				
+		  			</h5>
+		  			
+
+		  			<div class="divider" ></div>
+		  			<div class="section">
+		  				<h6 style="font-size: 19px"> <i class="fa fa-map-marker" style="width:30px"></i> 59 East 4th Street New York, NY 10003</h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-phone" style="width:30px"></i> <b>Phone:</b>  +00 151515</h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-calendar-o" style="width:30px"> </i> <b>Date:</b>   Jul 8, 1914 To Jul 8, 1919<br></h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-clock-o" style="width:30px"> </i> 2:00 pm To 4:00 pm<br></h6><br>
+	        			<a class="right" href="" style="padding: 8px 15px;margin-bottom:45px;color:grey;border:1px solid grey;background-color: transparent;">Remove</a>
+	        		</div>
+	  			</div>
+	  		</div>
+	  		<div class="divider"></div><br><br>
+          	<div class="col s12 ">
+	  			<div class="col s12 m12 l4">
+	  				<img 
+	  			class="responsive-img" src="https://static.pexels.com/photos/69815/florida-state-university-westcott-building-auditorium-interior-69815.jpeg" style="width: 100%;height: 250px">
+	  			</div>
+
+	  			<div class="col m12 s12 l8">
+
+		  			<div class="right">
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  				<i class="fa fa-star or"></i>
+		  			</div>
+		  			<small style="color: grey">Created on: 14th july,2017</small>
+		  				<h5 class="light "><span style="margin-right: 4px;font-family: 'Satisfy', cursive;
+		  				">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		  				<i class="material-icons">edit</i>
+		  			</h5>
+
+		  					<div class="divider" ></div>
+		  			<div class="section">
+		  				<h6 style="font-size: 19px"> <i class="fa fa-map-marker" style="width:30px"></i> 59 East 4th Street New York, NY 10003</h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-phone" style="width:30px"></i> <b>Phone:</b>  +00 151515</h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-calendar-o" style="width:30px"> </i> <b>Date:</b>   Jul 8, 1914 To Jul 8, 1919<br></h6>
+	        			<h6 style="font-size: 19px"><i class="fa fa-clock-o" style="width:30px"> </i> 2:00 pm To 4:00 pm<br></h6><br>
+	        			<a class="right" href="" style="padding: 8px 15px;margin-bottom:45px;color:grey;border:1px solid grey;background-color: transparent;">Remove</a>
+	        		</div>
+	  			</div>
+	  		</div>
+	  		</div>
+	  	</div>
+	  </div>
+
+<script>
+        var map;
+        function initMap(){
+
+                navigator.geolocation.getCurrentPosition(displayLocation)
+
+        }
+        function displayLocation(position){
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var latlng = new google.maps.LatLng(latitude,longitude);
+            var mapOptions = {
+                center: latlng,
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            addNearByPlaces(latlng);
+            apiMarkerCreate(latlng);
+        }
+        function addNearByPlaces(latlng){
+            var nearByService = new google.maps.places.PlacesService(map);
+            console.log(google.maps.places)
+            var request = {
+                location:latlng,
+                radius:100939,
+                types:['establishments']
+            };
+            nearByService.nearbySearch(request,searchNearby)
+        }
+        function searchNearby(results,status){
+            if(status === google.maps.places.PlacesServiceStatus.OK){
+                for(var i = 0;i < results.length;i++){
+                    var place = results[i];
+                    apiMarkerCreate(place.geometry.location,place);
+                }
+            }
+        }
+        function apiMarkerCreate(latlng,placeResult){
+            var mapOptions = {
+                position: latlng,
+                map: map,
+                animation: google.maps.Animation.DROP,
+                clickable:true
+            };
+            var marker = new google.maps.Marker(mapOptions);
+            if(placeResult){
+                var content = placeResult.name;
+                windowInfoCreate(marker,latlng,content);
+            }else{
+                var content = 'you are here' + latlng.lat() + ' ' + latlng.lng();
+                windowInfoCreate(marker,latlng,content)
+            }
+        }
+        function windowInfoCreate(marker,latlng,content){
+            var infoWindowOptions = {
+                content: content,
+                position:latlng
+            };
+            var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+            google.maps.event.addListener(marker,'click',function(){
+                infoWindow.open(map); 
+            });
+        }
+    </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUFz9zFDwCWyS6ADM9E1YrsQ3vS3l4h3k&libraries=places&callback=initMap">
+    </script>
+
+</body>
+</html>

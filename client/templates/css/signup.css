@@ -1,0 +1,29 @@
+  body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
+  .bgimg{
+    background-image: url('https://static.pexels.com/photos/274192/pexels-photo-274192.jpeg');
+    background-size: cover;
+    height: 550px;
+    background-position: center;
+    position: relative;
+  }
+  .overlay{
+    background-color: (0,0,0,0.5);
+    height: 450px;
+    position: absolute;
+    top: 0px;
+    min-height: 100%;
+  }
+  .btnn{
+    padding: 10px 45px;
+    color: white;
+
+  }
+  #tp-row{
+    padding-left: 65px;
+    padding-top: 49px
+  }
+  #tp-child{
+    border-bottom: 3px solid red;
+    padding-bottom: 4px;
+    max-width: 35%
+  }
