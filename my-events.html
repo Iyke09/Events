@@ -40,26 +40,23 @@
 </style>
 </head>
 <body>
+		<nav class="" role="navigation" style="background-color: #212F3C">
+			<div class="nav-wrapper container">
+				<a id="logo-container " href="./index.html" class="brand-logo white-text">Andela</a>
+				<ul class="right hide-on-med-and-down">
+				<li class="active"><a href="./my-events.html">My Events</a></li>
+				<li><a href="./signin.html">Login</a></li>
+				<li class=""><a href="./signup.html">Register</a></li>
+				<li><a href="./add-events.html" class="tooltipped" data-position="right" data-delay="50" data-tooltip="add an event"><i class="material-icons">add</i></a></li>
+				</ul>
+		
+				<ul id="nav-mobile" class="side-nav">
+				<li><a href="#"></a></li>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			</div>
+		</nav>
 	<div id="map" style="height:350px;" class="w3-grayscale-max"></div>
-	  <nav class="" role="navigation" style="background-color: #212F3C">
-    <div class="nav-wrapper container">
-      <a id="logo-container " href="./index.html" class="brand-logo white-text">Andela</a>
-      <ul class="right hide-on-med-and-down">
-        <li class="active"><a href="./my-events.html">My Events</a></li>
-        <li><a href="./signin.html">Login</a></li>
-        <li class=""><a href="./signup.html">Register</a></li>
-        <li><a href="./add-events.html" class="tooltipped" data-position="right" data-delay="50" data-tooltip="add an event"><i class="material-icons">add</i></a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#"></a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-	  
-
-
 	  <div class="container">
 	  	<h3 class="fam">Today's Events</h3><hr>
 	  	<div class="row">
@@ -173,7 +170,7 @@
             var request = {
                 location:latlng,
                 radius:100939,
-                types:['establishments']
+                types:['amusement_park']
             };
             nearByService.nearbySearch(request,searchNearby)
         }
