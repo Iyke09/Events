@@ -12,4 +12,4 @@ The events manager is an simply an awesome app where users can book events for a
 ```
  open index.html in your favorite browser
 ```
-- or simply visit https://iyke09.github.io/Events/
+- or simply visit https://iyke09.github.io/Events/templates/index.html
