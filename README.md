@@ -1,5 +1,5 @@
 ## Events Manager
-The events manager is an simply an awesome app where users can book events for a particular centers and also be able to manage it and also where users with admin privileges can create centers and also manage it also.
+The events manager is simply an awesome app where users can book events for particular centers and also be able to manage it and also where users with admin privileges can create centers and also manage it also.
 
 ### To Run:
 
