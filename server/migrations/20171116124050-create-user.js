@@ -19,7 +19,7 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
         validation: {
           min: 6,
         },
@@ -27,6 +27,10 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       updatedAt: {
         allowNull: false,

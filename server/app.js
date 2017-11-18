@@ -1,6 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import routes from './routes/index.js';
 
 // Set up the express app
 const app = express();
@@ -16,5 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));
+
+app.use('/api', routes);
 
 module.exports = app;

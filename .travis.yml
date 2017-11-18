@@ -20,11 +20,11 @@ services:
 
 
 before_script:
-- createuser more_recipe -s -U postgres
+- createuser events -s -U postgres
 - createdb mydb --username=postgres
 - sequelize db:migrate
 
 after_success: npm run coverage
 
-notifications:
-  webhooks: https://coveralls.io/webhook repo_token=Fdrh3aLsYA3PJOZhsgKJNCeZh3r0rJ4Ud
+# notifications:
+#   webhooks: https://coveralls.io/webhook repo_token=Fdrh3aLsYA3PJOZhsgKJNCeZh3r0rJ4Ud
