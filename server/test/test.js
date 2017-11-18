@@ -10,7 +10,6 @@ const adminUrl = `${rootURL}/centers`;
 
 let data = {};
 
-
 describe('API Integration Tests', () => {
   describe('User signup', () => {
     const signupURl = `${usersUrl}/signup`;
@@ -18,7 +17,7 @@ describe('API Integration Tests', () => {
       data = {
         username: 'jane56',
         password: '123456',
-        email: 'enaho31@gmail.com',
+        email: 'enaho31@gmail.com'
       };
     });
 
@@ -338,6 +337,49 @@ describe('API Integration Tests', () => {
           expect(res.status).to.equal(201);
           expect(res.body.message).to.equal('Center created');
           expect(res.body.status).to.equal('Success');
+          done();
+        });
+    });
+  });
+
+  describe('Update Recipes', () => {
+    // it('return 401 if user not authorized', (done) => {
+    //   request.put(`${adminUrl}/1`)
+    //     .send()
+    //     .end((err, res) => {
+    //       expect(res.status).to.equal(401);
+    //       expect(res.body.message).to.equal('Unauthorization error');
+    //       done();
+    //     });
+    // });
+
+    it('return 404 if center is not found', (done) => {
+      request.put(`${adminUrl}/15`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('center Not Found');
+          done();
+        });
+    });
+
+    it('return 201 if center is updated', (done) => {
+      request.put(`${adminUrl}/1`)
+        .send({ name: 'emporiumII' })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.message).to.equal('center updated');
+          expect(res.body.success.name).to.equal('emporiumII');
+          done();
+        });
+    });
+
+    it('return 500 if recipe title contains spacd', (done) => {
+      request.put(`${adminUrl}/1`)
+        .send({ name: 'chic ken' })
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only alphabets are allowed for the name');
           done();
         });
     });

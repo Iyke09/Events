@@ -1,7 +1,9 @@
 import addCenter from './add-center';
+import updateCenter from './update';
 
 const adminController = {
-  addCenter
+  addCenter,
+  updateCenter
 };
 
 export default adminController;
