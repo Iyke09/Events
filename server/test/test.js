@@ -6,6 +6,7 @@ import app from '../app';
 const request = supertest(app);
 const rootURL = '/api';
 const usersUrl = `${rootURL}/users`;
+const adminUrl = `${rootURL}/centers`;
 
 let data = {};
 
@@ -254,6 +255,89 @@ describe('API Integration Tests', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.message).to.equal('please fill in the required fields');
+          done();
+        });
+    });
+  });
+
+  describe('Add Center', () => {
+    beforeEach(() => {
+      data = {
+        name: 'emporium',
+        description: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
+        capacity: 4000,
+        location: '14 airport road, california',
+        instructions: 'stir for 5minutes'
+      };
+    });
+
+    // // check if token is passed
+    // it('return 400 if token is not present', (done) => {
+    //   request.post(adminUrl)
+    //     .send(data)
+    //     .end((err, res) => {
+    //       expect(res.status).to.equal(401);
+    //       expect(res.body.message).to.equal('you have to be logged in to create recipe');
+    //       done();
+    //     });
+    // });
+
+    // test if name is passed when creating a recipe
+    it('return 500 if center name is less than 3', (done) => {
+      const noName = Object.assign({}, data);
+      noName.name = 'er';
+      request.post(adminUrl)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('name must start with a letter and be at least 3 characters.');
+          done();
+        });
+    });
+
+    it('return 500 if center name does not contain only letters', (done) => {
+      const noName = Object.assign({}, data);
+      noName.name = 'errr$%';
+      request.post(adminUrl)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only alphabets are allowed for the name');
+          done();
+        });
+    });
+
+    it('return 500 if center description is less than 10 char', (done) => {
+      const noName = Object.assign({}, data);
+      noName.description = 'ab';
+      request.post(adminUrl)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('description must be atleast 10 characters');
+          done();
+        });
+    });
+
+    it('return 500 if capacity contains letters', (done) => {
+      const noName = Object.assign({}, data);
+      noName.capacity = 'hellloo45';
+      request.post(adminUrl)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only numbers are allowed');
+          done();
+        });
+    });
+
+    it('return 201 if center is created', (done) => {
+      request.post(adminUrl)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.message).to.equal('Center created');
+          expect(res.body.status).to.equal('Success');
           done();
         });
     });
