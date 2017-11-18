@@ -4,12 +4,14 @@ import adminController from '../controllers/centers/index';
 
 const router = express.Router();
 
-router.get('/', (req, res) => res.status(200).send({
-  message: 'Welcome to the your Favorite API!',
-}));
+// router.get('/', (req, res) => res.status(200).send({
+//   message: 'Welcome to the your Favorite API!',
+// }));
 
 router.post('/', adminController.addCenter);
 
 router.put('/:id', adminController.updateCenter);
+
+router.get('/:id', adminController.centerDetails);
 
 export default router;
