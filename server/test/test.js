@@ -342,7 +342,7 @@ describe('API Integration Tests', () => {
     });
   });
 
-  describe('Update Recipes', () => {
+  describe('Update Center', () => {
     // it('return 401 if user not authorized', (done) => {
     //   request.put(`${adminUrl}/1`)
     //     .send()
@@ -380,6 +380,37 @@ describe('API Integration Tests', () => {
         .end((err, res) => {
           expect(res.status).to.equal(500);
           expect(res.body.message).to.equal('only alphabets are allowed for the name');
+          done();
+        });
+    });
+  });
+
+  describe('Update Center', () => {
+    it('return 404 if center is not found', (done) => {
+      request.get(`${adminUrl}/15`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('center Not Found');
+          done();
+        });
+    });
+
+    it('return 201 if center is found', (done) => {
+      request.get(`${adminUrl}/1`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.message).to.equal('center found');
+          done();
+        });
+    });
+
+    it('return 500 if id is an alphabet', (done) => {
+      request.get(`${adminUrl}/err`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
           done();
         });
     });
