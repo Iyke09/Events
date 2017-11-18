@@ -21,7 +21,7 @@ services:
 
 before_script:
 - createuser events -s -U postgres
-- createdb mydb001 --username=postgres
+- createdb mydb --username=postgres
 - sequelize db:migrate
 
 after_success: npm run coverage
