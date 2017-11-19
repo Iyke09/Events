@@ -7,6 +7,7 @@ const request = supertest(app);
 const rootURL = '/api';
 const usersUrl = `${rootURL}/users`;
 const adminUrl = `${rootURL}/centers`;
+const eventUrl = `${rootURL}/events`;
 
 let data = {};
 let userToken1 = '';
@@ -348,6 +349,88 @@ describe('API Integration Tests', () => {
           expect(res.status).to.equal(201);
           expect(res.body.message).to.equal('Center created');
           expect(res.body.status).to.equal('Success');
+          done();
+        });
+    });
+  });
+
+  describe('Add Events', () => {
+    beforeEach(() => {
+      data = {
+        name: 'emporium',
+        title: 'Concert',
+        type: 'Musical',
+        guests: 4000,
+        time: '09:00pm',
+        date: '2017-08-24'
+      };
+    });
+
+    // check if token is passed
+    it('return 400 if token is not present', (done) => {
+      request.post(eventUrl)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.error.message).to.equal('jwt must be provided');
+          done();
+        });
+    });
+
+    it('return 500 if title contains not only letters', (done) => {
+      const noName = Object.assign({}, data);
+      noName.title = 'ab hj';
+      request.post(`${eventUrl}?token=${userToken2}`)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only alphabets are allowed for the title');
+          done();
+        });
+    });
+
+    it('return 500 if title contains not only letters', (done) => {
+      const noName = Object.assign({}, data);
+      noName.guests = 'ajd';
+      request.post(`${eventUrl}?token=${userToken1}`)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only numbers are allowed');
+          done();
+        });
+    });
+
+    it('return 201 if successful', (done) => {
+      request.post(`${eventUrl}?token=${userToken1}`)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.status).to.equal('Success');
+          expect(res.body.message).to.equal('Event created');
+          done();
+        });
+    });
+
+    it('return 500 if center does not exist', (done) => {
+      const noName = Object.assign({}, data);
+      noName.name = 'emporium3';
+      request.post(`${eventUrl}?token=${userToken1}`)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('center not found');
+          done();
+        });
+    });
+
+    it('return 400 if unsuccessful', (done) => {
+      request.post(`${eventUrl}?token=${userToken1}`)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.status).to.equal('Unsuccessful');
+          expect(res.body.message).to.equal('Already booked, please select another day');
           done();
         });
     });

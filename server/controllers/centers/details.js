@@ -1,9 +1,14 @@
-import { Center } from '../../models';
+import { Center, Eevent } from '../../models';
 
 const centerDetails = (req, res) => { // ---------- send email if user's fav recipe gets updated
-  Center.findOne({ where: { id: req.params.id } })
+  Center.findAll({ where: { id: req.params.id },
+    include: [{
+      model: Eevent,
+      as: 'events',
+    }]
+  })
   .then((center) => {
-    if (!center) {
+    if (center.length === 0) {
       return res.status(404).send({
         message: 'center Not Found',
       });
