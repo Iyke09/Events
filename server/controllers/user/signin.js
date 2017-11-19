@@ -53,10 +53,10 @@ const signin = (req, res) => {
           token
         });
       }
-    })
-    .catch(error => res.status(500).send({
-      message: error.toString()
-    }));
+    });
+    // .catch(error => res.status(500).send({
+    //   message: error.toString()
+    // }));
 };
 
 export default signin;

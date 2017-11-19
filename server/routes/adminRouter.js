@@ -4,11 +4,9 @@ import adminController from '../controllers/centers/index';
 
 const router = express.Router();
 
-router.get('/', (req, res) => res.status(200).send({
-  message: 'Welcome to the your Favorite API!',
-}));
-
 router.get('/:id', adminController.centerDetails);
+
+router.get('/', adminController.allCenters);
 
 router.use('/', (req, res, next) => {
   const token = req.body.token || req.query.token;

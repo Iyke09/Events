@@ -446,5 +446,19 @@ describe('API Integration Tests', () => {
         });
     });
   });
+
+  describe('All Centers', () => {
+    it('return 200 if it gets all centers', (done) => {
+      request.get(adminUrl)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.status).to.equal('Success');
+          expect(res.body.message).to.equal('centers found');
+          expect(res.body.center.length).to.equal(1);
+          done();
+        });
+    });
+  });
 });
 
