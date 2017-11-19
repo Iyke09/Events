@@ -19,5 +19,7 @@ router.use('/', (req, res, next) => {
 
 router.post('/', eventController.addEvents);
 
+router.delete('/:id', eventController.deleteEvent);
+
 
 export default router;
