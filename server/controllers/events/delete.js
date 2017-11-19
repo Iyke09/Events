@@ -21,7 +21,7 @@ const deleteEvent = (req, res) => {
               service: 'Gmail',
               auth: {
                 user: 'iykay33@gmail.com',
-                pass: 'p3nn1s01',
+                pass: process.env.PASSWORD,
               },
             });
             const mailOptions = {

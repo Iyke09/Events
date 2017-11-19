@@ -21,5 +21,7 @@ router.post('/', eventController.addEvents);
 
 router.delete('/:id', eventController.deleteEvent);
 
+router.put('/:id', eventController.updateEvent);
+
 
 export default router;
