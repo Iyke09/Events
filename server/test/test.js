@@ -464,6 +464,62 @@ describe('API Integration Tests', () => {
     });
   });
 
+  describe('Update Event', () => {
+    it('return 401 if user not authorized', (done) => {
+      request.put(`${eventUrl}/3?token=${userToken2}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.message).to.equal('Not Authorized');
+          done();
+        });
+    });
+
+    it('return 401 if token is scrambled', (done) => {
+      const token = `${userToken1}jdsk`;
+      request.put(`${eventUrl}/1?token=${token}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.error.message).to.equal('invalid signature');
+          done();
+        });
+    });
+
+    it('return 404 if center is not found', (done) => {
+      request.put(`${eventUrl}/15?token=${userToken2}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('event Not Found');
+          done();
+        });
+    });
+
+    it('return 201 if center is updated', (done) => {
+      request.put(`${eventUrl}/1?token=${userToken2}`)
+        .send({ title: 'Concert' })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.message).to.equal('event updated');
+          expect(res.body.success.title).to.equal('Concert');
+          done();
+        });
+    });
+
+
+    it('return 500 if recipe title contains spacd', (done) => {
+      request.put(`${eventUrl}/1?token=${userToken2}`)
+        .send({ title: 'chic ken' })
+        .end((err, res) => {
+          expect(res.status).to.equal(500);
+          expect(res.body.message).to.equal('only alphabets are allowed for the title');
+          done();
+        });
+    });
+  });
+
+
   describe('Delete Events', () => {
     beforeEach(() => {
       data = {

@@ -14,7 +14,6 @@ const signup = (req, res) => {
       message: 'password is required',
     });
   }
-
   User.create({
     username: req.body.username,
     email: req.body.email,
