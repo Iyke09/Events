@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Center = sequelize.define('Center', {
-    name: {
+  const Eevent = sequelize.define('Eevent', {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -10,25 +10,29 @@ module.exports = (sequelize, DataTypes) => {
         },
         is: {
           args: /^[A-Za-z][A-Za-z0-9-]+$/i,
-          msg: 'only alphabets are allowed for the name'
+          msg: 'only alphabets are allowed for the title'
         }
       }
     },
-    description: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: [10, 250],
-          msg: 'description must be atleast 10 characters'
+        is: {
+          args: /^[A-za-z]*$/,
+          msg: 'only alphabets are allowed'
         }
       }
     },
-    location: {
-      type: DataTypes.STRING,
+    time: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    capacity: {
+    date: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    guests: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -38,20 +42,21 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    price: {
+    userId: {
       type: DataTypes.INTEGER,
     },
-    image: {
-      type: DataTypes.STRING,
+    centerId: {
+      type: DataTypes.INTEGER,
     },
   });
 
-  Center.associate = (models) => {
-    Center.hasMany(models.Eevent, {
+  Eevent.associate = (models) => {
+    Eevent.belongsTo(models.Center, {
       foreignKey: 'centerId',
-      as: 'events',
+      onDelete: 'CASCADE',
     });
   };
 
-  return Center;
+
+  return Eevent;
 };
