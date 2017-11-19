@@ -9,6 +9,8 @@ const usersUrl = `${rootURL}/users`;
 const adminUrl = `${rootURL}/centers`;
 
 let data = {};
+let userToken1 = '';
+let userToken2 = '';
 
 describe('API Integration Tests', () => {
   describe('User signup', () => {
@@ -177,7 +179,7 @@ describe('API Integration Tests', () => {
       request.post(loginURl)
         .send(data)
         .end((err, res) => {
-          const userToken1 = res.body.token;
+          userToken1 = res.body.token;
           const decoded = jwt.decode(userToken1);
           expect(res.status).to.equal(200);
           expect(res.body.message).to.equal('Successfully logged in as Admin');
@@ -194,8 +196,8 @@ describe('API Integration Tests', () => {
           email: 'enaho33@gmail.com',
         })
         .end((err, res) => {
-          const userToken1 = res.body.token;
-          const decoded = jwt.decode(userToken1);
+          userToken2 = res.body.token;
+          const decoded = jwt.decode(userToken2);
           expect(res.status).to.equal(200);
           expect(res.body.message).to.equal('Successfully logged in');
           expect(res.body.status).to.equal('Success');
@@ -270,22 +272,31 @@ describe('API Integration Tests', () => {
       };
     });
 
-    // // check if token is passed
-    // it('return 400 if token is not present', (done) => {
-    //   request.post(adminUrl)
-    //     .send(data)
-    //     .end((err, res) => {
-    //       expect(res.status).to.equal(401);
-    //       expect(res.body.message).to.equal('you have to be logged in to create recipe');
-    //       done();
-    //     });
-    // });
+    // check if token is passed
+    it('return 400 if token is not present', (done) => {
+      request.post(adminUrl)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.error.message).to.equal('jwt must be provided');
+          done();
+        });
+    });
+
+    it('return 400 if token is not for an admin user', (done) => {
+      request.post(`${adminUrl}?token=${userToken2}`)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
 
     // test if name is passed when creating a recipe
     it('return 500 if center name is less than 3', (done) => {
       const noName = Object.assign({}, data);
       noName.name = 'er';
-      request.post(adminUrl)
+      request.post(`${adminUrl}?token=${userToken1}`)
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
@@ -297,7 +308,7 @@ describe('API Integration Tests', () => {
     it('return 500 if center name does not contain only letters', (done) => {
       const noName = Object.assign({}, data);
       noName.name = 'errr$%';
-      request.post(adminUrl)
+      request.post(`${adminUrl}?token=${userToken1}`)
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
@@ -309,7 +320,7 @@ describe('API Integration Tests', () => {
     it('return 500 if center description is less than 10 char', (done) => {
       const noName = Object.assign({}, data);
       noName.description = 'ab';
-      request.post(adminUrl)
+      request.post(`${adminUrl}?token=${userToken1}`)
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
@@ -321,7 +332,7 @@ describe('API Integration Tests', () => {
     it('return 500 if capacity contains letters', (done) => {
       const noName = Object.assign({}, data);
       noName.capacity = 'hellloo45';
-      request.post(adminUrl)
+      request.post(`${adminUrl}?token=${userToken1}`)
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
@@ -331,7 +342,7 @@ describe('API Integration Tests', () => {
     });
 
     it('return 201 if center is created', (done) => {
-      request.post(adminUrl)
+      request.post(`${adminUrl}?token=${userToken1}`)
         .send(data)
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -343,18 +354,29 @@ describe('API Integration Tests', () => {
   });
 
   describe('Update Center', () => {
-    // it('return 401 if user not authorized', (done) => {
-    //   request.put(`${adminUrl}/1`)
-    //     .send()
-    //     .end((err, res) => {
-    //       expect(res.status).to.equal(401);
-    //       expect(res.body.message).to.equal('Unauthorization error');
-    //       done();
-    //     });
-    // });
+    it('return 401 if user not authorized', (done) => {
+      request.put(`${adminUrl}/1?token=${userToken2}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.title).to.equal('Not Authenticated!!!');
+          done();
+        });
+    });
+
+    it('return 401 if token is scrambled', (done) => {
+      const token = `${userToken1}jdsk`;
+      request.put(`${adminUrl}/1?token=${token}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.error.message).to.equal('invalid signature');
+          done();
+        });
+    });
 
     it('return 404 if center is not found', (done) => {
-      request.put(`${adminUrl}/15`)
+      request.put(`${adminUrl}/15?token=${userToken1}`)
         .send()
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -363,8 +385,17 @@ describe('API Integration Tests', () => {
         });
     });
 
+    it('return 400 if params id is string', (done) => {
+      request.put(`${adminUrl}/hk?token=${userToken1}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
     it('return 201 if center is updated', (done) => {
-      request.put(`${adminUrl}/1`)
+      request.put(`${adminUrl}/1?token=${userToken1}`)
         .send({ name: 'emporiumII' })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -375,7 +406,7 @@ describe('API Integration Tests', () => {
     });
 
     it('return 500 if recipe title contains spacd', (done) => {
-      request.put(`${adminUrl}/1`)
+      request.put(`${adminUrl}/1?token=${userToken1}`)
         .send({ name: 'chic ken' })
         .end((err, res) => {
           expect(res.status).to.equal(500);
@@ -385,9 +416,9 @@ describe('API Integration Tests', () => {
     });
   });
 
-  describe('Update Center', () => {
+  describe('Details Center', () => {
     it('return 404 if center is not found', (done) => {
-      request.get(`${adminUrl}/15`)
+      request.get(`${adminUrl}/14`)
         .send()
         .end((err, res) => {
           expect(res.status).to.equal(404);

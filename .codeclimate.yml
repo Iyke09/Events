@@ -16,5 +16,6 @@ ratings:
 exclude_paths:
   - "node_modules/"
   - "template/*"
+  - "client/"
   - "server/test"
 
