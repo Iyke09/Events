@@ -10,7 +10,6 @@ script:
 
 env:
 - NODE_ENV=test
-- CODECLIMATE_REPO_TOKEN: 81a3abf2da7f0bdf58be36d44b9c4b31c1ade7a259e2d73c6bccb06f656d5607
 
 cache:
   directories:
@@ -31,5 +30,5 @@ after_success:
 - npm install -g codeclimate-test-reporter
 - codeclimate-test-reporter < coverage/lcov.info
 
-# notifications:
-#   webhooks: https://coveralls.io/webhook repo_token=Fdrh3aLsYA3PJOZhsgKJNCeZh3r0rJ4Ud
+notifications:
+  webhooks: https://coveralls.io/webhook repo_token=81a3abf2da7f0bdf58be36d44b9c4b31c1ade7a259e2d73c6bccb06f656d5607
