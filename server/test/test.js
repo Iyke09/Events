@@ -12,6 +12,7 @@ const eventUrl = `${rootURL}/events`;
 let data = {};
 let userToken1 = '';
 let userToken2 = '';
+let checkId = '';
 
 describe('API Integration Tests', () => {
   describe('User signup', () => {
@@ -414,11 +415,12 @@ describe('API Integration Tests', () => {
 
     it('return 201 if successful--ly', (done) => {
       const noName = Object.assign({}, data);
-      noName.date = '2017-08-28';
+      noName.date = '28';
       noName.time = '08:34am';
       request.post(`${eventUrl}?token=${userToken2}`)
         .send(noName)
         .end((err, res) => {
+          checkId = res.body.cente.id;
           expect(res.status).to.equal(201);
           expect(res.body.status).to.equal('Success');
           expect(res.body.message).to.equal('Event created');
@@ -447,7 +449,7 @@ describe('API Integration Tests', () => {
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('center not found');
+          expect(res.body.message).to.equal('center not found or is currently not available');
           done();
         });
     });
@@ -496,9 +498,30 @@ describe('API Integration Tests', () => {
         });
     });
 
+    it('return 400 if center is not updated**', (done) => {
+      request.put(`${eventUrl}/${checkId}?token=${userToken2}`)
+        .send({ date: '2017-11-28', time: '08:34am' })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.status).to.equal('Unsuccessful');
+          expect(res.body.message).to.equal('Already booked, please select another day');
+          done();
+        });
+    });
+
+    it('return 400 if admin user trying to update event----', (done) => {
+      request.put(`${eventUrl}/${checkId}?token=${userToken1}`)
+        .send({ date: '2017-08-28', time: '08:34am' })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.message).to.equal('Admin user not Authorized to update');
+          done();
+        });
+    });
+
     it('return 201 if center is updated', (done) => {
       request.put(`${eventUrl}/1?token=${userToken2}`)
-        .send({ title: 'Concert' })
+        .send({ title: 'Concert', date: '2019-05-09', time: '09:45pm' })
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body.message).to.equal('event updated');

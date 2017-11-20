@@ -44,6 +44,9 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
     },
+    isAvailable: {
+      type: DataTypes.BOOLEAN,
+    },
   });
 
   Center.associate = (models) => {

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[A-za-z]*$/,
-          msg: 'only alphabets are allowed'
+          msg: 'only alphabets are allowed for type of evt'
         }
       }
     },

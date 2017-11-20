@@ -26,6 +26,10 @@ module.exports = {
     price: {
       type: Sequelize.INTEGER,
     },
+    isAvailable: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

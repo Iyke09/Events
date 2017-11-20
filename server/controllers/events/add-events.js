@@ -6,17 +6,18 @@ let check = '';
 const addEvents = (req, res) => {
   const { title, type, guests, name, date, time } = req.body;
   const dates = formatDate(new Date(2017, 10, date));
+  console.log(dates);
   const decoded = jwt.decode(req.body.token || req.query.token);
   if (decoded.adminUser === undefined) {
     check = decoded.user.id;
   } else {
     check = decoded.adminUser.id;
   }
-  Center.findOne({ where: { name } })
+  Center.findOne({ where: { name, isAvailable: true } })
   .then((center) => {
     if (!center) {
       res.status(404).send({
-        message: 'center not found'
+        message: 'center not found or is currently not available'
       });
     }
     Eevent.findOne({ where: { centerId: center.id, time, date: dates } })
