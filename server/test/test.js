@@ -268,7 +268,7 @@ describe('API Integration Tests', () => {
       data = {
         name: 'emporium',
         description: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
-        capacity: 4000,
+        capacity: 4500,
         location: '14 airport road, california',
         instructions: 'stir for 5minutes'
       };
@@ -302,7 +302,7 @@ describe('API Integration Tests', () => {
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
-          expect(res.body.message).to.equal('name must start with a letter and be at least 3 characters.');
+          expect(res.body.message).to.equal('name must be atleast 4 characters long');
           done();
         });
     });
@@ -314,7 +314,7 @@ describe('API Integration Tests', () => {
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
-          expect(res.body.message).to.equal('only alphabets are allowed for the name');
+          expect(res.body.message).to.equal('name must be alphanumeric');
           done();
         });
     });
@@ -380,7 +380,7 @@ describe('API Integration Tests', () => {
 
     it('return 500 if title contains not only letters', (done) => {
       const noName = Object.assign({}, data);
-      noName.title = 'ab hj';
+      noName.title = 'ab^ hj';
       request.post(`${eventUrl}?token=${userToken2}`)
         .send(noName)
         .end((err, res) => {
@@ -390,13 +390,24 @@ describe('API Integration Tests', () => {
         });
     });
 
-    it('return 500 if title contains not only letters', (done) => {
+    it('return 400 if guests exceeds capacity', (done) => {
       const noName = Object.assign({}, data);
-      noName.guests = 'ajd';
+      noName.guests = 6000;
+      request.post(`${eventUrl}?token=${userToken2}`)
+        .send(noName)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.message).to.equal('Sorry!!! please select another hall, maximum capacity exceeded');
+          done();
+        });
+    });
+
+    it('return 500 if guests contains not only letters', (done) => {
+      const noName = Object.assign({}, data);
+      noName.guests = 'ajsbd';
       request.post(`${eventUrl}?token=${userToken1}`)
         .send(noName)
         .end((err, res) => {
-          expect(res.status).to.equal(500);
           expect(res.body.message).to.equal('only numbers are allowed');
           done();
         });
@@ -406,12 +417,11 @@ describe('API Integration Tests', () => {
       request.post(`${eventUrl}?token=${userToken2}`)
         .send(data)
         .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body.status).to.equal('Success');
           expect(res.body.message).to.equal('Event created');
           done();
         });
     });
+
 
     it('return 201 if successful--ly', (done) => {
       const noName = Object.assign({}, data);
@@ -533,7 +543,7 @@ describe('API Integration Tests', () => {
 
     it('return 500 if recipe title contains spacd', (done) => {
       request.put(`${eventUrl}/1?token=${userToken2}`)
-        .send({ title: 'chic ken' })
+        .send({ title: 'chi*c ken' })
         .end((err, res) => {
           expect(res.status).to.equal(500);
           expect(res.body.message).to.equal('only alphabets are allowed for the title');
@@ -655,12 +665,12 @@ describe('API Integration Tests', () => {
         });
     });
 
-    it('return 500 if recipe title contains spacd', (done) => {
+    it('return 500 if recipe title contains non-letters', (done) => {
       request.put(`${adminUrl}/1?token=${userToken1}`)
-        .send({ name: 'chic ken' })
+        .send({ name: 'chi*c ken' })
         .end((err, res) => {
           expect(res.status).to.equal(500);
-          expect(res.body.message).to.equal('only alphabets are allowed for the name');
+          expect(res.body.message).to.equal('name must be alphanumeric');
           done();
         });
     });

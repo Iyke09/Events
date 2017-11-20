@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: [4, 10],
-          msg: 'name must start with a letter and be at least 3 characters.'
-        },
         is: {
-          args: /^[A-Za-z][A-Za-z0-9-]+$/i,
-          msg: 'only alphabets are allowed for the name'
+          args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
+          msg: 'name must be alphanumeric'
+        },
+        len: {
+          args: [4, 25],
+          msg: 'name must be atleast 4 characters long'
         }
       }
     },
@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     location: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'location field cannot be empty'
+        }
+      }
     },
     capacity: {
       type: DataTypes.INTEGER,
@@ -40,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {
+          args: true,
+          msg: 'Only numbers are allowed',
+        }
+      }
     },
     image: {
       type: DataTypes.STRING,

@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: [4, 10],
-          msg: 'name must start with a letter and be at least 3 characters.'
-        },
         is: {
-          args: /^[A-Za-z][A-Za-z0-9-]+$/i,
+          args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
           msg: 'only alphabets are allowed for the title'
+        },
+        len: {
+          args: [4, 25],
+          msg: 'title must be at least 4 characters.'
         }
       }
     },
@@ -20,17 +20,33 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[A-za-z]*$/,
-          msg: 'only alphabets are allowed for type of evt'
+          msg: 'only alphabets are allowed for type of event'
+        },
+        len: {
+          args: [4, 25],
+          msg: 'type of event must be at least 4 characters.'
         }
       }
     },
     time: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'time field cannot be empty'
+        }
+      }
     },
     date: {
       type: DataTypes.TEXT,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'date field cannot be empty'
+        }
+      }
     },
     guests: {
       type: DataTypes.INTEGER,

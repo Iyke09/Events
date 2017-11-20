@@ -6,7 +6,6 @@ let check = '';
 const addEvents = (req, res) => {
   const { title, type, guests, name, date, time } = req.body;
   const dates = formatDate(new Date(2017, 10, date));
-  console.log(dates);
   const decoded = jwt.decode(req.body.token || req.query.token);
   if (decoded.adminUser === undefined) {
     check = decoded.user.id;
@@ -28,6 +27,11 @@ const addEvents = (req, res) => {
           message: 'Already booked, please select another day'
         });
       } else {
+        if (guests > center.capacity) {
+          return res.status(400).send({
+            message: 'Sorry!!! please select another hall, maximum capacity exceeded'
+          });
+        }
         return Eevent.create({ title, type, guests, time, date: dates,
           centerId: center.id,
           userId: check
