@@ -744,6 +744,27 @@ describe('API Integration Tests', () => {
           done();
         });
     });
+
+    it('return 200 if it gets all centers based on query parameters ', (done) => {
+      request.get(`${adminUrl}?name=emporium`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.message).to.equal('centers found');
+          expect(res.body.center.length).to.equal(1);
+          done();
+        });
+    });
+
+    it('return 404 if it dosnt get all centers', (done) => {
+      request.get(`${adminUrl}?name=emporiums&capacity=45000`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('Oops!!..sorry no items matched your search');
+          done();
+        });
+    });
   });
 });
 

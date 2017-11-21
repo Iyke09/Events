@@ -41,8 +41,8 @@ const deleteEvent = (req, res) => {
               message: 'Event deleted by admin'
             });
           });
-        })
-        .catch(error => res.status(500).send(error.toString()));
+        });
+        // .catch(error => res.status(500).send(error.toString()));
       } else {
         if (event.userId !== decoded.user.id) {
           return res.status(401).json({
