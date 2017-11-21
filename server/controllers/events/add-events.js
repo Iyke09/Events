@@ -12,11 +12,11 @@ const addEvents = (req, res) => {
   } else {
     check = decoded.adminUser.id;
   }
-  Center.findOne({ where: { name } })
+  Center.findOne({ where: { name, isAvailable: true } })
   .then((center) => {
     if (!center) {
       res.status(404).send({
-        message: 'center not found'
+        message: 'center not found or is currently not available'
       });
     }
     Eevent.findOne({ where: { centerId: center.id, time, date: dates } })
@@ -27,6 +27,11 @@ const addEvents = (req, res) => {
           message: 'Already booked, please select another day'
         });
       } else {
+        if (guests > center.capacity) {
+          return res.status(400).send({
+            message: 'Sorry!!! please select another hall, maximum capacity exceeded'
+          });
+        }
         return Eevent.create({ title, type, guests, time, date: dates,
           centerId: center.id,
           userId: check

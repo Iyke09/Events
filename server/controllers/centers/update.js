@@ -15,7 +15,8 @@ const updateCenter = (req, res) => { // ---------- send email if user's fav reci
         description: req.body.description || center.description,
         capacity: req.body.capacity || center.capacity,
         price: req.body.price || center.price,
-        location: req.body.location || center.location
+        location: req.body.location || center.location,
+        isAvailable: !center.isAvailable
       })
       .then((success) =>
         res.status(201).send({

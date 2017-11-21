@@ -46,7 +46,7 @@ const signin = (req, res) => {
         }));
       }
       else {
-        const token = jwt.sign({ user }, 'secret', { expiresIn: 7200 });
+        const token = jwt.sign({ user }, 'secret', { expiresIn: 72000 });
         res.status(200).send({
           status: 'Success',
           message: 'Successfully logged in',
