@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import app from '../app';
+import bcrypt from 'bcryptjs';
 
 const request = supertest(app);
 const rootURL = '/api/v1';
@@ -260,6 +261,82 @@ describe('API Integration Tests', () => {
           expect(res.body.message).to.equal('please fill in the required fields');
           done();
         });
+    });
+  });
+
+  describe('Password change', () => {
+    // check if token is passed
+    it('return 400 if token is not present', (done) => {
+      request.post(`${usersUrl}/change`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.error.message).to.equal('jwt must be provided');
+          done();
+        });
+    });
+
+    it('return 400 if admin user trying to access route', (done) => {
+      request.post(`${usersUrl}/change?token=${userToken1}`)
+      .send()
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
+        expect(res.body.message).to.equal('admin user not authorized!');
+        done();
+      });
+    });
+
+    // test if name is passed when creating a recipe
+    it('return 400 if old pass !== new pass entered', (done) => {
+      request.post(`${usersUrl}/change?token=${userToken2}`)
+        .send({ old: 'elobae', newp: 'hola', newc: 'hola' })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.message).to.equal('invalid password');
+          done();
+        });
+    });
+
+    it('return 400 if passwords do not match', (done) => {
+      request.post(`${usersUrl}/change?token=${userToken2}`)
+      .send({ old: '123456', newp: 'hola', newc: 'holabalu' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('passwords do not match');
+        done();
+      });
+    });
+
+    it('return 201 if passwords match and is successful', (done) => {
+      request.post(`${usersUrl}/change?token=${userToken2}`)
+      .send({ old: '123456', newp: 'hola', newc: 'hola' })
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.message).to.equal('password successfully changed');
+        done();
+      });
+    });
+  });
+
+  describe('Password Retrieval', () => {
+    it('return 400 if email does not exist', (done) => {
+      request.post(`${usersUrl}/reset`)
+      .send({ email: 'foo@foo.com' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('email does not exist');
+        done();
+      });
+    });
+
+    it('return 200 if email does exist', (done) => {
+      request.post(`${usersUrl}/reset`)
+      .send({ email: 'enaho33@gmail.com' })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('password sent to your email address');
+        done();
+      });
     });
   });
 
