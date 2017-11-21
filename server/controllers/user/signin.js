@@ -24,7 +24,7 @@ const signin = (req, res) => {
           message: 'invalid login details',
         });
       }
-      if (!bcrypt.compareSync(req.body.password, user.password)) {
+      if (!bcrypt.compareSync(req.body.email, req.body.password) && !bcrypt.compareSync(req.body.password, user.password)) {
         return res.status(400).send({
           message: 'Incorrect password',
         });
