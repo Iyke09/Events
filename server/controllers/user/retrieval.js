@@ -3,21 +3,24 @@ import { User } from '../../models';
 import nodemailer from 'nodemailer';
 
 const emailRetrieval = (req, res) => {
+  // find a user matching the email passed in
   User.findOne({
     where: {
       email: req.body.email,
     },
   })
     .then((user) => {
+      // send back error message if no user found
       if (!user) {
         return res.status(400).send({
           message: 'email does not exist',
         });
-      }
+      }// create a password and store in database
       return user.update({
         password: bcrypt.hashSync(req.body.email, 10),
       })
       .then((userFound) => {
+        // send the new created password to user email
         const transporter = nodemailer.createTransport({
           service: 'Gmail',
           auth: {
@@ -38,7 +41,7 @@ const emailRetrieval = (req, res) => {
           } else {
             console.log(`Ok - ${info}`);
           }
-        });
+        });// success message
         res.status(200).send({ message: 'password sent to your email address' });
       });
       // .catch(err => res.status(500).send(err.toString()));

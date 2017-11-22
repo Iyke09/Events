@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import app from '../app';
-import bcrypt from 'bcryptjs';
 
 const request = supertest(app);
 const rootURL = '/api/v1';
