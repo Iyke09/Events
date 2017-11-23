@@ -9,7 +9,8 @@
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "start:dev": "nodemon --exec babel-node server/bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "heroku-postbuild": "sequelize db:migrate"
+    "heroku-postbuild": "sequelize db:migrate",
+    "lint": "eslint server"
   },
   "nyc": {
     "require": [
@@ -49,6 +50,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "dotenv": "^4.0.0",
+    "eslint-config-airbnb": "^16.1.0",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.4.1",
     "morgan": "^1.7.0",
@@ -66,15 +68,15 @@
     "chai": "^4.1.1",
     "coveralls": "^2.13.1",
     "cross-env": "^5.0.5",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.10.2",
-    "eslint": "^2.13.1",
-    "eslint-plugin-jsx-a11y": "^1.5.5",
-    "eslint-plugin-react": "^5.2.2",
-    "mocha-lcov-reporter": "^1.3.0",
-    "node-sass": "^4.5.3",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "node-sass": "^4.5.3",
     "nyc": "^11.1.0",
     "supertest": "^3.0.0"
   }

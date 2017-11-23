@@ -1,6 +1,6 @@
 import express from 'express';
-import userController from '../controllers/user/index';
-import jwt from 'jsonwebtoken';
+import userController from '../controllers/index';
+import authToken from '../middleware/token2';
 
 const router = express.Router();
 
@@ -8,26 +8,15 @@ router.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to the your Favorite API!!!!!!!!!!!!',
 }));
 
-router.post('/signup', userController.signup);
+router.post('/signup', userController.userSignup);
 
-router.post('/signin', userController.signin);
+router.post('/signin', userController.userSignin);
 
-router.post('/reset', userController.retrieve);
+router.post('/reset', userController.passRetrieve);
 
-router.use('/', (req, res, next) => {
-  const token = req.body.token || req.query.token;
-  jwt.verify(token, 'secret', (err, decoded) => {
-    if (err) {
-      return res.status(401).json({
-        title: 'Not Authenticated!!!',
-        error: err
-      });
-    }
-    next();
-  });
-});
+router.use('/', authToken);
 
-router.post('/change', userController.change);
+router.post('/change', userController.passChange);
 
 
 export default router;

@@ -1,23 +1,12 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import eventController from '../controllers/events/indexx';
+import eventController from '../controllers/index';
+import authToken from '../middleware/token2';
 
 const router = express.Router();
 
-router.use('/', (req, res, next) => {
-  const token = req.body.token || req.query.token;
-  jwt.verify(token, 'secret', (err, decoded) => {
-    if (err) {
-      return res.status(401).json({
-        title: 'Not Authenticated!!!',
-        error: err
-      });
-    }
-    next();
-  });
-});
+router.use('/', authToken);
 
-router.post('/', eventController.addEvents);
+router.post('/', eventController.addEvent);
 
 router.delete('/:id', eventController.deleteEvent);
 

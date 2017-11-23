@@ -6,13 +6,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
-          msg: 'name must be alphanumeric'
+          msg: 'name must be alphanumeric',
         },
         len: {
           args: [4, 25],
-          msg: 'name must be atleast 4 characters long'
-        }
-      }
+          msg: 'name must be atleast 4 characters long',
+        },
+      },
     },
     description: {
       type: DataTypes.STRING,
@@ -20,9 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [10, 250],
-          msg: 'description must be atleast 10 characters'
-        }
-      }
+          msg: 'description must be atleast 10 characters',
+        },
+      },
     },
     location: {
       type: DataTypes.STRING,
@@ -30,9 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'location field cannot be empty'
-        }
-      }
+          msg: 'location field cannot be empty',
+        },
+      },
     },
     capacity: {
       type: DataTypes.INTEGER,
@@ -40,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[0-9]*$/,
-          msg: 'only numbers are allowed'
-        }
-      }
+          msg: 'only numbers are allowed',
+        },
+      },
     },
     price: {
       type: DataTypes.INTEGER,
@@ -50,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
         isNumeric: {
           args: true,
           msg: 'Only numbers are allowed',
-        }
-      }
+        },
+      },
     },
     image: {
       type: DataTypes.STRING,

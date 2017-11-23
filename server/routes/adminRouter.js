@@ -1,25 +1,14 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import adminController from '../controllers/centers/index';
+import adminController from '../controllers/index';
+import authToken from '../middleware/tokenAuth';
 
 const router = express.Router();
 
-router.get('/:id', adminController.centerDetails);
+router.get('/:id', adminController.detailCenter);
 
-router.get('/', adminController.allCenters);
+router.get('/', adminController.allCenter);
 
-router.use('/', (req, res, next) => {
-  const token = req.body.token || req.query.token;
-  jwt.verify(token, 'secret', (err, decoded) => {
-    if (err || decoded.user !== undefined) {
-      return res.status(401).json({
-        title: 'Not Authenticated!!!',
-        error: err
-      });
-    }
-    next();
-  });
-});
+router.use('/', authToken);
 
 router.post('/', adminController.addCenter);
 

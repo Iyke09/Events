@@ -11,7 +11,7 @@ module.exports = {
       allowNull: false,
     },
     image: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     description: {
       type: Sequelize.STRING,
@@ -39,5 +39,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: (queryInterface) => queryInterface.dropTable('Centers'),
+  down: queryInterface => queryInterface.dropTable('Centers'),
 };

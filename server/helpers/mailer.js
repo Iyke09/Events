@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const mailer = (user) => {
+const mailer = (user, msg, title) => {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -11,8 +11,8 @@ const mailer = (user) => {
   const mailOptions = {
     from: 'iykay33@gmail.com',
     to: user.email,
-    subject: 'Event Cancelled',
-    text: `hello ${user.username}, we sorry to say but your booking has been cancelled`,
+    subject: title,
+    text: msg,
   };
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
