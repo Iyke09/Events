@@ -1,6 +1,6 @@
 import { Eevent, User } from '../../models';
 import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
+import messageMailer from '../mailer';
 
 const deleteEvent = (req, res) => {
   // decode token
@@ -23,26 +23,7 @@ const deleteEvent = (req, res) => {
           User.findById(event.userId)
           .then((user) => {
             // if found send an email notifying then of canceled event
-            const transporter = nodemailer.createTransport({
-              service: 'Gmail',
-              auth: {
-                user: 'iykay33@gmail.com',
-                pass: process.env.PASSWORD,
-              },
-            });
-            const mailOptions = {
-              from: 'iykay33@gmail.com',
-              to: user.email,
-              subject: 'Event Cancelled',
-              text: `hello ${user.username}, we sorry to say but your booking has been cancelled`,
-            };
-            transporter.sendMail(mailOptions, (err, info) => {
-              if (err) {
-                console.log(`hiiiii err ${err}`);
-              } else {
-                console.log(`Message sent: ${info.response}`);
-              }
-            });
+            messageMailer(user);
             res.status(200).send({
               message: 'Event deleted by admin'
             });
@@ -64,7 +45,7 @@ const deleteEvent = (req, res) => {
             message: 'event deleted'
           }));
       }
-    })
+    })// error handler
     .catch(error => res.status(500).send(error.toString()));
 };
 
