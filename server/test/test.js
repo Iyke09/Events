@@ -485,7 +485,7 @@ describe('API Integration Tests', () => {
         .send(noName)
         .end((err, res) => {
           expect(res.status).to.equal(500);
-          expect(res.body.message).to.equal('only numbers are allowed');
+          expect(res.body.message).to.equal('only numbers are allowed for guests field');
           done();
         });
     });

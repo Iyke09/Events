@@ -40,7 +40,7 @@ The events manager is simply an awesome app where users can book events for part
 - **POST** http://localhost:8000/api/v1/users/retrieve - to retrieve forgotten password 
 
 
-###### To view templates cd into events/client/templates
+##### To view templates cd into events/client/templates
 
 ```
  open index.html in your favorite browser

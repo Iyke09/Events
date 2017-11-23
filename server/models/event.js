@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[0-9]*$/,
-          msg: 'only numbers are allowed'
+          msg: 'only numbers are allowed for guests field'
         }
       }
     },
