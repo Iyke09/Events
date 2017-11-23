@@ -103,7 +103,7 @@ class Users {
         user,
       }))
       .catch(error => res.status(500).send({
-        message: error.toString(),
+        message: error.errors[0].message,
       }));
   }
 
