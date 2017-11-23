@@ -9,7 +9,7 @@
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "start:dev": "nodemon --exec babel-node server/bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "heroku-postbuild": "sequelize db:migrate",
+    "heroku-postbuild": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "lint": "eslint server"
   },
   "nyc": {
