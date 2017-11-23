@@ -6,13 +6,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
-          msg: 'only alphabets are allowed for the title'
+          msg: 'only alphabets are allowed for the title',
         },
         len: {
           args: [4, 25],
-          msg: 'title must be at least 4 characters.'
-        }
-      }
+          msg: 'title must be at least 4 characters.',
+        },
+      },
     },
     type: {
       type: DataTypes.STRING,
@@ -20,13 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[A-za-z]*$/,
-          msg: 'only alphabets are allowed for type of event'
+          msg: 'only alphabets are allowed for type of event',
         },
         len: {
           args: [4, 25],
-          msg: 'type of event must be at least 4 characters.'
-        }
-      }
+          msg: 'type of event must be at least 4 characters.',
+        },
+      },
     },
     time: {
       type: DataTypes.INTEGER,
@@ -34,9 +34,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'time field cannot be empty'
-        }
-      }
+          msg: 'time field cannot be empty',
+        },
+      },
     },
     date: {
       type: DataTypes.TEXT,
@@ -44,9 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'date field cannot be empty'
-        }
-      }
+          msg: 'date field cannot be empty',
+        },
+      },
     },
     guests: {
       type: DataTypes.INTEGER,
@@ -54,9 +54,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: /^[0-9]*$/,
-          msg: 'only numbers are allowed for guests field'
-        }
-      }
+          msg: 'only numbers are allowed for guests field',
+        },
+      },
     },
     userId: {
       type: DataTypes.INTEGER,
