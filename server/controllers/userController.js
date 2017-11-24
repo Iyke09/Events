@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
+import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import { User } from '../models';
-import messageMailer from '../helpers/mailer';
 
 /**
  * Creates a new Person.
@@ -134,7 +134,26 @@ class Users {
             // send the new created password to user email
             const title = 'Password Retrieval';
             const message = `hello ${user.username}, this is your new password - ${user.password}`;
-            messageMailer(user, message, title);
+            const transporter = nodemailer.createTransport({
+              service: 'Gmail',
+              auth: {
+                user: 'iykay33@gmail.com',
+                pass: process.env.PASSWORD,
+              },
+            });
+            const mailOptions = {
+              from: 'iykay33@gmail.com',
+              to: user.email,
+              subject: title,
+              text: message,
+            };
+            transporter.sendMail(mailOptions, (err, info) => {
+              if (err) {
+                console.log(`hiiiii err ${err}`);
+              } else {
+                console.log(`Message sent: ${info.response}`);
+              }
+            });
             // success message
             res.status(200).send({ message: 'password sent to your email address' });
           });

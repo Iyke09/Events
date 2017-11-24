@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 
 const mailer = (user, msg, title) => {
+  console.log('deleting.....');
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {

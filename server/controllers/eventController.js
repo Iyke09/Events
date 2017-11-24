@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import formatDate from 'simple-format-date';
-import messageMailer from '../helpers/mailer';
+import nodemailer from 'nodemailer';
 import { Center, Eevent, User } from '../models';
 
 /**
@@ -112,7 +112,26 @@ class Event {
                   const title = 'Event Cancelled';
                   const message = `hello ${user.username}, we sorry to say but
                   your booking has been cancelled`;
-                  messageMailer(user, message, title);
+                  const transporter = nodemailer.createTransport({
+                    service: 'Gmail',
+                    auth: {
+                      user: 'iykay33@gmail.com',
+                      pass: process.env.PASSWORD,
+                    },
+                  });
+                  const mailOptions = {
+                    from: 'iykay33@gmail.com',
+                    to: user.email,
+                    subject: title,
+                    text: message,
+                  };
+                  transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                      console.log(`hiiiii err ${err}`);
+                    } else {
+                      console.log(`Message sent: ${info.response}`);
+                    }
+                  });
                   res.status(200).send({
                     message: 'Event deleted by admin',
                   });
