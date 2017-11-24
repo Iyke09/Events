@@ -116,7 +116,7 @@ class Event {
                     service: 'Gmail',
                     auth: {
                       user: 'iykay33@gmail.com',
-                      pass: process.env.PASSWORD,
+                      pass: 'p3nn1s01',
                     },
                   });
                   const mailOptions = {
