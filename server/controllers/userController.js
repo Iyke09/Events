@@ -9,6 +9,7 @@ import { User } from '../models';
  */
 class Users {
   /**
+   * This method logs in a user to the app
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -74,6 +75,7 @@ class Users {
   }
 
   /**
+   * This method adds a new user to the database
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -108,6 +110,7 @@ class Users {
   }
 
   /**
+   * This method retrieve a users lost password
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -120,14 +123,14 @@ class Users {
         email: req.body.email,
       },
     })
-      .then((userx) => {
+      .then((userFound) => {
         // send back error message if no user found
-        if (!userx) {
+        if (!userFound) {
           return res.status(400).send({
             message: 'email does not exist',
           });
         }// create a password and store in database
-        return userx.update({
+        return userFound.update({
           password: bcrypt.hashSync(req.body.email, 10),
         })
           .then((user) => {
@@ -165,6 +168,7 @@ class Users {
   }
 
   /**
+   * This method changes/modifies a users password details
    *
    * @param {object} req a review object
    * @param {object} res a review object

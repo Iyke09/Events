@@ -10,6 +10,7 @@ import { Center, Eevent, User } from '../models';
 let check = '';
 class Event {
   /**
+   * The method Adds an event
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -73,9 +74,6 @@ class Event {
                 message: error.errors[0].message,
               }));
           });
-        // .catch(err => res.status(500).send({
-        //   message: err.toString()
-        // }));
       })
       .catch(err => res.status(500).send({
         message: err.toString(),
@@ -83,6 +81,7 @@ class Event {
   }
 
   /**
+   * This method deletes an event from the database
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -137,7 +136,6 @@ class Event {
                   });
                 });
             });
-          // .catch(error => res.status(500).send(error.toString()));
         } else {
           // if user not equal to admin
           // check if the user's id matches the event.user id
@@ -158,6 +156,7 @@ class Event {
   }
 
   /**
+   * This method updates an event
    *
    * @param {object} req a review object
    * @param {object} res a review object
