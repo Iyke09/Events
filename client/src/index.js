@@ -10,6 +10,7 @@ import Home from './components/Home';
 import details from './components/details';
 import admin from './components/admin';
 
+
 // import react router deps
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -24,6 +25,7 @@ const router = (
         <Route path="/home" component={Home} />
         <Route path="/details/:id" component={details} />
         <Route path="/user/admin" component={admin} />
+
       </Route>
     </Router>
   </Provider>

@@ -8,8 +8,10 @@ function mapStateToProps(state) {
     centers: state.centers,
     loader: state.loader,
     error: state.error,
+
     user: state.user,
     single: state.single
+
   };
 }
 

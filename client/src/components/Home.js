@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { Link } from 'react-router';
+
 
 class Home extends React.Component {
   constructor(){
@@ -65,6 +67,7 @@ class Home extends React.Component {
                           <i className="material-icons">chevron_right</i>
                         </a>
                       </Link>
+
                     </div>
                     <div className="card-content">
                         <p>{center.description}</p>

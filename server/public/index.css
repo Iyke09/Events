@@ -32,6 +32,7 @@ body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
   position: relative;
 }
 
+
 .bgimg4{
   height: 650px;
   background-repeat: no-repeat;
@@ -55,6 +56,7 @@ body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
   top: 45%;
   position: absolute;
 }
+
 .overlay{
   height: 650px;
   position: absolute;
@@ -116,6 +118,7 @@ hr{
   background-color: grey;
   padding: 4px;
   color: white
+
 }
 #w3set{
   position: relative
@@ -144,3 +147,4 @@ hr{
 .set{
   position: absolute
 }
+

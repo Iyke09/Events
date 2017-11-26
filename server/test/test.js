@@ -21,7 +21,7 @@ describe('API Integration Tests', () => {
       data = {
         username: 'jane56',
         password: '123456',
-        email: 'enaho31@gmail.com',
+        email: 'enaho31@gmail.com'
       };
     });
 
@@ -277,12 +277,12 @@ describe('API Integration Tests', () => {
 
     it('return 400 if admin user trying to access route', (done) => {
       request.post(`${usersUrl}/change?token=${userToken1}`)
-        .send()
-        .end((err, res) => {
-          expect(res.status).to.equal(403);
-          expect(res.body.message).to.equal('admin user not authorized!');
-          done();
-        });
+      .send()
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
+        expect(res.body.message).to.equal('admin user not authorized!');
+        done();
+      });
     });
 
     // test if name is passed when creating a recipe
@@ -298,44 +298,44 @@ describe('API Integration Tests', () => {
 
     it('return 400 if passwords do not match', (done) => {
       request.post(`${usersUrl}/change?token=${userToken2}`)
-        .send({ old: '123456', newp: 'hola', newc: 'holabalu' })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('passwords do not match');
-          done();
-        });
+      .send({ old: '123456', newp: 'hola', newc: 'holabalu' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('passwords do not match');
+        done();
+      });
     });
 
     it('return 201 if passwords match and is successful', (done) => {
       request.post(`${usersUrl}/change?token=${userToken2}`)
-        .send({ old: '123456', newp: 'hola', newc: 'hola' })
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body.message).to.equal('password successfully changed');
-          done();
-        });
+      .send({ old: '123456', newp: 'hola', newc: 'hola' })
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.message).to.equal('password successfully changed');
+        done();
+      });
     });
   });
 
   describe('Password Retrieval', () => {
     it('return 400 if email does not exist', (done) => {
       request.post(`${usersUrl}/reset`)
-        .send({ email: 'foo@foo.com' })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('email does not exist');
-          done();
-        });
+      .send({ email: 'foo@foo.com' })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('email does not exist');
+        done();
+      });
     });
 
     it('return 200 if email does exist', (done) => {
       request.post(`${usersUrl}/reset`)
-        .send({ email: 'enaho33@gmail.com' })
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body.message).to.equal('password sent to your email address');
-          done();
-        });
+      .send({ email: 'enaho33@gmail.com' })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('password sent to your email address');
+        done();
+      });
     });
   });
 
@@ -346,7 +346,7 @@ describe('API Integration Tests', () => {
         description: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
         capacity: 4500,
         location: '14 airport road, california',
-        instructions: 'stir for 5minutes',
+        instructions: 'stir for 5minutes'
       };
     });
 
@@ -439,7 +439,7 @@ describe('API Integration Tests', () => {
         type: 'Musical',
         guests: 4000,
         time: '09:00pm',
-        date: '2017-08-24',
+        date: '2017-08-24'
       };
     });
 

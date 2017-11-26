@@ -12,10 +12,9 @@ import { Center, Eevent } from '../models';
  */
 class Admin {
   /**
-   * This method adds a center
    *
    * @param {object} req a review object
-   * @param {object} res a  review object
+   * @param {object} res a review object
    * @return {object} return a recipe oject
    */
   static addCenter(req, res) {
@@ -37,9 +36,7 @@ class Admin {
       }));
   }
 
-
   /**
-   * This method updates or modifies a center
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -78,7 +75,6 @@ class Admin {
   }
 
   /**
-   * This methods get the details of a center
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -108,10 +104,7 @@ class Admin {
       })
       .catch(error => res.status(500).send(error.toString()));
   }
-
-
   /**
-   * this method get all available centers or searches the db for a center
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -148,9 +141,10 @@ class Admin {
             });
           }
         });
+      //  .catch(error => res.status(400).send(error.toString()));
     } else {
       // if query parameters not present then query center model for all available center
-      Center.findAll()
+      Center.findAll({limit: req.query.limit })
         .then(center => res.status(200).send({
           status: 'Success',
           message: 'centers found',

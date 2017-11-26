@@ -76,6 +76,7 @@ export function* watchGetCenters() {
     yield takeEvery('GET_ALL', getCenters);
 }
 
+
 export function* getSingle(action) {
   try{
       const response = yield call(axios.get, `${centerUrl}/${action.index}`);
@@ -92,11 +93,13 @@ export function* watchGetSingle() {
 }
 
 
+
 export default function* rootSaga() {
   yield [
     watchAddUser(),
     watchSignUser(),
     watchGetCenters(),
     watchGetSingle()
+
   ];
 }
