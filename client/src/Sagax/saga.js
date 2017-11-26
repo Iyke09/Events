@@ -77,10 +77,29 @@ export function* watchGetCenters() {
 }
 
 
+export function* getSingle(action) {
+  try{
+      const response = yield call(axios.get, `${centerUrl}/${action.index}`);
+      yield put({ type: 'SET_SINGLE', response: response.data });
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+  }
+}
+
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchGetSingle() {
+    yield takeEvery('GET_SINGLE', getSingle);
+}
+
+
+
 export default function* rootSaga() {
   yield [
     watchAddUser(),
     watchSignUser(),
-    watchGetCenters()
+    watchGetCenters(),
+    watchGetSingle()
+
   ];
 }

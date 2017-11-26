@@ -31,6 +31,32 @@ body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
   justify-content: center;
   position: relative;
 }
+
+
+.bgimg4{
+  height: 650px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#minor-l{
+  position: absolute;
+  top:4%;
+  right: 4%;
+}
+
+#minor{
+  position: relative;
+}
+.pos{
+  top: 45%;
+  position: absolute;
+}
+
 .overlay{
   height: 650px;
   position: absolute;
@@ -92,4 +118,33 @@ hr{
   background-color: grey;
   padding: 4px;
   color: white
-}s
+
+}
+#w3set{
+  position: relative
+}
+
+#w3sets{
+  position: relative
+}
+.but9{
+  border: 1px solid lightgrey;
+  color: black;
+  box-shadow: none;
+}
+.font{
+  font-family: 'Lobster', cursive;
+}
+.font2{
+  font-family: 'Barlow Condensed', sans-serif;
+}
+#slide{
+  position: relative
+}
+.font3{
+  font-family: 'Satisfy', cursive;
+}
+.set{
+  position: absolute
+}
+

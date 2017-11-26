@@ -18,3 +18,12 @@ export function getCenters(index) {
     index
   };
 }
+
+
+export function getSingle(index) {
+  return {
+    type: 'GET_SINGLE',
+    index
+  };
+}
+

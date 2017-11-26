@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router';
+
+
 class Home extends React.Component {
   constructor(){
     super();
@@ -59,8 +62,12 @@ class Home extends React.Component {
                         <img src={center.image}/>
                       </a>
                       <span className="card-title">{center.name}</span>
-                      <a className="btn-floating halfway-fab waves-effect waves-light red">
-                        <i className="material-icons">chevron_right</i></a>
+                      <Link to={`/details/${center.id}`}>
+                        <a className="btn-floating halfway-fab waves-effect waves-light red">
+                          <i className="material-icons">chevron_right</i>
+                        </a>
+                      </Link>
+
                     </div>
                     <div className="card-content">
                         <p>{center.description}</p>

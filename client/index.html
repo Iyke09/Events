@@ -18,6 +18,9 @@
     <link type="text/css" rel="stylesheet" href="./templates/css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="/static/index.css">
     <link rel="stylesheet" href="/static/signup.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Lobster|Satisfy" rel="stylesheet">
+
   </head>
   <body>
     <div id="app"></div>
@@ -27,6 +30,23 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./templates/materialize/js/materialize.min.js"></script>
     <script>
+
+      var slideIndex = 1;
+      showDivs(slideIndex);
+      function plusDivs(n) {
+        showDivs(slideIndex += n);
+      }
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+      }
+
     </script>
   </body>
 </html>

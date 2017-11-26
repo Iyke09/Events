@@ -7,6 +7,8 @@ import App from './components/App';
 import Centers from './components/Signup';
 import Signin from './components/Signin';
 import Home from './components/Home';
+import details from './components/details';
+import admin from './components/admin';
 
 
 // import react router deps
@@ -21,6 +23,9 @@ const router = (
         <IndexRoute component={Centers} />
         <Route path="/auth/signin" component={Signin} />
         <Route path="/home" component={Home} />
+        <Route path="/details/:id" component={details} />
+        <Route path="/user/admin" component={admin} />
+
       </Route>
     </Router>
   </Provider>
