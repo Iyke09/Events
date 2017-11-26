@@ -1,0 +1,95 @@
+body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
+#nav{
+  background-color: #212F3C;
+  color: white;
+}
+.parallax-container {
+  height: 400px;
+}
+.brand-logo{
+  margin-left: 10px;
+}
+.bgimg2{
+  background-image: url('https://static.pexels.com/photos/348517/pexels-photo-348517.jpeg');
+  min-height: 400px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.bgimg{
+  background-image: url('https://static.pexels.com/photos/348517/pexels-photo-348517.jpeg');
+  height: 650px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.overlay{
+  height: 650px;
+  position: absolute;
+  width:100%;
+  top:0px;
+  color:white;
+  background-color: rgba(0,0,0,0.4);
+  min-height: 100%;
+  color: white;
+}
+.button{
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 10px 40px;
+  color: white;
+  cursor: pointer;
+}
+.button1{
+  background-color: #212F3C;
+  padding: 12px 65px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid #212F3C
+
+}
+
+.slant{
+  font-size: 17px;
+}
+.displayed:hover .show{
+    display: block;
+}
+.para{
+  background-image: url('https://static.pexels.com/photos/273669/pexels-photo-273669.jpeg');
+
+}
+.forms{
+  background-color: rgba(0,0,0,0.6);
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  padding: 0px 2px;
+  align-items: center;
+}
+#bg-ad{
+  background-color:rgba(0,0,0,0.5);
+  padding:45px;
+  height: 300px;
+  width: 300px;
+  border-radius: 100%
+}
+hr{
+  margin: auto;
+  max-width: 14%;
+  border-bottom:1px solid red;
+  margin-left: 5px;
+}
+.date{
+  background-color: grey;
+  padding: 4px;
+  color: white
+}s

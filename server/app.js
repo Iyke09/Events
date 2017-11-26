@@ -2,9 +2,16 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './routes/index.js';
+import webpack from 'webpack';
+import path from 'path';
+import config from '../webpack.config.dev';
+import open from 'open';
 
-// Set up the express app
+/* eslint-disable no-console */
+
 const app = express();
+
+const compiler = webpack(config);
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -13,11 +20,19 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 app.use('/api/v1', routes);
-// Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to the beginning of nothingness.',
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
 }));
 
+app.use(require('webpack-hot-middleware')(compiler));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join( __dirname, '../client/index.html'));
+});
 
 module.exports = app;
