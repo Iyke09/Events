@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import formatDate from 'simple-format-date';
-import nodemailer from 'nodemailer';
+import messageMailer from '../helpers/mailer';
 import { Center, Eevent, User } from '../models';
 
 /**
@@ -10,7 +10,6 @@ import { Center, Eevent, User } from '../models';
 let check = '';
 class Event {
   /**
-   * The method Adds an event
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -22,7 +21,24 @@ class Event {
       title, type, guests, name, date, time,
     } = req.body;
     // format date based on user input
-    const dates = formatDate(new Date(2017, 10, date));
+
+    const months = {
+      '01': 'January',
+      '02': 'February',
+      '03': 'March',
+      '04': 'April',
+      '05': 'May',
+      '06': 'June',
+      '07': 'July',
+      '08': 'August',
+      '09': 'September',
+      '10': 'October',
+      '11': 'November',
+      '12': 'December'
+    };
+    const dates = formatDate(new Date(2017, 0, date), {
+      template: (locals) => `${locals.DD}, ${months[locals.MM]} ${locals.YY}`
+    });
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token);
     // check if it is a user or admin user trying to access route
@@ -74,6 +90,9 @@ class Event {
                 message: error.errors[0].message,
               }));
           });
+        // .catch(err => res.status(500).send({
+        //   message: err.toString()
+        // }));
       })
       .catch(err => res.status(500).send({
         message: err.toString(),
@@ -81,7 +100,6 @@ class Event {
   }
 
   /**
-   * This method deletes an event from the database
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -111,31 +129,13 @@ class Event {
                   const title = 'Event Cancelled';
                   const message = `hello ${user.username}, we sorry to say but
                   your booking has been cancelled`;
-                  const transporter = nodemailer.createTransport({
-                    service: 'Gmail',
-                    auth: {
-                      user: 'iykay33@gmail.com',
-                      pass: 'p3nn1s01',
-                    },
-                  });
-                  const mailOptions = {
-                    from: 'iykay33@gmail.com',
-                    to: user.email,
-                    subject: title,
-                    text: message,
-                  };
-                  transporter.sendMail(mailOptions, (err, info) => {
-                    if (err) {
-                      console.log(`hiiiii err ${err}`);
-                    } else {
-                      console.log(`Message sent: ${info.response}`);
-                    }
-                  });
+                  messageMailer(user, message, title);
                   res.status(200).send({
                     message: 'Event deleted by admin',
                   });
                 });
             });
+          // .catch(error => res.status(500).send(error.toString()));
         } else {
           // if user not equal to admin
           // check if the user's id matches the event.user id
@@ -156,7 +156,6 @@ class Event {
   }
 
   /**
-   * This method updates an event
    *
    * @param {object} req a review object
    * @param {object} res a review object

@@ -1,9 +1,6 @@
 import nodemailer from 'nodemailer';
 
-// message mailer
 const mailer = (user, msg, title) => {
-  console.log('deleting.....');
-  // my user details
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -11,7 +8,6 @@ const mailer = (user, msg, title) => {
       pass: process.env.PASSWORD,
     },
   });
-  // recievers details
   const mailOptions = {
     from: 'iykay33@gmail.com',
     to: user.email,

@@ -1,6 +1,6 @@
 import express from 'express';
 import eventController from '../controllers/index';
-import authToken from '../middleware/userTokenAuth';
+import authToken from '../middleware/token2';
 
 const router = express.Router();
 

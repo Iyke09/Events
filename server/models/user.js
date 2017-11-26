@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         args: true,
         msg: 'Oops. An account already exist with this username',
+        // fields: [sequelize.fn('lower', sequelize.col('email'))]
       },
       validate: {
         len: {
@@ -25,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         args: true,
         msg: 'Oops.The email you entered already exists',
+        // fields: [sequelize.fn('lower', sequelize.col('email'))]
       },
       validate: {
         isEmail: {

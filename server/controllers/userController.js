@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
-import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import { User } from '../models';
+import messageMailer from '../helpers/mailer';
 
 /**
  * Creates a new Person.
@@ -9,7 +9,6 @@ import { User } from '../models';
  */
 class Users {
   /**
-   * This method logs in a user to the app
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -75,7 +74,6 @@ class Users {
   }
 
   /**
-   * This method adds a new user to the database
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -110,7 +108,6 @@ class Users {
   }
 
   /**
-   * This method retrieve a users lost password
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -123,40 +120,21 @@ class Users {
         email: req.body.email,
       },
     })
-      .then((userFound) => {
+      .then((userx) => {
         // send back error message if no user found
-        if (!userFound) {
+        if (!userx) {
           return res.status(400).send({
             message: 'email does not exist',
           });
         }// create a password and store in database
-        return userFound.update({
+        return userx.update({
           password: bcrypt.hashSync(req.body.email, 10),
         })
           .then((user) => {
             // send the new created password to user email
             const title = 'Password Retrieval';
             const message = `hello ${user.username}, this is your new password - ${user.password}`;
-            const transporter = nodemailer.createTransport({
-              service: 'Gmail',
-              auth: {
-                user: 'iykay33@gmail.com',
-                pass: 'p3nn1s01',
-              },
-            });
-            const mailOptions = {
-              from: 'iykay33@gmail.com',
-              to: user.email,
-              subject: title,
-              text: message,
-            };
-            transporter.sendMail(mailOptions, (err, info) => {
-              if (err) {
-                console.log(`hiiiii err ${err}`);
-              } else {
-                console.log(`Message sent: ${info.response}`);
-              }
-            });
+            messageMailer(user, message, title);
             // success message
             res.status(200).send({ message: 'password sent to your email address' });
           });
@@ -168,7 +146,6 @@ class Users {
   }
 
   /**
-   * This method changes/modifies a users password details
    *
    * @param {object} req a review object
    * @param {object} res a review object
