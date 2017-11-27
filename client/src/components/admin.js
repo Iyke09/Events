@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import store from '../store';
 
 class Admin extends Component {
   constructor(){
@@ -15,19 +16,27 @@ class Admin extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.getSingle = this.getSingle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
     this.props.getCenters(3);
+  }
+  getSingle(index){
+    this.props.getSingle(index);
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
+    store.dispatch({type: 'LOAD'});
     console.log(this.state);
     this.props.addCenter(this.state);
     document.getElementById("add-form").reset();
+  }
+  getMore(index){
+    this.props.getCenters(index);
   }
   render() {
     const { centers, error, loader, success } = this.props;
@@ -49,7 +58,13 @@ class Admin extends Component {
               <li><a className="white-text" href="#!">ID:3456565646JD</a></li>
               <li><div className="divider" /></li>
               <li><a className="waves-effect white-text" href="./index.html"><i className="fa fa-home grey-text" />HOME</a></li>
-              <li><a className="waves-effect white-text" href="#!"> <i className="fa fa-plus grey-text" /> Add Center</a></li>
+              <Link to={`/user/admin`}>
+              <li>
+                  <a className="waves-effect white-text">
+                  <i className="fa fa-plus grey-text" /> Add Center
+                  </a>
+              </li>
+              </Link>
               <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
             </ul>
             <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
@@ -65,7 +80,7 @@ class Admin extends Component {
                         src={center.image}/>
                         <div className="update" id="minor-l">
                           <Link to={`/user/admin/edit/${center.id}`}>
-                            <span className="fa-stack fa-lg ">
+                            <span className="fa-stack fa-lg " onClick={() => this.getSingle(center.id)}>
                               <i className="fa fa-circle fa-stack-2x" />
                               <i className="fa fa-edit fa-stack-1x fa-inverse" />
                             </span>
@@ -87,7 +102,11 @@ class Admin extends Component {
                   </div>
                 );
               })}
-            </div>  <br/><br/><br/><br/>
+            </div><br/><br/>
+            <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 center">
+              <button className="btn red">More centers </button>
+            </div>
+              <br/><br/><br/><br/>
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
                   { error ?
