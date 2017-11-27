@@ -92,6 +92,33 @@ export function* watchGetSingle() {
     yield takeEvery('GET_SINGLE', getSingle);
 }
 
+export function* addCenter(action) {
+  try{
+      const token = localStorage.getItem('token');
+      const response = yield call(axios.post, `${centerUrl}?token=${token}`, {
+        name: action.payload.name,
+        description: action.payload.description,
+        capacity: action.payload.capacity,
+        location: action.payload.location,
+        image: action.payload.image,
+        price: action.payload.price
+      });
+      yield put({ type: 'SET_CENTER', response: response.data });
+      yield put({ type: 'ERROR', error: '' });
+      yield put({ type: 'SUCCESS', message: 'Successfully added to centers' });
+
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+      yield put({ type: 'ERROR', error });
+  }
+}
+
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchAddCenter() {
+    yield takeEvery('ADD_CENTER', addCenter);
+}
+
 
 
 export default function* rootSaga() {
@@ -99,7 +126,8 @@ export default function* rootSaga() {
     watchAddUser(),
     watchSignUser(),
     watchGetCenters(),
-    watchGetSingle()
+    watchGetSingle(),
+    watchAddCenter()
 
   ];
 }

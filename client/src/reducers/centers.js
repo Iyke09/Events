@@ -8,6 +8,8 @@ function centers(state = [], action) {
     case 'GET_CENTER' :
       console.log(action.response);
       return action.response.center;
+    case 'SET_CENTER' :
+      return [...state, action.response.center];
   default:
       return state;
   }

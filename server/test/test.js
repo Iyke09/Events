@@ -589,7 +589,7 @@ describe('API Integration Tests', () => {
 
     it('return 400 if center is not updated**', (done) => {
       request.put(`${eventUrl}/${checkId}?token=${userToken2}`)
-        .send({ date: '2017-11-28', time: '08:34am' })
+        .send({ date: '28, January 2017', time: '08:34am' })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.status).to.equal('Unsuccessful');
@@ -610,7 +610,7 @@ describe('API Integration Tests', () => {
 
     it('return 400 if event is not updated**', (done) => {
       request.put(`${eventUrl}/3?token=${userToken1}`)
-        .send({ date: '2017-11-28', time: '08:34am' })
+        .send({ date: '28, January 2017', time: '08:34am' })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.status).to.equal('Unsuccessful');
