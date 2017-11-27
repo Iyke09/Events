@@ -19,6 +19,14 @@ export function getCenters(index) {
   };
 }
 
+export function updateCenter(payload, index) {
+  return {
+    type: 'UPDATE_CENTER',
+    payload,
+    index
+  };
+}
+
 
 export function getSingle(index) {
   return {

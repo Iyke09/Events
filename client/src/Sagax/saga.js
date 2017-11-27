@@ -105,9 +105,12 @@ export function* addCenter(action) {
       });
       yield put({ type: 'SET_CENTER', response: response.data });
       yield put({ type: 'ERROR', error: '' });
+      yield delay(3000);
+      yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS', message: 'Successfully added to centers' });
 
   }catch(e){
+      yield put({ type: 'UNLOAD' });
       const error = e.response.data.message;
       console.log(error);
       yield put({ type: 'ERROR', error });
@@ -120,6 +123,36 @@ export function* watchAddCenter() {
 }
 
 
+export function* updateCenter(action) {
+  try{
+      const token = localStorage.getItem('token');
+      const response = yield call(axios.put, `${centerUrl}/${action.index}?token=${token}`, {
+        name: action.payload.name,
+        description: action.payload.description,
+        capacity: action.payload.capacity,
+        location: action.payload.location,
+        image: action.payload.image,
+        price: action.payload.price
+      });
+      yield put({ type: 'ERROR', error: '' });
+      yield delay(5000);
+      yield put({ type: 'UNLOAD' });
+      yield put({ type: 'SUCCESS', message: 'Centers successfully updated' });
+
+  }catch(e){
+      yield put({ type: 'UNLOAD' });
+      const error = e.response.data.message;
+      console.log(error);
+      yield delay(1000);
+      yield put({ type: 'ERROR', error });
+  }
+}
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchUpdateCenter() {
+    yield takeEvery('UPDATE_CENTER', updateCenter);
+}
+
+
 
 export default function* rootSaga() {
   yield [
@@ -127,7 +160,8 @@ export default function* rootSaga() {
     watchSignUser(),
     watchGetCenters(),
     watchGetSingle(),
-    watchAddCenter()
+    watchAddCenter(),
+    watchUpdateCenter()
 
   ];
 }
