@@ -27,3 +27,10 @@ export function getSingle(index) {
   };
 }
 
+export function addCenter(payload) {
+  return {
+    type: 'ADD_CENTER',
+    payload
+  };
+}
+

@@ -9,6 +9,7 @@ import Signin from './components/Signin';
 import Home from './components/Home';
 import details from './components/details';
 import admin from './components/admin';
+import Edit from './components/Edit';
 
 
 // import react router deps
@@ -25,7 +26,7 @@ const router = (
         <Route path="/home" component={Home} />
         <Route path="/details/:id" component={details} />
         <Route path="/user/admin" component={admin} />
-
+        <Route path="/user/admin/edit/:id" component={Edit} />
       </Route>
     </Router>
   </Provider>

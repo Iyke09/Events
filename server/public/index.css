@@ -20,6 +20,14 @@ body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
   justify-content: center;
 
 }
+#add-form{
+  position: relative;
+}
+#loads{
+  position: absolute;
+  top:45%;
+  left: 45%;
+}
 .bgimg{
   background-image: url('https://static.pexels.com/photos/348517/pexels-photo-348517.jpeg');
   height: 650px;

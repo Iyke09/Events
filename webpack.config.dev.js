@@ -4,7 +4,7 @@ import path from 'path';
 export default {
   devtool: 'inline-source-map',
   entry: [
-    'babel-polyfill', // necessary for hot reloading with IE
+    'babel-polyfill',
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     path.resolve(__dirname, './client/src/index.js')
   ],
@@ -25,7 +25,8 @@ export default {
       {
         test: /\.js$/,
         include: path.join(__dirname, 'client/src'),
-         loaders: ['babel-loader']},
+         loaders: ['babel-loader']
+      },
       {
         test: /\.css?$/,
         loaders: ['style-loader', 'css-loader'],

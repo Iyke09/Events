@@ -18,20 +18,18 @@ class Admin extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
-    this.props.getCenters(3);
+    this.props.getSingle(this.props.params.id);
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
-    this.props.addCenter(this.state);
-    document.getElementById("add-form").reset();
+    // this.props.addCenter(this.state);
+    // document.getElementById("add-form").reset();
   }
   render() {
-    const { centers, error, loader, success } = this.props;
-    console.log(error);
+    const { error, single, loader, success } = this.props;
     return (
       <div className="Admin">
         <div className="row">
@@ -55,39 +53,6 @@ class Admin extends Component {
             <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
           </div>
           <div className="col s12 m12 l8 " style={{paddingTop: 100}}>
-            <div className="row">
-              {centers.map((center) => {
-                return (
-                  <div className="col s12 m12 l4" key={center.id}>
-                    <div className="card w3sets" id="minor">
-                      <div className="card-image waves-effect waves-block waves-light">
-                        <img className="activator"
-                        src={center.image}/>
-                        <div className="update" id="minor-l">
-                          <Link to={`/user/admin/edit/${center.id}`}>
-                            <span className="fa-stack fa-lg ">
-                              <i className="fa fa-circle fa-stack-2x" />
-                              <i className="fa fa-edit fa-stack-1x fa-inverse" />
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                      <div className="card-content">
-                        <span className="card-title activator grey-text text-darken-4">{center.name}
-                          <i className="material-icons right">more_vert</i></span>
-                      </div>
-                      <div className="card-reveal">
-                        <span className="card-title grey-text text-darken-4 center">The Emporium
-                          <i className="material-icons right">close</i></span>
-                        <p><i className="material-icons">add_location</i> 25 Victoria Island,Lagos.</p>
-                        <p><i className="material-icons">attach_money</i> 2500/day</p>
-                        <p><i className="material-icons">people</i> 4000 capacity</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>  <br/><br/><br/><br/>
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
                   { error ?
@@ -120,14 +85,15 @@ class Admin extends Component {
                       style={{paddingRight:5}} aria-hidden="true" /> {success}</p>
                     </div> : ''
                   }
-                  <h4 className="col s12 center light">Add a Center!</h4>
+                  <h4 className="col s12 center light">Edit Center!</h4>
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
                   <div className="row">
                     <div className="input-field col s12">
                       <i className="material-icons prefix">home</i>
                       <input id="icon_telephone" type="tel"
-                      onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
+                      onChange={this.onChange} defaultValue={single.name}
+                      name="name" className="validate" placeholder="" required/>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_a_photo</i>
@@ -137,33 +103,36 @@ class Admin extends Component {
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_location</i>
                       <input id="icon_telephone" name="location" type="text"
-                      onChange={this.onChange} className="validate" placeholder="Address" required/>
+                      onChange={this.onChange} defaultValue={single.location}
+                       className="validate" placeholder="" required/>
                     </div>
                     <div className="row">
                       <div className="col s6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">attach_money</i>
                           <input id="icon_telephone" name="price" type="number"
-                          onChange={this.onChange} className="validate" placeholder="Price" />
+                          onChange={this.onChange} defaultValue={single.price}
+                            className="validate" placeholder="" />
                         </div>
                       </div>
                       <div className="col s6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">people</i>
                           <input id="icon_telephone" name="capacity" type="number"
-                          onChange={this.onChange} className="validate" placeholder="Capacity" required/>
+                          onChange={this.onChange} defaultValue={single.capacity}
+                           className="validate" placeholder="" required/>
                         </div>
                       </div>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">mode_edit</i>
-                      <textarea id="icon_prefix2" onChange={this.onChange} name="description"
+                      <textarea id="icon_prefix2" onChange={this.onChange} defaultValue={single.description}
+                      name="description"
                       className="materialize-textarea" required/>
-                      <label htmlFor="icon_prefix2">Description</label>
                     </div>
                     <div className="" style={{textAlign: 'center'}}>
                       <button type="submit"
-                      className="btn waves-effect waves-light red lighten-1">Add Center</button>
+                      className="btn waves-effect waves-light red lighten-1">Edit Center</button>
                     </div>
                   </div>
                 </form>
