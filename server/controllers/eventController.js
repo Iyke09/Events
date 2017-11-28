@@ -155,6 +155,45 @@ class Event {
       .catch(error => res.status(500).send(error.toString()));
   }
 
+
+
+    /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {object} return a recipe oject
+   */
+  static userEvent(req, res) {
+    // decode token
+    const decoded = jwt.decode(req.body.token || req.query.token);
+    // check if it is a user or admin user trying to access route
+    if (decoded.adminUser === undefined) {
+      check = decoded.user.id;
+    } else {
+      check = decoded.adminUser.id;
+    }
+    // find an event where the event d matches the req.params.id
+    Eevent.findAll({
+      where: { userId: check },
+      include: [{
+        model: Center
+      }],
+    })
+      .then((event) => {
+        // if not found send back a 404 status code of not found
+        if (!event) {
+          return res.status(404).send({
+            message: 'Event Not Found',
+          });
+        }
+        return res.status(200).send({
+          status: 'Success',
+          event
+        });
+      })// error handler
+      .catch(error => res.status(500).send(error.toString()));
+  }
+
   /**
    *
    * @param {object} req a review object

@@ -7,9 +7,10 @@ import error from './error';
 import user from './user';
 import success from './success';
 import single from './single';
+import events from './events';
 
 
-const rootReducer = combineReducers({ centers,single,success, user, error, loader, routing: routerReducer });
+const rootReducer = combineReducers({ centers, events, single,success, user, error, loader, routing: routerReducer });
 
 
 export default rootReducer;

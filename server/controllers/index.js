@@ -14,6 +14,7 @@ const adminController = {
   userSignup: users.signup,
   passRetrieve: users.retrieve,
   passChange: users.change,
+  userEvent: events.userEvent
 
 };
 

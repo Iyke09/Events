@@ -20,6 +20,32 @@ body, h1,h2,h3,h4,h5,h6,p {font-family: 'Asap Condensed', sans-serif}
   justify-content: center;
 
 }
+.atag{
+  padding: 8px 15px;
+  margin-bottom:45px;
+  color:grey;
+  border:1px solid grey;
+  background-color: transparent;
+}
+#wit{
+  width: 30px;
+}
+.fam{
+  font-family: 'Lobster',cursive;
+}
+.bg1{
+  padding: 8px;
+  margin-top: 0px;
+  margin-bottom: 85px;
+}
+.hr1{
+  width: 10%;
+  margin: auto;
+  border-bottom: 1px solid orange;
+}
+.or{
+  color: orange
+}
 #add-form{
   position: relative;
 }
@@ -131,7 +157,9 @@ hr{
 #w3set{
   position: relative
 }
-
+.fsize{
+  font-size: 19px;
+}
 #w3sets{
   position: relative
 }

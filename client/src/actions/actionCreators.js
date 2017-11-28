@@ -27,9 +27,22 @@ export function getSingle(index) {
   };
 }
 
+export function getEvents() {
+  return {
+    type: 'GET_EVENTS',
+  };
+}
+
 export function addCenter(payload) {
   return {
     type: 'ADD_CENTER',
+    payload
+  };
+}
+
+export function addEvent(payload) {
+  return {
+    type: 'ADD_EVENT',
     payload
   };
 }
