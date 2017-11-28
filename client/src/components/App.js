@@ -10,8 +10,8 @@ function mapStateToProps(state) {
     error: state.error,
     user: state.user,
     single: state.single,
-    success: state.success
-
+    success: state.success,
+    events: state.events,
   };
 }
 

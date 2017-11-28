@@ -20,7 +20,6 @@ class Centers extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    this.setState({preloader: true});
     this.props.signup(this.state);
     document.getElementById("add-form").reset();
   }

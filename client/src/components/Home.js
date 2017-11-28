@@ -26,9 +26,13 @@ class Home extends React.Component {
             <div className="nav-wrapper container">
               <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
               <ul className="right hide-on-med-and-down">
-                <li><a href="">My Events</a></li>
-                <li><a href="">Login</a></li>
-                <li className=""><a href="">Register</a></li>
+                  <li>
+                    <Link to={"/user/events"}>
+                      My Events
+                    </Link>
+                  </li>
+                  <li><a href="">Login</a></li>
+                  <li className=""><a href="">Register</a></li>
               </ul>
 
               <ul id="nav-mobile" className="side-nav">

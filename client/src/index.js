@@ -10,6 +10,8 @@ import Home from './components/Home';
 import details from './components/details';
 import admin from './components/admin';
 import Edit from './components/Edit';
+import events from './components/myEvents';
+import addEvent from './components/addEvents';
 
 
 // import react router deps
@@ -26,6 +28,8 @@ const router = (
         <Route path="/home" component={Home} />
         <Route path="/details/:id" component={details} />
         <Route path="/user/admin" component={admin} />
+        <Route path="/user/events" component={events} />
+        <Route path="/add/events" component={addEvent} />
         <Route path="/user/admin/edit/:id" component={Edit} />
       </Route>
     </Router>

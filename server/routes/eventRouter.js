@@ -4,6 +4,8 @@ import authToken from '../middleware/token2';
 
 const router = express.Router();
 
+router.get('/user', eventController.userEvent);
+
 router.use('/', authToken);
 
 router.post('/', eventController.addEvent);
