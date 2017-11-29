@@ -47,3 +47,11 @@ export function addEvent(payload) {
   };
 }
 
+export function deleteEvent(index) {
+  return {
+    type: 'DELETE_EVENT',
+    index
+  };
+}
+
+

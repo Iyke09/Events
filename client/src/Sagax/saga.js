@@ -199,9 +199,27 @@ export function* watchAddEvent() {
     yield takeEvery('ADD_EVENT', addEvents);
 }
 
+export function* deleteEvents(action) {
+  try{
+      const token = localStorage.getItem('token');
+      const response = yield call(axios.delete, `${eventUrl}/${action.index}?token=${token}`);
+      console.log(response.data.message);
+      yield put({ type: 'SUCCESS', message: 'Events successfully deleted' });
+
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+  }
+}
+
+export function* watchDeleteEvent() {
+  yield takeEvery('DELETE_EVENT', deleteEvents);
+}
+
 export default function* rootSaga() {
   yield [
     watchAddUser(),
+    watchDeleteEvent(),
     watchAddEvent(),
     watchGetEvents(),
     watchSignUser(),

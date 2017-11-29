@@ -8,9 +8,15 @@ class Events extends React.Component {
     this.state = {
       user: null
     };
+    this.deleteHandler = this.deleteHandler.bind(this);
   }
   componentWillMount(){
     this.props.getEvents();
+  }
+  deleteHandler(val) {
+    console.log(val);
+    $(`#${val}`).hide(3000);
+    this.props.deleteEvent(val);
   }
   render() {
     const {events} = this.props;
@@ -61,7 +67,7 @@ class Events extends React.Component {
         <br/><br/>
     {events.map((event) => {
       return (
-        <div key={event.id}>
+        <div key={event.id} id={event.id}>
           <div className="col s12">
             <div className="col s12 m12 l4">
               <img
@@ -92,8 +98,8 @@ class Events extends React.Component {
                   <b>Phone:</b>  +00 151515</h6>
                   <h6 id="fsize"><i className="fa fa-calendar-o" id="wit" /> <b>Date:</b>   {event.date} To Jul 8, 1919<br/></h6>
                   <h6 id="fsize"><i className="fa fa-clock-o" id="wit" /> {event.time} To 4:00 pm<br/></h6><br/>
-                  <a className="right atag" href=""
-                  >Remove</a>
+                  <div className="" onClick={() => this.deleteHandler(event.id)}><button style={{cursor: 'pointer'}}
+                  className="right atag" href="">Remove</button></div>
                 </div>
             </div>
           </div>
