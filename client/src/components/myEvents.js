@@ -15,7 +15,7 @@ class Events extends React.Component {
   }
   deleteHandler(val) {
     console.log(val);
-    $(`#${val}`).hide(3000);
+    $(`#${val}`).hide(5000);
     this.props.deleteEvent(val);
   }
   render() {

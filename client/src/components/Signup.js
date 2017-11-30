@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Loader from './preloader';
-
+import store from '../store';
+import swal from 'sweetalert';
 
 let preloader;
 class Centers extends React.Component {
@@ -19,12 +19,13 @@ class Centers extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    store.dispatch({type: 'LOAD'});
     console.log(this.state);
     this.props.signup(this.state);
     document.getElementById("add-form").reset();
   }
   render() {
-    const {error, loader} = this.props;
+    const {error, loader, success} = this.props;
     return (
       <div className="Centers">
         <div className="" id="">
@@ -76,17 +77,25 @@ class Centers extends React.Component {
                               { error ?
                                 <div className="w3-panel w3-card-2 w3-medium w3-red w3-display-container hyper">
                                   <span onClick={this.onHit}
-                                  className="w3-button w3-red w3-display-topright">&times;</span>
+                                  className="w3-button w3-red w3-display-topright" />
                                   <p className=""><i className="yellow-text fa fa-exclamation-triangle" style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
                                 </div> : ''
                               }
                               { loader ?
-                                <div className="center">
-                                  <div className="progress" style={{width: ''}}>
-                                      <div className="indeterminate" />
+                                <div className="preloader-wrapper center big active" id="loads">
+                                  <div className="spinner-layer spinner-blue">
+                                    <div className="circle-clipper left">
+                                      <div className="circle" />
+                                    </div><div className="gap-patch">
+                                      <div className="circle" />
+                                    </div><div className="circle-clipper right">
+                                      <div className="circle" />
+                                    </div>
                                   </div>
-                                </div>
-                                : ''
+                                </div> : ''
+                              }
+                              { success ?
+                                swal("Success!!!", "You've successfully signed up", "success") : null
                               }
                               <div className="row">
                                 <div className="input-field col s12">
@@ -94,7 +103,7 @@ class Centers extends React.Component {
                                   <input id="icon_prefix" name="username" type="text"
                                     onChange={this.onChange}
                                     placeholder="User name..."
-                                  className="validate"/>
+                                  className="validate" required/>
                                   <label htmlFor="icon_prefix" />
                                 </div>
                                 <div className="input-field col s12">
@@ -103,14 +112,14 @@ class Centers extends React.Component {
                                   onChange={this.onChange}
                                   placeholder="Email"
                                   className="validate"/>
-                                  <label htmlFor="icon_telephone" />
+                                  <label htmlFor="icon_telephone" required/>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">lock</i>
                                   <input id="icon_telephone" name="password" type="tel"
                                   onChange={this.onChange}
                                   placeholder="Password"
-                                  className="validate"/>
+                                  className="validate" required/>
                                   <label htmlFor="icon_telephone" />
                                 </div>
                               </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import store from '../store';
 
 class Admin extends Component {
   constructor(){
@@ -20,14 +21,20 @@ class Admin extends Component {
   componentWillMount(){
     this.props.getSingle(this.props.params.id);
   }
+  componentWillReceiveProps(newProps){
+    this.setState(newProps.single);
+  }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.addCenter(this.state);
+    store.dispatch({type: 'LOAD'});
+    console.log(this.state);
+    this.props.updateCenter(this.state, this.props.params.id);
     // document.getElementById("add-form").reset();
   }
+
   render() {
     const { error, single, loader, success } = this.props;
     return (
@@ -58,7 +65,7 @@ class Admin extends Component {
                   { error ?
                     <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
                       <span onClick={this.onHit}
-                      className="w3-button w3-red w3-display-topright">&times;</span>
+                      className="w3-button w3-red w3-display-topright" />
                       <p className=""><i className="yellow-text fa fa-exclamation-triangle"
                       style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
                     </div> : ''
@@ -77,12 +84,12 @@ class Admin extends Component {
                     </div>
                   </div> : ''
                 }
-                { success ?
+                  { success ?
                     <div className="w3-panel w3-card-2 w3-small w3-green w3-display-container hyper">
                       <span onClick={this.onHit}
-                      className="w3-button w3-green w3-small w3-display-topright">&times;</span>
+                      className="w3-button w3-green w3-small w3-display-topright" />
                       <p className=""><i className=" fa fa-thumbs-up"
-                      style={{paddingRight:5}} aria-hidden="true" /> {success}</p>
+                      style={{paddingRight:5}} aria-hidden="true" />Successfully edited</p>
                     </div> : ''
                   }
                   <h4 className="col s12 center light">Edit Center!</h4>
@@ -92,18 +99,18 @@ class Admin extends Component {
                     <div className="input-field col s12">
                       <i className="material-icons prefix">home</i>
                       <input id="icon_telephone" type="tel"
-                      onChange={this.onChange} defaultValue={single.name}
+                      onChange={this.onChange} value={this.state.name}
                       name="name" className="validate" placeholder="" required/>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_a_photo</i>
-                      <input id="icon_telephone" name="image" type="text" onChange={this.onChange}
+                      <input id="icon_telephone" value={this.state.image} name="image" type="text" onChange={this.onChange}
                        className="validate" placeholder="Image_URL" />
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_location</i>
                       <input id="icon_telephone" name="location" type="text"
-                      onChange={this.onChange} defaultValue={single.location}
+                      onChange={this.onChange} value={this.state.location}
                        className="validate" placeholder="" required/>
                     </div>
                     <div className="row">
@@ -111,7 +118,7 @@ class Admin extends Component {
                         <div className="input-field col s12">
                           <i className="material-icons prefix">attach_money</i>
                           <input id="icon_telephone" name="price" type="number"
-                          onChange={this.onChange} defaultValue={single.price}
+                          onChange={this.onChange} value={this.state.price}
                             className="validate" placeholder="" />
                         </div>
                       </div>
@@ -119,14 +126,14 @@ class Admin extends Component {
                         <div className="input-field col s12">
                           <i className="material-icons prefix">people</i>
                           <input id="icon_telephone" name="capacity" type="number"
-                          onChange={this.onChange} defaultValue={single.capacity}
+                          onChange={this.onChange} value={this.state.capacity}
                            className="validate" placeholder="" required/>
                         </div>
                       </div>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">mode_edit</i>
-                      <textarea id="icon_prefix2" onChange={this.onChange} defaultValue={single.description}
+                      <textarea id="icon_prefix2" onChange={this.onChange} value={this.state.description}
                       name="description"
                       className="materialize-textarea" required/>
                     </div>

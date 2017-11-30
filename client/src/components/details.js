@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 class Details extends React.Component {
   constructor(){
@@ -20,9 +21,13 @@ class Details extends React.Component {
           <div className="nav-wrapper container">
             <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
             <ul className="right hide-on-med-and-down">
-              <li><a href="">My Events</a></li>
-              <li><a href="">Login</a></li>
-              <li className=""><a href="">Register</a></li>
+                <li>
+                  <Link to={"/user/events"}>
+                    My Events
+                  </Link>
+                </li>
+                <li><a href="">Login</a></li>
+                <li className=""><a href="">Register</a></li>
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -128,7 +133,8 @@ class Details extends React.Component {
         <div className="col s12 m12 l12">
           <h2 className="font" >Upcoming Events!</h2>
           <hr className=""/><br/>
-          {single.events.map((event) => {
+          {single.events ?
+            single.events.map((event) => {
             const citrus = event.date.split(' ').slice(0, -1).join().split(',');
             const date = `${citrus[0]}, ${citrus[2]}`;
             return (
@@ -149,12 +155,14 @@ class Details extends React.Component {
                 </div>
               </div>
             );
-          })}
+          })  : ''
+
+          }
         </div>
       </div><br/><br/><br/>
-
-      <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>
-
+        <Link to={`/add/${single.name}`}>
+          <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>
+        </Link>
       </div>
     );
   }

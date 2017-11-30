@@ -63,15 +63,14 @@ class Home extends React.Component {
                   <div className="card">
                     <div className="card-image">
                       <a href="">
-                        <img src={center.image}/>
+                        <img style={{height: 350}} src={center.image}/>
                       </a>
                       <span className="card-title">{center.name}</span>
-                      <Link to={`/details/${center.id}`}>
+                      <Link to={`/centerdetails/${center.id}`}>
                         <a className="btn-floating halfway-fab waves-effect waves-light red">
                           <i className="material-icons">chevron_right</i>
                         </a>
                       </Link>
-
                     </div>
                     <div className="card-content">
                         <p>{center.description}</p>
@@ -80,9 +79,7 @@ class Home extends React.Component {
                 </div>
               );
             })}
-
-
-            <br/><br/>
+            <br/><br/><br/><br/>
             <div onClick={(e) => this.getMore(centers.length + 4)} className="col s12">
               <button className="btn red">view all centers </button>
             </div>

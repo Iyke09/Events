@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import store from '../store';
 import { Link } from 'react-router';
+import swal from 'sweetalert';
 
 class Add extends Component {
   constructor(props){
     super(props);
     this.state = {
+      centerSet: '',
       value: '',
       title: '',
       time: '',
@@ -18,15 +20,17 @@ class Add extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount(){
-    this.props.getCenters(4);
-  }
+
   componentDidMount(){
+    this.props.getCenters(4);
+    this.setState({centerSet: this.props.params.id});
     $(document).ready(function() {
       $('select').material_select();
     });
   }
   handleChange(e){
+    e.preventDefault();
+    console.log('hello');
     this.setState({[e.target.name]: e.target.value});
     const x = document.getElementById("sel").value;
     this.setState({value: x});
@@ -41,9 +45,10 @@ class Add extends Component {
   }
   render() {
     const {centers, success, loader, error} = this.props;
+    const {centerSet} = this.state;
     return (
       <div className="Add">
-          <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
+        <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
             <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
             <ul className="right hide-on-med-and-down">
@@ -63,7 +68,7 @@ class Add extends Component {
             className="button-collapse"><i className="material-icons">menu</i></a>
           </div>
         </nav>
-        <div className="overlay" />
+
         <div id="" className="bgimg">
           <div className="row">
             <div className="col s12 m12 l6 offset-l3 " style={{marginTop: 245}}>
@@ -97,13 +102,8 @@ class Add extends Component {
                               </div> : ''
                             }
                             { success ?
-                                <div className="w3-panel w3-card-2 w3-small w3-green w3-display-container hyper">
-                                  <span onClick={this.onHit}
-                                  className="w3-button w3-green w3-small w3-display-topright">&times;</span>
-                                  <p className=""><i className=" fa fa-thumbs-up"
-                                  style={{paddingRight:5}} aria-hidden="true" /> {success}</p>
-                                </div> : ''
-                              }
+                              swal("Event Added!", "You successfully added an event", "success") : ''
+                            }
                               <h4 className="col s12 center light">Add an Event!</h4>
                               <small className="col s12 center light font3">Lorem ipsum dolor sit amet</small>
                               <div className="row">
@@ -114,11 +114,11 @@ class Add extends Component {
                                 </div>
                                 <div className="input-field col s12 ">
                                   <i className="material-icons prefix">home</i>
-                                  <select value={this.state.value} id="sel" onChange={this.handleChange}>
+                                  <select id="sel" onChange={this.handleChange}>
                                     {
                                       centers.map((center) => {
                                         return (<option key={center.id}
-                                          value={center.name}>{center.name}</option>
+                                        selected={centerSet === center.name ? true : false}>{center.name}</option>
                                         );
                                       })
                                     }
