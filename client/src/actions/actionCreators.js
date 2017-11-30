@@ -40,10 +40,26 @@ export function addCenter(payload) {
   };
 }
 
+export function updateCenter(payload, index) {
+  return {
+    type: 'UPDATE_CENTER',
+    payload,
+    index
+  };
+}
+
 export function addEvent(payload) {
   return {
     type: 'ADD_EVENT',
     payload
   };
 }
+
+export function deleteEvent(index) {
+  return {
+    type: 'DELETE_EVENT',
+    index
+  };
+}
+
 

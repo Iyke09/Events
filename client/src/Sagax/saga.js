@@ -4,9 +4,11 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 
-const userUrl = 'http://localhost:3000/api/v1/users';
-const centerUrl = 'http://localhost:3000/api/v1/centers';
+const userUrl = '/api/v1/users';
+const centerUrl = '/api/v1/centers';
 const eventUrl = '/api/v1/events';
+const token = localStorage.getItem('token');
+axios.defaults.headers.common['token'] = token;
 
 export function* addUserAsync(action) {
   try{
@@ -16,10 +18,12 @@ export function* addUserAsync(action) {
           password: action.payload.password
       });
       yield put({ type: 'ERROR', error: '' });
-      yield put({ type: 'LOAD' });
-      setTimeout(() => {
-        browserHistory.push('/auth/signin');
-      }, 2000);
+      yield put({ type: 'SUCCESS' });
+      yield put({ type: 'UNLOAD' });
+      yield delay(2000);
+
+      yield put({ type: '!SUCCESS' });
+      browserHistory.push('/auth/signin');
   }catch(e){
       const error = e.response.data.message;
       console.log(error);
@@ -35,17 +39,16 @@ export function* watchAddUser() {
 
 export function* addSignAsync(action) {
   try{
-      yield put({ type: 'LOAD' });
       const response = yield call(axios.post, `${userUrl}/signin`, {
           email: action.payload.email,
           password: action.payload.password
       });
       yield put({ type: 'ERROR', error: '' });
-      yield put({ type: 'LOAD' });
+      yield delay(2000);
+
+      yield put({ type: 'UNLOAD' });
       yield put({ type: 'INCOMING_TOKEN', response: response.data });
-      setTimeout(()=> {
-        browserHistory.push('/home');
-      }, 2000);
+      browserHistory.push('/');
   }catch(e){
       yield put({ type: 'UNLOAD' });
       const error = e.response.data.message;
@@ -54,9 +57,8 @@ export function* addSignAsync(action) {
   }
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchSignUser() {
-  console.log('watching adduser');
     yield takeEvery('SIGN_IN', addSignAsync);
 }
 
@@ -72,7 +74,7 @@ export function* getCenters(action) {
   }
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchGetCenters() {
     yield takeEvery('GET_ALL', getCenters);
 }
@@ -88,7 +90,7 @@ export function* getSingle(action) {
   }
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchGetSingle() {
     yield takeEvery('GET_SINGLE', getSingle);
 }
@@ -96,7 +98,7 @@ export function* watchGetSingle() {
 export function* addCenter(action) {
   try{
       const token = localStorage.getItem('token');
-      const response = yield call(axios.post, `${centerUrl}?token=${token}`, {
+      const response = yield call(axios.post, centerUrl, {
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -106,16 +108,21 @@ export function* addCenter(action) {
       });
       yield put({ type: 'SET_CENTER', response: response.data });
       yield put({ type: 'ERROR', error: '' });
-      yield put({ type: 'SUCCESS', message: 'Successfully added to centers' });
+      yield delay(2000);
+
+      yield put({ type: 'UNLOAD' });
+      yield put({ type: 'SUCCESS'});
 
   }catch(e){
+      yield put({ type: '!SUCCESS' });
+      yield put({ type: 'UNLOAD' });
       const error = e.response.data.message;
       console.log(error);
       yield put({ type: 'ERROR', error });
   }
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchAddCenter() {
     yield takeEvery('ADD_CENTER', addCenter);
 }
@@ -123,7 +130,7 @@ export function* watchAddCenter() {
 export function* updateCenter(action) {
   try{
       const token = localStorage.getItem('token');
-      const response = yield call(axios.put, `${centerUrl}/${action.index}?token=${token}`, {
+      const response = yield call(axios.put, `${centerUrl}/${action.index}`, {
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -132,11 +139,12 @@ export function* updateCenter(action) {
         price: action.payload.price
       });
       yield put({ type: 'ERROR', error: '' });
-      yield delay(5000);
+      yield delay(3000);
       yield put({ type: 'UNLOAD' });
-      yield put({ type: 'SUCCESS', message: 'Centers successfully updated' });
+      yield put({ type: 'SUCCESS' });
 
   }catch(e){
+      yield put({ type: '!SUCCESS'});
       yield put({ type: 'UNLOAD' });
       const error = e.response.data.message;
       console.log(error);
@@ -144,7 +152,7 @@ export function* updateCenter(action) {
       yield put({ type: 'ERROR', error });
   }
 }
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchUpdateCenter() {
     yield takeEvery('UPDATE_CENTER', updateCenter);
 }
@@ -153,7 +161,7 @@ export function* watchUpdateCenter() {
 export function* getEvents(action) {
   try{
       const token = localStorage.getItem('token');
-      const response = yield call(axios.get, `${eventUrl}/user?token=${token}`);
+      const response = yield call(axios.get, `${eventUrl}/user`);
       yield put({ type: 'SET_EVENTS',  response: response.data});
 
   }catch(e){
@@ -161,7 +169,7 @@ export function* getEvents(action) {
       console.log(error);
   }
 }
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchGetEvents() {
     yield takeEvery('GET_EVENTS', getEvents);
 }
@@ -183,25 +191,43 @@ export function* addEvents(action) {
       yield delay(5000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
-      yield put({ type: 'SUCCESS', message: 'Events successfully created' });
+      yield put({ type: 'SUCCESS' });
 
   }catch(e){
       const error = e.response.data.message;
       console.log(error);
       yield delay(1000);
       yield put({ type: 'UNLOAD' });
-      yield put({ type: 'SUCCESS', message: '' });
+      yield put({ type: '!SUCCESS' });
       yield put({ type: 'ERROR', error });
   }
 }
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+
 export function* watchAddEvent() {
     yield takeEvery('ADD_EVENT', addEvents);
+}
+
+export function* deleteEvents(action) {
+  try{
+      const token = localStorage.getItem('token');
+      const response = yield call(axios.delete, `${eventUrl}/${action.index}`);
+      console.log(response.data.message);
+
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+  }
+}
+
+export function* watchDeleteEvent() {
+  yield takeEvery('DELETE_EVENT', deleteEvents);
 }
 
 export default function* rootSaga() {
   yield [
     watchAddUser(),
+    watchDeleteEvent(),
+    watchUpdateCenter(),
     watchAddEvent(),
     watchGetEvents(),
     watchSignUser(),

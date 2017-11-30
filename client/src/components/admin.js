@@ -1,30 +1,54 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import swal from 'sweetalert';
+import store from '../store';
 
 class Admin extends Component {
   constructor(){
     super();
     this.state = {
       name: '',
+      pictures: [],
       description: '',
       capacity: '',
       location: '',
       image: '',
-      price: ''
+      price: '',
+      imagePreviewUrl: '',
+      file: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
   }
+
   componentWillMount(){
     this.props.getCenters(3);
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
+  onChangeImage(e) {
+    e.preventDefault();
+    console.log('helllllllloooooo');
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    };
+
+    reader.readAsDataURL(file);
+  }
   handleSubmit(e) {
     e.preventDefault();
+    store.dispatch({type: 'LOAD'});
     console.log(this.state);
     this.props.addCenter(this.state);
     document.getElementById("add-form").reset();
@@ -32,6 +56,13 @@ class Admin extends Component {
   render() {
     const { centers, error, loader, success } = this.props;
     console.log(error);
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img className="img-responsive" src={imagePreviewUrl} />);
+    } else {
+      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+    }
     return (
       <div className="Admin">
         <div className="row">
@@ -113,13 +144,8 @@ class Admin extends Component {
                   </div> : ''
                 }
                 { success ?
-                    <div className="w3-panel w3-card-2 w3-small w3-green w3-display-container hyper">
-                      <span onClick={this.onHit}
-                      className="w3-button w3-green w3-small w3-display-topright">&times;</span>
-                      <p className=""><i className=" fa fa-thumbs-up"
-                      style={{paddingRight:5}} aria-hidden="true" /> {success}</p>
-                    </div> : ''
-                  }
+                  swal("Center Added!", "You've successfully added a new center", "success") : ''
+                }
                   <h4 className="col s12 center light">Add a Center!</h4>
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
@@ -129,10 +155,17 @@ class Admin extends Component {
                       <input id="icon_telephone" type="tel"
                       onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
                     </div>
-                    <div className="input-field col s12">
-                      <i className="material-icons prefix">add_a_photo</i>
-                      <input id="icon_telephone" name="image" type="text" onChange={this.onChange}
-                       className="validate" placeholder="Image_URL" />
+                    <div className="row">
+                      <div className="file-field input-field">
+                        <div className="btn">
+                          <span>File</span>
+                          <input onChange={this.onChangeImage} type="file"/>
+                        </div>
+                        <div className="file-path-wrapper">
+                          <input className="file-path validate" onChange={this.onChangeiImage} type="text"/>
+                        </div>
+                      </div>
+                      <div className="col s5">{$imagePreview}</div>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_location</i>

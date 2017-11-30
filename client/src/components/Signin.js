@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from './preloader';
+import store from '../store';
 
 
 let preloader = false;
@@ -18,6 +18,7 @@ class Centers extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    store.dispatch({type: 'LOAD'});
     console.log(this.state);
     this.props.signin(this.state);
     document.getElementById("add-form").reset();
@@ -75,17 +76,22 @@ class Centers extends React.Component {
                               { error ?
                                 <div className="w3-panel w3-card-2 w3-medium w3-red w3-display-container hyper">
                                   <span onClick={this.onHit}
-                                  className="w3-button w3-red w3-display-topright">&times;</span>
+                                  className="w3-button w3-red w3-display-topright" />
                                   <p className=""><i className="yellow-text fa fa-exclamation-triangle" style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
                                 </div> : ''
                               }
                               { loader ?
-                                <div className="center">
-                                  <div className="progress" style={{width: ''}}>
-                                      <div className="indeterminate" />
+                                <div className="preloader-wrapper center big active" id="loads">
+                                  <div className="spinner-layer spinner-blue">
+                                    <div className="circle-clipper left">
+                                      <div className="circle" />
+                                    </div><div className="gap-patch">
+                                      <div className="circle" />
+                                    </div><div className="circle-clipper right">
+                                      <div className="circle" />
+                                    </div>
                                   </div>
-                                </div>
-                                : ''
+                                </div> : ''
                               }
                               <div className="row">
                                 <div className="input-field col s12">

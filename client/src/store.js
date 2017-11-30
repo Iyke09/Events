@@ -2,6 +2,7 @@ import { createStore , applyMiddleware } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 import rootSaga from './Sagax/saga';
 
 // import the root reducer
