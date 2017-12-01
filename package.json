@@ -81,6 +81,7 @@
     "sequelize": "^4.8.0",
     "sequelize-cli": "^2.7.0",
     "simple-format-date": "^0.3.0",
+    "rimraf": "^2.5.2",
     "sweetalert": "^2.0.8",
     "toastr": "2.1.2",
     "validate.js": "^0.11.1",
