@@ -4,11 +4,12 @@ import { routerReducer } from 'react-router-redux';
 import centers from './centers';
 import loader from './loader';
 import user from './user';
-import single from './singleReducer';
+import single from './singleCenter';
 import events from './events';
-import message from './message';
+import success from './success';
+import error from './error';
 
-const rootReducer = combineReducers({ centers,message, events, single, user, loader, routing: routerReducer });
+const rootReducer = combineReducers({ centers,error,success, events, single, user, loader, routing: routerReducer });
 
 
 export default rootReducer;

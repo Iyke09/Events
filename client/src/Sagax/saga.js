@@ -8,6 +8,7 @@ const userUrl = '/api/v1/users';
 const centerUrl = '/api/v1/centers';
 const eventUrl = '/api/v1/events';
 const token = localStorage.getItem('token');
+
 axios.defaults.headers.common['token'] = token;
 
 export function* addUserAsync(action) {
@@ -39,6 +40,7 @@ export function* watchAddUser() {
 
 export function* addSignAsync(action) {
   try{
+      const route = localStorage.getItem('route');
       const response = yield call(axios.post, `${userUrl}/signin`, {
           email: action.payload.email,
           password: action.payload.password
@@ -48,7 +50,12 @@ export function* addSignAsync(action) {
 
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'INCOMING_TOKEN', response: response.data });
-      browserHistory.push('/');
+      if(route === null){
+        browserHistory.push('/');
+      }else{
+        browserHistory.push(route);
+        localStorage.removeItem('route');
+      }
   }catch(e){
       yield put({ type: 'UNLOAD' });
       const error = e.response.data.message;
@@ -97,7 +104,7 @@ export function* watchGetSingle() {
 
 export function* addCenter(action) {
   try{
-      const token = localStorage.getItem('token');
+    console.log('running');
       const response = yield call(axios.post, centerUrl, {
         name: action.payload.name,
         description: action.payload.description,
@@ -108,10 +115,11 @@ export function* addCenter(action) {
       });
       yield put({ type: 'SET_CENTER', response: response.data });
       yield put({ type: 'ERROR', error: '' });
-      yield delay(2000);
+      yield delay(1000);
 
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS'});
+      yield put({ type: '!SUCCESS'});
 
   }catch(e){
       yield put({ type: '!SUCCESS' });
@@ -119,6 +127,7 @@ export function* addCenter(action) {
       const error = e.response.data.message;
       console.log(error);
       yield put({ type: 'ERROR', error });
+      yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -142,6 +151,7 @@ export function* updateCenter(action) {
       yield delay(3000);
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
+      yield put({ type: '!SUCCESS' });
 
   }catch(e){
       yield put({ type: '!SUCCESS'});
@@ -150,6 +160,7 @@ export function* updateCenter(action) {
       console.log(error);
       yield delay(1000);
       yield put({ type: 'ERROR', error });
+      yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -192,6 +203,7 @@ export function* addEvents(action) {
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
+      yield put({ type: '!SUCCESS' });
 
   }catch(e){
       const error = e.response.data.message;
@@ -200,6 +212,7 @@ export function* addEvents(action) {
       yield put({ type: 'UNLOAD' });
       yield put({ type: '!SUCCESS' });
       yield put({ type: 'ERROR', error });
+      // yield put({ type: 'ERROR', error: '' });
   }
 }
 

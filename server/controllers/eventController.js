@@ -40,7 +40,7 @@ class Event {
       template: (locals) => `${locals.DD}, ${months[locals.MM]} ${locals.YY}`
     });
     // decode token
-    const decoded = jwt.decode(req.body.token || req.query.token);
+    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     // check if it is a user or admin user trying to access route
     if (decoded.adminUser === undefined) {
       check = decoded.user.id;
@@ -107,7 +107,8 @@ class Event {
    */
   static deleteEvent(req, res) {
     // decode token
-    const decoded = jwt.decode(req.body.token || req.query.token);
+    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
+    console.log('deletedd ' + decoded);
     // find an event where the event d matches the req.params.id
     Eevent.findOne({ where: { id: req.params.id } })
       .then((event) => {
@@ -165,7 +166,8 @@ class Event {
    */
   static userEvent(req, res) {
     // decode token
-    const decoded = jwt.decode(req.body.token || req.query.token);
+    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
+    console.log(decoded);
     // check if it is a user or admin user trying to access route
     if (decoded.adminUser === undefined) {
       check = decoded.user.id;
@@ -201,7 +203,7 @@ class Event {
    * @return {object} return a recipe oject
    */
   static updateEvent(req, res) {
-    const decoded = jwt.decode(req.body.token || req.query.token);
+    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     const { date, time } = req.body;
     // find an event by id
     Eevent.findById(req.params.id)

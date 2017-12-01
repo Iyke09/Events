@@ -82,7 +82,7 @@ class Admin {
    */
   static centerDetails(req, res) {
   // find all centers where the id matches the req.params.id
-    Center.findAll({
+    Center.findOne({
       where: { id: req.params.id },
       include: [{// include all events with event.centerId matching the the center id found
         model: Eevent,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import { Link } from 'react-router';
 
 class Details extends React.Component {
@@ -8,12 +9,19 @@ class Details extends React.Component {
     this.state = {
       user: null
     };
+    this.setRedirect = this.setRedirect.bind(this);
   }
   componentWillMount(){
     this.props.getSingle(this.props.params.id);
   }
+  setRedirect(){
+    const {single} = this.props;
+    localStorage.setItem('route', `/add/${single.name}`);
+    browserHistory.push('/auth/signin');
+  }
   render() {
     const {single} = this.props;
+    const token = localStorage.getItem('token');
     console.log(single);
     return (
       <div className="Details">
@@ -160,14 +168,17 @@ class Details extends React.Component {
           }
         </div>
       </div><br/><br/><br/>
+      {token === null ?
+          <button className="btn red right" onClick={() => this.setRedirect()} style={{marginRight: 25}}>BOOK CENTER</button>
+        :
         <Link to={`/add/${single.name}`}>
           <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>
         </Link>
+      }
       </div>
     );
   }
 }
-
 
 
 export default Details;

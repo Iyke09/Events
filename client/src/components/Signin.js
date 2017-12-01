@@ -18,7 +18,7 @@ class Centers extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    store.dispatch({type: 'LOAD'});
+    this.props.loaders();
     console.log(this.state);
     this.props.signin(this.state);
     document.getElementById("add-form").reset();
@@ -42,11 +42,11 @@ class Centers extends React.Component {
               <a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
             </div>
           </nav>
-          <div className="overlay" />
+          {/* <div className="overlay" /> */}
           <div id="bgPage" className="bgimg">
             <div className="row">
-              <div className="col s12 m12 l5 white-text" id="tp-row">
-                <div className="" id="tp-child">
+              <div className="col s12 m12 l5 white-text hide-on-med-and-down" id="tp-row">
+                <div className="" id="">
                   <h3>Sign Up</h3>
                 </div>
 
