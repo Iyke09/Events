@@ -9,7 +9,7 @@
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "start:dev": "nodemon --exec babel-node server/bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "heroku-postbuild": "sequelize db:migrate:undo:all&&sequelize db:migrate",
+    "heroku-postbuild": "npm run migrate && npm run build",
     "prestart": "babel-node client/tools/startMessage.js",
     "start": "npm-run-all --parallel open:src",
     "open:src": "babel-node server/bin/www",

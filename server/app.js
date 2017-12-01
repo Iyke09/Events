@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-if(process.env.NODE_ENV === 'development'){
+if(process.env.NODE_ENV === 'production'){
   app.use('/static', express.static(path.resolve(__dirname, '..', 'client/dist')));
 }
 app.use('/api/v1', routes);
