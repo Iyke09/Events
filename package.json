@@ -10,7 +10,7 @@
     "start:devx": "nodemon --exec babel-node server/bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "heroku-postbuild": "npm run migrate && npm run build",
-    "prestart": "babel-node client/tools/startMessage.js",
+    "prestartsd": "babel-node client/tools/startMessage.js",
     "start:dev": "npm-run-all --parallel open:src",
     "start": "npm run open:src",
     "open:src": "babel-node server/bin/www",
@@ -86,12 +86,18 @@
     "sweetalert": "^2.0.8",
     "toastr": "2.1.2",
     "validate.js": "^0.11.1",
-    "webpack": "^3.8.1"
-  },
-  "devDependencies": {
+    "webpack": "^3.8.1",
+    "open": "0.0.5",
+    "react-addons-test-utils": "15.0.2",
+    "redux-immutable-state-invariant": "1.2.3",
+    "redux-mock-store": "1.0.2",
+    "webpack-dev-middleware": "1.6.1",
+    "webpack-hot-middleware": "2.10.0",
     "babel-plugin-react-display-name": "2.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-react-hmre": "1.1.1",
+    "babel-preset-react-hmre": "1.1.1"
+  },
+  "devDependencies": {
     "chai": "^4.1.1",
     "cheerio": "0.22.0",
     "colors": "1.1.2",
@@ -118,16 +124,8 @@
     "node-sass": "^4.5.3",
     "npm-run-all": "1.8.0",
     "nyc": "^11.1.0",
-    "open": "0.0.5",
-    "react-addons-test-utils": "15.0.2",
-    "redux-immutable-state-invariant": "1.2.3",
-    "redux-mock-store": "1.0.2",
-    "rimraf": "2.5.2",
     "style-loader": "0.13.1",
     "supertest": "^3.0.0",
-    "url-loader": "0.5.7",
-    "webpack": "3.8.1",
-    "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "url-loader": "0.5.7"
   }
 }
