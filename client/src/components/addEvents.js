@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import store from '../store';
-import { Link } from 'react-router';
+import { Link, browserHistory} from 'react-router';
 import swal from 'sweetalert';
 
 class Add extends Component {
@@ -19,7 +19,12 @@ class Add extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  componentWillMount(){
+    const token = localStorage.getItem('token');
+    if(token === null){
+      browserHistory.push('/auth/signin');
+    }
+  }
 
   componentDidMount(){
     this.props.getCenters(4);
@@ -37,7 +42,7 @@ class Add extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    store.dispatch({type: 'LOAD'});
+    this.props.loaders();
     const x = document.getElementById("sel").value;
     this.setState({value: x});
     console.log(this.state);
@@ -46,6 +51,7 @@ class Add extends Component {
   render() {
     const {centers, success, loader, error} = this.props;
     const {centerSet} = this.state;
+    console.log(error);
     return (
       <div className="Add">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -82,7 +88,7 @@ class Add extends Component {
                             <form className="col s12" onSubmit={this.handleSubmit}>
                             { error ?
                               <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
-                                <span onClick={this.onHit}
+                                <span
                                 className="w3-button w3-red w3-display-topright">&times;</span>
                                 <p className=""><i className="yellow-text fa fa-exclamation-triangle"
                                 style={{paddingRight:5}} aria-hidden="true" /> {error}</p>

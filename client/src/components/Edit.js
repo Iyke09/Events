@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import store from '../store';
+import swal from 'sweetalert';
 
-class Admin extends Component {
+class Edit extends Component {
   constructor(){
     super();
     this.state = {
@@ -29,7 +30,7 @@ class Admin extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    store.dispatch({type: 'LOAD'});
+    this.props.loaders();
     console.log(this.state);
     this.props.updateCenter(this.state, this.props.params.id);
     // document.getElementById("add-form").reset();
@@ -37,8 +38,11 @@ class Admin extends Component {
 
   render() {
     const { error, single, loader, success } = this.props;
+    if(success){
+      return swal("Center Added!", "You've successfully edited center", "success");
+    }
     return (
-      <div className="Admin">
+      <div className="Edit">
         <div className="row">
           <div className="col l4 s12 m12">
             <ul id="slide-out" className="side-nav fixed white-text" style={{backgroundColor: '#17202A'}}>
@@ -84,14 +88,6 @@ class Admin extends Component {
                     </div>
                   </div> : ''
                 }
-                  { success ?
-                    <div className="w3-panel w3-card-2 w3-small w3-green w3-display-container hyper">
-                      <span onClick={this.onHit}
-                      className="w3-button w3-green w3-small w3-display-topright" />
-                      <p className=""><i className=" fa fa-thumbs-up"
-                      style={{paddingRight:5}} aria-hidden="true" />Successfully edited</p>
-                    </div> : ''
-                  }
                   <h4 className="col s12 center light">Edit Center!</h4>
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
@@ -152,4 +148,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default Edit;

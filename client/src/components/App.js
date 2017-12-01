@@ -7,10 +7,10 @@ function mapStateToProps(state) {
   return {
     centers: state.centers,
     loader: state.loader,
-    error: state.message.error,
+    error: state.error,
     user: state.user,
     single: state.single,
-    success: state.message.success,
+    success: state.success,
     events: state.events,
   };
 }

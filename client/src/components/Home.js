@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import jwt from 'jwt-decode';
 
 import { Link } from 'react-router';
 
@@ -13,13 +14,21 @@ class Home extends React.Component {
     this.getMore = this.getMore.bind(this);
   }
   componentWillMount(){
+    console.log(process.env.NODE_ENV);
     this.props.getCenters(4);
   }
   getMore(index){
     this.props.getCenters(index);
   }
   render() {
+    let decoded = '';
     const { centers } = this.props;
+    const token = localStorage.getItem('token');
+    if(token !== null){
+       decoded = jwt(token);
+       console.log(decoded);
+    }
+    console.log('outsufr' + decoded);
     return (
       <div className="Home">
           <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -32,6 +41,7 @@ class Home extends React.Component {
                     </Link>
                   </li>
                   <li><a href="">Login</a></li>
+                  {decoded.adminUser ? <li><Link to={"/user/admin"}>Admin</Link></li> : ''}
                   <li className=""><a href="">Register</a></li>
               </ul>
 

@@ -12,6 +12,12 @@ export function signin(payload) {
   };
 }
 
+export function loaders() {
+  return {
+    type: 'LOAD',
+  };
+}
+
 export function getCenters(index) {
   return {
     type: 'GET_ALL',

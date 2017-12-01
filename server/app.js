@@ -1,7 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import routes from './routes/index.js';
+import routes from './routes/index';
 import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
@@ -22,6 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+if(process.env.NODE_ENV === 'development'){
+  app.use('/static', express.static(path.resolve(__dirname, '..', 'client/dist')));
+}
 app.use('/api/v1', routes);
 
 app.use(require('webpack-dev-middleware')(compiler, {
