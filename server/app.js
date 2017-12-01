@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-
-app.use('/static', express.static(path.resolve(__dirname, '..', 'client/dist')));
-
+if(process.env.NODE_ENV === 'production'){
+  app.use('/static', express.static(path.resolve(__dirname, '..', 'client/dist')));
+}
 app.use('/api/v1', routes);
 
 app.use(require('webpack-dev-middleware')(compiler, {
