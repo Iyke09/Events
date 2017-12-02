@@ -65,7 +65,7 @@ class Events extends React.Component {
       <h3 className="light fam col s12 center">Upcoming Events!...</h3>
       <hr className="hr1"/>
         <br/><br/>
-    {events.map((event) => {
+    {events ? events.map((event) => {
       return (
         <div key={event.id} id={event.id}>
           <div className="col s12">
@@ -84,11 +84,13 @@ class Events extends React.Component {
                 <i className="fa fa-star or" />
               </div>
               <small style={{color: 'grey'}}>Created on: 14th july,2017</small>
-                <h5 className="light font3"><span style={{marginRight: 4}}
-                >{event.title}
-                <i className="material-icons modal-trigger" data-target="modal1" href="#modal1">edit</i>
+                <h5 className="light font3">
+                  <span style={{marginRight: 4}}>{event.title}
+                    <Link to={`/events/edit/${event.id}`}>
+                      <i className="material-icons modal-trigger" data-target="modal1" href="#modal1">edit</i>
+                    </Link>
                   </span>
-              </h5>
+                </h5>
 
 
               <div className="divider"  />
@@ -106,7 +108,7 @@ class Events extends React.Component {
           <div className="divider" /><br/><br/>
       </div>
       );
-    })}
+    }) : ''}
 
       </div>
     </div>

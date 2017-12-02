@@ -12,6 +12,9 @@ import admin from './components/admin';
 import Edit from './components/Edit';
 import events from './components/myEvents';
 import addEvent from './components/addEvents';
+import editEvent from './components/editEvents';
+
+import './styles/style.scss';
 
 
 // import react router deps
@@ -31,6 +34,7 @@ const router = (
         <Route path="/user/events" component={events} />
         <Route path="/add/:id" component={addEvent} />
         <Route path="/user/admin/edit/:id" component={Edit} />
+        <Route path="/events/edit/:id" component={editEvent} />
       </Route>
     </Router>
   </Provider>

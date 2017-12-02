@@ -196,6 +196,36 @@ class Event {
       .catch(error => res.status(500).send(error.toString()));
   }
 
+
+
+    /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {object} return a recipe oject
+   */
+  static singleEvent(req, res) {
+    // find an event where the event d matches the req.params.id
+    Eevent.findOne({
+      where: { id: req.params.id },
+      include: [{
+        model: Center
+      }],
+    })
+      .then((event) => {
+        // if not found send back a 404 status code of not found
+        if (!event) {
+          return res.status(404).send({
+            message: 'Event Not Found',
+          });
+        }
+        return res.status(200).send({
+          status: 'Success',
+          event
+        });
+      })// error handler
+      .catch(error => res.status(500).send(error.toString()));
+  }
   /**
    *
    * @param {object} req a review object

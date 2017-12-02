@@ -138,13 +138,13 @@ class Add extends Component {
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>
                                   <input id="icon_telephone" type="number" name="date" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <label htmlFor="icon_telephone">Date</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">check</i>
                                   <input id="icon_telephone" type="text" name="type" className="validate"
                                   onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <label htmlFor="icon_telephone">Type of Event</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">perm_identity</i>

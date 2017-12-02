@@ -1,5 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 export default {
   devtool: 'inline-source-map',
@@ -17,21 +19,22 @@ export default {
     contentBase: path.resolve(__dirname, 'client/src')
   },
   plugins: [
+    new ExtractTextPlugin("styles.css"),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin()
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
         include: path.join(__dirname, 'client/src'),
-         loaders: ['babel-loader']
+        loaders: ['babel-loader']
       },
       {
-        test: /\.css?$/,
-        loaders: ['style-loader', 'css-loader'],
-        include: __dirname
-      },
+        test: /\.scss$/,
+        loaders: ['style-loader','css-loader', 'sass-loader']
+      }
     ]
   }
 };

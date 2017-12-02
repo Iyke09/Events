@@ -12,6 +12,7 @@ function mapStateToProps(state) {
     single: state.single,
     success: state.success,
     events: state.events,
+    singleEvent: state.singleEvent,
   };
 }
 

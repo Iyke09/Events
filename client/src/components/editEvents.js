@@ -22,23 +22,23 @@ class Edit extends Component {
     this.props.getSingleEvents(this.props.params.id);
   }
   componentWillReceiveProps(newProps){
-    console.log(newProps);
-    this.setState(newProps.events);
+    this.setState(newProps.singleEvent);
   }
   handleChange(e){
     this.setState({[e.target.name]: e.target.value});
+    this.setState({center: this.state.Center.name});
   }
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state.Center.name);
+    this.setState({center: this.state.Center.name});
     this.props.loaders();
-    const x = document.getElementById("sel").value;
-    this.setState({value: x});
     console.log(this.state);
-    this.props.addEvent(this.state);
+    this.props.updateEvent(this.state, this.props.params.id);
+    document.getElementById("add-form").reset();
   }
   render() {
     const {events, success, loader, error} = this.props;
-    console.log(events);
     return (
       <div className="Add">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -72,7 +72,7 @@ class Edit extends Component {
                       <div className="card-content white lighten-4" style={{color: '#212F3C'}}>
                         <div id="test4" style={{border: '2 solid lightgrey'}}>
                           <div className="row">
-                            <form className="col s12" onSubmit={this.handleSubmit}>
+                            <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
                               <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
                                 <span
@@ -95,36 +95,42 @@ class Edit extends Component {
                               </div> : ''
                             }
                             { success ?
-                              swal("Event Added!", "You successfully added an event", "success") : ''
+                              swal("Event Updated!", "You successfully updated your event", "success") : ''
                             }
-                              <h4 className="col s12 center light">Add an Event!</h4>
+                              <h4 className="col s12 center light">Update Event!</h4>
                               <small className="col s12 center light font3">Lorem ipsum dolor sit amet</small>
                               <div className="row">
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">home</i>
-                                  <input id="icon_telephone" type="tel" name="center"
-                                  className="validate" value={this.state.Center ? this.state.Center.name : ''} onChange={this.handleChange} disabled/>
+                                  <input id="home" type="tel" name="center"
+                                  className="validate" value={this.state.Center ? this.state.Center.name : ''}
+                                  onChange={this.handleChange} />
+                                  <label htmlFor="home">Center</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">mail</i>
-                                  <input id="icon_telephone" type="tel" value={this.state.title} name="title" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone">Enter title</label>
+                                  <input id="mail" type="tel" value={this.state.title} name="title"
+                                  className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="mail">Event Title</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">alarm_on</i>
-                                  <input id="icon_telephone" type="tel" name="time" value={this.state.time} className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone">Select a time</label>
+                                  <input id="alarm_on" type="tel" name="time" value={this.state.time}
+                                  className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="alarm_on">Time</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>
-                                  <input id="icon_telephone" type="text" value={this.state.date} name="date" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <input id="event" type="text" value={this.state.date} name="date"
+                                  className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="event">Date</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">check</i>
-                                  <input id="icon_telephone" type="text" value={this.state.type} name="type" className="validate"
+                                  <input id="check" type="text"
+                                  value={this.state.type} name="type" className="validate"
                                   onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <label htmlFor="check">Type of Event</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">perm_identity</i>
@@ -134,7 +140,7 @@ class Edit extends Component {
                               </div>
                               <div className="" style={{textAlign: 'center'}}>
                               <button type="submit"
-                              className="btn waves-effect waves-light red lighten-1">Add Event</button>
+                              className="btn waves-effect waves-light red lighten-1">Update Event</button>
                             </div>
                             </form>
                           </div>

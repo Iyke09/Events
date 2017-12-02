@@ -53,7 +53,7 @@ class Home extends React.Component {
             </div>
           </nav>
 
-          <div className="bgimg" style={{position: 'relative'}}>
+          <div className="bgimg2" style={{position: 'relative'}}>
             <div className="row center">
               <h1 className="header col s12 light white-text">Welcome to Andela Events</h1>
               <p className="slant white-text"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....</i></p>

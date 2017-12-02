@@ -6,6 +6,9 @@ const router = express.Router();
 
 router.get('/user', eventController.userEvent);
 
+router.get('/single/:id', eventController.singleEvent);
+
+
 router.use('/', authToken);
 
 router.post('/', eventController.addEvent);
