@@ -9,7 +9,7 @@ const centerUrl = '/api/v1/centers';
 const eventUrl = '/api/v1/events';
 const token = localStorage.getItem('token');
 
-axios.defaults.headers.common['token'] = token;
+// axios.defaults.headers.common['token'] = token;
 
 export function* addUserAsync(action) {
   try{

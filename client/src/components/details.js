@@ -27,13 +27,18 @@ class Details extends React.Component {
       <div className="Details">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
-            <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
+            <Link to={"/"}>
+              <a id="logo-container " className="brand-logo white-text">Andela</a>
+            </Link>
             <ul className="right hide-on-med-and-down">
+              {token !== null ?
                 <li>
                   <Link to={"/user/events"}>
                     My Events
                   </Link>
                 </li>
+                : ''
+              }
                 {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
                 <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             </ul>

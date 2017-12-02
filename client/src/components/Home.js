@@ -41,11 +41,13 @@ class Home extends React.Component {
             <div className="nav-wrapper container">
               <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
               <ul className="right hide-on-med-and-down">
-                  <li>
-                    <Link to={"/user/events"}>
-                      My Events
-                    </Link>
-                  </li>
+                  {token !== null ?
+                    <li>
+                      <Link to={"/user/events"}>
+                        My Events
+                      </Link>
+                    </li> : ''
+                  }
                   {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> :
                   <li onClick={this.logOut}><a href="">Logout</a></li>}
                   {decoded.adminUser ? <li><Link to={"/user/admin"}>Admin</Link></li> : ''}

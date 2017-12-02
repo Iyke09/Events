@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import {Image} from 'cloudinary-react';
+import cloudinary from 'cloudinary';
+import { browserHistory, Link } from 'react-router';
 import jwt from 'jwt-decode';
-import { Link } from 'react-router';
 import swal from 'sweetalert';
 import store from '../store';
 
@@ -19,6 +20,7 @@ class Admin extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.getMore = this.getMore.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -38,6 +40,10 @@ class Admin extends Component {
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
   }
+  getMore(index){
+    this.props.getCenters(index);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.loaders();
@@ -111,7 +117,11 @@ class Admin extends Component {
                   </div>
                 );
               })}
-            </div>  <br/><br/><br/><br/>
+            </div>
+            <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12">
+              <button className="btn red">view more centers </button>
+            </div>
+             <br/><br/><br/><br/>
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
                   { error ?

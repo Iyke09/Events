@@ -18,6 +18,9 @@ export default {
   devServer: {
     contentBase: path.resolve(__dirname, 'client/src')
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     new ExtractTextPlugin("styles.css"),
     new webpack.HotModuleReplacementPlugin(),

@@ -44,7 +44,9 @@ class Edit extends Component {
       <div className="Add">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
-            <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
+            <Link to={"/"}>
+              <a id="logo-container " className="brand-logo white-text">Andela</a>
+            </Link>
             <ul className="right hide-on-med-and-down">
                 <li>
                   <Link to={"/user/events"}>

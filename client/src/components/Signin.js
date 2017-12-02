@@ -51,7 +51,7 @@ class Centers extends React.Component {
               </div>
 
                 <p>Lorem Ipsum It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been<br/><br/> The only five centuries, but also the leap into electronic typesetting, remaining essentially </p>
-                <p>Already a Member??</p><br/>
+                <p>Not a Member??</p><br/>
                 <Link to={"/auth/signup"}>
                   <a id="download-button" className="btn red">Sign Up</a>
                 </Link>
