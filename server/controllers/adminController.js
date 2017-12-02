@@ -61,11 +61,11 @@ class Admin {
             location: req.body.location || center.location,
             isAvailable: !center.isAvailable,
           })// if update successful return a success message back to user
-          .then(success =>
+          .then(center =>
             res.status(201).send({
               status: 'success',
               message: 'center updated',
-              success,
+              center,
             }))// error handler
           .catch(error => res.status(500).send({
             message: error.errors[0].message,

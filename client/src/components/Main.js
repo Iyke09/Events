@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/style.scss';
+
 class Main extends Component {
   constructor(){
     super();
     this.state = {
       user: null
     };
+  }
+  componentWillMount(){
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    });
   }
   render() {
     return (

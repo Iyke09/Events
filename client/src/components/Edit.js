@@ -33,7 +33,7 @@ class Edit extends Component {
     this.props.loaders();
     console.log(this.state);
     this.props.updateCenter(this.state, this.props.params.id);
-    // document.getElementById("add-form").reset();
+    document.getElementById("add-form").reset();
   }
 
   render() {
@@ -57,7 +57,12 @@ class Edit extends Component {
               <li><a className="white-text" href="#!"><i className="material-icons grey-text">cloud</i>Cloudy - 24-09, 2017 </a></li>
               <li><a className="white-text" href="#!">ID:3456565646JD</a></li>
               <li><div className="divider" /></li>
-              <li><a className="waves-effect white-text" href="./index.html"><i className="fa fa-home grey-text" />HOME</a></li>
+              <li>
+                <Link to={"/"}>
+                  <a className="waves-effect white-text">
+                  <i className="fa fa-home grey-text" />HOME</a>
+                </Link>
+              </li>
               <li><a className="waves-effect white-text" href="#!"> <i className="fa fa-plus grey-text" /> Add Center</a></li>
               <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
             </ul>

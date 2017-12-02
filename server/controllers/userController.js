@@ -49,7 +49,7 @@ class Users {
           })
             .then((adminUser) => {
             // create token
-              const token = jwt.sign({ adminUser }, 'secret', { expiresIn: 7200 });
+              const token = jwt.sign({ adminUser }, 'secret', { expiresIn: '48 hour' });
               res.status(200).send({// send success message
                 status: 'Success',
                 message: 'Successfully logged in as Admin',
@@ -61,7 +61,7 @@ class Users {
             }));
         }
         // if not first in db...just create a token
-        const token = jwt.sign({ user }, 'secret', { expiresIn: 72000 });
+        const token = jwt.sign({ user }, 'secret', { expiresIn: '48 hour' });
         res.status(200).send({
           status: 'Success',
           message: 'Successfully logged in',

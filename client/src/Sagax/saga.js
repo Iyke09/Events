@@ -104,8 +104,8 @@ export function* watchGetSingle() {
 
 export function* addCenter(action) {
   try{
-    console.log('running');
       const response = yield call(axios.post, centerUrl, {
+        token,
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -140,6 +140,7 @@ export function* updateCenter(action) {
   try{
       const token = localStorage.getItem('token');
       const response = yield call(axios.put, `${centerUrl}/${action.index}`, {
+        token,
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -150,6 +151,7 @@ export function* updateCenter(action) {
       yield put({ type: 'ERROR', error: '' });
       yield delay(3000);
       yield put({ type: 'UNLOAD' });
+      yield put({ type: 'SET_SINGLE', response: response.data });
       yield put({ type: 'SUCCESS' });
       yield put({ type: '!SUCCESS' });
 
@@ -188,7 +190,6 @@ export function* watchGetEvents() {
 
 export function* addEvents(action) {
   try{
-      const token = localStorage.getItem('token');
       const response = yield call(axios.post, eventUrl, {
         token,
         name: action.payload.value,
@@ -220,6 +221,40 @@ export function* watchAddEvent() {
     yield takeEvery('ADD_EVENT', addEvents);
 }
 
+export function* updateEvent(action) {
+  try{
+      const response = yield call(axios.put, `${eventUrl}/${action.index}`, {
+        token,
+        name: action.payload.center,
+        type: action.payload.type,
+        time: action.payload.time,
+        date: action.payload.date,
+        guests: action.payload.guests,
+        title: action.payload.title
+      });
+      console.log(response.data);
+      yield delay(5000);
+      yield put({ type: 'ERROR', error: '' });
+      yield put({ type: 'UNLOAD' });
+      yield put({ type: 'SUCCESS' });
+      yield put({ type: '!SUCCESS' });
+
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+      yield delay(1000);
+      yield put({ type: 'UNLOAD' });
+      yield put({ type: '!SUCCESS' });
+      yield put({ type: 'ERROR', error });
+      // yield put({ type: 'ERROR', error: '' });
+  }
+}
+
+export function* watchUpdateEvent() {
+    yield takeEvery('UPDATE_EVENT', updateEvent);
+}
+
+
 export function* deleteEvents(action) {
   try{
       const token = localStorage.getItem('token');
@@ -236,12 +271,30 @@ export function* watchDeleteEvent() {
   yield takeEvery('DELETE_EVENT', deleteEvents);
 }
 
+export function* getSingleEvents(action) {
+  try{
+      const token = localStorage.getItem('token');
+      const response = yield call(axios.get, `${eventUrl}/single/${action.index}`);
+      yield put({ type: 'SET_SINGLE_EVENT', response: response.data });
+
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+  }
+}
+
+export function* watchGetSingleEvent() {
+  yield takeEvery('GET_SINGLE_EVENT', getSingleEvents);
+}
+
 export default function* rootSaga() {
   yield [
     watchAddUser(),
     watchDeleteEvent(),
     watchUpdateCenter(),
+    watchUpdateEvent(),
     watchAddEvent(),
+    watchGetSingleEvent(),
     watchGetEvents(),
     watchSignUser(),
     watchGetCenters(),

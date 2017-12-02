@@ -25,10 +25,25 @@ export function getCenters(index) {
   };
 }
 
+export function updateEvent(payload,index) {
+  return {
+    type: 'UPDATE_EVENT',
+    payload,
+    index
+  };
+}
+
 
 export function getSingle(index) {
   return {
     type: 'GET_SINGLE',
+    index
+  };
+}
+
+export function getSingleEvents(index) {
+  return {
+    type: 'GET_SINGLE_EVENT',
     index
   };
 }

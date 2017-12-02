@@ -22,23 +22,21 @@ class Event {
     } = req.body;
     // format date based on user input
 
-    const months = {
-      '01': 'January',
-      '02': 'February',
-      '03': 'March',
-      '04': 'April',
-      '05': 'May',
-      '06': 'June',
-      '07': 'July',
-      '08': 'August',
-      '09': 'September',
-      '10': 'October',
-      '11': 'November',
-      '12': 'December'
-    };
-    const dates = formatDate(new Date(2017, 0, date), {
-      template: (locals) => `${locals.DD}, ${months[locals.MM]} ${locals.YY}`
-    });
+    // const months = {
+    //   '01': 'January',
+    //   '02': 'February',
+    //   '03': 'March',
+    //   '04': 'April',
+    //   '05': 'May',
+    //   '06': 'June',
+    //   '07': 'July',
+    //   '08': 'August',
+    //   '09': 'September',
+    //   '10': 'October',
+    //   '11': 'November',
+    //   '12': 'December'
+    // };
+
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     // check if it is a user or admin user trying to access route
@@ -55,7 +53,7 @@ class Event {
             message: 'center not found or is currently not available',
           });
         }// else find an event matching all 3 criteria of time,date and centerId
-        Eevent.findOne({ where: { centerId: center.id, time, date: dates } })
+        Eevent.findOne({ where: { centerId: center.id, time, date } })
           .then((event) => {
           // if actually found then that center has an event happening at the said time
             if (event) {
@@ -75,7 +73,7 @@ class Event {
               type,
               guests,
               time,
-              date: dates,
+              date,
               centerId: center.id,
               userId: check,
             })// send back success message
@@ -196,6 +194,36 @@ class Event {
       .catch(error => res.status(500).send(error.toString()));
   }
 
+
+
+    /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {object} return a recipe oject
+   */
+  static singleEvent(req, res) {
+    // find an event where the event d matches the req.params.id
+    Eevent.findOne({
+      where: { id: req.params.id },
+      include: [{
+        model: Center
+      }],
+    })
+      .then((event) => {
+        // if not found send back a 404 status code of not found
+        if (!event) {
+          return res.status(404).send({
+            message: 'Event Not Found',
+          });
+        }
+        return res.status(200).send({
+          status: 'Success',
+          event
+        });
+      })// error handler
+      .catch(error => res.status(500).send(error.toString()));
+  }
   /**
    *
    * @param {object} req a review object
