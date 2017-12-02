@@ -1,5 +1,6 @@
 let path = require('path');
 let webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -14,6 +15,7 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin("styles.css"),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': '\'production\'',
@@ -38,7 +40,10 @@ module.exports = {
     // CSS
     {
       test: /\.scss$/,
-      loaders: ['style-loader','css-loader', 'sass-loader']
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader'],
+      }),
     }
     ]
   }
