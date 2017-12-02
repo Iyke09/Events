@@ -258,7 +258,7 @@ export function* watchUpdateEvent() {
 export function* deleteEvents(action) {
   try{
       const token = localStorage.getItem('token');
-      const response = yield call(axios.delete, `${eventUrl}/${action.index}`);
+      const response = yield call(axios.delete, `${eventUrl}/${action.index}?token=${token}`);
       console.log(response.data.message);
 
   }catch(e){
