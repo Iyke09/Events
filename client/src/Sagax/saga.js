@@ -174,7 +174,7 @@ export function* watchUpdateCenter() {
 export function* getEvents(action) {
   try{
       const token = localStorage.getItem('token');
-      const response = yield call(axios.get, `${eventUrl}/user`);
+      const response = yield call(axios.get, `${eventUrl}/user?token=${token}`);
       yield put({ type: 'SET_EVENTS',  response: response.data});
 
   }catch(e){
