@@ -97,6 +97,7 @@
     "sequelize-cli": "^2.7.0",
     "simple-format-date": "^0.3.0",
     "sweetalert": "^2.0.8",
+    "style-loader": "^0.13.1",
     "toastr": "2.1.2",
     "validate.js": "^0.11.1",
     "webpack": "^3.8.1",
@@ -131,7 +132,6 @@
     "npm-run-all": "1.8.0",
     "nyc": "^11.1.0",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.13.1",
     "supertest": "^3.0.0",
     "url-loader": "0.5.7"
   }
