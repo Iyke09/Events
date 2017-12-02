@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import store from '../store';
+import { Link } from 'react-router';
 
 
 let preloader = false;
@@ -30,11 +31,10 @@ class Centers extends React.Component {
         <div className="" id="">
           <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
             <div className="nav-wrapper container">
-              <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
-              <ul className="right hide-on-med-and-down">
-                <li><a href="">Login</a></li>
-                <li className=""><a href="">Register</a></li>
-              </ul>
+            <Link to={"/"}>
+              <a id="logo-container " className="brand-logo white-text">Andela</a>
+            </Link>
+              <ul className="right hide-on-med-and-down" />
 
               <ul id="nav-mobile" className="side-nav">
                 <li><a href="#">Andela</a></li>
@@ -46,13 +46,15 @@ class Centers extends React.Component {
           <div id="bgPage" className="bgimg">
             <div className="row">
               <div className="col s12 m12 l5 white-text hide-on-med-and-down" id="tp-row">
-                <div className="" id="">
-                  <h3>Sign Up</h3>
-                </div>
+              <div className="" id="tp-child">
+                <h3>Sign In</h3>
+              </div>
 
                 <p>Lorem Ipsum It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been<br/><br/> The only five centuries, but also the leap into electronic typesetting, remaining essentially </p>
                 <p>Already a Member??</p><br/>
-                <a href="" id="download-button" className="btn red">Sign Up</a>
+                <Link to={"/auth/signup"}>
+                  <a id="download-button" className="btn red">Sign Up</a>
+                </Link>
               </div>
               <div className="col s12 m12 l7" style={{paddingTop: 45}}>
                 <div className="" id="container">
@@ -96,7 +98,7 @@ class Centers extends React.Component {
                               <div className="row">
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">mail</i>
-                                  <input id="icon_telephone" name="email" type="tel"
+                                  <input id="icon_telephone" name="email" type="text"
                                   onChange={this.onChange}
                                   placeholder="Email"
                                   className="validate"/>
@@ -104,7 +106,7 @@ class Centers extends React.Component {
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">lock</i>
-                                  <input id="icon_telephone" name="password" type="tel"
+                                  <input id="icon_telephone" name="password" type="password"
                                   onChange={this.onChange}
                                   placeholder="Password"
                                   className="validate"/>

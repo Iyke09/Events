@@ -12,13 +12,21 @@ class Home extends React.Component {
       user: null
     };
     this.getMore = this.getMore.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
   componentWillMount(){
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    });
     console.log(process.env.NODE_ENV);
     this.props.getCenters(4);
   }
   getMore(index){
     this.props.getCenters(index);
+  }
+  logOut(){
+    console.log('yoooooooooooo');
+    localStorage.removeItem('token');
   }
   render() {
     let decoded = '';
@@ -26,9 +34,7 @@ class Home extends React.Component {
     const token = localStorage.getItem('token');
     if(token !== null){
        decoded = jwt(token);
-       console.log(decoded);
     }
-    console.log('outsufr' + decoded);
     return (
       <div className="Home">
           <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -40,15 +46,16 @@ class Home extends React.Component {
                       My Events
                     </Link>
                   </li>
-                  <li><a href="">Login</a></li>
+                  {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> :
+                  <li onClick={this.logOut}><a href="">Logout</a></li>}
                   {decoded.adminUser ? <li><Link to={"/user/admin"}>Admin</Link></li> : ''}
-                  <li className=""><a href="">Register</a></li>
+                  <li className=""><Link to={"/auth/signup"}>Register</Link></li>
               </ul>
 
               <ul id="nav-mobile" className="side-nav">
                 <li><a href="#" /></li>
               </ul>
-              <a href="" data-activates="nav-mobile"
+              <a data-activates="nav-mobile"
               className="button-collapse"><i className="material-icons">menu</i></a>
             </div>
           </nav>

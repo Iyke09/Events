@@ -10,6 +10,11 @@ class Main extends Component {
       user: null
     };
   }
+  componentWillMount(){
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    });
+  }
   render() {
     return (
       <div className="Main">

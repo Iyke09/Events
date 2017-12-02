@@ -39,6 +39,7 @@ class Edit extends Component {
   }
   render() {
     const {events, success, loader, error} = this.props;
+    const token = localStorage.getItem('token');
     return (
       <div className="Add">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -50,8 +51,8 @@ class Edit extends Component {
                     My Events
                   </Link>
                 </li>
-                <li><a href="">Login</a></li>
-                <li className=""><a href="">Register</a></li>
+                {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
+                <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -62,9 +63,9 @@ class Edit extends Component {
           </div>
         </nav>
 
-        <div id="" className="bgimg">
+        <div id="" className="bgimg7">
           <div className="row">
-            <div className="col s12 m12 l6 offset-l3 " style={{marginTop: 245}}>
+            <div className="col s12 m12 l6 offset-l3 ">
               <div className="" id="container">
                 <div className="">
                   <div className="row">
@@ -115,13 +116,13 @@ class Edit extends Component {
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">alarm_on</i>
-                                  <input id="alarm_on" type="tel" name="time" value={this.state.time}
+                                  <input id="alarm_on" type="time" name="time" value={this.state.time}
                                   className="validate" onChange={this.handleChange}/>
                                   <label htmlFor="alarm_on">Time</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>
-                                  <input id="event" type="text" value={this.state.date} name="date"
+                                  <input id="event" type="date" value={this.state.date} name="date"
                                   className="validate" onChange={this.handleChange}/>
                                   <label htmlFor="event">Date</label>
                                 </div>

@@ -104,8 +104,8 @@ export function* watchGetSingle() {
 
 export function* addCenter(action) {
   try{
-    console.log('running');
       const response = yield call(axios.post, centerUrl, {
+        token,
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -140,6 +140,7 @@ export function* updateCenter(action) {
   try{
       const token = localStorage.getItem('token');
       const response = yield call(axios.put, `${centerUrl}/${action.index}`, {
+        token,
         name: action.payload.name,
         description: action.payload.description,
         capacity: action.payload.capacity,
@@ -150,6 +151,7 @@ export function* updateCenter(action) {
       yield put({ type: 'ERROR', error: '' });
       yield delay(3000);
       yield put({ type: 'UNLOAD' });
+      yield put({ type: 'SET_SINGLE', response: response.data });
       yield put({ type: 'SUCCESS' });
       yield put({ type: '!SUCCESS' });
 
@@ -188,7 +190,6 @@ export function* watchGetEvents() {
 
 export function* addEvents(action) {
   try{
-      const token = localStorage.getItem('token');
       const response = yield call(axios.post, eventUrl, {
         token,
         name: action.payload.value,
@@ -222,8 +223,8 @@ export function* watchAddEvent() {
 
 export function* updateEvent(action) {
   try{
-      const token = localStorage.getItem('token');
       const response = yield call(axios.put, `${eventUrl}/${action.index}`, {
+        token,
         name: action.payload.center,
         type: action.payload.type,
         time: action.payload.time,

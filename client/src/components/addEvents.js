@@ -47,13 +47,15 @@ class Add extends Component {
     this.setState({value: x});
     console.log(this.state);
     this.props.addEvent(this.state);
+    document.getElementById("add-form").reset();
   }
   render() {
     const {centers, success, loader, error} = this.props;
     const {centerSet} = this.state;
     console.log(error);
+    const token = localStorage.getItem('token');
     return (
-      <div className="Add">
+      <div className="Adds">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
             <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
@@ -63,8 +65,8 @@ class Add extends Component {
                     My Events
                   </Link>
                 </li>
-                <li><a href="">Login</a></li>
-                <li className=""><a href="">Register</a></li>
+                {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
+                <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -75,21 +77,22 @@ class Add extends Component {
           </div>
         </nav>
 
-        <div id="" className="bgimg">
+        <div id="" className="bgimg7" style={{}}>
           <div className="row">
-            <div className="col s12 m12 l6 offset-l3 " style={{marginTop: 245}}>
+            <div className="col s12 m12 l6 offset-l3 ">
               <div className="" id="container">
                 <div className="">
                   <div className="row">
-                    <div className="card col s12" style={{backgroundColor: 'transparent'}}>
+                    <div className="card col s12" >
                       <div className="card-content white lighten-4" style={{color: '#212F3C'}}>
                         <div id="test4" style={{border: '2 solid lightgrey'}}>
                           <div className="row">
-                            <form className="col s12" onSubmit={this.handleSubmit}>
+
+                          <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
                               <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
                                 <span
-                                className="w3-button w3-red w3-display-topright">&times;</span>
+                                className="w3-button w3-red w3-display-topright" />
                                 <p className=""><i className="yellow-text fa fa-exclamation-triangle"
                                 style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
                               </div> : ''
@@ -132,13 +135,14 @@ class Add extends Component {
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">alarm_on</i>
-                                  <input id="icon_telephone" type="tel" name="time" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone">Select a time</label>
+                                  <input id="icon_telephone" type="time" name="time" className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="icon_telephone" />
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>
-                                  <input id="icon_telephone" type="number" name="date" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone">Date</label>
+                                  <input id="icon_telephone" type="date" name="date"
+                                  className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="icon_telephone" />
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">check</i>
@@ -156,7 +160,8 @@ class Add extends Component {
                               <button type="submit"
                               className="btn waves-effect waves-light red lighten-1">Add Event</button>
                             </div>
-                            </form>
+                          </form>
+
                           </div>
                         </div>
                       </div>

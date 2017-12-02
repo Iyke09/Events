@@ -34,8 +34,8 @@ class Details extends React.Component {
                     My Events
                   </Link>
                 </li>
-                <li><a href="">Login</a></li>
-                <li className=""><a href="">Register</a></li>
+                {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
+                <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -143,8 +143,20 @@ class Details extends React.Component {
           <hr className=""/><br/>
           {single.events ?
             single.events.map((event) => {
-            const citrus = event.date.split(' ').slice(0, -1).join().split(',');
-            const date = `${citrus[0]}, ${citrus[2]}`;
+              const datex = event.date ;
+              const newDate = datex.split('-');
+              const dateArr = ['null', 'January', 'Febuary', 'March','April',  'May','June','July',
+              'August', 'September','October', 'November','December'];
+
+              let selector = '';
+              if(parseInt(newDate[1]) < 10){
+                selector = newDate[1][1];
+              }else{
+                selector = newDate[1];
+              }
+              const finalDate = dateArr[selector];
+
+              const date = `${newDate[2]}, ${finalDate}`;
             return (
               <div className="" key={event.id}>
                 <div className="col s3 center" >
@@ -168,13 +180,15 @@ class Details extends React.Component {
           }
         </div>
       </div><br/><br/><br/>
-      {token === null ?
-          <button className="btn red right" onClick={() => this.setRedirect()} style={{marginRight: 25}}>BOOK CENTER</button>
-        :
-        <Link to={`/add/${single.name}`}>
-          <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>
-        </Link>
-      }
+        <div className="" style={{paddingBottom:100}}>
+          {token === null ?
+              <button className="btn red right" onClick={() => this.setRedirect()} style={{marginRight: 25}}>BOOK CENTER</button>
+            :
+            <Link to={`/add/${single.name}`}>
+              <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>
+            </Link>
+          }
+        </div>
       </div>
     );
   }

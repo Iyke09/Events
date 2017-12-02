@@ -20,16 +20,23 @@ class Events extends React.Component {
   }
   render() {
     const {events} = this.props;
+    const token = localStorage.getItem('token');
     console.log(events);
     return (
       <div className="events">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
-            <a id="logo-container " href="./index.html" className="brand-logo white-text">Andela</a>
+          <Link to={"/"}>
+              <a id="logo-container " className="brand-logo white-text">Andela</a>
+            </Link>
             <ul className="right hide-on-med-and-down">
-            <li className="active"><a href="./my-events.html">My Events</a></li>
-            <li><a href="./signin.html">Login</a></li>
-            <li className=""><a href="./signup.html">Register</a></li>
+            <li>
+              <Link to={"/user/events"}>
+                My Events
+              </Link>
+            </li>
+            {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
+            <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             <li>
               <Link to={"/add/events"}>
                 <i className="material-icons">add</i>
@@ -98,8 +105,8 @@ class Events extends React.Component {
                 <h6 id="fsize"> <i className="fa fa-map-marker" id="wit" /> {event.Center.location}</h6>
                   <h6 id="fsize"><i className="fa fa-phone" id="wit" />
                   <b>Phone:</b>  +00 151515</h6>
-                  <h6 id="fsize"><i className="fa fa-calendar-o" id="wit" /> <b>Date:</b>   {event.date} To Jul 8, 1919<br/></h6>
-                  <h6 id="fsize"><i className="fa fa-clock-o" id="wit" /> {event.time} To 4:00 pm<br/></h6><br/>
+                  <h6 id="fsize"><i className="fa fa-calendar-o" id="wit" /> <b>Date:</b>   {event.date} <br/></h6>
+                  <h6 id="fsize"><i className="fa fa-clock-o" id="wit" /><b>ETA:</b>  {event.time} <br/></h6><br/>
                   <div className="" onClick={() => this.deleteHandler(event.id)}><button style={{cursor: 'pointer'}}
                   className="right atag" href="">Remove</button></div>
                 </div>
