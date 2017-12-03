@@ -104,6 +104,7 @@ export function* watchGetSingle() {
 
 export function* addCenter(action) {
   try{
+      const token = localStorage.getItem('token');
       const response = yield call(axios.post, centerUrl, {
         token,
         name: action.payload.name,
@@ -190,6 +191,7 @@ export function* watchGetEvents() {
 
 export function* addEvents(action) {
   try{
+    const token = localStorage.getItem('token');
       const response = yield call(axios.post, eventUrl, {
         token,
         name: action.payload.value,
@@ -200,7 +202,7 @@ export function* addEvents(action) {
         title: action.payload.title
       });
       console.log(response.data);
-      yield delay(5000);
+      yield delay(2000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
@@ -223,6 +225,7 @@ export function* watchAddEvent() {
 
 export function* updateEvent(action) {
   try{
+    const token = localStorage.getItem('token');
       const response = yield call(axios.put, `${eventUrl}/${action.index}`, {
         token,
         name: action.payload.center,
@@ -233,7 +236,7 @@ export function* updateEvent(action) {
         title: action.payload.title
       });
       console.log(response.data);
-      yield delay(5000);
+      yield delay(2000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
