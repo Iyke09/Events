@@ -6,7 +6,7 @@
 function centers(state = [], action) {
   switch(action.type) {
     case 'GET_CENTER' :
-      console.log(action.response);
+      console.log('helllllloooo ' + action.response);
       return action.response.center;
     case 'SET_CENTER' :
       return [...state, action.response.center];

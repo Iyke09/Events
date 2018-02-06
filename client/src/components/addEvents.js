@@ -11,7 +11,7 @@ class Add extends Component {
       centerSet: '',
       value: '',
       title: '',
-      time: '',
+      time: '12:00',
       date: 0,
       guests: 0,
       type: ''
@@ -29,13 +29,12 @@ class Add extends Component {
   componentDidMount(){
     this.props.getCenters(4);
     this.setState({centerSet: this.props.params.id});
-    $(document).ready(function() {
-      $('select').material_select();
-    });
+    // $(document).ready(function() {
+    //   $('select').material_select();
+    // });
   }
   handleChange(e){
-    e.preventDefault();
-    console.log('hello');
+    // e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
     const x = document.getElementById("sel").value;
     this.setState({value: x});
@@ -67,8 +66,8 @@ class Add extends Component {
                     My Events
                   </Link>
                 </li>
-                {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
-                <li className=""><Link to={"/auth/signup"}>Register</Link></li>
+                {/* {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''} */}
+                {/* <li className=""><Link to={"/auth/signup"}>Register</Link></li> */}
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -92,7 +91,7 @@ class Add extends Component {
 
                           <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
-                              <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
+                              <div className="w3-panel w3-card-2 w3-small error w3-red w3-display-container hyper">
                                 <span
                                 className="w3-button w3-red w3-display-topright" />
                                 <p className=""><i className="yellow-text fa fa-exclamation-triangle"
@@ -115,30 +114,34 @@ class Add extends Component {
                             { success ?
                               swal("Event Added!", "You successfully added an event", "success") : ''
                             }
-                              <h4 className="col s12 center light">Add an Event!</h4>
+                              <h4 className="col s12 center light titlr">Add an Event!</h4>
                               <small className="col s12 center light font3">Lorem ipsum dolor sit amet</small>
                               <div className="row">
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">mail</i>
-                                  <input id="icon_telephone" type="tel" name="title" className="validate" onChange={this.handleChange}/>
+                                  <input id="icon_telephone" type="tel" name="title" className="validate first" onChange={this.handleChange}/>
                                   <label htmlFor="icon_telephone">Enter title</label>
                                 </div>
                                 <div className="input-field col s12 ">
                                   <i className="material-icons prefix">home</i>
                                   <select id="sel" onChange={this.handleChange}>
-                                    {
+                                    {centers ?
                                       centers.map((center) => {
-                                        return (<option key={center.id}
-                                        selected={centerSet === center.name ? true : false}>{center.name}</option>
+                                        return (
+                                          <option key={center.id}
+                                            selected={centerSet === center.name ? true : false}>
+                                              {center.name}
+                                          </option>
                                         );
-                                      })
+                                      }) : <option>Error</option>
                                     }
                                   </select>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">alarm_on</i>
-                                  <input id="icon_telephone" type="time" name="time" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <input id="time" type="time"
+                                  value={this.state.time} name="time" className="validate" onChange={this.handleChange}/>
+                                  <label htmlFor="time" />
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>

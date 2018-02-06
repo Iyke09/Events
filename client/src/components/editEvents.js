@@ -30,7 +30,6 @@ class Edit extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.Center.name);
     this.setState({center: this.state.Center.name});
     this.props.loaders();
     console.log(this.state);
@@ -77,7 +76,7 @@ class Edit extends Component {
                           <div className="row">
                             <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
-                              <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
+                              <div className="w3-panel w3-card-2 w3-small error w3-red w3-display-container hyper">
                                 <span
                                 className="w3-button w3-red w3-display-topright">&times;</span>
                                 <p className=""><i className="yellow-text fa fa-exclamation-triangle"
@@ -113,25 +112,25 @@ class Edit extends Component {
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">mail</i>
                                   <input id="mail" type="tel" value={this.state.title} name="title"
-                                  className="validate" onChange={this.handleChange}/>
+                                  className="validate inputx title" onChange={this.handleChange}/>
                                   <label htmlFor="mail">Event Title</label>
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">alarm_on</i>
                                   <input id="alarm_on" type="time" name="time" value={this.state.time}
                                   className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="alarm_on">Time</label>
+                                  <label htmlFor="alarm_on" />
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">event</i>
                                   <input id="event" type="date" value={this.state.date} name="date"
                                   className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="event">Date</label>
+                                  <label htmlFor="event" />
                                 </div>
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">check</i>
                                   <input id="check" type="text"
-                                  value={this.state.type} name="type" className="validate"
+                                  value={this.state.type} name="type" className="validate type"
                                   onChange={this.handleChange}/>
                                   <label htmlFor="check">Type of Event</label>
                                 </div>
@@ -160,6 +159,17 @@ class Edit extends Component {
     );
   }
 }
+
+Edit.propTypes = {
+  updateEvent: PropTypes.func,
+  events: PropTypes.object,
+  loader: PropTypes.bool,
+  success: PropTypes.bool,
+  error: PropTypes.string,
+  loaders: PropTypes.func,
+  getSingleEvents: PropTypes.func,
+  params: PropTypes.number
+};
 
 
 export default Edit;

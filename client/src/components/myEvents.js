@@ -14,8 +14,8 @@ class Events extends React.Component {
     this.props.getEvents();
   }
   deleteHandler(val) {
-    console.log(val);
-    $(`#${val}`).hide(5000);
+    // console.log(val);
+    // $(`#${val}`).hide(5000);
     this.props.deleteEvent(val);
   }
   render() {
@@ -26,7 +26,7 @@ class Events extends React.Component {
       <div className="events">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
           <div className="nav-wrapper container">
-          <Link to={"/"}>
+            <Link to={"/"}>
               <a id="logo-container " className="brand-logo white-text">Andela</a>
             </Link>
             <ul className="right hide-on-med-and-down">
@@ -37,7 +37,7 @@ class Events extends React.Component {
             </li>
             {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
             <li className=""><Link to={"/auth/signup"}>Register</Link></li>
-            <li>
+            <li className="addEventz">
               <Link to={"/add/events"}>
                 <i className="material-icons">add</i>
               </Link>
@@ -74,7 +74,7 @@ class Events extends React.Component {
         <br/><br/>
     {events ? events.map((event) => {
       return (
-        <div key={event.id} id={event.id}>
+        <div key={event.id} id={event.id} className="test">
           <div className="col s12">
             <div className="col s12 m12 l4">
               <img
@@ -92,9 +92,10 @@ class Events extends React.Component {
               </div>
               <small style={{color: 'grey'}}>Created on: 14th july,2017</small>
                 <h5 className="light font3">
-                  <span style={{marginRight: 4}}>{event.title}
+                  <span style={{marginRight: 4}}>
+                    <span className="title_text">{event.title}</span>
                     <Link to={`/events/edit/${event.id}`}>
-                      <i className="material-icons modal-trigger" data-target="modal1" href="#modal1">edit</i>
+                      <i className="material-icons modal-trigger" id={`r${event.title}`} data-target="modal1" href="#modal1">edit</i>
                     </Link>
                   </span>
                 </h5>
@@ -107,7 +108,8 @@ class Events extends React.Component {
                   <b>Phone:</b>  +00 151515</h6>
                   <h6 id="fsize"><i className="fa fa-calendar-o" id="wit" /> <b>Date:</b>   {event.date} <br/></h6>
                   <h6 id="fsize"><i className="fa fa-clock-o" id="wit" /><b>ETA:</b>  {event.time} <br/></h6><br/>
-                  <div className="" onClick={() => this.deleteHandler(event.id)}><button style={{cursor: 'pointer'}}
+                  <div className="testn" onClick={() => this.deleteHandler(event.id)}>
+                    <button id={event.title} style={{cursor: 'pointer'}}
                   className="right atag" href="">Remove</button></div>
                 </div>
             </div>

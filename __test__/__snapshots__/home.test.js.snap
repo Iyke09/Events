@@ -1,0 +1,2241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test suites for Home component +++ renders with all list of user events 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="Home"
+  >
+    <nav
+      className=""
+      role="navigation"
+      style={
+        Object {
+          "backgroundColor": "#212F3C",
+        }
+      }
+    >
+      <div
+        className="nav-wrapper container"
+      >
+        <a
+          className="brand-logo white-text"
+          href=""
+          id="logo-container "
+        >
+          Andela
+        </a>
+        <ul
+          className="right hide-on-med-and-down"
+        >
+          
+          <li
+            className="login"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/auth/signin"
+            >
+              Login
+            </Link>
+          </li>
+          
+          <li
+            className="reg"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/auth/signup"
+            >
+              Register
+            </Link>
+          </li>
+        </ul>
+        <ul
+          className="side-nav"
+          id="nav-mobile"
+        >
+          <li>
+            <a
+              href="#"
+            />
+          </li>
+        </ul>
+        <a
+          className="button-collapse"
+          data-activates="nav-mobile"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+      </div>
+    </nav>
+    <div
+      className="bgimg2"
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        className="row center"
+      >
+        <h1
+          className="header col s12 light white-text"
+        >
+          Welcome to Andela Events
+        </h1>
+        <p
+          className="slant white-text"
+        >
+          <i>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+          </i>
+        </p>
+        <button
+          className="button"
+          href=""
+        >
+          <b>
+            Explore
+          </b>
+        </button>
+      </div>
+      <section
+        className="overlay"
+      />
+    </div>
+    <div
+      className="listing center"
+      id="centers"
+    >
+      <div
+        className="row center"
+        style={
+          Object {
+            "padding": 35,
+          }
+        }
+      >
+        <h3
+          className="header col s12 light black-text"
+        >
+          Major Events Center
+        </h3>
+        <p
+          className="slant black-text"
+        >
+          <i>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+          </i>
+        </p>
+        <br />
+        <br />
+        <div
+          className="col center s12 m12 l3 displayed"
+          id="centerx"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-image"
+            >
+              <a
+                href=""
+              >
+                <img
+                  src={undefined}
+                  style={
+                    Object {
+                      "height": 350,
+                    }
+                  }
+                />
+              </a>
+              <span
+                className="card-title"
+              >
+                emporium
+              </span>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/centerdetails/undefined"
+              >
+                <a
+                  className="btn-floating halfway-fab waves-effect waves-light red link"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    chevron_right
+                  </i>
+                </a>
+              </Link>
+            </div>
+            <div
+              className="card-content"
+            >
+              <p>
+                awesome place
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col center s12 m12 l3 displayed"
+          id="centerx"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-image"
+            >
+              <a
+                href=""
+              >
+                <img
+                  src={undefined}
+                  style={
+                    Object {
+                      "height": 350,
+                    }
+                  }
+                />
+              </a>
+              <span
+                className="card-title"
+              >
+                emporium
+              </span>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/centerdetails/undefined"
+              >
+                <a
+                  className="btn-floating halfway-fab waves-effect waves-light red link"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    chevron_right
+                  </i>
+                </a>
+              </Link>
+            </div>
+            <div
+              className="card-content"
+            >
+              <p>
+                awesome place
+              </p>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div
+          className="col s12"
+        >
+          <button
+            className="btn red testx"
+            onClick={[Function]}
+          >
+            view all centers 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="Home"
+    >
+      <nav
+        className=""
+        role="navigation"
+        style={
+          Object {
+            "backgroundColor": "#212F3C",
+          }
+        }
+      >
+        <div
+          className="nav-wrapper container"
+        >
+          <a
+            className="brand-logo white-text"
+            href=""
+            id="logo-container "
+          >
+            Andela
+          </a>
+          <ul
+            className="right hide-on-med-and-down"
+          >
+            
+            <li
+              className="login"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/auth/signin"
+              >
+                Login
+              </Link>
+            </li>
+            
+            <li
+              className="reg"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/auth/signup"
+              >
+                Register
+              </Link>
+            </li>
+          </ul>
+          <ul
+            className="side-nav"
+            id="nav-mobile"
+          >
+            <li>
+              <a
+                href="#"
+              />
+            </li>
+          </ul>
+          <a
+            className="button-collapse"
+            data-activates="nav-mobile"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </div>
+      </nav>
+      <div
+        className="bgimg2"
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="row center"
+        >
+          <h1
+            className="header col s12 light white-text"
+          >
+            Welcome to Andela Events
+          </h1>
+          <p
+            className="slant white-text"
+          >
+            <i>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+            </i>
+          </p>
+          <button
+            className="button"
+            href=""
+          >
+            <b>
+              Explore
+            </b>
+          </button>
+        </div>
+        <section
+          className="overlay"
+        />
+      </div>
+      <div
+        className="listing center"
+        id="centers"
+      >
+        <div
+          className="row center"
+          style={
+            Object {
+              "padding": 35,
+            }
+          }
+        >
+          <h3
+            className="header col s12 light black-text"
+          >
+            Major Events Center
+          </h3>
+          <p
+            className="slant black-text"
+          >
+            <i>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+            </i>
+          </p>
+          <br />
+          <br />
+          <div
+            className="col center s12 m12 l3 displayed"
+            id="centerx"
+          >
+            <div
+              className="card"
+            >
+              <div
+                className="card-image"
+              >
+                <a
+                  href=""
+                >
+                  <img
+                    src={undefined}
+                    style={
+                      Object {
+                        "height": 350,
+                      }
+                    }
+                  />
+                </a>
+                <span
+                  className="card-title"
+                >
+                  emporium
+                </span>
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/centerdetails/undefined"
+                >
+                  <a
+                    className="btn-floating halfway-fab waves-effect waves-light red link"
+                  >
+                    <i
+                      className="material-icons"
+                    >
+                      chevron_right
+                    </i>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className="card-content"
+              >
+                <p>
+                  awesome place
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col center s12 m12 l3 displayed"
+            id="centerx"
+          >
+            <div
+              className="card"
+            >
+              <div
+                className="card-image"
+              >
+                <a
+                  href=""
+                >
+                  <img
+                    src={undefined}
+                    style={
+                      Object {
+                        "height": 350,
+                      }
+                    }
+                  />
+                </a>
+                <span
+                  className="card-title"
+                >
+                  emporium
+                </span>
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/centerdetails/undefined"
+                >
+                  <a
+                    className="btn-floating halfway-fab waves-effect waves-light red link"
+                  >
+                    <i
+                      className="material-icons"
+                    >
+                      chevron_right
+                    </i>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className="card-content"
+              >
+                <p>
+                  awesome place
+                </p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <div
+            className="col s12"
+          >
+            <button
+              className="btn red testx"
+              onClick={[Function]}
+            >
+              view all centers 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_context": Object {},
+      "_currentElement": <Home
+        centers={
+          Array [
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+          ]
+        }
+        getCenters={[Function]}
+      />,
+      "_instance": Home {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "getMore": [Function],
+        "logOut": [Function],
+        "props": Object {
+          "centers": Array [
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+          ],
+          "getCenters": [Function],
+        },
+        "refs": Object {},
+        "state": Object {
+          "user": null,
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 3,
+      "_nativeContainerInfo": null,
+      "_nativeParent": null,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": Object {
+        "_currentElement": <div
+          className="Home"
+        >
+          <nav
+            className=""
+            role="navigation"
+            style={
+              Object {
+                "backgroundColor": "#212F3C",
+              }
+            }
+          >
+            <div
+              className="nav-wrapper container"
+            >
+              <a
+                className="brand-logo white-text"
+                href=""
+                id="logo-container "
+              >
+                Andela
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                
+                <li
+                  className="login"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signin"
+                  >
+                    Login
+                  </Link>
+                </li>
+                
+                <li
+                  className="reg"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signup"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="nav-mobile"
+              >
+                <li>
+                  <a
+                    href="#"
+                  />
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="nav-mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+          </nav>
+          <div
+            className="bgimg2"
+            style={
+              Object {
+                "position": "relative",
+              }
+            }
+          >
+            <div
+              className="row center"
+            >
+              <h1
+                className="header col s12 light white-text"
+              >
+                Welcome to Andela Events
+              </h1>
+              <p
+                className="slant white-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+                </i>
+              </p>
+              <button
+                className="button"
+                href=""
+              >
+                <b>
+                  Explore
+                </b>
+              </button>
+            </div>
+            <section
+              className="overlay"
+            />
+          </div>
+          <div
+            className="listing center"
+            id="centers"
+          >
+            <div
+              className="row center"
+              style={
+                Object {
+                  "padding": 35,
+                }
+              }
+            >
+              <h3
+                className="header col s12 light black-text"
+              >
+                Major Events Center
+              </h3>
+              <p
+                className="slant black-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+                </i>
+              </p>
+              <br />
+              <br />
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div
+                className="col s12"
+              >
+                <button
+                  className="btn red testx"
+                  onClick={[Function]}
+                >
+                  view all centers 
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+        "_renderedOutput": <div
+          className="Home"
+        >
+          <nav
+            className=""
+            role="navigation"
+            style={
+              Object {
+                "backgroundColor": "#212F3C",
+              }
+            }
+          >
+            <div
+              className="nav-wrapper container"
+            >
+              <a
+                className="brand-logo white-text"
+                href=""
+                id="logo-container "
+              >
+                Andela
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                
+                <li
+                  className="login"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signin"
+                  >
+                    Login
+                  </Link>
+                </li>
+                
+                <li
+                  className="reg"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signup"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="nav-mobile"
+              >
+                <li>
+                  <a
+                    href="#"
+                  />
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="nav-mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+          </nav>
+          <div
+            className="bgimg2"
+            style={
+              Object {
+                "position": "relative",
+              }
+            }
+          >
+            <div
+              className="row center"
+            >
+              <h1
+                className="header col s12 light white-text"
+              >
+                Welcome to Andela Events
+              </h1>
+              <p
+                className="slant white-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+                </i>
+              </p>
+              <button
+                className="button"
+                href=""
+              >
+                <b>
+                  Explore
+                </b>
+              </button>
+            </div>
+            <section
+              className="overlay"
+            />
+          </div>
+          <div
+            className="listing center"
+            id="centers"
+          >
+            <div
+              className="row center"
+              style={
+                Object {
+                  "padding": 35,
+                }
+              }
+            >
+              <h3
+                className="header col s12 light black-text"
+              >
+                Major Events Center
+              </h3>
+              <p
+                className="slant black-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+                </i>
+              </p>
+              <br />
+              <br />
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div
+                className="col s12"
+              >
+                <button
+                  className="btn red testx"
+                  onClick={[Function]}
+                >
+                  view all centers 
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": null,
+      "_topLevelWrapper": null,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Home
+    centers={
+      Array [
+        Object {
+          "description": "awesome place",
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "name": "emporium",
+          "price": 400,
+        },
+      ]
+    }
+    getCenters={[Function]}
+  />,
+}
+`;
+
+exports[`Test suites for Home component +++ renders without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="Home"
+  >
+    <nav
+      className=""
+      role="navigation"
+      style={
+        Object {
+          "backgroundColor": "#212F3C",
+        }
+      }
+    >
+      <div
+        className="nav-wrapper container"
+      >
+        <a
+          className="brand-logo white-text"
+          href=""
+          id="logo-container "
+        >
+          Andela
+        </a>
+        <ul
+          className="right hide-on-med-and-down"
+        >
+          
+          <li
+            className="login"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/auth/signin"
+            >
+              Login
+            </Link>
+          </li>
+          
+          <li
+            className="reg"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/auth/signup"
+            >
+              Register
+            </Link>
+          </li>
+        </ul>
+        <ul
+          className="side-nav"
+          id="nav-mobile"
+        >
+          <li>
+            <a
+              href="#"
+            />
+          </li>
+        </ul>
+        <a
+          className="button-collapse"
+          data-activates="nav-mobile"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+      </div>
+    </nav>
+    <div
+      className="bgimg2"
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        className="row center"
+      >
+        <h1
+          className="header col s12 light white-text"
+        >
+          Welcome to Andela Events
+        </h1>
+        <p
+          className="slant white-text"
+        >
+          <i>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+          </i>
+        </p>
+        <button
+          className="button"
+          href=""
+        >
+          <b>
+            Explore
+          </b>
+        </button>
+      </div>
+      <section
+        className="overlay"
+      />
+    </div>
+    <div
+      className="listing center"
+      id="centers"
+    >
+      <div
+        className="row center"
+        style={
+          Object {
+            "padding": 35,
+          }
+        }
+      >
+        <h3
+          className="header col s12 light black-text"
+        >
+          Major Events Center
+        </h3>
+        <p
+          className="slant black-text"
+        >
+          <i>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+          </i>
+        </p>
+        <br />
+        <br />
+        <div
+          className="col center s12 m12 l3 displayed"
+          id="centerx"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-image"
+            >
+              <a
+                href=""
+              >
+                <img
+                  src={undefined}
+                  style={
+                    Object {
+                      "height": 350,
+                    }
+                  }
+                />
+              </a>
+              <span
+                className="card-title"
+              >
+                emporium
+              </span>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/centerdetails/undefined"
+              >
+                <a
+                  className="btn-floating halfway-fab waves-effect waves-light red link"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    chevron_right
+                  </i>
+                </a>
+              </Link>
+            </div>
+            <div
+              className="card-content"
+            >
+              <p>
+                awesome place
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col center s12 m12 l3 displayed"
+          id="centerx"
+        >
+          <div
+            className="card"
+          >
+            <div
+              className="card-image"
+            >
+              <a
+                href=""
+              >
+                <img
+                  src={undefined}
+                  style={
+                    Object {
+                      "height": 350,
+                    }
+                  }
+                />
+              </a>
+              <span
+                className="card-title"
+              >
+                emporium
+              </span>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/centerdetails/undefined"
+              >
+                <a
+                  className="btn-floating halfway-fab waves-effect waves-light red link"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    chevron_right
+                  </i>
+                </a>
+              </Link>
+            </div>
+            <div
+              className="card-content"
+            >
+              <p>
+                awesome place
+              </p>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div
+          className="col s12"
+        >
+          <button
+            className="btn red testx"
+            onClick={[Function]}
+          >
+            view all centers 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="Home"
+    >
+      <nav
+        className=""
+        role="navigation"
+        style={
+          Object {
+            "backgroundColor": "#212F3C",
+          }
+        }
+      >
+        <div
+          className="nav-wrapper container"
+        >
+          <a
+            className="brand-logo white-text"
+            href=""
+            id="logo-container "
+          >
+            Andela
+          </a>
+          <ul
+            className="right hide-on-med-and-down"
+          >
+            
+            <li
+              className="login"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/auth/signin"
+              >
+                Login
+              </Link>
+            </li>
+            
+            <li
+              className="reg"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/auth/signup"
+              >
+                Register
+              </Link>
+            </li>
+          </ul>
+          <ul
+            className="side-nav"
+            id="nav-mobile"
+          >
+            <li>
+              <a
+                href="#"
+              />
+            </li>
+          </ul>
+          <a
+            className="button-collapse"
+            data-activates="nav-mobile"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </div>
+      </nav>
+      <div
+        className="bgimg2"
+        style={
+          Object {
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="row center"
+        >
+          <h1
+            className="header col s12 light white-text"
+          >
+            Welcome to Andela Events
+          </h1>
+          <p
+            className="slant white-text"
+          >
+            <i>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+            </i>
+          </p>
+          <button
+            className="button"
+            href=""
+          >
+            <b>
+              Explore
+            </b>
+          </button>
+        </div>
+        <section
+          className="overlay"
+        />
+      </div>
+      <div
+        className="listing center"
+        id="centers"
+      >
+        <div
+          className="row center"
+          style={
+            Object {
+              "padding": 35,
+            }
+          }
+        >
+          <h3
+            className="header col s12 light black-text"
+          >
+            Major Events Center
+          </h3>
+          <p
+            className="slant black-text"
+          >
+            <i>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+            </i>
+          </p>
+          <br />
+          <br />
+          <div
+            className="col center s12 m12 l3 displayed"
+            id="centerx"
+          >
+            <div
+              className="card"
+            >
+              <div
+                className="card-image"
+              >
+                <a
+                  href=""
+                >
+                  <img
+                    src={undefined}
+                    style={
+                      Object {
+                        "height": 350,
+                      }
+                    }
+                  />
+                </a>
+                <span
+                  className="card-title"
+                >
+                  emporium
+                </span>
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/centerdetails/undefined"
+                >
+                  <a
+                    className="btn-floating halfway-fab waves-effect waves-light red link"
+                  >
+                    <i
+                      className="material-icons"
+                    >
+                      chevron_right
+                    </i>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className="card-content"
+              >
+                <p>
+                  awesome place
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col center s12 m12 l3 displayed"
+            id="centerx"
+          >
+            <div
+              className="card"
+            >
+              <div
+                className="card-image"
+              >
+                <a
+                  href=""
+                >
+                  <img
+                    src={undefined}
+                    style={
+                      Object {
+                        "height": 350,
+                      }
+                    }
+                  />
+                </a>
+                <span
+                  className="card-title"
+                >
+                  emporium
+                </span>
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/centerdetails/undefined"
+                >
+                  <a
+                    className="btn-floating halfway-fab waves-effect waves-light red link"
+                  >
+                    <i
+                      className="material-icons"
+                    >
+                      chevron_right
+                    </i>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className="card-content"
+              >
+                <p>
+                  awesome place
+                </p>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <div
+            className="col s12"
+          >
+            <button
+              className="btn red testx"
+              onClick={[Function]}
+            >
+              view all centers 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_context": Object {},
+      "_currentElement": <Home
+        centers={
+          Array [
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+          ]
+        }
+        getCenters={[Function]}
+      />,
+      "_instance": Home {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "getMore": [Function],
+        "logOut": [Function],
+        "props": Object {
+          "centers": Array [
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "name": "emporium",
+              "price": 400,
+            },
+          ],
+          "getCenters": [Function],
+        },
+        "refs": Object {},
+        "state": Object {
+          "user": null,
+        },
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_nativeContainerInfo": null,
+      "_nativeParent": null,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": Object {
+        "_currentElement": <div
+          className="Home"
+        >
+          <nav
+            className=""
+            role="navigation"
+            style={
+              Object {
+                "backgroundColor": "#212F3C",
+              }
+            }
+          >
+            <div
+              className="nav-wrapper container"
+            >
+              <a
+                className="brand-logo white-text"
+                href=""
+                id="logo-container "
+              >
+                Andela
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                
+                <li
+                  className="login"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signin"
+                  >
+                    Login
+                  </Link>
+                </li>
+                
+                <li
+                  className="reg"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signup"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="nav-mobile"
+              >
+                <li>
+                  <a
+                    href="#"
+                  />
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="nav-mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+          </nav>
+          <div
+            className="bgimg2"
+            style={
+              Object {
+                "position": "relative",
+              }
+            }
+          >
+            <div
+              className="row center"
+            >
+              <h1
+                className="header col s12 light white-text"
+              >
+                Welcome to Andela Events
+              </h1>
+              <p
+                className="slant white-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+                </i>
+              </p>
+              <button
+                className="button"
+                href=""
+              >
+                <b>
+                  Explore
+                </b>
+              </button>
+            </div>
+            <section
+              className="overlay"
+            />
+          </div>
+          <div
+            className="listing center"
+            id="centers"
+          >
+            <div
+              className="row center"
+              style={
+                Object {
+                  "padding": 35,
+                }
+              }
+            >
+              <h3
+                className="header col s12 light black-text"
+              >
+                Major Events Center
+              </h3>
+              <p
+                className="slant black-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+                </i>
+              </p>
+              <br />
+              <br />
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div
+                className="col s12"
+              >
+                <button
+                  className="btn red testx"
+                  onClick={[Function]}
+                >
+                  view all centers 
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+        "_renderedOutput": <div
+          className="Home"
+        >
+          <nav
+            className=""
+            role="navigation"
+            style={
+              Object {
+                "backgroundColor": "#212F3C",
+              }
+            }
+          >
+            <div
+              className="nav-wrapper container"
+            >
+              <a
+                className="brand-logo white-text"
+                href=""
+                id="logo-container "
+              >
+                Andela
+              </a>
+              <ul
+                className="right hide-on-med-and-down"
+              >
+                
+                <li
+                  className="login"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signin"
+                  >
+                    Login
+                  </Link>
+                </li>
+                
+                <li
+                  className="reg"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/auth/signup"
+                  >
+                    Register
+                  </Link>
+                </li>
+              </ul>
+              <ul
+                className="side-nav"
+                id="nav-mobile"
+              >
+                <li>
+                  <a
+                    href="#"
+                  />
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="nav-mobile"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+          </nav>
+          <div
+            className="bgimg2"
+            style={
+              Object {
+                "position": "relative",
+              }
+            }
+          >
+            <div
+              className="row center"
+            >
+              <h1
+                className="header col s12 light white-text"
+              >
+                Welcome to Andela Events
+              </h1>
+              <p
+                className="slant white-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....
+                </i>
+              </p>
+              <button
+                className="button"
+                href=""
+              >
+                <b>
+                  Explore
+                </b>
+              </button>
+            </div>
+            <section
+              className="overlay"
+            />
+          </div>
+          <div
+            className="listing center"
+            id="centers"
+          >
+            <div
+              className="row center"
+              style={
+                Object {
+                  "padding": 35,
+                }
+              }
+            >
+              <h3
+                className="header col s12 light black-text"
+              >
+                Major Events Center
+              </h3>
+              <p
+                className="slant black-text"
+              >
+                <i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna....
+                </i>
+              </p>
+              <br />
+              <br />
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col center s12 m12 l3 displayed"
+                id="centerx"
+              >
+                <div
+                  className="card"
+                >
+                  <div
+                    className="card-image"
+                  >
+                    <a
+                      href=""
+                    >
+                      <img
+                        src={undefined}
+                        style={
+                          Object {
+                            "height": 350,
+                          }
+                        }
+                      />
+                    </a>
+                    <span
+                      className="card-title"
+                    >
+                      emporium
+                    </span>
+                    <Link
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/centerdetails/undefined"
+                    >
+                      <a
+                        className="btn-floating halfway-fab waves-effect waves-light red link"
+                      >
+                        <i
+                          className="material-icons"
+                        >
+                          chevron_right
+                        </i>
+                      </a>
+                    </Link>
+                  </div>
+                  <div
+                    className="card-content"
+                  >
+                    <p>
+                      awesome place
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div
+                className="col s12"
+              >
+                <button
+                  className="btn red testx"
+                  onClick={[Function]}
+                >
+                  view all centers 
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": null,
+      "_topLevelWrapper": null,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Home
+    centers={
+      Array [
+        Object {
+          "description": "awesome place",
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "name": "emporium",
+          "price": 400,
+        },
+      ]
+    }
+    getCenters={[Function]}
+  />,
+}
+`;

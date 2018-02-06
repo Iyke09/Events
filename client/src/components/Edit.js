@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
 import { Link } from 'react-router';
 import store from '../store';
 import swal from 'sweetalert';
@@ -13,17 +15,54 @@ class Edit extends Component {
       capacity: '',
       location: '',
       image: '',
-      price: ''
+      price: '',
+
+      username: '',
+      avatar: '',
+      isUploading: false,
+      progress: 0,
+      avatarURL: ''
     };
 
     this.onChange = this.onChange.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
+    this.handleUploadError = this.handleUploadError.bind(this);
+    this.handleUploadStart = this.handleUploadStart.bind(this);
+    this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
     this.props.getSingle(this.props.params.id);
   }
   componentWillReceiveProps(newProps){
-    this.setState(newProps.single);
+    console.log(newProps);
+    if(newProps.single !== this.props.single){
+      this.setState(newProps.single);
+    }else{
+      if(newProps.error === ''){
+        console.log(newProps.error);
+        this.setState({name: '',description: '', capacity: '', location: '', price: ''});
+      }
+    }
+  }
+
+  handleUploadStart() {
+    this.setState({isUploading: true, progress: 0});
+  }
+  handleProgress(progress) {
+    this.setState({progress});
+  }
+  handleUploadError (error){
+    this.setState({isUploading: false});
+    console.error(error);
+  }
+  handleUploadSuccess (filename) {
+    this.setState({avatar: filename, progress: 100, isUploading: false});
+    firebase.storage().ref('images').child(filename).getDownloadURL()
+    .then(url => {
+      this.setState({avatarURL: url, image: url});
+      console.log(this.state.image);
+    });
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
@@ -33,6 +72,7 @@ class Edit extends Component {
     this.props.loaders();
     console.log(this.state);
     this.props.updateCenter(this.state, this.props.params.id);
+    this.setState({});
     document.getElementById("add-form").reset();
   }
 
@@ -103,10 +143,31 @@ class Edit extends Component {
                       onChange={this.onChange} value={this.state.name}
                       name="name" className="validate" placeholder="" required/>
                     </div>
-                    <div className="input-field col s12">
-                      <i className="material-icons prefix">add_a_photo</i>
-                      <input id="icon_telephone" value={this.state.image} name="image" type="text" onChange={this.onChange}
-                       className="validate" placeholder="Image_URL" />
+                    <div className=" col s12">
+                    {this.state.isUploading &&
+                      <p><b>Progress:</b> {this.state.progress}%</p>
+                    }
+                    {this.state.avatarURL &&
+                      <img className="responsive-img" src={this.state.avatarURL} />
+                    }
+                    <br/>
+                    <i className="material-icons prefix">add_a_photo</i>
+                    <label style=
+                    {{backgroundColor: 'steelblue', color: 'white',
+                    padding: 10, borderRadius: 4, pointer: 'cursor'}}>
+                      Select an image
+                      <FileUploader
+                        hidden
+                        accept="image/*"
+                        name="avatar"
+                        randomizeFilename
+                        storageRef={firebase.storage().ref('images')}
+                        onUploadStart={this.handleUploadStart}
+                        onUploadError={this.handleUploadError}
+                        onUploadSuccess={this.handleUploadSuccess}
+                        onProgress={this.handleProgress}
+                      />
+                    </label>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_location</i>

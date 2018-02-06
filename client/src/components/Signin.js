@@ -76,10 +76,12 @@ class Centers extends React.Component {
                           <div className="row">
                             <form id="add-form" className="col s12" onSubmit={this.handleSubmit}>
                               { error ?
-                                <div className="w3-panel w3-card-2 w3-medium w3-red w3-display-container hyper">
+                                <div className="w3-panel w3-card-2 w3-medium error w3-red w3-display-container hyper">
                                   <span onClick={this.onHit}
                                   className="w3-button w3-red w3-display-topright" />
-                                  <p className=""><i className="yellow-text fa fa-exclamation-triangle" style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
+                                  <p className="">
+                                    <i className="yellow-text fa fa-exclamation-triangle"
+                                    style={{paddingRight:5}} aria-hidden="true" /> <span id="err_msg"> {error}</span></p>
                                 </div> : ''
                               }
                               { loader ?
@@ -109,7 +111,7 @@ class Centers extends React.Component {
                                   <input id="icon_telephone" name="password" type="password"
                                   onChange={this.onChange}
                                   placeholder="Password"
-                                  className="validate"/>
+                                  className="validate passwordz"/>
                                   <label htmlFor="icon_telephone" />
                                 </div>
                               </div>

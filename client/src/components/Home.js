@@ -15,23 +15,22 @@ class Home extends React.Component {
     this.logOut = this.logOut.bind(this);
   }
   componentWillMount(){
-    $(document).ready(function() {
-      $(".button-collapse").sideNav();
-    });
-    console.log(process.env.NODE_ENV);
+    // $(document).ready(function() {
+    //   $(".button-collapse").sideNav();
+    // });
     this.props.getCenters(4);
   }
   getMore(index){
     this.props.getCenters(index);
   }
   logOut(){
-    console.log('yoooooooooooo');
     localStorage.removeItem('token');
   }
   render() {
     let decoded = '';
     const { centers } = this.props;
     const token = localStorage.getItem('token');
+    const facebook = localStorage.getItem('facebook');
     if(token !== null){
        decoded = jwt(token);
     }
@@ -42,16 +41,16 @@ class Home extends React.Component {
               <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
               <ul className="right hide-on-med-and-down">
                   {token !== null ?
-                    <li>
+                    <li className="myEvents">
                       <Link to={"/user/events"}>
                         My Events
                       </Link>
                     </li> : ''
                   }
-                  {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> :
-                  <li onClick={this.logOut}><a href="">Logout</a></li>}
-                  {decoded.adminUser ? <li><Link to={"/user/admin"}>Admin</Link></li> : ''}
-                  <li className=""><Link to={"/auth/signup"}>Register</Link></li>
+                  {token === null && facebook === null ? <li className="login"><Link to={"/auth/signin"}>Login</Link></li> :
+                  <li className="logout" onClick={this.logOut}><a href="">Logout</a></li>}
+                  {decoded.adminUser ? <li className="admin"><Link to={"/user/admin"}>Admin</Link></li> : ''}
+                  <li className="reg"><Link to={"/auth/signup"}>Register</Link></li>
               </ul>
 
               <ul id="nav-mobile" className="side-nav">
@@ -66,19 +65,19 @@ class Home extends React.Component {
             <div className="row center">
               <h1 className="header col s12 light white-text">Welcome to Andela Events</h1>
               <p className="slant white-text"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id odio mollis, luctus ex at, accumsan magna. Suspendisse suscipit gravida velit vitae pellentesque....</i></p>
-              <button className="button"><b>Explore</b></button>
+              <button className="button" href=""><b>Explore</b></button>
             </div>
             <section className="overlay"/>
           </div>
 
-        <div className="listing center">
+        <div className="listing center" id="centers">
           <div className="row center" style={{padding: 35}}>
             <h3 className="header col s12 light black-text">Major Events Center</h3>
             <p className="slant black-text"><i>Lorem ipsum dolor sit amet, consectetur adipiscing
               elit. Nunc id odio mollis, luctus ex at, accumsan magna....</i></p><br/><br/>
             {centers.map((center) => {
               return (
-                <div className="col center s12 m12 l3 displayed" key={center.id}>
+                <div className="col center s12 m12 l3 displayed" key={center.id} id="centerx">
                   <div className="card">
                     <div className="card-image">
                       <a href="">
@@ -86,7 +85,7 @@ class Home extends React.Component {
                       </a>
                       <span className="card-title">{center.name}</span>
                       <Link to={`/centerdetails/${center.id}`}>
-                        <a className="btn-floating halfway-fab waves-effect waves-light red">
+                        <a className="btn-floating halfway-fab waves-effect waves-light red link" >
                           <i className="material-icons">chevron_right</i>
                         </a>
                       </Link>
@@ -99,8 +98,8 @@ class Home extends React.Component {
               );
             })}
             <br/><br/><br/><br/>
-            <div onClick={(e) => this.getMore(centers.length + 4)} className="col s12">
-              <button className="btn red">view all centers </button>
+            <div className="col s12">
+              <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 4)}>view all centers </button>
             </div>
           </div>
         </div>
@@ -108,5 +107,11 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  centers: PropTypes.array.isRequired,
+  getCenters: PropTypes.func,
+};
+
 
 export default Home;

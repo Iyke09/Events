@@ -68,7 +68,7 @@ class Details extends React.Component {
   <div className="container" style={{paddingTop: 55, paddingBottom: 55}}>
     <h3 className="light font">Experience Hall like no other</h3>
     <h5 className="blue-grey-text">Quisque aliquam dignissim felis, a laoreet lacus .</h5>
-    <h6 className="font2" style={{fontSize: 18}}> <i className="fa fa-map-marker"
+    <h6 className="font2 location" style={{fontSize: 18}}> <i className="fa fa-map-marker"
     style={{width:30}} /> {single.location}</h6>
 
 
@@ -163,15 +163,16 @@ class Details extends React.Component {
 
               const date = `${newDate[2]}, ${finalDate}`;
             return (
-              <div className="" key={event.id}>
+              <div className="eventz" key={event.id} id="eventz">
                 <div className="col s3 center" >
                   <div className="black white-text" >
                     <h5 style={{padding: 10}} className="center font3">
-                      <i className=" fa fa-calendar-o" /> <br/> {date} </h5>
+                      <i className=" fa fa-calendar-o" /> <br/> {date}
+                    </h5>
                   </div>
                 </div>
                 <div className="col s9" >
-                    <h2 className="font3">{event.title}</h2>
+                    <h2 className="font3 title">{event.title}</h2>
                     <p style={{color: '#ABB2B9'}}>{event.description}. Quisque aliquam dignissim felis,
                         a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae
                          pellentesque. Quisque
@@ -180,14 +181,14 @@ class Details extends React.Component {
                 </div>
               </div>
             );
-          })  : ''
+          })  : <p className="font3">No events available for this center</p>
 
           }
         </div>
       </div><br/><br/><br/>
         <div className="" style={{paddingBottom:100}}>
           {token === null ?
-              <button className="btn red right" onClick={() => this.setRedirect()} style={{marginRight: 25}}>BOOK CENTER</button>
+              <button className="btn red right visible" onClick={() => this.setRedirect()} style={{marginRight: 25}}>BOOK CENTER</button>
             :
             <Link to={`/add/${single.name}`}>
               <button className="btn red right" style={{marginRight: 25}}>BOOK CENTER</button><br/><br/><br/>

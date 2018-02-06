@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
 import {Image} from 'cloudinary-react';
 import cloudinary from 'cloudinary';
 import { browserHistory, Link } from 'react-router';
@@ -17,10 +19,21 @@ class Admin extends Component {
       location: '',
       image: '',
       price: '',
+
+
+      username: '',
+      avatar: '',
+      isUploading: false,
+      progress: 0,
+      avatarURL: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.getMore = this.getMore.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
+    this.handleUploadError = this.handleUploadError.bind(this);
+    this.handleUploadStart = this.handleUploadStart.bind(this);
+    this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,6 +55,25 @@ class Admin extends Component {
   }
   getMore(index){
     this.props.getCenters(index);
+  }
+
+  handleUploadStart() {
+    this.setState({isUploading: true, progress: 0});
+  }
+  handleProgress(progress) {
+    this.setState({progress});
+  }
+  handleUploadError (error){
+    this.setState({isUploading: false});
+    console.error(error);
+  }
+  handleUploadSuccess (filename) {
+    this.setState({avatar: filename, progress: 100, isUploading: false});
+    firebase.storage().ref('images').child(filename).getDownloadURL()
+    .then(url => {
+      this.setState({avatarURL: url, image: url});
+      console.log(this.state.image);
+    });
   }
 
   handleSubmit(e) {
@@ -94,16 +126,17 @@ class Admin extends Component {
                         <img className="activator"
                         src={center.image}/>
                         <div className="update" id="minor-l">
-                          <Link to={`/user/admin/edit/${center.id}`}>
-                            <span className="fa-stack fa-lg ">
-                              <i className="fa fa-circle fa-stack-2x" />
-                              <i className="fa fa-edit fa-stack-1x fa-inverse" />
-                            </span>
-                          </Link>
+                            <Link to={`/user/admin/edit/${center.id}`}>
+                              <span className="fa-stack fa-lg " id="set">
+                                <i className="fa fa-circle fa-stack-2x" />
+                                <i className="fa fa-edit fa-stack-1x fa-inverse" />
+                              </span>
+                            </Link>
                         </div>
                       </div>
                       <div className="card-content">
-                        <span className="card-title activator grey-text text-darken-4">{center.name}
+                        <span className="card-title activator grey-text text-darken-4">
+                          {center.name}
                           <i className="material-icons right">more_vert</i></span>
                       </div>
                       <div className="card-reveal">
@@ -125,11 +158,11 @@ class Admin extends Component {
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
                   { error ?
-                    <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
+                    <div className="w3-panel w3-card-2 error w3-small w3-red w3-display-container hyper">
                       <span onClick={this.onHit}
                       className="w3-button w3-red w3-display-topright">&times;</span>
                       <p className=""><i className="yellow-text fa fa-exclamation-triangle"
-                      style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
+                      style={{paddingRight:5}} aria-hidden="true" /> <span className="err_msg">{error}</span></p>
                     </div> : ''
                   }
                 <form className="row" id="add-form" onSubmit={this.handleSubmit}>
@@ -156,10 +189,31 @@ class Admin extends Component {
                       <input id="icon_telephone" type="tel"
                       onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
                     </div>
-                    <div className="input-field col s12">
-                      <i className="material-icons prefix">add_a_photo</i>
-                      <input id="icon_telephone" name="image" type="text"
-                      onChange={this.onChange} className="validate" placeholder="image_url" required/>
+                    <div className=" col s12">
+                        {this.state.isUploading &&
+                          <p><b>Progress:</b> {this.state.progress}%</p>
+                        }
+                        {this.state.avatarURL &&
+                          <img className="responsive-img" src={this.state.avatarURL} />
+                        }
+                        <br/>
+                        <i className="material-icons prefix">add_a_photo</i>
+                      <label style=
+                      {{backgroundColor: 'steelblue', color: 'white',
+                      padding: 10, borderRadius: 4, pointer: 'cursor'}}>
+                        Select an image
+                        <FileUploader
+                          hidden
+                          accept="image/*"
+                          name="avatar"
+                          randomizeFilename
+                          storageRef={firebase.storage().ref('images')}
+                          onUploadStart={this.handleUploadStart}
+                          onUploadError={this.handleUploadError}
+                          onUploadSuccess={this.handleUploadSuccess}
+                          onProgress={this.handleProgress}
+                        />
+                      </label>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">add_location</i>
@@ -167,14 +221,14 @@ class Admin extends Component {
                       onChange={this.onChange} className="validate" placeholder="Address" required/>
                     </div>
                     <div className="row">
-                      <div className="col s6">
+                      <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">attach_money</i>
                           <input id="icon_telephone" name="price" type="number"
                           onChange={this.onChange} className="validate" placeholder="Price" />
                         </div>
                       </div>
-                      <div className="col s6">
+                      <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">people</i>
                           <input id="icon_telephone" name="capacity" type="number"

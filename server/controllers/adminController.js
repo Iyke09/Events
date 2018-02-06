@@ -91,7 +91,7 @@ class Admin {
     })
       .then((center) => {
         // if array length equal to zero return unsuccesful message
-        if (center.length === 0) {
+        if (!center) {
           return res.status(404).send({
             message: 'center Not Found',
           });
