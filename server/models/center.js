@@ -3,6 +3,11 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        args: true,
+        msg: 'Oops. Center name must be unique',
+        // fields: [sequelize.fn('lower', sequelize.col('email'))]
+      },
       validate: {
         is: {
           args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
@@ -11,11 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         len: {
           args: [4, 25],
           msg: 'name must be atleast 4 characters long',
-        },
-        unique: {
-          args: true,
-          msg: 'Oops. Center name must be unique',
-          // fields: [sequelize.fn('lower', sequelize.col('email'))]
         },
       },
     },
