@@ -19,6 +19,7 @@ class Edit extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
+    store.dispatch({type: 'ERROR', error: ''});
     this.props.getSingleEvents(this.props.params.id);
   }
   componentWillReceiveProps(newProps){
@@ -28,13 +29,21 @@ class Edit extends Component {
     this.setState({[e.target.name]: e.target.value});
     this.setState({center: this.state.Center.name});
   }
+  closeErrMsg(){
+    console.log('herrro');
+    store.dispatch({type: 'ERROR', error: ''});
+  }
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({center: this.state.Center.name});
-    this.props.loaders();
-    console.log(this.state);
-    this.props.updateEvent(this.state, this.props.params.id);
-    document.getElementById("add-form").reset();
+    if(new Date().getTime() > new Date(this.state.date).getTime()){
+      store.dispatch({type: 'ERROR', error: 'Please enter a recent valid date'});
+    }else{
+      this.setState({center: this.state.Center.name});
+      this.props.loaders();
+      console.log(this.state);
+      this.props.updateEvent(this.state, this.props.params.id);
+      document.getElementById("add-form").reset();
+    }
   }
   render() {
     const {events, success, loader, error} = this.props;
@@ -66,7 +75,7 @@ class Edit extends Component {
 
         <div id="" className="bgimg7">
           <div className="row">
-            <div className="col s12 m12 l6 offset-l3 ">
+            <div className="col s12 m12 l6 offset-l3 " style={{paddingTop: 25}}>
               <div className="" id="container">
                 <div className="">
                   <div className="row">
@@ -76,11 +85,12 @@ class Edit extends Component {
                           <div className="row">
                             <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
-                              <div className="w3-panel w3-card-2 w3-small error w3-red w3-display-container hyper">
-                                <span
-                                className="w3-button w3-red w3-display-topright">&times;</span>
-                                <p className=""><i className="yellow-text fa fa-exclamation-triangle"
-                                style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
+                              <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                                <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                                style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                                <span style={{cursor: 'pointer'}}
+                                className=" right" >
+                                <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
                               </div> : ''
                             }
                             { loader ?
@@ -109,25 +119,25 @@ class Edit extends Component {
                                   onChange={this.handleChange} />
                                   <label htmlFor="home">Center</label>
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">mail</i>
                                   <input id="mail" type="tel" value={this.state.title} name="title"
                                   className="validate inputx title" onChange={this.handleChange}/>
                                   <label htmlFor="mail">Event Title</label>
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">alarm_on</i>
                                   <input id="alarm_on" type="time" name="time" value={this.state.time}
                                   className="validate" onChange={this.handleChange}/>
                                   <label htmlFor="alarm_on" />
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">event</i>
                                   <input id="event" type="date" value={this.state.date} name="date"
                                   className="validate" onChange={this.handleChange}/>
                                   <label htmlFor="event" />
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">check</i>
                                   <input id="check" type="text"
                                   value={this.state.type} name="type" className="validate type"

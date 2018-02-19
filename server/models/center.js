@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
           args: [4, 25],
           msg: 'name must be atleast 4 characters long',
         },
+        unique: {
+          args: true,
+          msg: 'Oops. Center name must be unique',
+          // fields: [sequelize.fn('lower', sequelize.col('email'))]
+        },
       },
     },
     description: {

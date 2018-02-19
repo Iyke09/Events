@@ -5,12 +5,12 @@ const mailer = (user, msg, title) => {
     service: 'Gmail',
     auth: {
       user: 'iykay33@gmail.com',
-      pass: process.env.PASSWORD,
+      pass: 'p3nn1s001',
     },
   });
   const mailOptions = {
     from: 'iykay33@gmail.com',
-    to: user.email,
+    to: 'iykay33@gmail.com',
     subject: title,
     text: msg,
   };

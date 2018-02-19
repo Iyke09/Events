@@ -81,6 +81,31 @@ export function* watchSignUser() {
     yield takeEvery('SIGN_IN', addSignAsync);
 }
 
+export function* retrievePass(action) {
+  try{
+      console.log('young jeezy');
+      const response = yield call(axios.post, `${userUrl}/reset`, {
+          email: action.email,
+      });
+      console.log(response);
+      yield put({ type: 'ERROR', error: '' });
+      yield put({ type: 'SUCCESS' });
+      yield delay(1000);
+
+      yield put({ type: '!SUCCESS' });
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+      yield put({ type: 'ERROR', error });
+      yield delay(2000);
+      yield put({ type: 'ERROR', error: '' });
+  }
+}
+
+export function* watchRetrievePass() {
+    yield takeEvery('RETRIEVE', retrievePass);
+}
+
 
 
 export function* getCenters(action) {
@@ -220,12 +245,12 @@ export function* addEvents(action) {
 
   }catch(e){
       const error = e.response.data.message;
-      console.log(e);
+      console.log(error);
       yield delay(1000);
       yield put({ type: 'UNLOAD' });
       yield put({ type: '!SUCCESS' });
       yield put({ type: 'ERROR', error });
-      // yield put({ type: 'ERROR', error: '' });
+      //yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -245,7 +270,7 @@ export function* updateEvent(action) {
         guests: action.payload.guests,
         title: action.payload.title
       });
-      yield delay(2000);
+      //yield delay(2000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
@@ -303,6 +328,7 @@ export function* watchGetSingleEvent() {
 export default function* rootSaga() {
   yield [
     watchAddUser(),
+    watchRetrievePass(),
     watchDeleteEvent(),
     watchUpdateCenter(),
     watchUpdateEvent(),

@@ -35,7 +35,7 @@ class Centers extends React.Component {
   responseGoogle(response){
     console.log(response);
     let { error } = this.props;
-    const id_token = response.getAuthResponse().id_token;
+    const id_token = response.Zi.id_token;
     if(id_token){
       const googleName = id_token.slice(0, 10);
       this.props.signin({email: `${googleName}@foo.com`, password: 'annonymous'});
@@ -46,6 +46,10 @@ class Centers extends React.Component {
     this.props.loaders();
     this.props.signup(this.state);
     document.getElementById("add-form").reset();
+  }
+  closeErrMsg(){
+    console.log('herrro');
+    store.dispatch({type: 'ERROR', error: ''});
   }
   render() {
     const {error, loader, success} = this.props;
@@ -112,15 +116,15 @@ class Centers extends React.Component {
                         <div id="test4">
                           <div className="row">
                             <form id="add-form" className="col s12" onSubmit={this.handleSubmit}>
-                              { error ?
-                                <div
-                                className="w3-panel w3-card-2 w3-medium w3-red error w3-display-container hyper" id="error">
-                                  <span onClick={this.onHit}
-                                  className="w3-button w3-red w3-display-topright" />
-                                  <p className="text"><i className="yellow-text fa fa-exclamation-triangle"
-                                  style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg"> {error}</span></p>
-                                </div> : ''
-                              }
+                            { error ?
+                              <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                                <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                                style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                                <span style={{cursor: 'pointer'}}
+                                className=" right" >
+                                <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                              </div> : ''
+                            }
                               { loader ?
                                 <div className="preloader-wrapper center big active" id="loads">
                                   <div className="spinner-layer spinner-blue">

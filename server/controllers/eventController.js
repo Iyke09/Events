@@ -30,7 +30,7 @@ class Event {
     } else {
       check = decoded.adminUser.id;
     }// find a center where the name column is eq to req.body.name and where available is set to true
-    Center.findOne({ where: { name, isAvailable: true } })
+    Center.findOne({ where: { name } })
       .then((center) => {
         // if no center matches criteria send back unsuccesful message
         if (!center) {

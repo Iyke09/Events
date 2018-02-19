@@ -136,6 +136,7 @@ class Users {
    */
   static retrieve(req, res) {
     // find a user matching the email passed in
+    console.log(req.body.email);
     User.findOne({
       where: {
         email: req.body.email,
@@ -147,7 +148,7 @@ class Users {
           return res.status(400).send({
             message: 'email does not exist',
           });
-        }// create a password and store in database
+        }// create a password and store it in the database
         return userx.update({
           password: bcrypt.hashSync(req.body.email, 10),
         })

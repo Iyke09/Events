@@ -2,8 +2,8 @@ body, h1, h2, h3, h4, h5, h6, p {
   font-family: 'Asap Condensed', sans-serif;
 }
 
-#nav {
-  background-color: #212F3C;
+nav {
+  background-color:black;
   color: white;
 }
 
@@ -14,17 +14,45 @@ body, h1, h2, h3, h4, h5, h6, p {
 .brand-logo {
   margin-left: 10px;
 }
+.borderRight{
+  border-right: 1px dashed black;
+}
+.section-header{
+  background-color: '#E5E4E2';
+  color: '#212F3C';
+  padding: 45px 60px;
+}
+
+.section-header2{
+  padding: 55px;
+}
+.borders{
+  border-bottom: 1px dashed grey;
+  padding-bottom: 2px;
+}
 
 .bgimg2 {
-  background-image: url('https://static.pexels.com/photos/348517/pexels-photo-348517.jpeg');
+  background-image: url('/images/img06.jpeg');
   min-height: 550px;
   background-size: cover;
   background-attachment: fixed;
   background-position: 50% 50%;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+// .header{
+//   background-color: rgba(0, 0, 0, 0.57);
+//   padding: 5px;
+// }
+
+// .header-para{
+//   background-color: rgba(229, 223, 223, 0.85);
+//   padding: 5px;
+//   padding-top: 20px;
+// }
 
 .atag {
   padding: 8px 15px;
@@ -69,8 +97,8 @@ body, h1, h2, h3, h4, h5, h6, p {
 }
 
 .bgimg {
-  background-image: url('https://static.pexels.com/photos/348517/pexels-photo-348517.jpeg');
-  height: 650px;
+  background-image: url('/images/img07.jpeg');
+  height: 550px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -80,8 +108,9 @@ body, h1, h2, h3, h4, h5, h6, p {
   position: relative;
 }
 
+
 .bgimg7 {
-  background-image: url('https://static.pexels.com/photos/274192/pexels-photo-274192.jpeg');
+  background-image: url('/images/img05.jpeg');
   height: 650px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -126,12 +155,49 @@ body, h1, h2, h3, h4, h5, h6, p {
   color: white;
 }
 
-.button {
-  background-color: transparent;
-  border: 2px solid white;
-  padding: 10px 40px;
+.button5 {
+  border-radius: 20px;
+  margin-right: 5px;
+  padding: 13px 45px;
   color: white;
   cursor: pointer;
+}
+.middle{
+  position: absolute;
+  top: 0%;
+  left: 15%;
+  background-color: rgba(10, 0, 0, 0.8);
+}
+
+.middle h3{
+  padding: 5px;
+}
+// .img-event{
+//   width: 250;
+//   height: 250;
+//   border-radius: 100%;
+//   border: 4px solid lightgrey;
+// }
+.button8 {
+  border-radius: 50px;
+  background-color: transparent;
+  border: 1px solid #CE0A0A;
+  padding: 13px 40px;
+  color: #CE0A0A;
+  cursor: pointer;
+}
+.button2 {
+  border-radius: 20px;
+  background-color: '#212F3C';
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 13px 45px;
+  color: white;
+  //cursor: pointer;
+}
+.err_para{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .button1 {
@@ -171,11 +237,26 @@ body, h1, h2, h3, h4, h5, h6, p {
   border-radius: 100%;
 }
 
+// hr {
+//   margin: auto;
+//   max-width: 14%;
+//   // border-bottom: 1px solid red;
+//   //margin-left: 5px;
+//   //text-align: center;
+//   color: red;
+// }
+
 hr {
+  border-color:red;
+  border-width: 2px;
   margin: auto;
-  max-width: 14%;
-  border-bottom: 1px solid red;
-  margin-left: 5px;
+  text-align: center;
+  max-width: 50px;
+}
+
+.rule{
+  border-left:5px solid #C70A0A;
+  margin: auto;
 }
 
 .date {
@@ -226,13 +307,6 @@ body, h1, h2, h3, h4, h5, h6, p {
   font-family: 'Asap Condensed', sans-serif;
 }
 
-.bgimg {
-  background-image: url('https://static.pexels.com/photos/274192/pexels-photo-274192.jpeg');
-  background-size: cover;
-  height: 550px;
-  background-position: center;
-  position: relative;
-}
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.7);
@@ -268,3 +342,12 @@ body, h1, h2, h3, h4, h5, h6, p {
   padding-bottom: 4px;
   max-width: 35%;
 }
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////
+
+

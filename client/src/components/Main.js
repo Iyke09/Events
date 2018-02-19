@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import jwt from 'jwt-decode';
+import $ from 'jquery';
 import firebase from 'firebase';
+import { Link, browserHistory} from 'react-router';
+import store from '../store';
 import FileUploader from 'react-firebase-file-uploader';
 
 import '../styles/style.scss';
@@ -13,6 +17,17 @@ class Main extends Component {
     };
   }
   componentWillMount(){
+    const token = localStorage.getItem('token');
+    if(token !== null){
+      const decoded = jwt(token);
+      const curr_time = new Date().getTime() / 1000;
+      console.log('the value is ' + decoded.exp, curr_time);
+      if(curr_time > decoded.exp){
+        localStorage.setItem('route', window.location.pathname);
+        browserHistory.push('/auth/signin');
+      }
+    }
+    store.dispatch({type: 'ERROR', error: ''});
     $(document).ready(function() {
       $(".button-collapse").sideNav();
     });

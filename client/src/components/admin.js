@@ -38,6 +38,7 @@ class Admin extends Component {
   }
 
   componentWillMount(){
+    store.dispatch({type: 'ERROR', error: ''});
     let decoded = '';
     const token = localStorage.getItem('token');
     if(token === null ){
@@ -49,9 +50,15 @@ class Admin extends Component {
       }
     }
     this.props.getCenters(3);
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
+  }
+  closeErrMsg(){
+    store.dispatch({type: 'ERROR', error: ''});
   }
   getMore(index){
     this.props.getCenters(index);
@@ -65,27 +72,23 @@ class Admin extends Component {
   }
   handleUploadError (error){
     this.setState({isUploading: false});
-    console.error(error);
   }
   handleUploadSuccess (filename) {
     this.setState({avatar: filename, progress: 100, isUploading: false});
     firebase.storage().ref('images').child(filename).getDownloadURL()
     .then(url => {
       this.setState({avatarURL: url, image: url});
-      console.log(this.state.image);
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.loaders();
-    console.log(this.state);
     this.props.addCenter(this.state);
     document.getElementById("add-form").reset();
   }
   render() {
     const { centers, error, loader, success } = this.props;
-    console.log(error);
     if(success){
       return swal("Center Added!", "You've successfully added a new center", "success");
     }
@@ -111,7 +114,9 @@ class Admin extends Component {
                   <i className="fa fa-home grey-text" />HOME</a>
                 </Link>
               </li>
-              <li><a className="waves-effect white-text" href="#!"> <i className="fa fa-plus grey-text" /> Add Center</a></li>
+              <li><a className="waves-effect white-text waves-light modal-trigger" href="#modal1">
+                 <i className="fa fa-plus grey-text" /> Add Center</a>
+              </li>
               <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
             </ul>
             <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
@@ -123,7 +128,7 @@ class Admin extends Component {
                   <div className="col s12 m12 l4" key={center.id}>
                     <div className="card w3sets" id="minor">
                       <div className="card-image waves-effect waves-block waves-light">
-                        <img className="activator"
+                        <img style={{height: 300}} className="activator"
                         src={center.image}/>
                         <div className="update" id="minor-l">
                             <Link to={`/user/admin/edit/${center.id}`}>
@@ -155,16 +160,21 @@ class Admin extends Component {
               <button className="btn red">view more centers </button>
             </div>
              <br/><br/><br/><br/>
+
+
+            <div id="modal1" className="modal modal-fixed-footer">
+              <div className="modal-content ">
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
-                  { error ?
-                    <div className="w3-panel w3-card-2 error w3-small w3-red w3-display-container hyper">
-                      <span onClick={this.onHit}
-                      className="w3-button w3-red w3-display-topright">&times;</span>
-                      <p className=""><i className="yellow-text fa fa-exclamation-triangle"
-                      style={{paddingRight:5}} aria-hidden="true" /> <span className="err_msg">{error}</span></p>
-                    </div> : ''
-                  }
+              { error ?
+                <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                  <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                  style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
                 <form className="row" id="add-form" onSubmit={this.handleSubmit}>
                 { loader ?
                   <div className="preloader-wrapper center big active" id="loads">
@@ -184,14 +194,9 @@ class Admin extends Component {
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
                   <div className="row">
-                    <div className="input-field col s12">
-                      <i className="material-icons prefix">home</i>
-                      <input id="icon_telephone" type="tel"
-                      onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
-                    </div>
                     <div className=" col s12">
                         {this.state.isUploading &&
-                          <p><b>Progress:</b> {this.state.progress}%</p>
+                          <p><b>Progress:</b> {this.state.progress}</p>
                         }
                         {this.state.avatarURL &&
                           <img className="responsive-img" src={this.state.avatarURL} />
@@ -215,7 +220,12 @@ class Admin extends Component {
                         />
                       </label>
                     </div>
-                    <div className="input-field col s12">
+                    <div className="input-field col m6 s12">
+                      <i className="material-icons prefix">home</i>
+                      <input id="icon_telephone" type="tel"
+                      onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
+                    </div>
+                    <div className="input-field col s12 m6">
                       <i className="material-icons prefix">add_location</i>
                       <input id="icon_telephone" name="location" type="text"
                       onChange={this.onChange} className="validate" placeholder="Address" required/>
@@ -248,6 +258,11 @@ class Admin extends Component {
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+              </div>
+              <div className="modal-footer">
+                <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
               </div>
             </div>
           </div>
