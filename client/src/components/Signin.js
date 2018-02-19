@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import store from '../store';
 import { Link } from 'react-router';
+import { FacebookLogin } from 'react-facebook-login-component';
+import Rwg from 'random-word-generator';
+// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login-component';
 
 
 let preloader = false;
@@ -9,23 +13,60 @@ class Centers extends React.Component {
     super(props);
     this.state = {
       email: '',
+      retrieve: '',
       password: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.clearError = this.clearError.bind(this);
+    this.authenticate = this.authenticate.bind(this);
+    this.responseGoogle = this.responseGoogle.bind(this);
+  }
+  componentWillMount(){
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+  clearError(){
+    store.dispatch({type: 'ERROR', error: ''});
+  }
+  authenticate(response){
+    const randName = new Rwg().generate();
+    if(response.accessToken){
+      console.log(response);
+      const facebookName = response.accessToken.slice(0, 5);
+      this.props.signin({email: `foo${response.id}@foo.com`, password: 'annonymous'});
+    }
+  }
+  responseGoogle(response){
+    let { error } = this.props;
+    const id_token = response.Zi.id_token;
+    if(id_token){
+      const googleName = id_token.slice(0, 10);
+      this.props.signin({email: `${googleName}@foo.com`, password: 'annonymous'});
+    }
+  }
+  closeErrMsg(){
+    this.props.errorAction('');
+  }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.loaders();
     console.log(this.state);
-    this.props.signin(this.state);
-    document.getElementById("add-form").reset();
+    if(this.state.retrieve === ''){
+      this.props.loaders();
+      this.props.signin(this.state);
+      document.getElementById("add-form").reset();
+    }else{
+      this.props.retrieve(this.state.retrieve);
+      document.getElementById("add-form2").reset();
+      this.setState({retrieve: '', email: ''});
+    }
   }
   render() {
-    const {error, loader} = this.props;
+    const {error, loader, success} = this.props;
     return (
       <div className="Centers">
         <div className="" id="">
@@ -63,25 +104,37 @@ class Centers extends React.Component {
                       <div className="card col m8 offset-m2">
                         <div className="card-content white lighten-4" style={{color: '#212F3C'}}>
                         <div className="col s8 offset-s2">
-                          <div className="col s6">
-                            <a className="waves-effect waves-light btn blue">
-                              <i className="material-icons left" />Facebook</a>
-                          </div>
-                          <div className="col s6">
-                            <a className="waves-effect waves-light btn red"><i
-                            className="material-icons left" />Google</a>
-                          </div>
+                        <FacebookLogin socialId="1835467386744019"
+                        language="en_US"
+                        scope="public_profile,email"
+                        responseHandler={this.authenticate}
+                        xfbml
+                        fields="id,email,name"
+                        version="v2.5"
+                        className="facebook-login waves-effect waves-light btn blue"
+                        buttonText="Facebook"/>
+                      <div className="col s6">
+                        <GoogleLogin socialId="994244618792-vcuu6ftsds0bv98gu1urlup3rh6923hk.apps.googleusercontent.com"
+                        className="google-login waves-effect waves-light btn red"
+                        id="google"
+                        scope="profile"
+                        fetchBasicProfile={false}
+                        responseHandler={this.responseGoogle}
+                        buttonText="Google"/>
+                      </div>
                         </div>
                         <div id="test4">
                           <div className="row">
                             <form id="add-form" className="col s12" onSubmit={this.handleSubmit}>
-                              { error ?
-                                <div className="w3-panel w3-card-2 w3-medium w3-red w3-display-container hyper">
-                                  <span onClick={this.onHit}
-                                  className="w3-button w3-red w3-display-topright" />
-                                  <p className=""><i className="yellow-text fa fa-exclamation-triangle" style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
-                                </div> : ''
-                              }
+                            { error && this.state.email ?
+                              <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                                <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                                style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                                <span style={{cursor: 'pointer'}}
+                                className=" right" >
+                                <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                              </div> : ''
+                            }
                               { loader ?
                                 <div className="preloader-wrapper center big active" id="loads">
                                   <div className="spinner-layer spinner-blue">
@@ -109,15 +162,63 @@ class Centers extends React.Component {
                                   <input id="icon_telephone" name="password" type="password"
                                   onChange={this.onChange}
                                   placeholder="Password"
-                                  className="validate"/>
+                                  className="validate passwordz"/>
                                   <label htmlFor="icon_telephone" />
                                 </div>
+                                <p>
+                                  <input type="checkbox" id="test5" />
+                                  <label htmlFor="test5">Remember me</label>
+                                  <span className="right blue-text" >
+                                    <a onClick={this.clearError} className="modal-trigger" href="#modal1">Forgot password?</a></span>
+                                </p>
                               </div>
                               <div className="" style={{textAlign: 'center'}}>
                               <button type="submit" className="waves-effect waves-light btn red"><i
                               className="" />Sign In</button>
                               </div>
                             </form>
+
+
+                            <div id="modal1" className="modal modal-fixed-footer" style={{width: 420, height: 250}}>
+                              <div className="modal-content ">
+                                <form id="add-form2" className="col s12" onSubmit={this.handleSubmit} >
+                                  { error ?
+                                    <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                                      <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                                      style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                                      <span style={{cursor: 'pointer'}}
+                                      className=" right" >
+                                      <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                                    </div> : ''
+                                  }
+                                  { success ?
+                                    <div style={{ borderRadius: 7}} className="w3-panel green white-text error hyper">
+                                      <p className="w3-padding-medium err_para"><i className="fa fa-check"
+                                      style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">Password sent to your email!</span>
+                                      <span style={{cursor: 'pointer'}}
+                                      className=" right" >
+                                      <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                                    </div> : ''
+                                  }
+                                  <div className="row">
+                                    <div className="input-field col s12 ">
+                                      <i className="material-icons prefix">mail</i>
+                                      <input id="icon_telephone" name="retrieve" type="email"
+                                      onChange={this.onChange}
+                                      placeholder="Enter your email address"
+                                      className="validate "/>
+                                      <label htmlFor="icon_telephone" />
+                                    </div>
+                                  </div>
+                                  <div className="right">
+                                    <button type="submit" className="waves-effect waves-light btn red"><i
+                                    className="" />
+                                    Submit
+                                    </button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         </div>

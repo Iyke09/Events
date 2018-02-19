@@ -2,3 +2,11 @@ node_modules
 coverage
 .env
 .nyc_output
+debug.log
+npm-debug.log.1891593509
+npm-debug.log.1922313476
+npm-debug.log.3021562401
+npm-debug.log.3072917294
+npm-debug.log.33530345
+reports/
+selenium-debug.log

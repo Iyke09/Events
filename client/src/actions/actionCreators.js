@@ -18,10 +18,24 @@ export function loaders() {
   };
 }
 
+export function errorAction(error) {
+  return {
+    type: 'ERROR',
+    error
+  };
+}
+
 export function getCenters(index) {
   return {
     type: 'GET_ALL',
     index
+  };
+}
+
+export function retrieve(email) {
+  return {
+    type: 'RETRIEVE',
+    email
   };
 }
 

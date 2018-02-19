@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import formatDate from 'simple-format-date';
-import messageMailer from '../helpers/mailer';
+import messageMailer,{ updateHelper } from '../helpers/mailer';
 import { Center, Eevent, User } from '../models';
+
 
 /**
  * Creates a new Person.
@@ -20,22 +21,6 @@ class Event {
     const {
       title, type, guests, name, date, time,
     } = req.body;
-    // format date based on user input
-
-    // const months = {
-    //   '01': 'January',
-    //   '02': 'February',
-    //   '03': 'March',
-    //   '04': 'April',
-    //   '05': 'May',
-    //   '06': 'June',
-    //   '07': 'July',
-    //   '08': 'August',
-    //   '09': 'September',
-    //   '10': 'October',
-    //   '11': 'November',
-    //   '12': 'December'
-    // };
 
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
@@ -45,7 +30,7 @@ class Event {
     } else {
       check = decoded.adminUser.id;
     }// find a center where the name column is eq to req.body.name and where available is set to true
-    Center.findOne({ where: { name, isAvailable: true } })
+    Center.findOne({ where: { name } })
       .then((center) => {
         // if no center matches criteria send back unsuccesful message
         if (!center) {
@@ -164,7 +149,8 @@ class Event {
    */
   static userEvent(req, res) {
     // decode token
-    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
+    const decoded = jwt.decode(req.body.token ||
+      req.query.token || req.headers.token);
     console.log(decoded);
     // check if it is a user or admin user trying to access route
     if (decoded.adminUser === undefined) {
@@ -250,6 +236,9 @@ class Event {
               message: 'Not Authorized',
             });
           }// check if date has been taken
+          if(event.time === time && event.date === date){
+            return updateHelper(req,res,date,event);
+          }
           Eevent.findOne({ where: { centerId: event.centerId, time, date } })
             .then((found) => {
               if (found) { // send unsuccesful message if date is already booked
@@ -258,25 +247,7 @@ class Event {
                   message: 'Already booked, please select another day',
                 });
               } else { // else update event
-                return event
-                  .update({
-                    title: req.body.title || event.title,
-                    type: req.body.type || event.type,
-                    guests: req.body.guests || event.guests,
-                    date: date || event.date,
-                    time: req.body.time || event.time,
-                    userId: event.userId,
-                    centerId: event.centerId,
-                  })
-                  .then(success =>
-                    res.status(201).send({
-                      status: 'success',
-                      message: 'event updated',
-                      success,
-                    }))
-                  .catch(error => res.status(500).send({
-                    message: error.errors[0].message,
-                  }));
+                updateHelper(req,res,date,event);
               }
             });
         } else { // check if user has authorization to update
@@ -285,6 +256,9 @@ class Event {
               message: 'Not Authorized',
             });
           }// check if date has been booked
+          if(event.time === time && event.date === date){
+            return updateHelper(req,res,date,event);
+          }
           Eevent.findOne({ where: { centerId: event.centerId, time, date } })
             .then((found) => {
               if (found) { // if booked, send back an error message
@@ -293,25 +267,7 @@ class Event {
                   message: 'Already booked, please select another day',
                 });
               } else {
-                return event
-                  .update({
-                    title: req.body.title || event.title,
-                    type: req.body.type || event.type,
-                    guests: req.body.guests || event.guests,
-                    date: date || event.date,
-                    time: req.body.time || event.time,
-                    userId: event.userId,
-                    centerId: event.centerId,
-                  })
-                  .then(success =>
-                    res.status(201).send({ // send back success message if update successful
-                      status: 'success',
-                      message: 'event updated',
-                      success,
-                    }))// error handler
-                  .catch(error => res.status(500).send({
-                    message: error.errors[0].message,
-                  }));
+                updateHelper(req,res,date,event);
               }
             });
         }

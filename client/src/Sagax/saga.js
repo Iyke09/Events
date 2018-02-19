@@ -1,6 +1,7 @@
 import { delay } from 'redux-saga';
 import { put, takeEvery, call } from 'redux-saga/effects';
 import axios from 'axios';
+import Rwg from 'random-word-generator';
 import { browserHistory } from 'react-router';
 
 
@@ -18,13 +19,15 @@ export function* addUserAsync(action) {
           email: action.payload.email,
           password: action.payload.password
       });
+      console.log(response);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'SUCCESS' });
       yield put({ type: 'UNLOAD' });
-      yield delay(2000);
+      //yield delay(2000);
 
       yield put({ type: '!SUCCESS' });
-      browserHistory.push('/auth/signin');
+      yield put({ type: 'INCOMING_TOKEN', response: response.data });
+      //browserHistory.push('/');
   }catch(e){
       const error = e.response.data.message;
       console.log(error);
@@ -46,27 +49,61 @@ export function* addSignAsync(action) {
           password: action.payload.password
       });
       yield put({ type: 'ERROR', error: '' });
-      yield delay(2000);
+      //yield delay(2000);
 
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'INCOMING_TOKEN', response: response.data });
       if(route === null){
         browserHistory.push('/');
-      }else{
+      }else if(route === 'hello'){
+        console.log('hello');
+      }
+      else{
         browserHistory.push(route);
         localStorage.removeItem('route');
       }
   }catch(e){
+      const { email, password} = action.payload;
       yield put({ type: 'UNLOAD' });
-      const error = e.response.data.message;
-      console.log(error);
-      yield put({ type: 'ERROR', error });
+      if(password === 'annonymous'){
+        yield put({ type: 'SIGN_UP',
+        payload: {username: new Rwg().generate(), email, password } });
+      }else{
+        const error = e.response.data.message;
+        console.log(error);
+        yield put({ type: 'ERROR', error });
+      }
   }
 }
 
 
 export function* watchSignUser() {
     yield takeEvery('SIGN_IN', addSignAsync);
+}
+
+export function* retrievePass(action) {
+  try{
+      console.log('young jeezy');
+      const response = yield call(axios.post, `${userUrl}/reset`, {
+          email: action.email,
+      });
+      console.log(response);
+      yield put({ type: 'ERROR', error: '' });
+      yield put({ type: 'SUCCESS' });
+      yield delay(1000);
+
+      yield put({ type: '!SUCCESS' });
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+      yield put({ type: 'ERROR', error });
+      yield delay(2000);
+      yield put({ type: 'ERROR', error: '' });
+  }
+}
+
+export function* watchRetrievePass() {
+    yield takeEvery('RETRIEVE', retrievePass);
 }
 
 
@@ -80,7 +117,6 @@ export function* getCenters(action) {
       console.log(error);
   }
 }
-
 
 export function* watchGetCenters() {
     yield takeEvery('GET_ALL', getCenters);
@@ -104,6 +140,7 @@ export function* watchGetSingle() {
 
 export function* addCenter(action) {
   try{
+      const token = localStorage.getItem('token');
       const response = yield call(axios.post, centerUrl, {
         token,
         name: action.payload.name,
@@ -127,7 +164,7 @@ export function* addCenter(action) {
       const error = e.response.data.message;
       console.log(error);
       yield put({ type: 'ERROR', error });
-      yield put({ type: 'ERROR', error: '' });
+      //yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -139,6 +176,7 @@ export function* watchAddCenter() {
 export function* updateCenter(action) {
   try{
       const token = localStorage.getItem('token');
+      console.log(token, action.index);
       const response = yield call(axios.put, `${centerUrl}/${action.index}`, {
         token,
         name: action.payload.name,
@@ -162,7 +200,6 @@ export function* updateCenter(action) {
       console.log(error);
       yield delay(1000);
       yield put({ type: 'ERROR', error });
-      yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -190,6 +227,7 @@ export function* watchGetEvents() {
 
 export function* addEvents(action) {
   try{
+      const token = localStorage.getItem('token');
       const response = yield call(axios.post, eventUrl, {
         token,
         name: action.payload.value,
@@ -199,8 +237,7 @@ export function* addEvents(action) {
         guests: action.payload.guests,
         title: action.payload.title
       });
-      console.log(response.data);
-      yield delay(5000);
+      //yield delay(2000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
@@ -213,7 +250,7 @@ export function* addEvents(action) {
       yield put({ type: 'UNLOAD' });
       yield put({ type: '!SUCCESS' });
       yield put({ type: 'ERROR', error });
-      // yield put({ type: 'ERROR', error: '' });
+      //yield put({ type: 'ERROR', error: '' });
   }
 }
 
@@ -223,6 +260,7 @@ export function* watchAddEvent() {
 
 export function* updateEvent(action) {
   try{
+    const token = localStorage.getItem('token');
       const response = yield call(axios.put, `${eventUrl}/${action.index}`, {
         token,
         name: action.payload.center,
@@ -232,8 +270,7 @@ export function* updateEvent(action) {
         guests: action.payload.guests,
         title: action.payload.title
       });
-      console.log(response.data);
-      yield delay(5000);
+      //yield delay(2000);
       yield put({ type: 'ERROR', error: '' });
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SUCCESS' });
@@ -264,6 +301,7 @@ export function* deleteEvents(action) {
   }catch(e){
       const error = e.response.data.message;
       console.log(error);
+      yield put({ type: 'ERROR', error });
   }
 }
 
@@ -290,6 +328,7 @@ export function* watchGetSingleEvent() {
 export default function* rootSaga() {
   yield [
     watchAddUser(),
+    watchRetrievePass(),
     watchDeleteEvent(),
     watchUpdateCenter(),
     watchUpdateEvent(),

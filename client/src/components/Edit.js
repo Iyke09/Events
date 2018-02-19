@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
 import { Link } from 'react-router';
 import store from '../store';
 import swal from 'sweetalert';
@@ -13,17 +15,58 @@ class Edit extends Component {
       capacity: '',
       location: '',
       image: '',
-      price: ''
+      price: '',
+
+      username: '',
+      avatar: '',
+      isUploading: false,
+      progress: 0,
+      avatarURL: ''
     };
 
     this.onChange = this.onChange.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
+    this.handleUploadError = this.handleUploadError.bind(this);
+    this.handleUploadStart = this.handleUploadStart.bind(this);
+    this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
+    store.dispatch({type: 'ERROR', error: ''});
     this.props.getSingle(this.props.params.id);
   }
   componentWillReceiveProps(newProps){
-    this.setState(newProps.single);
+    console.log('i am new pos ' + newProps.single);
+    if(newProps.single !== this.props.single){
+      this.setState(newProps.single);
+    }else{
+      if(newProps.error === ''){
+        console.log(newProps.error);
+        this.setState({name: '',description: '', capacity: '', location: '', price: ''});
+      }
+    }
+  }
+
+  handleUploadStart() {
+    this.setState({isUploading: true, progress: 0});
+  }
+  handleProgress(progress) {
+    this.setState({progress});
+  }
+  handleUploadError (error){
+    this.setState({isUploading: false});
+    console.error(error);
+  }
+  handleUploadSuccess (filename) {
+    this.setState({avatar: filename, progress: 100, isUploading: false});
+    firebase.storage().ref('images').child(filename).getDownloadURL()
+    .then(url => {
+      this.setState({avatarURL: url, image: url});
+      console.log(this.state.image);
+    });
+  }
+  closeErrMsg(){
+    store.dispatch({type: 'ERROR', error: ''});
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
@@ -33,13 +76,14 @@ class Edit extends Component {
     this.props.loaders();
     console.log(this.state);
     this.props.updateCenter(this.state, this.props.params.id);
+    this.setState({});
     document.getElementById("add-form").reset();
   }
 
   render() {
     const { error, single, loader, success } = this.props;
     if(success){
-      return swal("Center Added!", "You've successfully edited center", "success");
+      return swal("Center Updated!", "Center successfully updated", "success");
     }
     return (
       <div className="Edit">
@@ -63,22 +107,28 @@ class Edit extends Component {
                   <i className="fa fa-home grey-text" />HOME</a>
                 </Link>
               </li>
-              <li><a className="waves-effect white-text" href="#!"> <i className="fa fa-plus grey-text" /> Add Center</a></li>
-              <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
+              <Link to={"/user/admin"}>
+              <li><a className="waves-effect white-text">
+                <i className="fa fa-gears grey-text" />Centers</a></li>
+              </Link>
+              <li><a className="waves-effect white-text" href="#!">
+                <i className="fa fa-envelope grey-text" />Messages</a></li>
             </ul>
-            <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" className="button-collapse">
+              <i className="material-icons">menu</i></a>
           </div>
           <div className="col s12 m12 l8 " style={{paddingTop: 100}}>
             <div className="card " style={{backgroundColor: '#FBFCFC'}}>
               <div className="card-content ">
-                  { error ?
-                    <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
-                      <span onClick={this.onHit}
-                      className="w3-button w3-red w3-display-topright" />
-                      <p className=""><i className="yellow-text fa fa-exclamation-triangle"
-                      style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
-                    </div> : ''
-                  }
+              { error ?
+                <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                  <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                  style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
                 <form className="row" id="add-form" onSubmit={this.handleSubmit}>
                 { loader ?
                   <div className="preloader-wrapper center big active" id="loads">
@@ -97,25 +147,46 @@ class Edit extends Component {
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
                   <div className="row">
-                    <div className="input-field col s12">
+                    <div className=" col s12">
+                    {this.state.isUploading &&
+                      <p><b>Progress:</b> {this.state.progress}%</p>
+                    }
+                    {this.state.avatarURL &&
+                      <img className="responsive-img" src={this.state.avatarURL} />
+                    }
+                    <br/>
+                    <i className="material-icons prefix">add_a_photo</i>
+                    <label style=
+                    {{backgroundColor: 'steelblue', color: 'white',
+                    padding: 10, borderRadius: 4, pointer: 'cursor'}}>
+                      Select an image
+                      <FileUploader
+                        hidden
+                        accept="image/*"
+                        name="avatar"
+                        randomizeFilename
+                        storageRef={firebase.storage().ref('images')}
+                        onUploadStart={this.handleUploadStart}
+                        onUploadError={this.handleUploadError}
+                        onUploadSuccess={this.handleUploadSuccess}
+                        onProgress={this.handleProgress}
+                      />
+                    </label>
+                    </div>
+                    <div className="input-field col s12 m6">
                       <i className="material-icons prefix">home</i>
                       <input id="icon_telephone" type="tel"
                       onChange={this.onChange} value={this.state.name}
                       name="name" className="validate" placeholder="" required/>
                     </div>
-                    <div className="input-field col s12">
-                      <i className="material-icons prefix">add_a_photo</i>
-                      <input id="icon_telephone" value={this.state.image} name="image" type="text" onChange={this.onChange}
-                       className="validate" placeholder="Image_URL" />
-                    </div>
-                    <div className="input-field col s12">
+                    <div className="input-field col s12 m6">
                       <i className="material-icons prefix">add_location</i>
                       <input id="icon_telephone" name="location" type="text"
                       onChange={this.onChange} value={this.state.location}
                        className="validate" placeholder="" required/>
                     </div>
                     <div className="row">
-                      <div className="col s6">
+                      <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">attach_money</i>
                           <input id="icon_telephone" name="price" type="number"
@@ -123,7 +194,7 @@ class Edit extends Component {
                             className="validate" placeholder="" />
                         </div>
                       </div>
-                      <div className="col s6">
+                      <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">people</i>
                           <input id="icon_telephone" name="capacity" type="number"

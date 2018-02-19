@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+  FormGroup,
+} from 'react-bootstrap';
+// react component that creates a dropdown menu for selecting a date
+import Datetime from 'react-datetime';
+import jwt from 'jwt-decode';
 import store from '../store';
 import { Link, browserHistory} from 'react-router';
 import swal from 'sweetalert';
@@ -11,49 +17,69 @@ class Add extends Component {
       centerSet: '',
       value: '',
       title: '',
-      time: '',
+      time: '12:00',
       date: 0,
       guests: 0,
-      type: ''
+      type: '',
+      selectedCenter: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
+    store.dispatch({type: 'ERROR', error: ''});
     const token = localStorage.getItem('token');
     if(token === null){
       browserHistory.push('/auth/signin');
     }
+    else{
+      const decoded = jwt(token);
+      const curr_time = new Date().getTime() / 1000;
+      if(curr_time > decoded.exp){
+        localStorage.setItem('route', window.location.pathname);
+        browserHistory.push('/auth/signin');
+      }
+    }
   }
-
   componentDidMount(){
-    this.props.getCenters(4);
-    this.setState({centerSet: this.props.params.id});
+    this.props.getCenters(20);
+    this.setState({centerSet: this.props.params.id });
     $(document).ready(function() {
       $('select').material_select();
     });
   }
+  componentWillReceiveProps(newProps){
+    this.setState((prev, next) => {
+      return {selectedCenter: [...newProps.centers]};
+    });
+  }
+  closeErrMsg(){
+    this.props.errorAction('');
+  }
   handleChange(e){
-    e.preventDefault();
-    console.log('hello');
+    // e.preventDefault();
+    const centerName = document.getElementById('sel').value;
+    this.setState({value: centerName});
     this.setState({[e.target.name]: e.target.value});
-    const x = document.getElementById("sel").value;
-    this.setState({value: x});
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.loaders();
-    const x = document.getElementById("sel").value;
-    this.setState({value: x});
-    console.log(this.state);
-    this.props.addEvent(this.state);
-    document.getElementById("add-form").reset();
+    if(new Date().getTime() > new Date(this.state.date).getTime()){
+      this.props.errorAction('Please enter a recent valid date');
+    }else{
+      this.props.loaders();
+      const x = document.getElementById("sel").value;
+      this.setState({value: x});
+      console.log(this.state);
+      this.props.addEvent(this.state);
+      document.getElementById("add-form").reset();
+    }
   }
   render() {
     const {centers, success, loader, error} = this.props;
-    const {centerSet} = this.state;
-    console.log(error);
+    const {selectedCenter, centerSet} = this.state;
     const token = localStorage.getItem('token');
+
     return (
       <div className="Adds">
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
@@ -67,8 +93,6 @@ class Add extends Component {
                     My Events
                   </Link>
                 </li>
-                {token === null ? <li><Link to={"/auth/signin"}>Login</Link></li> : ''}
-                <li className=""><Link to={"/auth/signup"}>Register</Link></li>
             </ul>
 
             <ul id="nav-mobile" className="side-nav">
@@ -81,8 +105,8 @@ class Add extends Component {
 
         <div id="" className="bgimg7" style={{}}>
           <div className="row">
-            <div className="col s12 m12 l6 offset-l3 ">
-              <div className="" id="container">
+            <div className="col s12 m12 l6 offset-l3">
+              <div className="" id="container" style={{paddingTop: 25}}>
                 <div className="">
                   <div className="row">
                     <div className="card col s12" >
@@ -92,11 +116,12 @@ class Add extends Component {
 
                           <form className="col s12" id="add-form" onSubmit={this.handleSubmit}>
                             { error ?
-                              <div className="w3-panel w3-card-2 w3-small w3-red w3-display-container hyper">
-                                <span
-                                className="w3-button w3-red w3-display-topright" />
-                                <p className=""><i className="yellow-text fa fa-exclamation-triangle"
-                                style={{paddingRight:5}} aria-hidden="true" /> {error}</p>
+                              <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
+                                <p className="w3-padding-medium err_para"><i className="yellow-text fa fa-exclamation-triangle"
+                                style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">{error}</span>
+                                <span style={{cursor: 'pointer'}}
+                                className=" right" >
+                                <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
                               </div> : ''
                             }
                             { loader ?
@@ -115,46 +140,54 @@ class Add extends Component {
                             { success ?
                               swal("Event Added!", "You successfully added an event", "success") : ''
                             }
-                              <h4 className="col s12 center light">Add an Event!</h4>
+                              <h4 className="col s12 center light titlr">Add an Event!</h4>
                               <small className="col s12 center light font3">Lorem ipsum dolor sit amet</small>
                               <div className="row">
                                 <div className="input-field col s12">
                                   <i className="material-icons prefix">mail</i>
-                                  <input id="icon_telephone" type="tel" name="title" className="validate" onChange={this.handleChange}/>
+                                  <input id="icon_telephone" type="tel" name="title"
+                                  className="validate first" onChange={this.handleChange} required/>
                                   <label htmlFor="icon_telephone">Enter title</label>
                                 </div>
-                                <div className="input-field col s12 ">
+                                <div className="col m1 s1">
                                   <i className="material-icons prefix">home</i>
-                                  <select id="sel" onChange={this.handleChange}>
+                                </div>
+                                <div className="col m11 s11">
+                                  <select id="sel" name="value" className="browser-default"
+                                  onChange={this.handleChange}>
                                     {
-                                      centers.map((center) => {
-                                        return (<option key={center.id}
-                                        selected={centerSet === center.name ? true : false}>{center.name}</option>
+                                      selectedCenter.map((center) => {
+                                        return (
+                                          <option key={center.id} value={center.name}
+                                          selected={centerSet === center.name ? true : false}>{center.name}</option>
                                         );
                                       })
                                     }
                                   </select>
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">alarm_on</i>
-                                  <input id="icon_telephone" type="time" name="time" className="validate" onChange={this.handleChange}/>
-                                  <label htmlFor="icon_telephone" />
+                                  <input id="time" type="time"
+                                  value={this.state.time} name="time" className="validate"
+                                  onChange={this.handleChange} required/>
+                                  <label htmlFor="time" />
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">event</i>
                                   <input id="icon_telephone" type="date" name="date"
-                                  className="validate" onChange={this.handleChange}/>
+                                  className="validate" onChange={this.handleChange} required/>
                                   <label htmlFor="icon_telephone" />
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">check</i>
                                   <input id="icon_telephone" type="text" name="type" className="validate"
-                                  onChange={this.handleChange}/>
+                                  onChange={this.handleChange} required/>
                                   <label htmlFor="icon_telephone">Type of Event</label>
                                 </div>
-                                <div className="input-field col s12">
+                                <div className="input-field col s12 m6">
                                   <i className="material-icons prefix">perm_identity</i>
-                                  <input id="icon_telephone" type="number" name="guests" className="validate" onChange={this.handleChange}/>
+                                  <input id="icon_telephone" type="number" name="guests"
+                                  className="validate" onChange={this.handleChange} required/>
                                   <label htmlFor="icon_telephone">Expected guests</label>
                                 </div>
                               </div>
