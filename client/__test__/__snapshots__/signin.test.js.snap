@@ -264,7 +264,7 @@ ShallowWrapper {
                             id="modal1"
                             style={
                               Object {
-                                "height": 250,
+                                "height": 280,
                                 "width": 420,
                               }
                             }
@@ -272,6 +272,11 @@ ShallowWrapper {
                             <div
                               className="modal-content "
                             >
+                              <h3
+                                className="font2 center red-text"
+                              >
+                                Retrieve Password
+                              </h3>
                               <form
                                 className="col s12"
                                 id="add-form2"
@@ -295,19 +300,26 @@ ShallowWrapper {
                                       id="icon_telephone"
                                       name="retrieve"
                                       onChange={[Function]}
-                                      placeholder="Enter your email address"
+                                      placeholder=""
                                       type="email"
                                     />
                                     <label
                                       htmlFor="icon_telephone"
-                                    />
+                                    >
+                                      Email
+                                    </label>
                                   </div>
                                 </div>
                                 <div
-                                  className="right"
+                                  className="center"
                                 >
                                   <button
                                     className="waves-effect waves-light btn red"
+                                    style={
+                                      Object {
+                                        "borderRadius": 40,
+                                      }
+                                    }
                                     type="submit"
                                   >
                                     <i
@@ -593,7 +605,7 @@ ShallowWrapper {
                               id="modal1"
                               style={
                                 Object {
-                                  "height": 250,
+                                  "height": 280,
                                   "width": 420,
                                 }
                               }
@@ -601,6 +613,11 @@ ShallowWrapper {
                               <div
                                 className="modal-content "
                               >
+                                <h3
+                                  className="font2 center red-text"
+                                >
+                                  Retrieve Password
+                                </h3>
                                 <form
                                   className="col s12"
                                   id="add-form2"
@@ -624,19 +641,26 @@ ShallowWrapper {
                                         id="icon_telephone"
                                         name="retrieve"
                                         onChange={[Function]}
-                                        placeholder="Enter your email address"
+                                        placeholder=""
                                         type="email"
                                       />
                                       <label
                                         htmlFor="icon_telephone"
-                                      />
+                                      >
+                                        Email
+                                      </label>
                                     </div>
                                   </div>
                                   <div
-                                    className="right"
+                                    className="center"
                                   >
                                     <button
                                       className="waves-effect waves-light btn red"
+                                      style={
+                                        Object {
+                                          "borderRadius": 40,
+                                        }
+                                      }
                                       type="submit"
                                     >
                                       <i
@@ -671,6 +695,7 @@ ShallowWrapper {
         "_reactInternalInstance": [Circular],
         "authenticate": [Function],
         "clearError": [Function],
+        "closeErrMsg": [Function],
         "context": Object {},
         "handleSubmit": [Function],
         "onChange": [Function],
@@ -964,7 +989,7 @@ ShallowWrapper {
                                   id="modal1"
                                   style={
                                     Object {
-                                      "height": 250,
+                                      "height": 280,
                                       "width": 420,
                                     }
                                   }
@@ -972,6 +997,11 @@ ShallowWrapper {
                                   <div
                                     className="modal-content "
                                   >
+                                    <h3
+                                      className="font2 center red-text"
+                                    >
+                                      Retrieve Password
+                                    </h3>
                                     <form
                                       className="col s12"
                                       id="add-form2"
@@ -995,19 +1025,26 @@ ShallowWrapper {
                                             id="icon_telephone"
                                             name="retrieve"
                                             onChange={[Function]}
-                                            placeholder="Enter your email address"
+                                            placeholder=""
                                             type="email"
                                           />
                                           <label
                                             htmlFor="icon_telephone"
-                                          />
+                                          >
+                                            Email
+                                          </label>
                                         </div>
                                       </div>
                                       <div
-                                        className="right"
+                                        className="center"
                                       >
                                         <button
                                           className="waves-effect waves-light btn red"
+                                          style={
+                                            Object {
+                                              "borderRadius": 40,
+                                            }
+                                          }
                                           type="submit"
                                         >
                                           <i
@@ -1292,7 +1329,7 @@ ShallowWrapper {
                                   id="modal1"
                                   style={
                                     Object {
-                                      "height": 250,
+                                      "height": 280,
                                       "width": 420,
                                     }
                                   }
@@ -1300,6 +1337,11 @@ ShallowWrapper {
                                   <div
                                     className="modal-content "
                                   >
+                                    <h3
+                                      className="font2 center red-text"
+                                    >
+                                      Retrieve Password
+                                    </h3>
                                     <form
                                       className="col s12"
                                       id="add-form2"
@@ -1323,19 +1365,26 @@ ShallowWrapper {
                                             id="icon_telephone"
                                             name="retrieve"
                                             onChange={[Function]}
-                                            placeholder="Enter your email address"
+                                            placeholder=""
                                             type="email"
                                           />
                                           <label
                                             htmlFor="icon_telephone"
-                                          />
+                                          >
+                                            Email
+                                          </label>
                                         </div>
                                       </div>
                                       <div
-                                        className="right"
+                                        className="center"
                                       >
                                         <button
                                           className="waves-effect waves-light btn red"
+                                          style={
+                                            Object {
+                                              "borderRadius": 40,
+                                            }
+                                          }
                                           type="submit"
                                         >
                                           <i
@@ -1636,7 +1685,7 @@ ShallowWrapper {
                             id="modal1"
                             style={
                               Object {
-                                "height": 250,
+                                "height": 280,
                                 "width": 420,
                               }
                             }
@@ -1644,6 +1693,11 @@ ShallowWrapper {
                             <div
                               className="modal-content "
                             >
+                              <h3
+                                className="font2 center red-text"
+                              >
+                                Retrieve Password
+                              </h3>
                               <form
                                 className="col s12"
                                 id="add-form2"
@@ -1667,19 +1721,26 @@ ShallowWrapper {
                                       id="icon_telephone"
                                       name="retrieve"
                                       onChange={[Function]}
-                                      placeholder="Enter your email address"
+                                      placeholder=""
                                       type="email"
                                     />
                                     <label
                                       htmlFor="icon_telephone"
-                                    />
+                                    >
+                                      Email
+                                    </label>
                                   </div>
                                 </div>
                                 <div
-                                  className="right"
+                                  className="center"
                                 >
                                   <button
                                     className="waves-effect waves-light btn red"
+                                    style={
+                                      Object {
+                                        "borderRadius": 40,
+                                      }
+                                    }
                                     type="submit"
                                   >
                                     <i
@@ -1965,7 +2026,7 @@ ShallowWrapper {
                               id="modal1"
                               style={
                                 Object {
-                                  "height": 250,
+                                  "height": 280,
                                   "width": 420,
                                 }
                               }
@@ -1973,6 +2034,11 @@ ShallowWrapper {
                               <div
                                 className="modal-content "
                               >
+                                <h3
+                                  className="font2 center red-text"
+                                >
+                                  Retrieve Password
+                                </h3>
                                 <form
                                   className="col s12"
                                   id="add-form2"
@@ -1996,19 +2062,26 @@ ShallowWrapper {
                                         id="icon_telephone"
                                         name="retrieve"
                                         onChange={[Function]}
-                                        placeholder="Enter your email address"
+                                        placeholder=""
                                         type="email"
                                       />
                                       <label
                                         htmlFor="icon_telephone"
-                                      />
+                                      >
+                                        Email
+                                      </label>
                                     </div>
                                   </div>
                                   <div
-                                    className="right"
+                                    className="center"
                                   >
                                     <button
                                       className="waves-effect waves-light btn red"
+                                      style={
+                                        Object {
+                                          "borderRadius": 40,
+                                        }
+                                      }
                                       type="submit"
                                     >
                                       <i
@@ -2043,6 +2116,7 @@ ShallowWrapper {
         "_reactInternalInstance": [Circular],
         "authenticate": [Function],
         "clearError": [Function],
+        "closeErrMsg": [Function],
         "context": Object {},
         "handleSubmit": [Function],
         "onChange": [Function],
@@ -2335,7 +2409,7 @@ ShallowWrapper {
                                   id="modal1"
                                   style={
                                     Object {
-                                      "height": 250,
+                                      "height": 280,
                                       "width": 420,
                                     }
                                   }
@@ -2343,6 +2417,11 @@ ShallowWrapper {
                                   <div
                                     className="modal-content "
                                   >
+                                    <h3
+                                      className="font2 center red-text"
+                                    >
+                                      Retrieve Password
+                                    </h3>
                                     <form
                                       className="col s12"
                                       id="add-form2"
@@ -2366,19 +2445,26 @@ ShallowWrapper {
                                             id="icon_telephone"
                                             name="retrieve"
                                             onChange={[Function]}
-                                            placeholder="Enter your email address"
+                                            placeholder=""
                                             type="email"
                                           />
                                           <label
                                             htmlFor="icon_telephone"
-                                          />
+                                          >
+                                            Email
+                                          </label>
                                         </div>
                                       </div>
                                       <div
-                                        className="right"
+                                        className="center"
                                       >
                                         <button
                                           className="waves-effect waves-light btn red"
+                                          style={
+                                            Object {
+                                              "borderRadius": 40,
+                                            }
+                                          }
                                           type="submit"
                                         >
                                           <i
@@ -2663,7 +2749,7 @@ ShallowWrapper {
                                   id="modal1"
                                   style={
                                     Object {
-                                      "height": 250,
+                                      "height": 280,
                                       "width": 420,
                                     }
                                   }
@@ -2671,6 +2757,11 @@ ShallowWrapper {
                                   <div
                                     className="modal-content "
                                   >
+                                    <h3
+                                      className="font2 center red-text"
+                                    >
+                                      Retrieve Password
+                                    </h3>
                                     <form
                                       className="col s12"
                                       id="add-form2"
@@ -2694,19 +2785,26 @@ ShallowWrapper {
                                             id="icon_telephone"
                                             name="retrieve"
                                             onChange={[Function]}
-                                            placeholder="Enter your email address"
+                                            placeholder=""
                                             type="email"
                                           />
                                           <label
                                             htmlFor="icon_telephone"
-                                          />
+                                          >
+                                            Email
+                                          </label>
                                         </div>
                                       </div>
                                       <div
-                                        className="right"
+                                        className="center"
                                       >
                                         <button
                                           className="waves-effect waves-light btn red"
+                                          style={
+                                            Object {
+                                              "borderRadius": 40,
+                                            }
+                                          }
                                           type="submit"
                                         >
                                           <i

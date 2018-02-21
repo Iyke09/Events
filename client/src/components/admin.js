@@ -9,6 +9,7 @@ import jwt from 'jwt-decode';
 import swal from 'sweetalert';
 import store from '../store';
 
+
 class Admin extends Component {
   constructor(){
     super();
@@ -30,6 +31,7 @@ class Admin extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.getMore = this.getMore.bind(this);
+    this.activeRoute = this.activeRoute.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.handleUploadError = this.handleUploadError.bind(this);
     this.handleUploadStart = this.handleUploadStart.bind(this);
@@ -73,6 +75,9 @@ class Admin extends Component {
   handleUploadError (error){
     this.setState({isUploading: false});
   }
+  activeRoute(routeName) {
+    return this.props.location.pathname === routeName ? true : false;
+  }
   handleUploadSuccess (filename) {
     this.setState({avatar: filename, progress: 100, isUploading: false});
     firebase.storage().ref('images').child(filename).getDownloadURL()
@@ -88,6 +93,7 @@ class Admin extends Component {
     document.getElementById("add-form").reset();
   }
   render() {
+    let showElement = false;
     const { centers, error, loader, success } = this.props;
     if(success){
       return swal("Center Added!", "You've successfully added a new center", "success");
@@ -110,19 +116,21 @@ class Admin extends Component {
               <li><div className="divider" /></li>
               <li>
                 <Link to={"/"}>
-                  <a className="waves-effect white-text">
-                  <i className="fa fa-home grey-text" />HOME</a>
+                  <span className="waves-effect white-text">
+                  <i className="fa fa-home grey-text" />HOME</span>
                 </Link>
               </li>
-              <li><a className="waves-effect white-text waves-light modal-trigger" href="#modal1">
-                 <i className="fa fa-plus grey-text" /> Add Center</a>
+              <li><Link to={"/admin/add_center"}><span className="waves-effect white-text waves-light modal-trigger" href="#modal1">
+                 <i className="fa fa-plus grey-text" /> Add Center</span></Link>
               </li>
-              <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
+              <li><Link to={"/admin/list_center"}><a className="waves-effect white-text">
+                <i className="fa fa-envelope grey-text" />Centers</a></Link></li>
             </ul>
             <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
           </div>
-          <div className="col s12 m12 l8 " style={{paddingTop: 100}}>
-            <div className="row">
+          <div className="col s12 m12 l8 " >
+          {this.activeRoute('/admin/list_center') ?
+            <div className="row" style={{paddingTop: 50}}>
               {centers.map((center) => {
                 return (
                   <div className="col s12 m12 l4" key={center.id}>
@@ -155,16 +163,16 @@ class Admin extends Component {
                   </div>
                 );
               })}
+              <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12">
+                 <button className="btn red">view more centers </button>
             </div>
-            <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12">
-              <button className="btn red">view more centers </button>
-            </div>
+            </div> : ''
+          }
              <br/><br/><br/><br/>
 
 
-            <div id="modal1" className="modal modal-fixed-footer">
-              <div className="modal-content ">
-            <div className="card " style={{backgroundColor: '#FBFCFC'}}>
+          {this.activeRoute('/admin/add_center') ?
+            <div className="card " style={{backgroundColor: '#FBFCFC', marginTop: 0}}>
               <div className="card-content ">
               { error ?
                 <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
@@ -259,12 +267,9 @@ class Admin extends Component {
                   </div>
                 </form>
               </div>
-            </div>
-              </div>
-              <div className="modal-footer">
-                <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-              </div>
-            </div>
+            </div> : ''
+          }
+
           </div>
         </div>
   </div>

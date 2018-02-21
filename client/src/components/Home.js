@@ -6,19 +6,31 @@ import { Link } from 'react-router';
 
 
 class Home extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      user: null
+      old_pass: '',
+      new_pass: '',
+      con_pass: ''
     };
     this.getMore = this.getMore.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillMount(){
     // $(document).ready(function() {
     //   $(".button-collapse").sideNav();
     // });
+    $(document).ready(function(){
+      $(".dropdown-button").dropdown();
+      $('.modal').modal();
+    });
     this.props.getCenters(3);
+    console.log(this.state);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
   getMore(index){
     this.props.getCenters(index);
@@ -26,9 +38,15 @@ class Home extends React.Component {
   logOut(){
     localStorage.removeItem('token');
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
+    this.props.changePassword(this.state);
+    document.getElementById("add-form2").reset();
+  }
   render() {
     let decoded = '';
-    const { centers } = this.props;
+    const { centers, error, success } = this.props;
     const token = localStorage.getItem('token');
     const facebook = localStorage.getItem('facebook');
     if(token !== null){
@@ -36,6 +54,11 @@ class Home extends React.Component {
     }
     return (
       <div className="Home">
+          <ul id="dropdown1" className="dropdown-content">
+            <li><a href="#!">Notifications</a></li>
+            <li className="divider" />
+            <li><a className="modal-trigger" href="#modal1">Change Password</a></li>
+          </ul>
           <nav className="" role="navigation" style={{backgroundColor: ''}}>
             <div className="nav-wrapper container">
               <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
@@ -47,10 +70,17 @@ class Home extends React.Component {
                       </Link>
                     </li> : ''
                   }
-                  {token === null && facebook === null ? <li className="login"><Link to={"/auth/signin"}>Login</Link></li> :
-                  <li className="logout" onClick={this.logOut}><a href="">Logout</a></li>}
-                  {decoded.adminUser ? <li className="admin"><Link to={"/user/admin"}>Admin</Link></li> : ''}
-                  <li className="reg"><Link to={"/auth/signup"}>Register</Link></li>
+                  {token === null && facebook === null ?
+                    <li className="login">
+                    <Link to={"/auth/signin"}>Login</Link></li> :
+                  <span>
+                  <li className="logout" onClick={this.logOut}><a href="">Logout</a></li>
+                  </span>
+                  }
+                  {decoded.adminUser ? <li className="admin"><Link to={"/admin/list_center"}>Admin</Link></li> :
+                  <li><a className="dropdown-button" href="#!"
+                    data-activates="dropdown1">My Profile<i className="material-icons right">arrow_drop_down</i></a></li>}
+                  {/* <li className="reg"><Link to={"/auth/signup"}>Register</Link></li> */}
               </ul>
 
               <ul id="nav-mobile" className="side-nav">
@@ -186,6 +216,67 @@ class Home extends React.Component {
               </div>
             </div>
         </footer>
+
+
+        <div id="modal1" className="modal modal-fixed-footer" style={{width: 450, height: 440, marginTop: 40}}>
+          <div className="modal-content ">
+            <form id="add-form2" className="col s12" onSubmit={this.handleSubmit}>
+              <h3 className="font2 center red-text">Change Password</h3>
+              { error ?
+                <div style={{ borderRadius: 7}} className=" red white-text error hyper">
+                  <p className="w3-padding-large err_para">
+                    <i className="yellow-text fa fa-exclamation-triangle"
+                  style={{paddingRight:5}} aria-hidden="true" />
+                    <span id="err_msg">{error}</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
+              { success ?
+                <div style={{ borderRadius: 7}} className="w3-panel green white-text error hyper">
+                  <p className="w3-padding-medium err_para"><i className="fa fa-check"
+                  style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">
+                    Password succesfully changed!</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
+              <div className="row">
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone3"
+                  name="old_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="Enter your old Password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone3" />
+                </div>
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone2" name="new_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="New Password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone2" />
+                </div>
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone1" name="con_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="Confirm password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone1" />
+                </div>
+              </div>
+              <div className="center" >
+              <button type="submit" style={{borderRadius: 40}} className="waves-effect waves-light btn red"><i
+          className="" />Reset Password</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

@@ -27,7 +27,7 @@ export function* addUserAsync(action) {
 
       yield put({ type: '!SUCCESS' });
       yield put({ type: 'INCOMING_TOKEN', response: response.data });
-      //browserHistory.push('/');
+      yield put({ type: 'REDIRECT' });
   }catch(e){
       const error = e.response.data.message;
       console.log(error);
@@ -106,6 +106,33 @@ export function* watchRetrievePass() {
     yield takeEvery('RETRIEVE', retrievePass);
 }
 
+
+export function* changePassword(action) {
+  try{
+    const token = localStorage.getItem('token');
+      const response = yield call(axios.post,`${userUrl}/change`, {
+          token,
+          old: action.payload.old_pass,
+          newp: action.payload.new_pass,
+          newc:  action.payload.con_pass
+      });
+      yield put({ type: 'ERROR', error: '' });
+      yield put({ type: 'SUCCESS' });
+      yield delay(2000);
+
+      yield put({ type: '!SUCCESS' });
+  }catch(e){
+      const error = e.response.data.message;
+      console.log(error);
+      yield put({ type: 'ERROR', error });
+      yield delay(3000);
+      yield put({ type: 'ERROR', error: '' });
+  }
+}
+
+export function* watchChangePass() {
+    yield takeEvery('CHANGE_PASSWORD', changePassword);
+}
 
 
 export function* getCenters(action) {
@@ -187,7 +214,7 @@ export function* updateCenter(action) {
         price: action.payload.price
       });
       yield put({ type: 'ERROR', error: '' });
-      yield delay(3000);
+      yield delay(1000);
       yield put({ type: 'UNLOAD' });
       yield put({ type: 'SET_SINGLE', response: response.data });
       yield put({ type: 'SUCCESS' });
@@ -328,6 +355,7 @@ export function* watchGetSingleEvent() {
 export default function* rootSaga() {
   yield [
     watchAddUser(),
+    watchChangePass(),
     watchRetrievePass(),
     watchDeleteEvent(),
     watchUpdateCenter(),

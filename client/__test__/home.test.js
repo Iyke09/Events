@@ -4,6 +4,7 @@ import React from 'react';
 import jest from 'jest';
 import sinon from 'sinon';
 import { Provider } from 'react-redux';
+import mockument from 'mockument';
 // import expect from 'expect';
 import { mount, shallow } from 'enzyme';
 
@@ -20,6 +21,9 @@ describe('Test suites for Home component', () => {
       price: 400
     },
   ];
+  beforeEach(() => {
+    mockument(`client/__test__/mocks/index.html`);
+  });
   it('+++ renders without crashing', () => {
     const wrapper = shallow(
         <Home getCenters={(index) => index} centers={centers} />
@@ -28,7 +32,7 @@ describe('Test suites for Home component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('+++ renders with just one form', () => {
+  it('+++ renders with all list of centers', () => {
     const wrapper = shallow(
       <Home getCenters={(index) => index} centers={centers} />
     );
@@ -51,4 +55,25 @@ describe('Test suites for Home component', () => {
     expect(wrapper.find('Link').at(1).prop('to')).toEqual('/auth/signup');
     expect(wrapper.find('Link').at(0).prop('to')).toEqual('/auth/signin');
   });
+
+  it('home component renders submits form', () => {
+    const changePassword = sinon.spy();
+    const wrapper = shallow(
+      <Home getCenters={(index) => index} changePassword={changePassword} centers={centers} />
+    );
+    const dummy = {
+      old_pass: '',
+      new_pass: '',
+      con_pass: ''
+    };
+    const test = function (){
+      return null;
+    };
+    const e = {preventDefault: test };
+    wrapper.instance().handleSubmit(e);
+    expect(changePassword.calledOnce).toEqual(true);
+    expect(changePassword.calledWith(dummy)).toEqual(true);
+    expect(wrapper).toMatchSnapshot();
+  });
+
 });

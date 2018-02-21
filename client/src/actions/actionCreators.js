@@ -12,6 +12,13 @@ export function signin(payload) {
   };
 }
 
+export function changePassword(payload) {
+  return {
+    type: 'CHANGE_PASSWORD',
+    payload
+  };
+}
+
 export function loaders() {
   return {
     type: 'LOAD',

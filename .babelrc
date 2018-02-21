@@ -3,9 +3,6 @@
   "env": {
     "development": {
       "presets": ["react-hmre"]
-    },
-    "test": {
-      "plugins": [ "istanbul" ]
     }
   }
 }

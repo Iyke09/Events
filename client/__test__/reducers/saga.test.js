@@ -10,7 +10,8 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from "redux-saga-test-plan/providers";
 import axios from 'axios';
 import { getCenters, watchGetCenters,watchGetSingleEvent, watchSignUser,watchAddUser, watchAddCenter,
-  watchUpdateCenter, watchGetEvents, watchDeleteEvent, watchRetrievePass, watchUpdateEvent, watchAddEvent } from '../../src/Sagax/saga';
+  watchUpdateCenter, watchGetEvents, watchDeleteEvent, watchRetrievePass, watchChangePass,
+  watchUpdateEvent, watchAddEvent } from '../../src/Sagax/saga';
 
 
 
@@ -38,7 +39,7 @@ describe('Test Sagas', () => {
       .hasFinalState({id: 1, name: 'John Smith'})
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('adds center to the list of centers', () => {
@@ -79,7 +80,7 @@ describe('Test Sagas', () => {
       .hasFinalState([{id: 1, name: 'John Smith'}])
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run(1200);
   });
 
   it('retrieves user password', () => {
@@ -103,7 +104,40 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'RETRIEVE', email: 'awesome' })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run(2000);
+  });
+
+  it('changes user password', () => {
+    // const action = { index: 42 };
+    const response = {
+      data: {token: 'token'}
+    };
+    const payload = {
+      old_pass: 'John',
+      new_pass: 'awesome',
+      con_pass: 'hello',
+    };
+    localStorage.setItem('token', 'hello');
+    return expectSaga(watchChangePass)
+
+      .provide([[call(axios.post, '/api/v1/users/change', {
+        token: 'hello',
+        old: 'John',
+        newp: 'awesome',
+        newc: 'hello',
+      }), response]])
+
+      .put({ type: 'ERROR', error: '' })
+
+      .put({ type: 'SUCCESS'})
+
+      .put({ type: '!SUCCESS'})
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'CHANGE_PASSWORD', payload})
+
+      // Start the test. Returns a Promise.
+      .run(2000);
   });
 
   it('adds user to the list of users', () => {
@@ -139,7 +173,7 @@ describe('Test Sagas', () => {
       .hasFinalState('')
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('signin authenticated user', () => {
@@ -170,7 +204,7 @@ describe('Test Sagas', () => {
       .hasFinalState('')
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('updates centers', () => {
@@ -211,7 +245,7 @@ describe('Test Sagas', () => {
       .hasFinalState({id: 1, name: 'John Smith'})
 
       // Start the test. Returns a Promise.
-      .run(4000);
+      .run(1200);
   });
 
   it('get all available events for a user', () => {
@@ -236,7 +270,7 @@ describe('Test Sagas', () => {
       .hasFinalState([{id: 1, name: 'John Smith'}])
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('+++ adds events to the list of events', () => {
@@ -282,7 +316,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'ADD_EVENT', payload: action })
 
       // Start the test. Returns a Promise.
-      .run(2000);
+      .run(1200);
   });
 
   it('+++ updates events to the list of events', () => {
@@ -326,7 +360,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'UPDATE_EVENT', payload: action, index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run(2000);
   });
 
   it('+++ deletes events from the list of events', () => {
@@ -345,7 +379,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'DELETE_EVENT', index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('+++ gets a single events from the list of events', () => {
@@ -367,10 +401,16 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'GET_SINGLE_EVENT', index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 });
 
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
 
 describe('Error handler', () => {
   it('test for error handling in the signup', () => {
@@ -412,6 +452,34 @@ describe('Error handler', () => {
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'RETRIEVE', email: 'awesome' })
+
+      // Start the test. Returns a Promise.
+      .run(3000);
+  });
+
+  it('test for error handling in RETRIEVING password', () => {
+    const error = {response: {data: {message: 'error'}}};
+
+    const payload = {
+      old_pass: 'John',
+      new_pass: 'awesome',
+      con_pass: 'hello',
+    };
+    localStorage.setItem('token', 'hello');
+    return expectSaga(watchChangePass)
+
+      .provide([[call(axios.post, '/api/v1/users/change', {
+        token: 'hello',
+        old: 'John',
+        newp: 'awesome',
+        newc: 'hello',
+      }),
+       throwError(error)]])
+
+      .put({ type: 'ERROR', error: 'error' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'CHANGE_PASSWORD', payload })
 
       // Start the test. Returns a Promise.
       .run(3000);

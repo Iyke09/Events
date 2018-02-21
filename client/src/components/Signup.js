@@ -167,9 +167,13 @@ class Centers extends React.Component {
                                   <label htmlFor="icon_telephone" />
                                 </div>
                               </div>
+                              {/* <div className="text-center" >
+                                <p className="font2 w3-padding-large" style={{textAlign: 'center'}}> By clicking Create Account.
+                                  I agree to the <b>Terms of Service</b> and <b>Privacy Policy</b></p>
+                              </div> */}
                               <div className="" style={{textAlign: 'center'}}>
                               <button type="submit" className="waves-effect waves-light btn red"><i
-                              className="submit" />submit</button>
+                              className="submit" />Create Account</button>
                               </div>
                             </form>
                           </div>

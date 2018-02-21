@@ -19,6 +19,7 @@ describe('Test suites for Add events component', () => {
       price: 400
     },
   ];
+  const newProps = {centers: ['helo', 'bae']};
   beforeEach(() => {
     mockument(`client/__test__/mocks/index.html`);
   });
@@ -100,6 +101,12 @@ describe('Test suites for Add events component', () => {
     component.find('form').simulate('submit', { preventDefault });
     expect(addEvent.calledOnce).toEqual(false);
     expect(errorAction.calledOnce).toEqual(true);
+  });
+
+  it('addevent component call componentwillrecieveprops', () => {
+    const component = shallow(<Add getCenters={(index) => index} centers={centers} loaders={() => null} />);
+    component.instance().componentWillReceiveProps(newProps);
+    expect(component).toMatchSnapshot();
   });
 
 });

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FormGroup,
-} from 'react-bootstrap';
 // react component that creates a dropdown menu for selecting a date
 import Datetime from 'react-datetime';
 import jwt from 'jwt-decode';
@@ -32,14 +29,14 @@ class Add extends Component {
     if(token === null){
       browserHistory.push('/auth/signin');
     }
-    else{
-      const decoded = jwt(token);
-      const curr_time = new Date().getTime() / 1000;
-      if(curr_time > decoded.exp){
-        localStorage.setItem('route', window.location.pathname);
-        browserHistory.push('/auth/signin');
-      }
-    }
+    // else{
+    //   const decoded = jwt(token);
+    //   const curr_time = new Date().getTime() / 1000;
+    //   if(curr_time > decoded.exp){
+    //     localStorage.setItem('route', window.location.pathname);
+    //     browserHistory.push('/auth/signin');
+    //   }
+    // }
   }
   componentDidMount(){
     this.props.getCenters(20);

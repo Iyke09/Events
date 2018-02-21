@@ -255,7 +255,7 @@ ShallowWrapper {
                                 <i
                                   className="submit"
                                 />
-                                submit
+                                Create Account
                               </button>
                             </div>
                           </form>
@@ -524,7 +524,7 @@ ShallowWrapper {
                                   <i
                                     className="submit"
                                   />
-                                  submit
+                                  Create Account
                                 </button>
                               </div>
                             </form>
@@ -834,7 +834,7 @@ ShallowWrapper {
                                       <i
                                         className="submit"
                                       />
-                                      submit
+                                      Create Account
                                     </button>
                                   </div>
                                 </form>
@@ -1102,7 +1102,7 @@ ShallowWrapper {
                                       <i
                                         className="submit"
                                       />
-                                      submit
+                                      Create Account
                                     </button>
                                   </div>
                                 </form>
@@ -1386,7 +1386,7 @@ ShallowWrapper {
                                 <i
                                   className="submit"
                                 />
-                                submit
+                                Create Account
                               </button>
                             </div>
                           </form>
@@ -1655,7 +1655,7 @@ ShallowWrapper {
                                   <i
                                     className="submit"
                                   />
-                                  submit
+                                  Create Account
                                 </button>
                               </div>
                             </form>
@@ -1964,7 +1964,7 @@ ShallowWrapper {
                                       <i
                                         className="submit"
                                       />
-                                      submit
+                                      Create Account
                                     </button>
                                   </div>
                                 </form>
@@ -2232,7 +2232,7 @@ ShallowWrapper {
                                       <i
                                         className="submit"
                                       />
-                                      submit
+                                      Create Account
                                     </button>
                                   </div>
                                 </form>

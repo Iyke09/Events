@@ -19,6 +19,7 @@ class Centers extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.clearError = this.clearError.bind(this);
+    this.closeErrMsg = this.closeErrMsg.bind(this);
     this.authenticate = this.authenticate.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
   }
@@ -179,8 +180,9 @@ class Centers extends React.Component {
                             </form>
 
 
-                            <div id="modal1" className="modal modal-fixed-footer" style={{width: 420, height: 250}}>
+                            <div id="modal1" className="modal modal-fixed-footer" style={{width: 420, height: 280}}>
                               <div className="modal-content ">
+                              <h3 className="font2 center red-text">Retrieve Password</h3>
                                 <form id="add-form2" className="col s12" onSubmit={this.handleSubmit} >
                                   { error ?
                                     <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
@@ -205,13 +207,13 @@ class Centers extends React.Component {
                                       <i className="material-icons prefix">mail</i>
                                       <input id="icon_telephone" name="retrieve" type="email"
                                       onChange={this.onChange}
-                                      placeholder="Enter your email address"
+                                      placeholder=""
                                       className="validate "/>
-                                      <label htmlFor="icon_telephone" />
+                                      <label htmlFor="icon_telephone">Email</label>
                                     </div>
                                   </div>
-                                  <div className="right">
-                                    <button type="submit" className="waves-effect waves-light btn red"><i
+                                  <div className="center">
+                                    <button type="submit" style={{borderRadius: 40}} className="waves-effect waves-light btn red"><i
                                     className="" />
                                     Submit
                                     </button>

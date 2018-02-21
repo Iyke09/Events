@@ -30,7 +30,8 @@ const router = (
         <Route path="/auth/signin" component={Signin} />
         <Route path="/auth/signup" component={Signup} />
         <Route path="/centerdetails/:id" component={details} />
-        <Route path="/user/admin" component={admin} />
+        <Route path="/admin/add_center" component={admin} />
+        <Route path="/admin/list_center" component={admin} />
         <Route path="/user/events" component={events} />
         <Route path="/add/:id" component={addEvent} />
         <Route path="/user/admin/edit/:id" component={Edit} />
