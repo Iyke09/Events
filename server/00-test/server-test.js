@@ -431,6 +431,51 @@ describe('API Integration Tests', () => {
     });
   });
 
+  describe('Favorite Center', () => {
+    beforeEach(() => {
+      data = {
+        name: 'emporium',
+        description: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
+        capacity: 4500,
+        location: '14 airport road, california',
+        instructions: 'stir for 5minutes'
+      };
+    });
+    //const adminUrl = `${adminUrl}/favorite/11`
+
+    // check if token is passed
+    it('return 404 if center not found', (done) => {
+      request.put(`${adminUrl}/favorite/11?token=${userToken2}`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('not Found');
+          done();
+        });
+    });
+
+    it('return 201 if succesful', (done) => {
+      request.put(`${adminUrl}/favorite/1?token=${userToken2}`)
+      .send()
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.message).to.equal('Center favorited');
+        done();
+      });
+    });
+
+    it('return 200 if succesfully deleted favorite', (done) => {
+      request.put(`${adminUrl}/favorite/1?token=${userToken2}`)
+      .send()
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Center unfavorited');
+        done();
+      });
+    });
+
+  });
+
   describe('Add Events', () => {
     beforeEach(() => {
       data = {

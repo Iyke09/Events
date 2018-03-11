@@ -1,17 +1,26 @@
-import centerReducer from '../../src/reducers/centers';
-import loaderReducer from '../../src/reducers/loader';
-import errorReducer from '../../src/reducers/error';
-import singleReducer from '../../src/reducers/singleCenter';
-import eventReducer from '../../src/reducers/events';
-import userReducer from '../../src/reducers/user';
+// import centerReducer from '../../src/reducers/Centers';
+// import loaderReducer from '../../src/reducers/Notifications';
+// import eventReducer from '../../src/reducers/Events';
 import MockAdapter from 'axios-mock-adapter';
 import { call, put, take } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from "redux-saga-test-plan/providers";
 import axios from 'axios';
-import { getCenters, watchGetCenters,watchGetSingleEvent, watchSignUser,watchAddUser, watchAddCenter,
-  watchUpdateCenter, watchGetEvents, watchDeleteEvent, watchRetrievePass, watchChangePass,
-  watchUpdateEvent, watchAddEvent } from '../../src/Sagax/saga';
+import {
+  getCenters,
+  watchGetCenters,
+  watchFavoriteCenter,
+  watchGetSingleEvent,
+  watchSignUser,
+  watchAddUser,
+  watchAddCenter,
+  watchUpdateCenter,
+  watchGetEvents,
+  watchDeleteEvent,
+  watchRetrievePass,
+  watchChangePass,
+  watchUpdateEvent,
+  watchAddEvent } from '../../src/Saga/saga';
 
 
 
@@ -26,8 +35,6 @@ describe('Test Sagas', () => {
     };
 
     return expectSaga(watchGetCenters)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.get, '/api/v1/centers?limit=42'), response]])
       // Assert that the `put` will eventually happen.
@@ -35,8 +42,6 @@ describe('Test Sagas', () => {
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'GET_ALL', index: 42 })
-
-      .hasFinalState({id: 1, name: 'John Smith'})
 
       // Start the test. Returns a Promise.
       .run();
@@ -61,8 +66,6 @@ describe('Test Sagas', () => {
       price: 24
     };
     return expectSaga(watchAddCenter)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.post, '/api/v1/centers', action), response]])
       // Assert that the `put` will eventually happen.
@@ -77,10 +80,28 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'ADD_CENTER', payload: action })
 
-      .hasFinalState([{id: 1, name: 'John Smith'}])
-
       // Start the test. Returns a Promise.
       .run(1200);
+  });
+
+  it('favorites a center', () => {
+    // const action = { index: 42 };
+    localStorage.setItem('token', 'hello');
+    const response = '';
+    const data = {
+      token: 'hello',
+    };
+    return expectSaga(watchFavoriteCenter)
+
+      .provide([[call(axios.put, '/api/v1/centers/favorite/11', data), response]])
+      // Assert that the `put` will eventually happen.
+      //.put({ type: 'GET_ALL', index: 6 })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'FAVORITE_CENTER', index: 11 })
+
+      // Start the test. Returns a Promise.
+      .run();
   });
 
   it('retrieves user password', () => {
@@ -137,7 +158,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'CHANGE_PASSWORD', payload})
 
       // Start the test. Returns a Promise.
-      .run(2000);
+      .run(3000);
   });
 
   it('adds user to the list of users', () => {
@@ -152,12 +173,9 @@ describe('Test Sagas', () => {
       password: 400,
     };
     return expectSaga(watchAddUser)
-      //call reducer
-      .withReducer(userReducer)
 
       .provide([[call(axios.post, '/api/v1/users/signup', action), response]])
       // Assert that the `put` will eventually happen.
-      .put({ type: 'INCOMING_TOKEN', response: {token: 'token'}})
 
       .put({ type: 'ERROR', error: '' })
 
@@ -165,12 +183,9 @@ describe('Test Sagas', () => {
 
       .put({ type: 'SUCCESS'})
 
-      .put({ type: '!SUCCESS'})
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'SIGN_UP', payload: action })
-
-      .hasFinalState('')
 
       // Start the test. Returns a Promise.
       .run();
@@ -187,12 +202,9 @@ describe('Test Sagas', () => {
       password: 400,
     };
     return expectSaga(watchSignUser)
-      //call reducer
-      .withReducer(userReducer)
 
       .provide([[call(axios.post, '/api/v1/users/signin', action), response]])
       // Assert that the `put` will eventually happen.
-      .put({ type: 'INCOMING_TOKEN', response: {token: 'token'}})
 
       .put({ type: 'ERROR', error: '' })
 
@@ -200,8 +212,6 @@ describe('Test Sagas', () => {
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'SIGN_IN', payload: action })
-
-      .hasFinalState('')
 
       // Start the test. Returns a Promise.
       .run();
@@ -226,8 +236,6 @@ describe('Test Sagas', () => {
       price: 24
     };
     return expectSaga(watchUpdateCenter)
-      //call reducer
-      .withReducer(singleReducer)
 
       .provide([[call(axios.put, '/api/v1/centers/42', data), response]])
       // Assert that the `put` will eventually happen.
@@ -242,8 +250,6 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'UPDATE_CENTER', payload: data, index: 42 })
 
-      .hasFinalState({id: 1, name: 'John Smith'})
-
       // Start the test. Returns a Promise.
       .run(1200);
   });
@@ -257,8 +263,6 @@ describe('Test Sagas', () => {
       }
     };
     return expectSaga(watchGetEvents)
-      //call reducer
-      .withReducer(eventReducer)
 
       .provide([[call(axios.get, '/api/v1/events/user?token=hello'), response]])
       // Assert that the `put` will eventually happen.
@@ -266,8 +270,6 @@ describe('Test Sagas', () => {
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'GET_EVENTS' })
-
-      .hasFinalState([{id: 1, name: 'John Smith'}])
 
       // Start the test. Returns a Promise.
       .run();
@@ -293,7 +295,7 @@ describe('Test Sagas', () => {
     };
 
     const action = {
-      value: 'John',
+      center: 'John',
       type: 'awesome',
       time: 400,
       date: 'area 12',
@@ -519,8 +521,6 @@ describe('Error handler', () => {
     };
     const error = {response: {data: {message: 'error'}}};
     return expectSaga(watchAddCenter)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.post, '/api/v1/centers', action), throwError(error)]])
       // Assert that the `put` will eventually happen.
@@ -532,8 +532,6 @@ describe('Error handler', () => {
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'ADD_CENTER', payload: action })
-
-      .hasFinalState([])
 
       // Start the test. Returns a Promise.
       .run();
@@ -580,7 +578,7 @@ describe('Error handler', () => {
     };
     const error = {response: {data: {message: 'error'}}};
     const action = {
-      value: 'John',
+      center: 'John',
       type: 'awesome',
       time: 400,
       date: 'area 12',

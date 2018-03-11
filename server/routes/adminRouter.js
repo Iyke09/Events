@@ -21,6 +21,8 @@ router.get('/', adminController.allCenter);
 
 router.get('/:id', adminController.detailCenter);
 
+router.put('/favorite/:id', adminController.favoriteCenter);
+
 router.use('/', authToken);
 
 router.post('/', adminController.addCenter);

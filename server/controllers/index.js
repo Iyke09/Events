@@ -6,6 +6,7 @@ const adminController = {
   addCenter: admin.addCenter,
   updateCenter: admin.updateCenter,
   detailCenter: admin.centerDetails,
+  favoriteCenter: admin.favoriteCenters,
   allCenter: admin.allCenters,
   addEvent: events.addEvents,
   deleteEvent: events.deleteEvent,

@@ -62,6 +62,13 @@ export function getSingle(index) {
   };
 }
 
+export function addFavorite(index) {
+  return {
+    type: 'FAVORITE_CENTER',
+    index
+  };
+}
+
 export function getSingleEvents(index) {
   return {
     type: 'GET_SINGLE_EVENT',

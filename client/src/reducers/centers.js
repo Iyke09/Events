@@ -3,13 +3,14 @@
 // 1. the action (info about what happened)
 // 2. copy of current state
 
-function centers(state = [], action) {
+function centers(state = {center: [], singleCenter: {}}, action) {
   switch(action.type) {
     case 'GET_CENTER' :
-      console.log('helllllloooo ' + action.response);
-      return action.response.center;
+      return {center: action.response.center, singleCenter: state.singleCenter};
     case 'SET_CENTER' :
-      return [...state, action.response.center];
+      return {center: [...state.center, action.response.center], singleCenter: state.singleCenter};
+    case 'SET_SINGLE' :
+      return {center: state.center, singleCenter: action.response.center};
   default:
       return state;
   }

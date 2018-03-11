@@ -136,7 +136,7 @@ class Events extends React.Component {
                 <h2 className="light">
                   <span style={{marginRight: 4}}>
                     <span className="title_text font2">{event.title}</span>
-                    <Link to={`/events/edit/${event.id}`}>
+                    <Link to={`/edit_events/${event.id}`}>
                       <i className="material-icons"
                       id={`r${event.title}`}>edit</i>
                     </Link>

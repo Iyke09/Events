@@ -2,8 +2,11 @@
 // import updateCenterMethod from './update';
 // import centerDetailsMethod from './details';
 // import allCentersMethod from './all-centers';
-
-import { Center, Eevent } from '../models';
+import jwt from 'jsonwebtoken';
+import {
+  Center,
+  Eevent,
+  Favorite } from '../models';
 
 
 /**
@@ -144,7 +147,14 @@ class Admin {
       //  .catch(error => res.status(400).send(error.toString()));
     } else {
       // if query parameters not present then query center model for all available center
-      Center.findAll({limit: req.query.limit })
+      Center.findAll({
+          limit: req.query.limit,
+          order:[['updatedAt', 'DESC']],
+          include: [{
+            model: Favorite,
+            as: 'favorites',
+          }],
+         })
         .then(center => res.status(200).send({
           status: 'Success',
           message: 'centers found',
@@ -152,6 +162,56 @@ class Admin {
         }))
         .catch(error => res.status(400).send(error.toString()));
     }
+  }
+    /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {object} return a recipe oject
+   */
+  static favoriteCenters(req, res) {
+    // console.log(req.params.id);
+    const decoded = jwt.decode(req.query.token || req.body.token);
+      Center.findById(req.params.id)
+        .then((center) => {
+          if (!center) {
+            return res.status(404).send({
+              message: 'not Found',
+            });
+          }
+          Favorite.findOne({
+            where: {
+              centerId: req.params.id,
+              userId: decoded.user.id,
+            },
+          })
+            .then((favCenter) => {
+              if (!favCenter) {
+                return Favorite.create({
+                  centerId: req.params.id,
+                  userId: decoded.user.id,
+                })
+                  .then((favorites) => {
+                    res.status(201).send({
+                      status: 'Success',
+                      message: 'Center favorited',
+                      favorites,
+                    });
+                  })
+                  .catch(error => res.status(500).send(error.toString()));
+              }
+              favCenter
+                .destroy()
+                .then(() => {
+                  res.status(200).send({
+                    status: 'Success',
+                    message: 'Center unfavorited',
+                  });
+                })
+                .catch(error => res.status(403).send(error.toString()));
+            });
+        })
+        .catch(error =>  console.log(error.toString()));
   }
 }
 
