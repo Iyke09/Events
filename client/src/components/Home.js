@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import jwt from 'jwt-decode';
 import store from '../store';
 
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 
 class Home extends React.Component {
@@ -33,7 +33,20 @@ class Home extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   addFavorite(index) {
-    this.props.addFavorite(index);
+    const token = localStorage.getItem('token');
+    if(token === null){
+      localStorage.setItem('route', '/');
+      browserHistory.push('/auth/signin');
+    }else{
+      const decoded = jwt(token);
+      if(decoded.user){
+        console.log('fetching...');
+        this.props.addFavorite(index);
+      }else{
+        console.log('admin user');
+        browserHistory.push('/');
+      }
+    }
   }
   setFavoriteCenter(centerId){
     let decoded = '';
@@ -43,7 +56,7 @@ class Home extends React.Component {
       let FavoriteCenterId = [];
       this.props.centers.map((center, key) => {
         center.favorites.map((favorite, key) => {
-          if (favorite.userId && favorite.userId === decoded.user.id) {
+          if (decoded.user && favorite.userId && favorite.userId === decoded.user.id) {
             FavoriteCenterId.push(favorite.centerId);
           }
         });
@@ -72,10 +85,10 @@ class Home extends React.Component {
   render() {
     let decoded = '';
     const { centers, error, success } = this.props;
+    console.log(centers);
     const token = localStorage.getItem('token');
     const facebook = localStorage.getItem('facebook');
     const center = this.props.centers;
-    console.log(center);
     let base = Math.ceil(center.length / 3);
     const set1 = center.slice(0,base);
     const set2 = center.slice(base ,base * 2);
@@ -134,7 +147,7 @@ class Home extends React.Component {
                  Nunc id odio mollis, luctus ex at Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc id odio mollis velit vitae pellentesque....</p>
               <a className="button5 red" href="#features">Explore</a>
-              <span className="button2 blue-grey"><Link to={"/auth/signup"}>Register</Link></span>
+              <span className="button2 blue-grey reg"><Link to={"/auth/signup"}>Register</Link></span>
             </div>
             {/* <section className="overlay"/> */}
           </div>
@@ -186,7 +199,7 @@ class Home extends React.Component {
             <div className="col s12 m12 l4 ">
               {set1.map((center) => {
                 return (
-                  <div className="displayed" key={center.id}>
+                  <div id="centerx" className="displayed" key={center.id}>
                     <div className="card w3sets" id="minor">
                       <div className="card-image waves-effect waves-block waves-light">
                         <img style={{height: 350}} className="activator"
@@ -195,7 +208,7 @@ class Home extends React.Component {
                       <div className="card-content">
                         <span className="card-title grey-text text-darken-4">
                           <Link to={`/centerdetails/${center.id}`}>
-                            {center.name}
+                            <span className="linked">{center.name}</span>
                           </Link>
                           <i onClick={() => this.addFavorite(center.id)}
                           className={"fa fa-heart favorite fa-1x w3-small right " + (
@@ -211,7 +224,7 @@ class Home extends React.Component {
               })}
             </div>
 
-            <div className="col s12 m12 l4 ">
+            <div id="centerx" className="col s12 m12 l4 ">
               {set2.map((center) => {
                 return (
                   <div className="displayed" key={center.id}>
@@ -223,7 +236,7 @@ class Home extends React.Component {
                       <div className="card-content">
                         <span className="card-title grey-text text-darken-4">
                           <Link to={`/centerdetails/${center.id}`}>
-                            {center.name}
+                            <span className="linked">{center.name}</span>
                           </Link>
                           <i onClick={() => this.addFavorite(center.id)}
                           className={"fa fa-heart fa-1x w3-small right " + (
@@ -239,7 +252,7 @@ class Home extends React.Component {
               })}
             </div>
 
-            <div className="col s12 m12 l4">
+            <div id="centerx" className="col s12 m12 l4">
               {set3.map((center) => {
                 return (
                   <div className="displayed" key={center.id}>
@@ -251,11 +264,11 @@ class Home extends React.Component {
                       <div className="card-content">
                         <span className="card-title grey-text text-darken-4">
                           <Link to={`/centerdetails/${center.id}`}>
-                            {center.name}
+                            <span className="linked">{center.name}</span>
                           </Link>
 
                           <i onClick={() => this.addFavorite(center.id)}
-                          className={"fa fa-heart fa-1x w3-small right " + (
+                          className={"fa fa-heart fav3 fa-1x w3-small right " + (
                           this.setFavoriteCenter(center.id) ? "red-text" : "green-text")}
                           style={{fontSize: 15, cursor: 'pointer'}} >
                           <span className="w3-padding-small black-text">{center.favorites.length}</span>

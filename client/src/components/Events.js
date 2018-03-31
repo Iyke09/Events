@@ -201,7 +201,8 @@ class Add extends Component {
                               </div>
                               <div className="" style={{textAlign: 'center'}}>
                               <button type="submit"
-                              className="btn waves-effect waves-light red lighten-1">{this.activeRoute('edit') ? 'Update' : 'Add'} Event</button>
+                              className="btn waves-effect waves-light red lighten-1">{this.activeRoute('edit')
+                              ? 'Update' : 'Add'} Event</button>
                             </div>
                           </form>
 

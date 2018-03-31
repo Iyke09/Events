@@ -6,7 +6,9 @@ import jwt from 'jsonwebtoken';
 import {
   Center,
   Eevent,
-  Favorite } from '../models';
+  Favorite,
+  Review
+} from '../models';
 
 
 /**
@@ -14,7 +16,7 @@ import {
  * @class
  */
 class Admin {
-  /**
+   /**
    *
    * @param {object} req a review object
    * @param {object} res a review object
@@ -32,12 +34,13 @@ class Admin {
       .then(center => res.status(201).send({
         status: 'Success',
         message: 'Center created',
-        center,
+        center
       }))// catch errors
       .catch(error => res.status(500).send({
         message: error.errors[0].message,
       }));
   }
+
 
   /**
    *
@@ -48,7 +51,7 @@ class Admin {
   static updateCenter(req, res) {
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
-      // if center not found return unsuccessful message back to user
+        // if center not found return unsuccessful message back to user
         if (!center) {
           return res.status(404).send({
             message: 'center Not Found',
@@ -170,8 +173,8 @@ class Admin {
    * @return {object} return a recipe oject
    */
   static favoriteCenters(req, res) {
-    // console.log(req.params.id);
-    const decoded = jwt.decode(req.query.token || req.body.token);
+    //console.log(req.headers.token);
+    const decoded = jwt.decode(req.query.token || req.body.token || req.headers.token);
       Center.findById(req.params.id)
         .then((center) => {
           if (!center) {
@@ -212,6 +215,47 @@ class Admin {
             });
         })
         .catch(error =>  console.log(error.toString()));
+  }
+
+     /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {object} return a recipe oject
+   */
+  static addReview(req, res) {
+    const {id, username, comment} = req.body;
+    Review.create({
+      centerId: id,
+      user: username,
+      comment
+    })// return message to user if operation was successful
+      .then(review => res.status(201).send({
+        status: 'Success',
+        message: 'review created',
+        review
+      }))// catch errors
+      .catch(error => res.status(500).send(error.toString()));
+  }
+
+       /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * @return {array} return a review array
+   */
+  static getReviews(req, res) {
+    Review.findAll({
+      where: { centerId: req.params.id },
+      limit: 3,
+      order:[['updatedAt', 'DESC']]
+     })
+    .then(review => res.status(200).send({
+      status: 'Success',
+      message: 'reviews found',
+      review,
+    }))
+    .catch(error => res.status(500).send(error.toString()));
   }
 }
 

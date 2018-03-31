@@ -20,7 +20,9 @@ import {
   watchRetrievePass,
   watchChangePass,
   watchUpdateEvent,
-  watchAddEvent } from '../../src/Saga/saga';
+  watchAddEvent,
+  watchGetReviews,
+  watchAddReview } from '../../src/Saga/saga';
 
 
 
@@ -47,6 +49,46 @@ describe('Test Sagas', () => {
       .run();
   });
 
+  it('gets all available reviews', () => {
+    // const action = { index: 42 };
+    const response = { data: 'hello'};
+
+    return expectSaga(watchGetReviews)
+
+      .provide([[call(axios.get, '/api/v1/centers/reviews/42'), response]])
+      // Assert that the `put` will eventually happen.
+      .put({ type: 'GET_REVIEWS', response: 'hello' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'GET_ALL_REVIEWS', index: 42 })
+
+      // Start the test. Returns a Promise.
+      .run();
+  });
+
+  it('add reviews to the review state', () => {
+    // const action = { index: 42 };
+    const response = { data: 'hello'};
+
+    const action = {
+      id: 1,
+      username: 'doe',
+      comment: 'hello'
+    };
+
+    return expectSaga(watchAddReview)
+
+      .provide([[call(axios.post, '/api/v1/centers/reviews', action), response]])
+      // Assert that the `put` will eventually happen.
+      .put({ type: 'SET_REVIEW', response: 'hello' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'ADD_REVIEW', payload: action })
+
+      // Start the test. Returns a Promise.
+      .run();
+  });
+
   it('adds center to the list of centers', () => {
     // const action = { index: 42 };
     localStorage.setItem('token', 'hello');
@@ -57,7 +99,6 @@ describe('Test Sagas', () => {
       }
     };
     const action = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -89,7 +130,7 @@ describe('Test Sagas', () => {
     localStorage.setItem('token', 'hello');
     const response = '';
     const data = {
-      token: 'hello',
+      match: 'xtra'
     };
     return expectSaga(watchFavoriteCenter)
 
@@ -142,7 +183,6 @@ describe('Test Sagas', () => {
     return expectSaga(watchChangePass)
 
       .provide([[call(axios.post, '/api/v1/users/change', {
-        token: 'hello',
         old: 'John',
         newp: 'awesome',
         newc: 'hello',
@@ -227,7 +267,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -264,7 +303,7 @@ describe('Test Sagas', () => {
     };
     return expectSaga(watchGetEvents)
 
-      .provide([[call(axios.get, '/api/v1/events/user?token=hello'), response]])
+      .provide([[call(axios.get, '/api/v1/events/user'), response]])
       // Assert that the `put` will eventually happen.
       .put({ type: 'SET_EVENTS', response: {event: [{ id: 1, name: 'John Smith' }]} })
 
@@ -285,7 +324,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -331,7 +369,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -375,7 +412,7 @@ describe('Test Sagas', () => {
     };
     return expectSaga(watchDeleteEvent)
 
-      .provide([[call(axios.delete, '/api/v1/events/42?token=hello'), response]])
+      .provide([[call(axios.delete, '/api/v1/events/42'), response]])
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'DELETE_EVENT', index: 42 })
@@ -471,7 +508,6 @@ describe('Error handler', () => {
     return expectSaga(watchChangePass)
 
       .provide([[call(axios.post, '/api/v1/users/change', {
-        token: 'hello',
         old: 'John',
         newp: 'awesome',
         newc: 'hello',
@@ -511,7 +547,6 @@ describe('Error handler', () => {
 
   it('tests error handling in add center', () => {
     const action = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -540,7 +575,6 @@ describe('Error handler', () => {
   it('tests error handling in update center', () => {
     const actione = { index: 42 };
     const data = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -568,7 +602,6 @@ describe('Error handler', () => {
 
   it('tests error handling in addevents', () => {
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -604,7 +637,6 @@ describe('Error handler', () => {
 
   it('tests error handling in updates event', () => {
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -649,7 +681,7 @@ describe('Error handler', () => {
     const error = {response: {data: {message: 'error'}}};
     return expectSaga(watchDeleteEvent)
 
-      .provide([[call(axios.delete, '/api/v1/events/42?token=hello'),
+      .provide([[call(axios.delete, '/api/v1/events/42'),
       throwError(error)]])
 
       .put({ type: 'ERROR', error: 'error' })

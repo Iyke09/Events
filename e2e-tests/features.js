@@ -13,16 +13,6 @@ module.exports = {
   //     .verify.containsText('.reg', 'Register')
   //     .pause(500);
   // },
-  // 'user navigates to signup page from login page and back to login page': (client) => {
-  //   client
-  //     .url('http://localhost:3000')
-  //     .waitForElementVisible('body', 5000)
-  //     .click('.reg')
-  //     .verify.urlEquals('http://localhost:3000/auth/signup')
-  //     .click('a.login')
-  //     .verify.urlEquals('http://localhost:3000/auth/signin')
-  //     .pause(500);
-  // },
   // 'user submits signup form with passord length less than 6 characters': (client) => {
   //   client
   //     .url('http://localhost:3000/auth/signup')
@@ -49,13 +39,16 @@ module.exports = {
   //     .verify.title('Event Manager.io')
   //     .verify.elementPresent('nav')
   //     .waitForElementPresent('#centerx', 10000)
-  //     .click('.link')
+  //     .click('.linked')
   //     .verify.urlContains('centerdetails')
   //     .pause(500);
   // },
   // 'Redirect to signin page if user is not authenticated and trying to book center': (client) => {
   //   client
-  //     .url('http://localhost:3000/centerdetails/16')
+  //     .url('http://localhost:3000')
+  //     .waitForElementVisible('body', 5000)
+  //     .waitForElementPresent('#centerx', 10000)
+  //     .click('.link')
   //     .verify.urlContains('centerdetails')
   //     .waitForElementPresent('h1', 3000)
   //     .verify.visible('.visible')
@@ -63,63 +56,63 @@ module.exports = {
   //     .verify.urlContains('signin')
   //     .pause(500);
   // },
-  'Redirect to signin page if signin page then back to addevents page ': (client) => {
-    client
-      .url('http://localhost:3000/centerdetails/16')
-      .verify.urlContains('centerdetails')
-      .verify.visible('.visible')
-      .click('.visible')
-      .verify.urlContains('signin')
-      .verify.elementPresent('form')
-      .setValue('input[name="email"]', 'foo5@foo.com')
-      .setValue('.passwordz', '123456')
-      .click('button[type="submit"]')
-      .waitForElementPresent('.titlr', 20000)
-      .verify.urlContains('Mason')
-      .end();
-  },
+  // 'Redirect to signin page if signin page then back to addevents page ': (client) => {
+  //   client
+  //     .url('http://localhost:3000/centerdetails/16')
+  //     .verify.urlContains('centerdetails')
+  //     .verify.visible('.visible')
+  //     .click('.visible')
+  //     .verify.urlContains('signin')
+  //     .verify.elementPresent('form')
+  //     .setValue('input[name="email"]', 'foo5@foo.com')
+  //     .setValue('.passwordz', '123456')
+  //     .click('button[type="submit"]')
+  //     .waitForElementPresent('.titlr', 20000)
+  //     .verify.urlContains('Mason')
+  //     .end();
+  // },
 
 
-    'user successfully signin in then logs out': (client) => {
-    client
-      .url('http://localhost:3000/auth/signin')
-      .setValue('input[name="email"]', 'foo5@foo.com')
-      .setValue('.passwordz', '123456')
-      .click('button[type="submit"]', () => {
-        client
-          .waitForElementVisible('.reg', 10000)
-          .verify.urlEquals('http://localhost:3000/')
-          .verify.containsText('.logout', 'Logout')
-          .keys(client.Keys.ESCAPE)
-          .click('.logout')
-          .waitForElementVisible('.login', 5000)
-          .verify.elementPresent('.login')
-          .pause(500);
-      });
-  },
-    'user signs in with invalid email': (client) => {
-    client
-      .url('http://localhost:3000/auth/signin')
-      .setValue('input[name="email"]', 'foo5@foot.com')
-      .setValue('.passwordz', '123456')
-      .click('button[type="submit"]', () => {
-        client
-          .waitForElementVisible('.error', 15000)
-          .assert.containsText('#err_msg', 'invalid login details')
-          .pause(500);
-      });
-  },
-  'user can not signup with taken email address': (client) => {
-    client
-      .url('http://localhost:3000/auth/signup')
-      .setValue('input[name="email"]', 'foo5@foo.com')
-      .setValue('.passwordz', '123456')
-      .setValue('.username', 'jenaeodo')
-      .click('button[type="submit"]')
-      .waitForElementVisible('.error', 15000)
-      .assert.containsText('#err_msg', 'Oops.The email you entered already exists')
-      .pause(500);
-  },
+  //   'user successfully signin in then logs out': (client) => {
+  //   client
+  //     .url('http://localhost:3000/auth/signin')
+  //     .setValue('input[name="email"]', 'foo5@foo.com')
+  //     .setValue('.passwordz', '123456')
+  //     .click('button[type="submit"]', () => {
+  //       client
+  //         .waitForElementVisible('.reg', 10000)
+  //         .verify.urlEquals('http://localhost:3000/')
+  //         .verify.containsText('.logout', 'Logout')
+  //         .keys(client.Keys.ESCAPE)
+  //         .click('.logout')
+  //         .waitForElementVisible('.login', 5000)
+  //         .verify.elementPresent('.login')
+  //         .pause(500);
+  //     });
+  // },
+  //   'user signs in with invalid email': (client) => {
+  //   client
+  //     .url('http://localhost:3000/auth/signin')
+  //     .setValue('input[name="email"]', 'foo5@foot.com')
+  //     .setValue('.passwordz', '123456')
+  //     .click('button[type="submit"]', () => {
+  //       client
+  //         .waitForElementVisible('.error', 15000)
+  //         .assert.containsText('#err_msg', 'invalid login details')
+  //         .pause(500);
+  //     });
+  // },
+  // 'user can not signup with taken email address': (client) => {
+  //   client
+  //     .url('http://localhost:3000/auth/signup')
+  //     .setValue('input[name="email"]', 'foo5@foo.com')
+  //     .setValue('.passwordz', '123456')
+  //     .setValue('.username', 'jenaeodo')
+  //     .click('button[type="submit"]')
+  //     .waitForElementVisible('.error', 15000)
+  //     .assert.containsText('#err_msg', 'Oops.The email you entered already exists')
+  //     .pause(500);
+  // },
   'User should be able to  signin in ': (client) => {
     client
       .url('http://localhost:3000/auth/signin')
@@ -194,7 +187,7 @@ module.exports = {
     client
       .url('http://localhost:3000/user/events')
       .waitForElementPresent('.title_text', 5000)
-      .verify.elementPresent('#google2')
+      .verify.elementPresent('#rgoogle2')
       .click('#google2')
       .waitForElementPresent('#modal1', 5000)
       .click('.test2')
@@ -208,8 +201,7 @@ module.exports = {
   'Admin user should be able to add a new center ': (client) => {
     client
       .url('http://localhost:3000/user/admin')
-      .click('.modal-trigger')
-      .waitForElementPresent('#modal1', 5000)
+      .click('.add')
       .verify.elementPresent('form')
       .verify.containsText('h4', 'Add a Center!')
       .setValue('input[name="name"]', 'emTest')
@@ -229,8 +221,7 @@ module.exports = {
   'return error if name field less than 4 characters ': (client) => {
     client
       .url('http://localhost:3000/user/admin')
-      .click('.modal-trigger')
-      .waitForElementPresent('#modal1', 5000)
+      .click('.add')
       .verify.elementPresent('form')
       .setValue('input[name="name"]', 'em')
       .setValue('input[name="location"]', '24 airport road, lagos state.')

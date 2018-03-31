@@ -21,11 +21,22 @@ describe('Test suites for Home component', () => {
       description: 'awesome place',
       favorites: [{userId: 88, centerId: 36}],
 			price: 400
+    },
+    {
+			name: 'emporium3',
+      description: 'awesome place',
+      favorites: [{userId: 88, centerId: 36}],
+			price: 400
 		}
 	];
 
 	beforeEach(() => {
-		mockument(`client/__test__/mocks/index.html`);
+    mockument(`client/__test__/mocks/index.html`);
+    localStorage.setItem('token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7
+    ImlkIjo4OCwidXNlcm5hbWUiOiJhbmRyZXciLCJlbWFpbCI6ImZvbzExQGZvby5jb20iLCJwYXNzd29yZCI
+    6IiQyYSQxMCQxamVtekFla1kxQWluY3h1RC5WSlNPRXhJNXVpSlU0dDdicktDUHpjME1pZkZSNU1nVVQ3aSIs
+    ImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDE4LTAzLTEwVDIwOjU1OjQ1LjIzN1oiLCJ1cGRhdGVkQXQiOiIyMDE4LTAzLTEwVDIwOjU1OjQ1LjIzN1oifSwiaWF0IjoxNTIwNz
+    E3MzkyLCJleHAiOjE1MjA4OTAxOTJ9.vtV9eRx_6OpJOw_cvBIlztCmQVRqvuJFwmo2trxy1B0`);
 	});
 	it('+++ renders without crashing', () => {
 		const wrapper = shallow(<Home getCenters={(index) => index} centers={centers} />);
@@ -35,7 +46,7 @@ describe('Test suites for Home component', () => {
 
 	it('+++ renders with all list of centers', () => {
 		const wrapper = shallow(<Home getCenters={(index) => index} centers={centers} />);
-		expect(wrapper.find('.displayed').length).toEqual(2);
+		expect(wrapper.find('.displayed').length).toEqual(3);
 	});
 
 	it('+++ renders with all list of user events', () => {
@@ -43,7 +54,7 @@ describe('Test suites for Home component', () => {
 		const wrapper = shallow(<Home getCenters={getCenters} centers={centers} />);
 		expect(getCenters.calledOnce).toEqual(true);
 		wrapper.find('.testx').simulate('click');
-		expect(getCenters.calledWith(5)).toEqual(true);
+		expect(getCenters.calledWith(6)).toEqual(true);
 		expect(wrapper).toMatchSnapshot();
   });
 
@@ -52,7 +63,8 @@ describe('Test suites for Home component', () => {
     const getCenters = sinon.spy();
 		const wrapper = shallow(<Home addFavorite={addFavorite} getCenters={getCenters} centers={centers} />);
 		expect(getCenters.calledOnce).toEqual(true);
-		wrapper.find('.favorite').simulate('click');
+    wrapper.find('.favorite').simulate('click');
+    //wrapper.find('.fav3').simulate('click');
 		expect(addFavorite.calledOnce).toEqual(true);
 		expect(wrapper).toMatchSnapshot();
 	});
@@ -60,21 +72,17 @@ describe('Test suites for Home component', () => {
 	it('+++ renders link to home page', () => {
 		const wrapper = shallow(<Home getCenters={(index) => index} centers={centers} />);
 		expect(wrapper.find('Link').at(1).prop('to')).toEqual('/auth/signup');
-		expect(wrapper.find('Link').at(0).prop('to')).toEqual('/auth/signin');
+		expect(wrapper.find('Link').at(0).prop('to')).toEqual('/user/events');
   });
 
   it('component calls setFavoriteCenter function', () => {
     const pathname = {pathname: 'hello'};
-    localStorage.setItem('token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7
-    ImlkIjo4OCwidXNlcm5hbWUiOiJhbmRyZXciLCJlbWFpbCI6ImZvbzExQGZvby5jb20iLCJwYXNzd29yZCI
-    6IiQyYSQxMCQxamVtekFla1kxQWluY3h1RC5WSlNPRXhJNXVpSlU0dDdicktDUHpjME1pZkZSNU1nVVQ3aSIs
-    ImlzQWRtaW4iOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDE4LTAzLTEwVDIwOjU1OjQ1LjIzN1oiLCJ1cGRhdGVkQXQiOiIyMDE4LTAzLTEwVDIwOjU1OjQ1LjIzN1oifSwiaWF0IjoxNTIwNz
-    E3MzkyLCJleHAiOjE1MjA4OTAxOTJ9.vtV9eRx_6OpJOw_cvBIlztCmQVRqvuJFwmo2trxy1B0`);
     const event = {name: 'jane09'};
 		const wrapper = shallow(
 			<Home getCenters={(index) => index} centers={centers} />
 		);
-		wrapper.instance().setFavoriteCenter(centers);
+    wrapper.instance().setFavoriteCenter(centers);
+    wrapper.instance().logOut();
   });
 
 	it('home component renders submits form', () => {

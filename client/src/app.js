@@ -11,6 +11,7 @@ function mapStateToProps(state) {
     loader: state.Notify.loader,
     error: state.Notify.error,
     events: state.events.event,
+    review: state.reviews,
     singleEvent: state.events.singleEvent,
 
     //user: state.user,

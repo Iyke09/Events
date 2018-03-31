@@ -31,6 +31,7 @@ class Admin extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.getMore = this.getMore.bind(this);
+    this.clearForm = this.clearForm.bind(this);
     this.activeRoute = this.activeRoute.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.handleUploadError = this.handleUploadError.bind(this);
@@ -42,7 +43,7 @@ class Admin extends Component {
   }
 
   componentWillMount(){
-    store.dispatch({type: 'ERROR', error: ''});
+    this.props.errorAction('');
     let decoded = '';
     const token = localStorage.getItem('token');
     if(token === null ){
@@ -64,7 +65,6 @@ class Admin extends Component {
     }
   }
   componentWillReceiveProps(newProps){
-    console.log('i am new pos ' + newProps.single);
     if(newProps.single !== this.props.single){
       this.setState(newProps.single);
       this.setState({avatarURL: newProps.single.image});
@@ -103,7 +103,11 @@ class Admin extends Component {
       this.setState({avatarURL: url, image: url});
     });
   }
-
+  clearForm(){
+    console.log('xxxxxoxo');
+      this.setState({name: '',description: '', capacity: '',
+       location: '', price: '', avatarURL: ''});
+  }
   handleSubmit(e) {
     e.preventDefault();
     this.props.loaders();
@@ -167,14 +171,15 @@ class Admin extends Component {
                   HOME</span>
                 </Link>
               </li>
-              <li className={this.activeRoute('/admin/add_center') ? 'grey' : ''}><Link to={"/admin/add_center"}><i className="fa fa-plus white-text" />
-              <span className="waves-effect white-text waves-light modal-trigger" href="#modal1">
+              <li className={this.activeRoute('/admin/add_center') ? 'grey' : ''}>
+              <Link to={"/admin/add_center"}><i className="fa fa-plus white-text" />
+              <span onClick={this.clearForm} className="waves-effect white-text waves-light add" href="#modal1">
                   ADD CENTER</span></Link>
               </li>
               {this.activeRoute('edit') ?
               <li className={this.activeRoute('edit') ? 'grey' : ''}><Link to={"/admin/add_center"}>
               <i className="fa fa-edit white-text" />
-              <span className="waves-effect white-text waves-light modal-trigger" href="#modal1">
+              <span className="waves-effect white-text waves-light update" href="#modal1">
                   EDIT CENTER</span></Link>
               </li>: ''}
               <li className={this.activeRoute('/admin/list_center') ? 'grey' : ''}>
@@ -190,7 +195,7 @@ class Admin extends Component {
                   <div className="row" style={{paddingTop: 50}}>
                     {centers.map((center) => {
                       return (
-                        <div className="col s12 m12 l4" key={center.id}>
+                        <div className="col s12 m12 l4 displayed" key={center.id}>
                           <div className="card w3sets" id="minor">
                             <div className="card-image waves-effect waves-block waves-light">
                               <img style={{height: 300}} className="activator"
@@ -218,9 +223,9 @@ class Admin extends Component {
                         </div>
                       );
                     })}
-                    <br/><br/>
-                    <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12">
-                      <button className="btn red">view more centers </button>
+                    <br/><br/><br/>
+                    <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 w3-padding-64">
+                      <button className="btn red right"> more centers </button>
                     </div>
                   </div>
                 </div> : <h1 className="center grey-text w3-padding-64">

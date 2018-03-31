@@ -24,15 +24,14 @@ class Main extends Component {
       console.log('the value is ' + decoded.exp, curr_time);
       if(curr_time > decoded.exp){
         localStorage.setItem('route', window.location.pathname);
+        localStorage.removeItem('token');
         browserHistory.push('/auth/signin');
       }
     }
     store.dispatch({type: 'ERROR', error: ''});
     $(document).ready(function() {
-      $(".button-collapse").sideNav();
-    });
-    $(document).ready(function() {
       $('select').material_select();
+      $(".button-collapse").sideNav();
     });
     let config = {
       apiKey: "AIzaSyB79V1_PDfy7IkLHjwscQyWFM1T-YuQdTY",
@@ -57,12 +56,5 @@ Main.propTypes = {
   children: PropTypes.object.isRequired,
 };
 
-{/* <Route exact path="/" render={() => (
-  loggedIn ? (
-    <Redirect to="/dashboard"/>
-  ) : (
-    <PublicHomePage/>
-  )
-)}/> */}
 
 export default Main;

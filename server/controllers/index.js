@@ -7,6 +7,8 @@ const adminController = {
   updateCenter: admin.updateCenter,
   detailCenter: admin.centerDetails,
   favoriteCenter: admin.favoriteCenters,
+  addReview: admin.addReview,
+  getReviews: admin.getReviews,
   allCenter: admin.allCenters,
   addEvent: events.addEvents,
   deleteEvent: events.deleteEvent,

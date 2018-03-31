@@ -25,6 +25,20 @@ export function loaders() {
   };
 }
 
+export function getReviews(index) {
+  return {
+    type: 'GET_ALL_REVIEWS',
+    index
+  };
+}
+
+export function addReview(payload) {
+  return {
+    type: 'ADD_REVIEW',
+    payload
+  };
+}
+
 export function errorAction(error) {
   return {
     type: 'ERROR',

@@ -325,7 +325,137 @@ ShallowWrapper {
                 Past Events
               </a>
             </li>
+            <li
+              className="tab col s3"
+            >
+              <a
+                className="red-text"
+                href="#test3"
+              >
+                Reviews
+              </a>
+            </li>
           </ul>
+        </div>
+        <div
+          className="col s12 m12 l12"
+          id="test3"
+        >
+          <div>
+            <div
+              className="col s12 m12 l10"
+            >
+              <div
+                className="col s3 m1 center"
+              >
+                <div
+                  className=" white-text w3-display-container"
+                  style={
+                    Object {
+                      "background": "red",
+                      "borderRadius": "100%",
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                >
+                  <h1
+                    className="font2"
+                    style={
+                      Object {
+                        "textTransform": "lowercase",
+                      }
+                    }
+                  >
+                    a
+                  </h1>
+                </div>
+              </div>
+              <div
+                className="col s9 m11 left-align"
+              >
+                <h2
+                  className="font2 newTitle"
+                >
+                  aje
+                  <span
+                    className="grey-text"
+                    style={
+                      Object {
+                        "fontSize": 14,
+                        "marginLeft": 6,
+                      }
+                    }
+                  >
+                    <small>
+                      
+                       Ago
+                    </small>
+                  </span>
+                </h2>
+                <p
+                  className="blue-grey-text"
+                >
+                  hello
+                   --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                </p>
+              </div>
+            </div>
+            <div
+              className="col s12 m12 l2"
+            />
+          </div>
+          <br />
+          <br />
+          <form
+            className=""
+            id="add-form"
+            onSubmit={[Function]}
+            style={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          >
+            <div
+              className="input-field col l10 s12 m12"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <textarea
+                className="materialize-textarea"
+                id="icon_prefix2"
+                name="comment"
+                onChange={[Function]}
+                required={true}
+                value={undefined}
+              />
+              <label
+                htmlFor="icon_prefix2"
+              >
+                Leave A Comment
+              </label>
+            </div>
+            <div
+              className="col l10 s12"
+            >
+              <button
+                className="right btn waves-effect waves-light red lighten-1"
+                disabled={false}
+                style={
+                  Object {
+                    "borderRadius": "25%",
+                  }
+                }
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
         <div
           className="col s12 m12 l12"
@@ -840,7 +970,137 @@ ShallowWrapper {
                   Past Events
                 </a>
               </li>
+              <li
+                className="tab col s3"
+              >
+                <a
+                  className="red-text"
+                  href="#test3"
+                >
+                  Reviews
+                </a>
+              </li>
             </ul>
+          </div>
+          <div
+            className="col s12 m12 l12"
+            id="test3"
+          >
+            <div>
+              <div
+                className="col s12 m12 l10"
+              >
+                <div
+                  className="col s3 m1 center"
+                >
+                  <div
+                    className=" white-text w3-display-container"
+                    style={
+                      Object {
+                        "background": "red",
+                        "borderRadius": "100%",
+                        "height": 50,
+                        "width": 50,
+                      }
+                    }
+                  >
+                    <h1
+                      className="font2"
+                      style={
+                        Object {
+                          "textTransform": "lowercase",
+                        }
+                      }
+                    >
+                      a
+                    </h1>
+                  </div>
+                </div>
+                <div
+                  className="col s9 m11 left-align"
+                >
+                  <h2
+                    className="font2 newTitle"
+                  >
+                    aje
+                    <span
+                      className="grey-text"
+                      style={
+                        Object {
+                          "fontSize": 14,
+                          "marginLeft": 6,
+                        }
+                      }
+                    >
+                      <small>
+                        
+                         Ago
+                      </small>
+                    </span>
+                  </h2>
+                  <p
+                    className="blue-grey-text"
+                  >
+                    hello
+                     --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="col s12 m12 l2"
+              />
+            </div>
+            <br />
+            <br />
+            <form
+              className=""
+              id="add-form"
+              onSubmit={[Function]}
+              style={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            >
+              <div
+                className="input-field col l10 s12 m12"
+              >
+                <i
+                  className="material-icons prefix"
+                >
+                  account_circle
+                </i>
+                <textarea
+                  className="materialize-textarea"
+                  id="icon_prefix2"
+                  name="comment"
+                  onChange={[Function]}
+                  required={true}
+                  value={undefined}
+                />
+                <label
+                  htmlFor="icon_prefix2"
+                >
+                  Leave A Comment
+                </label>
+              </div>
+              <div
+                className="col l10 s12"
+              >
+                <button
+                  className="right btn waves-effect waves-light red lighten-1"
+                  disabled={false}
+                  style={
+                    Object {
+                      "borderRadius": "25%",
+                    }
+                  }
+                  type="submit"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
           <div
             className="col s12 m12 l12"
@@ -1039,11 +1299,20 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
       "_currentElement": <Details
+        getReviews={[Function]}
         getSingle={[Function]}
         params={
           Object {
             "id": 1,
           }
+        }
+        review={
+          Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ]
         }
         single={
           Object {
@@ -1068,11 +1337,20 @@ ShallowWrapper {
       "_instance": Details {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleSubmit": [Function],
+        "onChange": [Function],
         "props": Object {
+          "getReviews": [Function],
           "getSingle": [Function],
           "params": Object {
             "id": 1,
           },
+          "review": Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ],
           "single": Object {
             "description": "awesome place",
             "events": Array [
@@ -1093,10 +1371,11 @@ ShallowWrapper {
         },
         "refs": Object {},
         "setRedirect": [Function],
+        "setTime": [Function],
         "state": Object {
+          "comment": "",
           "newArr1": Array [],
           "pastArr1": Array [],
-          "user": null,
         },
         "updater": Object {
           "enqueueCallback": [Function],
@@ -1440,7 +1719,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -1954,7 +2363,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -2156,11 +2695,20 @@ ShallowWrapper {
   },
   "root": [Circular],
   "unrendered": <Details
+    getReviews={[Function]}
     getSingle={[Function]}
     params={
       Object {
         "id": 1,
       }
+    }
+    review={
+      Array [
+        Object {
+          "comment": "hello",
+          "user": "aje",
+        },
+      ]
     }
     single={
       Object {
@@ -2510,7 +3058,137 @@ ShallowWrapper {
                 Past Events
               </a>
             </li>
+            <li
+              className="tab col s3"
+            >
+              <a
+                className="red-text"
+                href="#test3"
+              >
+                Reviews
+              </a>
+            </li>
           </ul>
+        </div>
+        <div
+          className="col s12 m12 l12"
+          id="test3"
+        >
+          <div>
+            <div
+              className="col s12 m12 l10"
+            >
+              <div
+                className="col s3 m1 center"
+              >
+                <div
+                  className=" white-text w3-display-container"
+                  style={
+                    Object {
+                      "background": "red",
+                      "borderRadius": "100%",
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                >
+                  <h1
+                    className="font2"
+                    style={
+                      Object {
+                        "textTransform": "lowercase",
+                      }
+                    }
+                  >
+                    a
+                  </h1>
+                </div>
+              </div>
+              <div
+                className="col s9 m11 left-align"
+              >
+                <h2
+                  className="font2 newTitle"
+                >
+                  aje
+                  <span
+                    className="grey-text"
+                    style={
+                      Object {
+                        "fontSize": 14,
+                        "marginLeft": 6,
+                      }
+                    }
+                  >
+                    <small>
+                      
+                       Ago
+                    </small>
+                  </span>
+                </h2>
+                <p
+                  className="blue-grey-text"
+                >
+                  hello
+                   --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                </p>
+              </div>
+            </div>
+            <div
+              className="col s12 m12 l2"
+            />
+          </div>
+          <br />
+          <br />
+          <form
+            className=""
+            id="add-form"
+            onSubmit={[Function]}
+            style={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          >
+            <div
+              className="input-field col l10 s12 m12"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <textarea
+                className="materialize-textarea"
+                id="icon_prefix2"
+                name="comment"
+                onChange={[Function]}
+                required={true}
+                value={undefined}
+              />
+              <label
+                htmlFor="icon_prefix2"
+              >
+                Leave A Comment
+              </label>
+            </div>
+            <div
+              className="col l10 s12"
+            >
+              <button
+                className="right btn waves-effect waves-light red lighten-1"
+                disabled={false}
+                style={
+                  Object {
+                    "borderRadius": "25%",
+                  }
+                }
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
         <div
           className="col s12 m12 l12"
@@ -3046,7 +3724,137 @@ ShallowWrapper {
                   Past Events
                 </a>
               </li>
+              <li
+                className="tab col s3"
+              >
+                <a
+                  className="red-text"
+                  href="#test3"
+                >
+                  Reviews
+                </a>
+              </li>
             </ul>
+          </div>
+          <div
+            className="col s12 m12 l12"
+            id="test3"
+          >
+            <div>
+              <div
+                className="col s12 m12 l10"
+              >
+                <div
+                  className="col s3 m1 center"
+                >
+                  <div
+                    className=" white-text w3-display-container"
+                    style={
+                      Object {
+                        "background": "red",
+                        "borderRadius": "100%",
+                        "height": 50,
+                        "width": 50,
+                      }
+                    }
+                  >
+                    <h1
+                      className="font2"
+                      style={
+                        Object {
+                          "textTransform": "lowercase",
+                        }
+                      }
+                    >
+                      a
+                    </h1>
+                  </div>
+                </div>
+                <div
+                  className="col s9 m11 left-align"
+                >
+                  <h2
+                    className="font2 newTitle"
+                  >
+                    aje
+                    <span
+                      className="grey-text"
+                      style={
+                        Object {
+                          "fontSize": 14,
+                          "marginLeft": 6,
+                        }
+                      }
+                    >
+                      <small>
+                        
+                         Ago
+                      </small>
+                    </span>
+                  </h2>
+                  <p
+                    className="blue-grey-text"
+                  >
+                    hello
+                     --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="col s12 m12 l2"
+              />
+            </div>
+            <br />
+            <br />
+            <form
+              className=""
+              id="add-form"
+              onSubmit={[Function]}
+              style={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            >
+              <div
+                className="input-field col l10 s12 m12"
+              >
+                <i
+                  className="material-icons prefix"
+                >
+                  account_circle
+                </i>
+                <textarea
+                  className="materialize-textarea"
+                  id="icon_prefix2"
+                  name="comment"
+                  onChange={[Function]}
+                  required={true}
+                  value={undefined}
+                />
+                <label
+                  htmlFor="icon_prefix2"
+                >
+                  Leave A Comment
+                </label>
+              </div>
+              <div
+                className="col l10 s12"
+              >
+                <button
+                  className="right btn waves-effect waves-light red lighten-1"
+                  disabled={false}
+                  style={
+                    Object {
+                      "borderRadius": "25%",
+                    }
+                  }
+                  type="submit"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
           <div
             className="col s12 m12 l12"
@@ -3266,11 +4074,20 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
       "_currentElement": <Details
+        getReviews={[Function]}
         getSingle={[Function]}
         params={
           Object {
             "id": 1,
           }
+        }
+        review={
+          Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ]
         }
         single={
           Object {
@@ -3295,11 +4112,20 @@ ShallowWrapper {
       "_instance": Details {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleSubmit": [Function],
+        "onChange": [Function],
         "props": Object {
+          "getReviews": [Function],
           "getSingle": [Function],
           "params": Object {
             "id": 1,
           },
+          "review": Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ],
           "single": Object {
             "description": "awesome place",
             "events": Array [
@@ -3320,7 +4146,9 @@ ShallowWrapper {
         },
         "refs": Object {},
         "setRedirect": [Function],
+        "setTime": [Function],
         "state": Object {
+          "comment": "",
           "newArr1": Array [],
           "pastArr1": Array [
             Object {
@@ -3329,7 +4157,6 @@ ShallowWrapper {
               "title": "emporium",
             },
           ],
-          "user": null,
         },
         "updater": Object {
           "enqueueCallback": [Function],
@@ -3673,7 +4500,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -4208,7 +5165,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -4431,11 +5518,20 @@ ShallowWrapper {
   },
   "root": [Circular],
   "unrendered": <Details
+    getReviews={[Function]}
     getSingle={[Function]}
     params={
       Object {
         "id": 1,
       }
+    }
+    review={
+      Array [
+        Object {
+          "comment": "hello",
+          "user": "aje",
+        },
+      ]
     }
     single={
       Object {
@@ -4785,7 +5881,137 @@ ShallowWrapper {
                 Past Events
               </a>
             </li>
+            <li
+              className="tab col s3"
+            >
+              <a
+                className="red-text"
+                href="#test3"
+              >
+                Reviews
+              </a>
+            </li>
           </ul>
+        </div>
+        <div
+          className="col s12 m12 l12"
+          id="test3"
+        >
+          <div>
+            <div
+              className="col s12 m12 l10"
+            >
+              <div
+                className="col s3 m1 center"
+              >
+                <div
+                  className=" white-text w3-display-container"
+                  style={
+                    Object {
+                      "background": "red",
+                      "borderRadius": "100%",
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                >
+                  <h1
+                    className="font2"
+                    style={
+                      Object {
+                        "textTransform": "lowercase",
+                      }
+                    }
+                  >
+                    a
+                  </h1>
+                </div>
+              </div>
+              <div
+                className="col s9 m11 left-align"
+              >
+                <h2
+                  className="font2 newTitle"
+                >
+                  aje
+                  <span
+                    className="grey-text"
+                    style={
+                      Object {
+                        "fontSize": 14,
+                        "marginLeft": 6,
+                      }
+                    }
+                  >
+                    <small>
+                      
+                       Ago
+                    </small>
+                  </span>
+                </h2>
+                <p
+                  className="blue-grey-text"
+                >
+                  hello
+                   --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                </p>
+              </div>
+            </div>
+            <div
+              className="col s12 m12 l2"
+            />
+          </div>
+          <br />
+          <br />
+          <form
+            className=""
+            id="add-form"
+            onSubmit={[Function]}
+            style={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          >
+            <div
+              className="input-field col l10 s12 m12"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <textarea
+                className="materialize-textarea"
+                id="icon_prefix2"
+                name="comment"
+                onChange={[Function]}
+                required={true}
+                value={undefined}
+              />
+              <label
+                htmlFor="icon_prefix2"
+              >
+                Leave A Comment
+              </label>
+            </div>
+            <div
+              className="col l10 s12"
+            >
+              <button
+                className="right btn waves-effect waves-light red lighten-1"
+                disabled={false}
+                style={
+                  Object {
+                    "borderRadius": "25%",
+                  }
+                }
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
         <div
           className="col s12 m12 l12"
@@ -5300,7 +6526,137 @@ ShallowWrapper {
                   Past Events
                 </a>
               </li>
+              <li
+                className="tab col s3"
+              >
+                <a
+                  className="red-text"
+                  href="#test3"
+                >
+                  Reviews
+                </a>
+              </li>
             </ul>
+          </div>
+          <div
+            className="col s12 m12 l12"
+            id="test3"
+          >
+            <div>
+              <div
+                className="col s12 m12 l10"
+              >
+                <div
+                  className="col s3 m1 center"
+                >
+                  <div
+                    className=" white-text w3-display-container"
+                    style={
+                      Object {
+                        "background": "red",
+                        "borderRadius": "100%",
+                        "height": 50,
+                        "width": 50,
+                      }
+                    }
+                  >
+                    <h1
+                      className="font2"
+                      style={
+                        Object {
+                          "textTransform": "lowercase",
+                        }
+                      }
+                    >
+                      a
+                    </h1>
+                  </div>
+                </div>
+                <div
+                  className="col s9 m11 left-align"
+                >
+                  <h2
+                    className="font2 newTitle"
+                  >
+                    aje
+                    <span
+                      className="grey-text"
+                      style={
+                        Object {
+                          "fontSize": 14,
+                          "marginLeft": 6,
+                        }
+                      }
+                    >
+                      <small>
+                        
+                         Ago
+                      </small>
+                    </span>
+                  </h2>
+                  <p
+                    className="blue-grey-text"
+                  >
+                    hello
+                     --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="col s12 m12 l2"
+              />
+            </div>
+            <br />
+            <br />
+            <form
+              className=""
+              id="add-form"
+              onSubmit={[Function]}
+              style={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            >
+              <div
+                className="input-field col l10 s12 m12"
+              >
+                <i
+                  className="material-icons prefix"
+                >
+                  account_circle
+                </i>
+                <textarea
+                  className="materialize-textarea"
+                  id="icon_prefix2"
+                  name="comment"
+                  onChange={[Function]}
+                  required={true}
+                  value={undefined}
+                />
+                <label
+                  htmlFor="icon_prefix2"
+                >
+                  Leave A Comment
+                </label>
+              </div>
+              <div
+                className="col l10 s12"
+              >
+                <button
+                  className="right btn waves-effect waves-light red lighten-1"
+                  disabled={false}
+                  style={
+                    Object {
+                      "borderRadius": "25%",
+                    }
+                  }
+                  type="submit"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
           <div
             className="col s12 m12 l12"
@@ -5499,11 +6855,20 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
       "_currentElement": <Details
+        getReviews={[Function]}
         getSingle={[Function]}
         params={
           Object {
             "id": 1,
           }
+        }
+        review={
+          Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ]
         }
         single={
           Object {
@@ -5528,11 +6893,20 @@ ShallowWrapper {
       "_instance": Details {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleSubmit": [Function],
+        "onChange": [Function],
         "props": Object {
+          "getReviews": [Function],
           "getSingle": [Function],
           "params": Object {
             "id": 1,
           },
+          "review": Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ],
           "single": Object {
             "description": "awesome place",
             "events": Array [
@@ -5553,7 +6927,9 @@ ShallowWrapper {
         },
         "refs": Object {},
         "setRedirect": [Function],
+        "setTime": [Function],
         "state": Object {
+          "comment": "",
           "newArr1": Array [
             Object {
               "date": "2019-04-05",
@@ -5565,7 +6941,6 @@ ShallowWrapper {
             },
           ],
           "pastArr1": Array [],
-          "user": null,
         },
         "updater": Object {
           "enqueueCallback": [Function],
@@ -5909,7 +7284,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -6482,7 +7987,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -6743,11 +8378,20 @@ ShallowWrapper {
   },
   "root": [Circular],
   "unrendered": <Details
+    getReviews={[Function]}
     getSingle={[Function]}
     params={
       Object {
         "id": 1,
       }
+    }
+    review={
+      Array [
+        Object {
+          "comment": "hello",
+          "user": "aje",
+        },
+      ]
     }
     single={
       Object {
@@ -7097,7 +8741,137 @@ ShallowWrapper {
                 Past Events
               </a>
             </li>
+            <li
+              className="tab col s3"
+            >
+              <a
+                className="red-text"
+                href="#test3"
+              >
+                Reviews
+              </a>
+            </li>
           </ul>
+        </div>
+        <div
+          className="col s12 m12 l12"
+          id="test3"
+        >
+          <div>
+            <div
+              className="col s12 m12 l10"
+            >
+              <div
+                className="col s3 m1 center"
+              >
+                <div
+                  className=" white-text w3-display-container"
+                  style={
+                    Object {
+                      "background": "red",
+                      "borderRadius": "100%",
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                >
+                  <h1
+                    className="font2"
+                    style={
+                      Object {
+                        "textTransform": "lowercase",
+                      }
+                    }
+                  >
+                    a
+                  </h1>
+                </div>
+              </div>
+              <div
+                className="col s9 m11 left-align"
+              >
+                <h2
+                  className="font2 newTitle"
+                >
+                  aje
+                  <span
+                    className="grey-text"
+                    style={
+                      Object {
+                        "fontSize": 14,
+                        "marginLeft": 6,
+                      }
+                    }
+                  >
+                    <small>
+                      
+                       Ago
+                    </small>
+                  </span>
+                </h2>
+                <p
+                  className="blue-grey-text"
+                >
+                  hello
+                   --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                </p>
+              </div>
+            </div>
+            <div
+              className="col s12 m12 l2"
+            />
+          </div>
+          <br />
+          <br />
+          <form
+            className=""
+            id="add-form"
+            onSubmit={[Function]}
+            style={
+              Object {
+                "marginTop": 100,
+              }
+            }
+          >
+            <div
+              className="input-field col l10 s12 m12"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <textarea
+                className="materialize-textarea"
+                id="icon_prefix2"
+                name="comment"
+                onChange={[Function]}
+                required={true}
+                value={undefined}
+              />
+              <label
+                htmlFor="icon_prefix2"
+              >
+                Leave A Comment
+              </label>
+            </div>
+            <div
+              className="col l10 s12"
+            >
+              <button
+                className="right btn waves-effect waves-light red lighten-1"
+                disabled={false}
+                style={
+                  Object {
+                    "borderRadius": "25%",
+                  }
+                }
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
         <div
           className="col s12 m12 l12"
@@ -7677,7 +9451,137 @@ ShallowWrapper {
                   Past Events
                 </a>
               </li>
+              <li
+                className="tab col s3"
+              >
+                <a
+                  className="red-text"
+                  href="#test3"
+                >
+                  Reviews
+                </a>
+              </li>
             </ul>
+          </div>
+          <div
+            className="col s12 m12 l12"
+            id="test3"
+          >
+            <div>
+              <div
+                className="col s12 m12 l10"
+              >
+                <div
+                  className="col s3 m1 center"
+                >
+                  <div
+                    className=" white-text w3-display-container"
+                    style={
+                      Object {
+                        "background": "red",
+                        "borderRadius": "100%",
+                        "height": 50,
+                        "width": 50,
+                      }
+                    }
+                  >
+                    <h1
+                      className="font2"
+                      style={
+                        Object {
+                          "textTransform": "lowercase",
+                        }
+                      }
+                    >
+                      a
+                    </h1>
+                  </div>
+                </div>
+                <div
+                  className="col s9 m11 left-align"
+                >
+                  <h2
+                    className="font2 newTitle"
+                  >
+                    aje
+                    <span
+                      className="grey-text"
+                      style={
+                        Object {
+                          "fontSize": 14,
+                          "marginLeft": 6,
+                        }
+                      }
+                    >
+                      <small>
+                        
+                         Ago
+                      </small>
+                    </span>
+                  </h2>
+                  <p
+                    className="blue-grey-text"
+                  >
+                    hello
+                     --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="col s12 m12 l2"
+              />
+            </div>
+            <br />
+            <br />
+            <form
+              className=""
+              id="add-form"
+              onSubmit={[Function]}
+              style={
+                Object {
+                  "marginTop": 100,
+                }
+              }
+            >
+              <div
+                className="input-field col l10 s12 m12"
+              >
+                <i
+                  className="material-icons prefix"
+                >
+                  account_circle
+                </i>
+                <textarea
+                  className="materialize-textarea"
+                  id="icon_prefix2"
+                  name="comment"
+                  onChange={[Function]}
+                  required={true}
+                  value={undefined}
+                />
+                <label
+                  htmlFor="icon_prefix2"
+                >
+                  Leave A Comment
+                </label>
+              </div>
+              <div
+                className="col l10 s12"
+              >
+                <button
+                  className="right btn waves-effect waves-light red lighten-1"
+                  disabled={false}
+                  style={
+                    Object {
+                      "borderRadius": "25%",
+                    }
+                  }
+                  type="submit"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
           <div
             className="col s12 m12 l12"
@@ -7941,11 +9845,20 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
       "_currentElement": <Details
+        getReviews={[Function]}
         getSingle={[Function]}
         params={
           Object {
             "id": 1,
           }
+        }
+        review={
+          Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ]
         }
         single={
           Object {
@@ -7970,11 +9883,20 @@ ShallowWrapper {
       "_instance": Details {
         "_reactInternalInstance": [Circular],
         "context": Object {},
+        "handleSubmit": [Function],
+        "onChange": [Function],
         "props": Object {
+          "getReviews": [Function],
           "getSingle": [Function],
           "params": Object {
             "id": 1,
           },
+          "review": Array [
+            Object {
+              "comment": "hello",
+              "user": "aje",
+            },
+          ],
           "single": Object {
             "description": "awesome place",
             "events": Array [
@@ -7995,7 +9917,9 @@ ShallowWrapper {
         },
         "refs": Object {},
         "setRedirect": [Function],
+        "setTime": [Function],
         "state": Object {
+          "comment": "",
           "newArr1": Array [
             Object {
               "date": "09-09-2019",
@@ -8009,7 +9933,6 @@ ShallowWrapper {
             },
           ],
           "pastArr1": Array [],
-          "user": null,
         },
         "updater": Object {
           "enqueueCallback": [Function],
@@ -8353,7 +10276,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -8932,7 +10985,137 @@ ShallowWrapper {
                       Past Events
                     </a>
                   </li>
+                  <li
+                    className="tab col s3"
+                  >
+                    <a
+                      className="red-text"
+                      href="#test3"
+                    >
+                      Reviews
+                    </a>
+                  </li>
                 </ul>
+              </div>
+              <div
+                className="col s12 m12 l12"
+                id="test3"
+              >
+                <div>
+                  <div
+                    className="col s12 m12 l10"
+                  >
+                    <div
+                      className="col s3 m1 center"
+                    >
+                      <div
+                        className=" white-text w3-display-container"
+                        style={
+                          Object {
+                            "background": "red",
+                            "borderRadius": "100%",
+                            "height": 50,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        <h1
+                          className="font2"
+                          style={
+                            Object {
+                              "textTransform": "lowercase",
+                            }
+                          }
+                        >
+                          a
+                        </h1>
+                      </div>
+                    </div>
+                    <div
+                      className="col s9 m11 left-align"
+                    >
+                      <h2
+                        className="font2 newTitle"
+                      >
+                        aje
+                        <span
+                          className="grey-text"
+                          style={
+                            Object {
+                              "fontSize": 14,
+                              "marginLeft": 6,
+                            }
+                          }
+                        >
+                          <small>
+                            
+                             Ago
+                          </small>
+                        </span>
+                      </h2>
+                      <p
+                        className="blue-grey-text"
+                      >
+                        hello
+                         --&gt; Quisque aliquam dignissim felis, a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae pellentesque.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m12 l2"
+                  />
+                </div>
+                <br />
+                <br />
+                <form
+                  className=""
+                  id="add-form"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "marginTop": 100,
+                    }
+                  }
+                >
+                  <div
+                    className="input-field col l10 s12 m12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      account_circle
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="comment"
+                      onChange={[Function]}
+                      required={true}
+                      value={undefined}
+                    />
+                    <label
+                      htmlFor="icon_prefix2"
+                    >
+                      Leave A Comment
+                    </label>
+                  </div>
+                  <div
+                    className="col l10 s12"
+                  >
+                    <button
+                      className="right btn waves-effect waves-light red lighten-1"
+                      disabled={false}
+                      style={
+                        Object {
+                          "borderRadius": "25%",
+                        }
+                      }
+                      type="submit"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 className="col s12 m12 l12"
@@ -9199,11 +11382,20 @@ ShallowWrapper {
   },
   "root": [Circular],
   "unrendered": <Details
+    getReviews={[Function]}
     getSingle={[Function]}
     params={
       Object {
         "id": 1,
       }
+    }
+    review={
+      Array [
+        Object {
+          "comment": "hello",
+          "user": "aje",
+        },
+      ]
     }
     single={
       Object {

@@ -1,0 +1,4342 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test suites for Home component +++ admin page renders without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="Admin"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col l12 s12"
+      >
+        <div
+          className="w3-bar"
+        >
+          <span
+            className="col l3"
+          />
+          <div
+            className="col l9 s12"
+          >
+            <input
+              className="w3-bar-item w3-input"
+              onChange={[Function]}
+              placeholder="Enter a search value..."
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="col l4 s12 m12"
+      >
+        <ul
+          className="side-nav fixed white-text"
+          id="slide-out"
+          style={
+            Object {
+              "backgroundColor": "#17202A",
+            }
+          }
+        >
+          <li>
+            <div
+              className="user-view"
+            >
+              <div
+                className="background"
+              >
+                <img
+                  src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                />
+              </div>
+              <a
+                href="#!user"
+              >
+                <img
+                  className="circle"
+                  src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                />
+              </a>
+              <a
+                href="#!name"
+              >
+                <span
+                  className="white-text name"
+                >
+                  Admin-001
+                </span>
+              </a>
+              <a
+                href="#!email"
+              >
+                <span
+                  className="white-text email"
+                >
+                  admin-001@gmail.com
+                </span>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              <i
+                className="material-icons grey-text"
+              >
+                cloud
+              </i>
+              Cloudy - 24-09, 2017 
+            </a>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              ID:3456565646JD
+            </a>
+          </li>
+          <li>
+            <div
+              className="divider"
+            />
+          </li>
+          <li>
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/"
+            >
+              <i
+                className="fa fa-home grey-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                HOME
+              </span>
+            </Link>
+          </li>
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/add_center"
+            >
+              <i
+                className="fa fa-plus white-text"
+              />
+              <span
+                className="waves-effect white-text waves-light modal-trigger"
+                href="#modal1"
+              >
+                ADD CENTER
+              </span>
+            </Link>
+          </li>
+          
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/list_center"
+            >
+              <i
+                className="fa fa-list white-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                CENTERS
+              </span>
+            </Link>
+          </li>
+        </ul>
+        <a
+          className="button-collapse"
+          data-activates="slide-out"
+          href="#"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+      </div>
+      <div
+        className="col s12 m12 l8 "
+      >
+        
+        
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="Admin"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col l12 s12"
+        >
+          <div
+            className="w3-bar"
+          >
+            <span
+              className="col l3"
+            />
+            <div
+              className="col l9 s12"
+            >
+              <input
+                className="w3-bar-item w3-input"
+                onChange={[Function]}
+                placeholder="Enter a search value..."
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="col l4 s12 m12"
+        >
+          <ul
+            className="side-nav fixed white-text"
+            id="slide-out"
+            style={
+              Object {
+                "backgroundColor": "#17202A",
+              }
+            }
+          >
+            <li>
+              <div
+                className="user-view"
+              >
+                <div
+                  className="background"
+                >
+                  <img
+                    src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                  />
+                </div>
+                <a
+                  href="#!user"
+                >
+                  <img
+                    className="circle"
+                    src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                  />
+                </a>
+                <a
+                  href="#!name"
+                >
+                  <span
+                    className="white-text name"
+                  >
+                    Admin-001
+                  </span>
+                </a>
+                <a
+                  href="#!email"
+                >
+                  <span
+                    className="white-text email"
+                  >
+                    admin-001@gmail.com
+                  </span>
+                </a>
+              </div>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                <i
+                  className="material-icons grey-text"
+                >
+                  cloud
+                </i>
+                Cloudy - 24-09, 2017 
+              </a>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                ID:3456565646JD
+              </a>
+            </li>
+            <li>
+              <div
+                className="divider"
+              />
+            </li>
+            <li>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/"
+              >
+                <i
+                  className="fa fa-home grey-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  HOME
+                </span>
+              </Link>
+            </li>
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/add_center"
+              >
+                <i
+                  className="fa fa-plus white-text"
+                />
+                <span
+                  className="waves-effect white-text waves-light modal-trigger"
+                  href="#modal1"
+                >
+                  ADD CENTER
+                </span>
+              </Link>
+            </li>
+            
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/list_center"
+              >
+                <i
+                  className="fa fa-list white-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  CENTERS
+                </span>
+              </Link>
+            </li>
+          </ul>
+          <a
+            className="button-collapse"
+            data-activates="slide-out"
+            href="#"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </div>
+        <div
+          className="col s12 m12 l8 "
+        >
+          
+          
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_context": Object {},
+      "_currentElement": <Admin
+        centers={
+          Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ]
+        }
+        getCenters={[Function]}
+        location={
+          Object {
+            "pathname": "list_center",
+          }
+        }
+      />,
+      "_instance": Admin {
+        "_reactInternalInstance": [Circular],
+        "activeRoute": [Function],
+        "closeErrMsg": [Function],
+        "context": Object {},
+        "getMore": [Function],
+        "handleProgress": [Function],
+        "handleSubmit": [Function],
+        "handleUploadError": [Function],
+        "handleUploadStart": [Function],
+        "handleUploadSuccess": [Function],
+        "onChange": [Function],
+        "props": Object {
+          "centers": Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ],
+          "getCenters": [Function],
+          "location": Object {
+            "pathname": "list_center",
+          },
+        },
+        "refs": Object {},
+        "searchCenter": [Function],
+        "state": Object {
+          "avatar": "",
+          "avatarURL": "",
+          "capacity": "",
+          "description": "",
+          "image": "",
+          "isUploading": false,
+          "location": "",
+          "name": "",
+          "price": "",
+          "progress": 0,
+          "username": "",
+        },
+        "updateCenter": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 1,
+      "_nativeContainerInfo": null,
+      "_nativeParent": null,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": Object {
+        "_currentElement": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col l12 s12"
+            >
+              <div
+                className="w3-bar"
+              >
+                <span
+                  className="col l3"
+                />
+                <div
+                  className="col l9 s12"
+                >
+                  <input
+                    className="w3-bar-item w3-input"
+                    onChange={[Function]}
+                    placeholder="Enter a search value..."
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              
+            </div>
+          </div>
+        </div>,
+        "_renderedOutput": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col l12 s12"
+            >
+              <div
+                className="w3-bar"
+              >
+                <span
+                  className="col l3"
+                />
+                <div
+                  className="col l9 s12"
+                >
+                  <input
+                    className="w3-bar-item w3-input"
+                    onChange={[Function]}
+                    placeholder="Enter a search value..."
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": null,
+      "_topLevelWrapper": null,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Admin
+    centers={
+      Array [
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 33,
+              "userId": 11,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium3",
+          "price": 400,
+        },
+      ]
+    }
+    getCenters={[Function]}
+    location={
+      Object {
+        "pathname": "list_center",
+      }
+    }
+  />,
+}
+`;
+
+exports[`Test suites for Home component admin component calls componentwillrecieveprops with newprops 1`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="Admin"
+  >
+    <div
+      className="row"
+    >
+      
+      <div
+        className="col l4 s12 m12"
+      >
+        <ul
+          className="side-nav fixed white-text"
+          id="slide-out"
+          style={
+            Object {
+              "backgroundColor": "#17202A",
+            }
+          }
+        >
+          <li>
+            <div
+              className="user-view"
+            >
+              <div
+                className="background"
+              >
+                <img
+                  src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                />
+              </div>
+              <a
+                href="#!user"
+              >
+                <img
+                  className="circle"
+                  src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                />
+              </a>
+              <a
+                href="#!name"
+              >
+                <span
+                  className="white-text name"
+                >
+                  Admin-001
+                </span>
+              </a>
+              <a
+                href="#!email"
+              >
+                <span
+                  className="white-text email"
+                >
+                  admin-001@gmail.com
+                </span>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              <i
+                className="material-icons grey-text"
+              >
+                cloud
+              </i>
+              Cloudy - 24-09, 2017 
+            </a>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              ID:3456565646JD
+            </a>
+          </li>
+          <li>
+            <div
+              className="divider"
+            />
+          </li>
+          <li>
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/"
+            >
+              <i
+                className="fa fa-home grey-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                HOME
+              </span>
+            </Link>
+          </li>
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/add_center"
+            >
+              <i
+                className="fa fa-plus white-text"
+              />
+              <span
+                className="waves-effect white-text waves-light modal-trigger"
+                href="#modal1"
+              >
+                ADD CENTER
+              </span>
+            </Link>
+          </li>
+          <li
+            className="grey"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/add_center"
+            >
+              <i
+                className="fa fa-edit white-text"
+              />
+              <span
+                className="waves-effect white-text waves-light modal-trigger"
+                href="#modal1"
+              >
+                EDIT CENTER
+              </span>
+            </Link>
+          </li>
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/list_center"
+            >
+              <i
+                className="fa fa-list white-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                CENTERS
+              </span>
+            </Link>
+          </li>
+        </ul>
+        <a
+          className="button-collapse"
+          data-activates="slide-out"
+          href="#"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+      </div>
+      <div
+        className="col s12 m12 l8 "
+      >
+        
+        <div
+          className="card "
+          style={
+            Object {
+              "backgroundColor": "#FBFCFC",
+              "marginTop": 20,
+            }
+          }
+        >
+          <div
+            className="card-content "
+          >
+            
+            <form
+              className="row"
+              id="add-form"
+              onSubmit={[Function]}
+            >
+              
+              <h4
+                className="col s12 center light"
+              >
+                Edit 
+                Center!
+              </h4>
+              <small
+                className="col s12 center light font3"
+              >
+                Lorem ipsum dolor sit amet
+              </small>
+              <div
+                className="row"
+              >
+                <div
+                  className=" col s12"
+                >
+                  
+                  <br />
+                  <br />
+                  <i
+                    className="material-icons prefix"
+                  >
+                    add_a_photo
+                  </i>
+                  <label
+                    style={
+                      Object {
+                        "backgroundColor": "steelblue",
+                        "borderRadius": 4,
+                        "color": "white",
+                        "padding": 10,
+                        "pointer": "cursor",
+                      }
+                    }
+                  >
+                    Select an image
+                    <FirebaseFileUploader
+                      accept="image/*"
+                      hidden={true}
+                      name="avatar"
+                      onProgress={[Function]}
+                      onUploadError={[Function]}
+                      onUploadStart={[Function]}
+                      onUploadSuccess={[Function]}
+                      randomizeFilename={true}
+                      storageRef="hello"
+                    />
+                  </label>
+                </div>
+                <div
+                  className="input-field col m6 s12"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    home
+                  </i>
+                  <input
+                    className="validate"
+                    id="icon_telephone"
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    required={true}
+                    type="tel"
+                    value=""
+                  />
+                </div>
+                <div
+                  className="input-field col s12 m6"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    add_location
+                  </i>
+                  <input
+                    className="validate"
+                    id="icon_telephone"
+                    name="location"
+                    onChange={[Function]}
+                    placeholder="Address"
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col s12 m6"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        className="material-icons prefix"
+                      >
+                        attach_money
+                      </i>
+                      <input
+                        className="validate"
+                        id="icon_telephone"
+                        name="price"
+                        onChange={[Function]}
+                        placeholder="Price"
+                        type="number"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m6"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        className="material-icons prefix"
+                      >
+                        people
+                      </i>
+                      <input
+                        className="validate"
+                        id="icon_telephone"
+                        name="capacity"
+                        onChange={[Function]}
+                        placeholder="Capacity"
+                        required={true}
+                        type="number"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    mode_edit
+                  </i>
+                  <textarea
+                    className="materialize-textarea"
+                    id="icon_prefix2"
+                    name="description"
+                    onChange={[Function]}
+                    required={true}
+                    value=""
+                  />
+                  
+                </div>
+                <div
+                  className=""
+                  style={
+                    Object {
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <button
+                    className="btn waves-effect waves-light red lighten-1"
+                    type="submit"
+                  >
+                    Edit 
+                    Center
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="Admin"
+    >
+      <div
+        className="row"
+      >
+        
+        <div
+          className="col l4 s12 m12"
+        >
+          <ul
+            className="side-nav fixed white-text"
+            id="slide-out"
+            style={
+              Object {
+                "backgroundColor": "#17202A",
+              }
+            }
+          >
+            <li>
+              <div
+                className="user-view"
+              >
+                <div
+                  className="background"
+                >
+                  <img
+                    src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                  />
+                </div>
+                <a
+                  href="#!user"
+                >
+                  <img
+                    className="circle"
+                    src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                  />
+                </a>
+                <a
+                  href="#!name"
+                >
+                  <span
+                    className="white-text name"
+                  >
+                    Admin-001
+                  </span>
+                </a>
+                <a
+                  href="#!email"
+                >
+                  <span
+                    className="white-text email"
+                  >
+                    admin-001@gmail.com
+                  </span>
+                </a>
+              </div>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                <i
+                  className="material-icons grey-text"
+                >
+                  cloud
+                </i>
+                Cloudy - 24-09, 2017 
+              </a>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                ID:3456565646JD
+              </a>
+            </li>
+            <li>
+              <div
+                className="divider"
+              />
+            </li>
+            <li>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/"
+              >
+                <i
+                  className="fa fa-home grey-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  HOME
+                </span>
+              </Link>
+            </li>
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/add_center"
+              >
+                <i
+                  className="fa fa-plus white-text"
+                />
+                <span
+                  className="waves-effect white-text waves-light modal-trigger"
+                  href="#modal1"
+                >
+                  ADD CENTER
+                </span>
+              </Link>
+            </li>
+            <li
+              className="grey"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/add_center"
+              >
+                <i
+                  className="fa fa-edit white-text"
+                />
+                <span
+                  className="waves-effect white-text waves-light modal-trigger"
+                  href="#modal1"
+                >
+                  EDIT CENTER
+                </span>
+              </Link>
+            </li>
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/list_center"
+              >
+                <i
+                  className="fa fa-list white-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  CENTERS
+                </span>
+              </Link>
+            </li>
+          </ul>
+          <a
+            className="button-collapse"
+            data-activates="slide-out"
+            href="#"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </div>
+        <div
+          className="col s12 m12 l8 "
+        >
+          
+          <div
+            className="card "
+            style={
+              Object {
+                "backgroundColor": "#FBFCFC",
+                "marginTop": 20,
+              }
+            }
+          >
+            <div
+              className="card-content "
+            >
+              
+              <form
+                className="row"
+                id="add-form"
+                onSubmit={[Function]}
+              >
+                
+                <h4
+                  className="col s12 center light"
+                >
+                  Edit 
+                  Center!
+                </h4>
+                <small
+                  className="col s12 center light font3"
+                >
+                  Lorem ipsum dolor sit amet
+                </small>
+                <div
+                  className="row"
+                >
+                  <div
+                    className=" col s12"
+                  >
+                    
+                    <br />
+                    <br />
+                    <i
+                      className="material-icons prefix"
+                    >
+                      add_a_photo
+                    </i>
+                    <label
+                      style={
+                        Object {
+                          "backgroundColor": "steelblue",
+                          "borderRadius": 4,
+                          "color": "white",
+                          "padding": 10,
+                          "pointer": "cursor",
+                        }
+                      }
+                    >
+                      Select an image
+                      <FirebaseFileUploader
+                        accept="image/*"
+                        hidden={true}
+                        name="avatar"
+                        onProgress={[Function]}
+                        onUploadError={[Function]}
+                        onUploadStart={[Function]}
+                        onUploadSuccess={[Function]}
+                        randomizeFilename={true}
+                        storageRef="hello"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    className="input-field col m6 s12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      home
+                    </i>
+                    <input
+                      className="validate"
+                      id="icon_telephone"
+                      name="name"
+                      onChange={[Function]}
+                      placeholder="Name"
+                      required={true}
+                      type="tel"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="input-field col s12 m6"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      add_location
+                    </i>
+                    <input
+                      className="validate"
+                      id="icon_telephone"
+                      name="location"
+                      onChange={[Function]}
+                      placeholder="Address"
+                      required={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="col s12 m6"
+                    >
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          attach_money
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="price"
+                          onChange={[Function]}
+                          placeholder="Price"
+                          type="number"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="col s12 m6"
+                    >
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          people
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="capacity"
+                          onChange={[Function]}
+                          placeholder="Capacity"
+                          required={true}
+                          type="number"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="input-field col s12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      mode_edit
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="description"
+                      onChange={[Function]}
+                      required={true}
+                      value=""
+                    />
+                    
+                  </div>
+                  <div
+                    className=""
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    <button
+                      className="btn waves-effect waves-light red lighten-1"
+                      type="submit"
+                    >
+                      Edit 
+                      Center
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_context": Object {},
+      "_currentElement": <Admin
+        centers={
+          Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ]
+        }
+        getCenters={[Function]}
+        getSingle={[Function]}
+        location={
+          Object {
+            "pathname": "edit",
+          }
+        }
+        mock="hello"
+        params={
+          Object {
+            "id": 1,
+          }
+        }
+        single="helloo0"
+      />,
+      "_instance": Admin {
+        "_reactInternalInstance": [Circular],
+        "activeRoute": [Function],
+        "closeErrMsg": [Function],
+        "context": Object {},
+        "getMore": [Function],
+        "handleProgress": [Function],
+        "handleSubmit": [Function],
+        "handleUploadError": [Function],
+        "handleUploadStart": [Function],
+        "handleUploadSuccess": [Function],
+        "onChange": [Function],
+        "props": Object {
+          "centers": Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ],
+          "getCenters": [Function],
+          "getSingle": [Function],
+          "location": Object {
+            "pathname": "edit",
+          },
+          "mock": "hello",
+          "params": Object {
+            "id": 1,
+          },
+          "single": "helloo0",
+        },
+        "refs": Object {},
+        "searchCenter": [Function],
+        "state": Object {
+          "avatar": "",
+          "avatarURL": "/img08.jpeg",
+          "capacity": "",
+          "description": "",
+          "image": "/img08.jpeg",
+          "isUploading": false,
+          "location": "",
+          "name": "",
+          "price": "",
+          "progress": 0,
+          "username": "",
+        },
+        "updateCenter": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 8,
+      "_nativeContainerInfo": null,
+      "_nativeParent": null,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": Object {
+        "_currentElement": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className="grey"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-edit white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      EDIT CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              <div
+                className="card "
+                style={
+                  Object {
+                    "backgroundColor": "#FBFCFC",
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <div
+                  className="card-content "
+                >
+                  
+                  <form
+                    className="row"
+                    id="add-form"
+                    onSubmit={[Function]}
+                  >
+                    
+                    <h4
+                      className="col s12 center light"
+                    >
+                      Edit 
+                      Center!
+                    </h4>
+                    <small
+                      className="col s12 center light font3"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </small>
+                    <div
+                      className="row"
+                    >
+                      <div
+                        className=" col s12"
+                      >
+                        <img
+                          className="responsive-img"
+                          src="/img08.jpeg"
+                          style={
+                            Object {
+                              "height": 300,
+                              "width": "100%",
+                            }
+                          }
+                        />
+                        <br />
+                        <br />
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_a_photo
+                        </i>
+                        <label
+                          style={
+                            Object {
+                              "backgroundColor": "steelblue",
+                              "borderRadius": 4,
+                              "color": "white",
+                              "padding": 10,
+                              "pointer": "cursor",
+                            }
+                          }
+                        >
+                          Select an image
+                          <FirebaseFileUploader
+                            accept="image/*"
+                            hidden={true}
+                            name="avatar"
+                            onProgress={[Function]}
+                            onUploadError={[Function]}
+                            onUploadStart={[Function]}
+                            onUploadSuccess={[Function]}
+                            randomizeFilename={true}
+                            storageRef="hello"
+                          />
+                        </label>
+                      </div>
+                      <div
+                        className="input-field col m6 s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          home
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="name"
+                          onChange={[Function]}
+                          placeholder="Name"
+                          required={true}
+                          type="tel"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="input-field col s12 m6"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_location
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="location"
+                          onChange={[Function]}
+                          placeholder="Address"
+                          required={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              attach_money
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="price"
+                              onChange={[Function]}
+                              placeholder="Price"
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              people
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="capacity"
+                              onChange={[Function]}
+                              placeholder="Capacity"
+                              required={true}
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          mode_edit
+                        </i>
+                        <textarea
+                          className="materialize-textarea"
+                          id="icon_prefix2"
+                          name="description"
+                          onChange={[Function]}
+                          required={true}
+                          value=""
+                        />
+                        
+                      </div>
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        <button
+                          className="btn waves-effect waves-light red lighten-1"
+                          type="submit"
+                        >
+                          Edit 
+                          Center
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        "_renderedOutput": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className="grey"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-edit white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      EDIT CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              <div
+                className="card "
+                style={
+                  Object {
+                    "backgroundColor": "#FBFCFC",
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <div
+                  className="card-content "
+                >
+                  
+                  <form
+                    className="row"
+                    id="add-form"
+                    onSubmit={[Function]}
+                  >
+                    
+                    <h4
+                      className="col s12 center light"
+                    >
+                      Edit 
+                      Center!
+                    </h4>
+                    <small
+                      className="col s12 center light font3"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </small>
+                    <div
+                      className="row"
+                    >
+                      <div
+                        className=" col s12"
+                      >
+                        <img
+                          className="responsive-img"
+                          src="/img08.jpeg"
+                          style={
+                            Object {
+                              "height": 300,
+                              "width": "100%",
+                            }
+                          }
+                        />
+                        <br />
+                        <br />
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_a_photo
+                        </i>
+                        <label
+                          style={
+                            Object {
+                              "backgroundColor": "steelblue",
+                              "borderRadius": 4,
+                              "color": "white",
+                              "padding": 10,
+                              "pointer": "cursor",
+                            }
+                          }
+                        >
+                          Select an image
+                          <FirebaseFileUploader
+                            accept="image/*"
+                            hidden={true}
+                            name="avatar"
+                            onProgress={[Function]}
+                            onUploadError={[Function]}
+                            onUploadStart={[Function]}
+                            onUploadSuccess={[Function]}
+                            randomizeFilename={true}
+                            storageRef="hello"
+                          />
+                        </label>
+                      </div>
+                      <div
+                        className="input-field col m6 s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          home
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="name"
+                          onChange={[Function]}
+                          placeholder="Name"
+                          required={true}
+                          type="tel"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="input-field col s12 m6"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_location
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="location"
+                          onChange={[Function]}
+                          placeholder="Address"
+                          required={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              attach_money
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="price"
+                              onChange={[Function]}
+                              placeholder="Price"
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              people
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="capacity"
+                              onChange={[Function]}
+                              placeholder="Capacity"
+                              required={true}
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          mode_edit
+                        </i>
+                        <textarea
+                          className="materialize-textarea"
+                          id="icon_prefix2"
+                          name="description"
+                          onChange={[Function]}
+                          required={true}
+                          value=""
+                        />
+                        
+                      </div>
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        <button
+                          className="btn waves-effect waves-light red lighten-1"
+                          type="submit"
+                        >
+                          Edit 
+                          Center
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": null,
+      "_topLevelWrapper": null,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Admin
+    centers={
+      Array [
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 33,
+              "userId": 11,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium3",
+          "price": 400,
+        },
+      ]
+    }
+    getCenters={[Function]}
+    getSingle={[Function]}
+    location={
+      Object {
+        "pathname": "edit",
+      }
+    }
+    mock="hello"
+    params={
+      Object {
+        "id": 1,
+      }
+    }
+    single="helloo0"
+  />,
+}
+`;
+
+exports[`Test suites for Home component admin component calls componentwillrecieveprops with newprops 2`] = `
+ShallowWrapper {
+  "length": 1,
+  "node": <div
+    className="Admin"
+  >
+    <div
+      className="row"
+    >
+      
+      <div
+        className="col l4 s12 m12"
+      >
+        <ul
+          className="side-nav fixed white-text"
+          id="slide-out"
+          style={
+            Object {
+              "backgroundColor": "#17202A",
+            }
+          }
+        >
+          <li>
+            <div
+              className="user-view"
+            >
+              <div
+                className="background"
+              >
+                <img
+                  src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                />
+              </div>
+              <a
+                href="#!user"
+              >
+                <img
+                  className="circle"
+                  src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                />
+              </a>
+              <a
+                href="#!name"
+              >
+                <span
+                  className="white-text name"
+                >
+                  Admin-001
+                </span>
+              </a>
+              <a
+                href="#!email"
+              >
+                <span
+                  className="white-text email"
+                >
+                  admin-001@gmail.com
+                </span>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              <i
+                className="material-icons grey-text"
+              >
+                cloud
+              </i>
+              Cloudy - 24-09, 2017 
+            </a>
+          </li>
+          <li>
+            <a
+              className="white-text"
+              href="#!"
+            >
+              ID:3456565646JD
+            </a>
+          </li>
+          <li>
+            <div
+              className="divider"
+            />
+          </li>
+          <li>
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/"
+            >
+              <i
+                className="fa fa-home grey-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                HOME
+              </span>
+            </Link>
+          </li>
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/add_center"
+            >
+              <i
+                className="fa fa-plus white-text"
+              />
+              <span
+                className="waves-effect white-text waves-light modal-trigger"
+                href="#modal1"
+              >
+                ADD CENTER
+              </span>
+            </Link>
+          </li>
+          <li
+            className="grey"
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/add_center"
+            >
+              <i
+                className="fa fa-edit white-text"
+              />
+              <span
+                className="waves-effect white-text waves-light modal-trigger"
+                href="#modal1"
+              >
+                EDIT CENTER
+              </span>
+            </Link>
+          </li>
+          <li
+            className=""
+          >
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="/admin/list_center"
+            >
+              <i
+                className="fa fa-list white-text"
+              />
+              <span
+                className="waves-effect white-text"
+              >
+                CENTERS
+              </span>
+            </Link>
+          </li>
+        </ul>
+        <a
+          className="button-collapse"
+          data-activates="slide-out"
+          href="#"
+        >
+          <i
+            className="material-icons"
+          >
+            menu
+          </i>
+        </a>
+      </div>
+      <div
+        className="col s12 m12 l8 "
+      >
+        
+        <div
+          className="card "
+          style={
+            Object {
+              "backgroundColor": "#FBFCFC",
+              "marginTop": 20,
+            }
+          }
+        >
+          <div
+            className="card-content "
+          >
+            
+            <form
+              className="row"
+              id="add-form"
+              onSubmit={[Function]}
+            >
+              
+              <h4
+                className="col s12 center light"
+              >
+                Edit 
+                Center!
+              </h4>
+              <small
+                className="col s12 center light font3"
+              >
+                Lorem ipsum dolor sit amet
+              </small>
+              <div
+                className="row"
+              >
+                <div
+                  className=" col s12"
+                >
+                  
+                  <br />
+                  <br />
+                  <i
+                    className="material-icons prefix"
+                  >
+                    add_a_photo
+                  </i>
+                  <label
+                    style={
+                      Object {
+                        "backgroundColor": "steelblue",
+                        "borderRadius": 4,
+                        "color": "white",
+                        "padding": 10,
+                        "pointer": "cursor",
+                      }
+                    }
+                  >
+                    Select an image
+                    <FirebaseFileUploader
+                      accept="image/*"
+                      hidden={true}
+                      name="avatar"
+                      onProgress={[Function]}
+                      onUploadError={[Function]}
+                      onUploadStart={[Function]}
+                      onUploadSuccess={[Function]}
+                      randomizeFilename={true}
+                      storageRef="hello"
+                    />
+                  </label>
+                </div>
+                <div
+                  className="input-field col m6 s12"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    home
+                  </i>
+                  <input
+                    className="validate"
+                    id="icon_telephone"
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    required={true}
+                    type="tel"
+                    value=""
+                  />
+                </div>
+                <div
+                  className="input-field col s12 m6"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    add_location
+                  </i>
+                  <input
+                    className="validate"
+                    id="icon_telephone"
+                    name="location"
+                    onChange={[Function]}
+                    placeholder="Address"
+                    required={true}
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col s12 m6"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        className="material-icons prefix"
+                      >
+                        attach_money
+                      </i>
+                      <input
+                        className="validate"
+                        id="icon_telephone"
+                        name="price"
+                        onChange={[Function]}
+                        placeholder="Price"
+                        type="number"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="col s12 m6"
+                  >
+                    <div
+                      className="input-field col s12"
+                    >
+                      <i
+                        className="material-icons prefix"
+                      >
+                        people
+                      </i>
+                      <input
+                        className="validate"
+                        id="icon_telephone"
+                        name="capacity"
+                        onChange={[Function]}
+                        placeholder="Capacity"
+                        required={true}
+                        type="number"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="input-field col s12"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    mode_edit
+                  </i>
+                  <textarea
+                    className="materialize-textarea"
+                    id="icon_prefix2"
+                    name="description"
+                    onChange={[Function]}
+                    required={true}
+                    value=""
+                  />
+                  
+                </div>
+                <div
+                  className=""
+                  style={
+                    Object {
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <button
+                    className="btn waves-effect waves-light red lighten-1"
+                    type="submit"
+                  >
+                    Edit 
+                    Center
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "nodes": Array [
+    <div
+      className="Admin"
+    >
+      <div
+        className="row"
+      >
+        
+        <div
+          className="col l4 s12 m12"
+        >
+          <ul
+            className="side-nav fixed white-text"
+            id="slide-out"
+            style={
+              Object {
+                "backgroundColor": "#17202A",
+              }
+            }
+          >
+            <li>
+              <div
+                className="user-view"
+              >
+                <div
+                  className="background"
+                >
+                  <img
+                    src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                  />
+                </div>
+                <a
+                  href="#!user"
+                >
+                  <img
+                    className="circle"
+                    src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                  />
+                </a>
+                <a
+                  href="#!name"
+                >
+                  <span
+                    className="white-text name"
+                  >
+                    Admin-001
+                  </span>
+                </a>
+                <a
+                  href="#!email"
+                >
+                  <span
+                    className="white-text email"
+                  >
+                    admin-001@gmail.com
+                  </span>
+                </a>
+              </div>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                <i
+                  className="material-icons grey-text"
+                >
+                  cloud
+                </i>
+                Cloudy - 24-09, 2017 
+              </a>
+            </li>
+            <li>
+              <a
+                className="white-text"
+                href="#!"
+              >
+                ID:3456565646JD
+              </a>
+            </li>
+            <li>
+              <div
+                className="divider"
+              />
+            </li>
+            <li>
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/"
+              >
+                <i
+                  className="fa fa-home grey-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  HOME
+                </span>
+              </Link>
+            </li>
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/add_center"
+              >
+                <i
+                  className="fa fa-plus white-text"
+                />
+                <span
+                  className="waves-effect white-text waves-light modal-trigger"
+                  href="#modal1"
+                >
+                  ADD CENTER
+                </span>
+              </Link>
+            </li>
+            <li
+              className="grey"
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/add_center"
+              >
+                <i
+                  className="fa fa-edit white-text"
+                />
+                <span
+                  className="waves-effect white-text waves-light modal-trigger"
+                  href="#modal1"
+                >
+                  EDIT CENTER
+                </span>
+              </Link>
+            </li>
+            <li
+              className=""
+            >
+              <Link
+                onlyActiveOnIndex={false}
+                style={Object {}}
+                to="/admin/list_center"
+              >
+                <i
+                  className="fa fa-list white-text"
+                />
+                <span
+                  className="waves-effect white-text"
+                >
+                  CENTERS
+                </span>
+              </Link>
+            </li>
+          </ul>
+          <a
+            className="button-collapse"
+            data-activates="slide-out"
+            href="#"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </div>
+        <div
+          className="col s12 m12 l8 "
+        >
+          
+          <div
+            className="card "
+            style={
+              Object {
+                "backgroundColor": "#FBFCFC",
+                "marginTop": 20,
+              }
+            }
+          >
+            <div
+              className="card-content "
+            >
+              
+              <form
+                className="row"
+                id="add-form"
+                onSubmit={[Function]}
+              >
+                
+                <h4
+                  className="col s12 center light"
+                >
+                  Edit 
+                  Center!
+                </h4>
+                <small
+                  className="col s12 center light font3"
+                >
+                  Lorem ipsum dolor sit amet
+                </small>
+                <div
+                  className="row"
+                >
+                  <div
+                    className=" col s12"
+                  >
+                    
+                    <br />
+                    <br />
+                    <i
+                      className="material-icons prefix"
+                    >
+                      add_a_photo
+                    </i>
+                    <label
+                      style={
+                        Object {
+                          "backgroundColor": "steelblue",
+                          "borderRadius": 4,
+                          "color": "white",
+                          "padding": 10,
+                          "pointer": "cursor",
+                        }
+                      }
+                    >
+                      Select an image
+                      <FirebaseFileUploader
+                        accept="image/*"
+                        hidden={true}
+                        name="avatar"
+                        onProgress={[Function]}
+                        onUploadError={[Function]}
+                        onUploadStart={[Function]}
+                        onUploadSuccess={[Function]}
+                        randomizeFilename={true}
+                        storageRef="hello"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    className="input-field col m6 s12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      home
+                    </i>
+                    <input
+                      className="validate"
+                      id="icon_telephone"
+                      name="name"
+                      onChange={[Function]}
+                      placeholder="Name"
+                      required={true}
+                      type="tel"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="input-field col s12 m6"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      add_location
+                    </i>
+                    <input
+                      className="validate"
+                      id="icon_telephone"
+                      name="location"
+                      onChange={[Function]}
+                      placeholder="Address"
+                      required={true}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="col s12 m6"
+                    >
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          attach_money
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="price"
+                          onChange={[Function]}
+                          placeholder="Price"
+                          type="number"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="col s12 m6"
+                    >
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          people
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="capacity"
+                          onChange={[Function]}
+                          placeholder="Capacity"
+                          required={true}
+                          type="number"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="input-field col s12"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      mode_edit
+                    </i>
+                    <textarea
+                      className="materialize-textarea"
+                      id="icon_prefix2"
+                      name="description"
+                      onChange={[Function]}
+                      required={true}
+                      value=""
+                    />
+                    
+                  </div>
+                  <div
+                    className=""
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    <button
+                      className="btn waves-effect waves-light red lighten-1"
+                      type="submit"
+                    >
+                      Edit 
+                      Center
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_context": Object {},
+      "_currentElement": <Admin
+        centers={
+          Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ]
+        }
+        getCenters={[Function]}
+        getSingle={[Function]}
+        location={
+          Object {
+            "pathname": "edit",
+          }
+        }
+        mock="hello"
+        params={
+          Object {
+            "id": 1,
+          }
+        }
+        single="hello"
+      />,
+      "_instance": Admin {
+        "_reactInternalInstance": [Circular],
+        "activeRoute": [Function],
+        "closeErrMsg": [Function],
+        "context": Object {},
+        "getMore": [Function],
+        "handleProgress": [Function],
+        "handleSubmit": [Function],
+        "handleUploadError": [Function],
+        "handleUploadStart": [Function],
+        "handleUploadSuccess": [Function],
+        "onChange": [Function],
+        "props": Object {
+          "centers": Array [
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 33,
+                  "userId": 11,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium",
+              "price": 400,
+            },
+            Object {
+              "description": "awesome place",
+              "favorites": Array [
+                Object {
+                  "centerId": 36,
+                  "userId": 88,
+                },
+              ],
+              "name": "emporium3",
+              "price": 400,
+            },
+          ],
+          "getCenters": [Function],
+          "getSingle": [Function],
+          "location": Object {
+            "pathname": "edit",
+          },
+          "mock": "hello",
+          "params": Object {
+            "id": 1,
+          },
+          "single": "hello",
+        },
+        "refs": Object {},
+        "searchCenter": [Function],
+        "state": Object {
+          "avatar": "",
+          "avatarURL": "",
+          "capacity": "",
+          "description": "",
+          "image": "",
+          "isUploading": false,
+          "location": "",
+          "name": "",
+          "price": "",
+          "progress": undefined,
+          "username": "",
+        },
+        "updateCenter": [Function],
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 9,
+      "_nativeContainerInfo": null,
+      "_nativeParent": null,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": Object {
+        "_currentElement": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className="grey"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-edit white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      EDIT CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              <div
+                className="card "
+                style={
+                  Object {
+                    "backgroundColor": "#FBFCFC",
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <div
+                  className="card-content "
+                >
+                  
+                  <form
+                    className="row"
+                    id="add-form"
+                    onSubmit={[Function]}
+                  >
+                    
+                    <h4
+                      className="col s12 center light"
+                    >
+                      Edit 
+                      Center!
+                    </h4>
+                    <small
+                      className="col s12 center light font3"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </small>
+                    <div
+                      className="row"
+                    >
+                      <div
+                        className=" col s12"
+                      >
+                        
+                        <br />
+                        <br />
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_a_photo
+                        </i>
+                        <label
+                          style={
+                            Object {
+                              "backgroundColor": "steelblue",
+                              "borderRadius": 4,
+                              "color": "white",
+                              "padding": 10,
+                              "pointer": "cursor",
+                            }
+                          }
+                        >
+                          Select an image
+                          <FirebaseFileUploader
+                            accept="image/*"
+                            hidden={true}
+                            name="avatar"
+                            onProgress={[Function]}
+                            onUploadError={[Function]}
+                            onUploadStart={[Function]}
+                            onUploadSuccess={[Function]}
+                            randomizeFilename={true}
+                            storageRef="hello"
+                          />
+                        </label>
+                      </div>
+                      <div
+                        className="input-field col m6 s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          home
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="name"
+                          onChange={[Function]}
+                          placeholder="Name"
+                          required={true}
+                          type="tel"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="input-field col s12 m6"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_location
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="location"
+                          onChange={[Function]}
+                          placeholder="Address"
+                          required={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              attach_money
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="price"
+                              onChange={[Function]}
+                              placeholder="Price"
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              people
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="capacity"
+                              onChange={[Function]}
+                              placeholder="Capacity"
+                              required={true}
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          mode_edit
+                        </i>
+                        <textarea
+                          className="materialize-textarea"
+                          id="icon_prefix2"
+                          name="description"
+                          onChange={[Function]}
+                          required={true}
+                          value=""
+                        />
+                        
+                      </div>
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        <button
+                          className="btn waves-effect waves-light red lighten-1"
+                          type="submit"
+                        >
+                          Edit 
+                          Center
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        "_renderedOutput": <div
+          className="Admin"
+        >
+          <div
+            className="row"
+          >
+            
+            <div
+              className="col l4 s12 m12"
+            >
+              <ul
+                className="side-nav fixed white-text"
+                id="slide-out"
+                style={
+                  Object {
+                    "backgroundColor": "#17202A",
+                  }
+                }
+              >
+                <li>
+                  <div
+                    className="user-view"
+                  >
+                    <div
+                      className="background"
+                    >
+                      <img
+                        src="https://static.pexels.com/photos/326559/pexels-photo-326559.jpeg"
+                      />
+                    </div>
+                    <a
+                      href="#!user"
+                    >
+                      <img
+                        className="circle"
+                        src="https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg"
+                      />
+                    </a>
+                    <a
+                      href="#!name"
+                    >
+                      <span
+                        className="white-text name"
+                      >
+                        Admin-001
+                      </span>
+                    </a>
+                    <a
+                      href="#!email"
+                    >
+                      <span
+                        className="white-text email"
+                      >
+                        admin-001@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    <i
+                      className="material-icons grey-text"
+                    >
+                      cloud
+                    </i>
+                    Cloudy - 24-09, 2017 
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="white-text"
+                    href="#!"
+                  >
+                    ID:3456565646JD
+                  </a>
+                </li>
+                <li>
+                  <div
+                    className="divider"
+                  />
+                </li>
+                <li>
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/"
+                  >
+                    <i
+                      className="fa fa-home grey-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      HOME
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-plus white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      ADD CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className="grey"
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/add_center"
+                  >
+                    <i
+                      className="fa fa-edit white-text"
+                    />
+                    <span
+                      className="waves-effect white-text waves-light modal-trigger"
+                      href="#modal1"
+                    >
+                      EDIT CENTER
+                    </span>
+                  </Link>
+                </li>
+                <li
+                  className=""
+                >
+                  <Link
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/admin/list_center"
+                  >
+                    <i
+                      className="fa fa-list white-text"
+                    />
+                    <span
+                      className="waves-effect white-text"
+                    >
+                      CENTERS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+              <a
+                className="button-collapse"
+                data-activates="slide-out"
+                href="#"
+              >
+                <i
+                  className="material-icons"
+                >
+                  menu
+                </i>
+              </a>
+            </div>
+            <div
+              className="col s12 m12 l8 "
+            >
+              
+              <div
+                className="card "
+                style={
+                  Object {
+                    "backgroundColor": "#FBFCFC",
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <div
+                  className="card-content "
+                >
+                  
+                  <form
+                    className="row"
+                    id="add-form"
+                    onSubmit={[Function]}
+                  >
+                    
+                    <h4
+                      className="col s12 center light"
+                    >
+                      Edit 
+                      Center!
+                    </h4>
+                    <small
+                      className="col s12 center light font3"
+                    >
+                      Lorem ipsum dolor sit amet
+                    </small>
+                    <div
+                      className="row"
+                    >
+                      <div
+                        className=" col s12"
+                      >
+                        
+                        <br />
+                        <br />
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_a_photo
+                        </i>
+                        <label
+                          style={
+                            Object {
+                              "backgroundColor": "steelblue",
+                              "borderRadius": 4,
+                              "color": "white",
+                              "padding": 10,
+                              "pointer": "cursor",
+                            }
+                          }
+                        >
+                          Select an image
+                          <FirebaseFileUploader
+                            accept="image/*"
+                            hidden={true}
+                            name="avatar"
+                            onProgress={[Function]}
+                            onUploadError={[Function]}
+                            onUploadStart={[Function]}
+                            onUploadSuccess={[Function]}
+                            randomizeFilename={true}
+                            storageRef="hello"
+                          />
+                        </label>
+                      </div>
+                      <div
+                        className="input-field col m6 s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          home
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="name"
+                          onChange={[Function]}
+                          placeholder="Name"
+                          required={true}
+                          type="tel"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="input-field col s12 m6"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          add_location
+                        </i>
+                        <input
+                          className="validate"
+                          id="icon_telephone"
+                          name="location"
+                          onChange={[Function]}
+                          placeholder="Address"
+                          required={true}
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              attach_money
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="price"
+                              onChange={[Function]}
+                              placeholder="Price"
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="col s12 m6"
+                        >
+                          <div
+                            className="input-field col s12"
+                          >
+                            <i
+                              className="material-icons prefix"
+                            >
+                              people
+                            </i>
+                            <input
+                              className="validate"
+                              id="icon_telephone"
+                              name="capacity"
+                              onChange={[Function]}
+                              placeholder="Capacity"
+                              required={true}
+                              type="number"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="input-field col s12"
+                      >
+                        <i
+                          className="material-icons prefix"
+                        >
+                          mode_edit
+                        </i>
+                        <textarea
+                          className="materialize-textarea"
+                          id="icon_prefix2"
+                          name="description"
+                          onChange={[Function]}
+                          required={true}
+                          value=""
+                        />
+                        
+                      </div>
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        <button
+                          className="btn waves-effect waves-light red lighten-1"
+                          type="submit"
+                        >
+                          Edit 
+                          Center
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": null,
+      "_topLevelWrapper": null,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <Admin
+    centers={
+      Array [
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 33,
+              "userId": 11,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium",
+          "price": 400,
+        },
+        Object {
+          "description": "awesome place",
+          "favorites": Array [
+            Object {
+              "centerId": 36,
+              "userId": 88,
+            },
+          ],
+          "name": "emporium3",
+          "price": 400,
+        },
+      ]
+    }
+    getCenters={[Function]}
+    getSingle={[Function]}
+    location={
+      Object {
+        "pathname": "edit",
+      }
+    }
+    mock="hello"
+    params={
+      Object {
+        "id": 1,
+      }
+    }
+    single="hello"
+  />,
+}
+`;

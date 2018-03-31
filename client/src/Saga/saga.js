@@ -8,8 +8,7 @@ const userUrl = '/api/v1/users';
 const centerUrl = '/api/v1/centers';
 const eventUrl = '/api/v1/events';
 const token = localStorage.getItem('token');
-
-// axios.defaults.headers.common['token'] = token;
+axios.defaults.headers.common['token'] = token;
 
 export function* addUserAsync(action) {
 	try {
@@ -102,8 +101,8 @@ export function* watchRetrievePass() {
 export function* changePassword(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.post, `${userUrl}/change`, {
-			token,
 			old: action.payload.old_pass,
 			newp: action.payload.new_pass,
 			newc: action.payload.con_pass
@@ -163,8 +162,8 @@ export function* watchGetSingle() {
 export function* addCenter(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.post, centerUrl, {
-			token,
 			name: action.payload.name,
 			description: action.payload.description,
 			capacity: action.payload.capacity,
@@ -196,8 +195,8 @@ export function* watchAddCenter() {
 export function* updateCenter(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.put, `${centerUrl}/${action.index}`, {
-			token,
 			name: action.payload.name,
 			description: action.payload.description,
 			capacity: action.payload.capacity,
@@ -230,8 +229,10 @@ export function* watchUpdateCenter() {
 export function* favoriteCenter(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
+    console.log('on it...');
 		const response = yield call(axios.put, `${centerUrl}/favorite/${action.index}`, {
-			token,
+      match: 'xtra'
     });
     console.log(response.data.message);
 		yield put({ type: 'GET_ALL', index: 6 });
@@ -248,9 +249,9 @@ export function* watchFavoriteCenter() {
 
 export function* getEvents(action) {
 	try {
-    console.log('leggooo1 ');
-		const token = localStorage.getItem('token');
-		const response = yield call(axios.get, `${eventUrl}/user?token=${token}`);
+    const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
+		const response = yield call(axios.get, `${eventUrl}/user`);
 		yield put({ type: 'SET_EVENTS', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
@@ -265,8 +266,8 @@ export function* watchGetEvents() {
 export function* addEvents(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.post, eventUrl, {
-			token,
 			name: action.payload.center,
 			type: action.payload.type,
 			time: action.payload.time,
@@ -297,8 +298,8 @@ export function* watchAddEvent() {
 export function* updateEvent(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.put, `${eventUrl}/${action.index}`, {
-			token,
 			name: action.payload.center,
 			type: action.payload.type,
 			time: action.payload.time,
@@ -329,7 +330,8 @@ export function* watchUpdateEvent() {
 export function* deleteEvents(action) {
 	try {
 		const token = localStorage.getItem('token');
-		const response = yield call(axios.delete, `${eventUrl}/${action.index}?token=${token}`);
+    axios.defaults.headers.common['token'] = token;
+		const response = yield call(axios.delete, `${eventUrl}/${action.index}`);
 		console.log(response.data.message);
 	} catch (e) {
 		const error = e.response.data.message;
@@ -345,6 +347,7 @@ export function* watchDeleteEvent() {
 export function* getSingleEvents(action) {
 	try {
 		const token = localStorage.getItem('token');
+    axios.defaults.headers.common['token'] = token;
 		const response = yield call(axios.get, `${eventUrl}/single/${action.index}`);
 		yield put({ type: 'SET_SINGLE_EVENT', response: response.data });
 	} catch (e) {
@@ -357,10 +360,46 @@ export function* watchGetSingleEvent() {
 	yield takeEvery('GET_SINGLE_EVENT', getSingleEvents);
 }
 
+
+export function* addReview(action) {
+	try {
+    const {id, username, comment} = action.payload;
+		const response = yield call(axios.post, `${centerUrl}/reviews`, {
+			id,
+			username,
+			comment,
+		});
+		yield put({ type: 'SET_REVIEW', response: response.data });
+	} catch (e) {
+		const error = e.response.data.message;
+		console.log(error);
+	}
+}
+
+export function* watchAddReview() {
+	yield takeEvery('ADD_REVIEW', addReview);
+}
+
+export function* getReviews(action) {
+	try {
+    const response = yield call(axios.get, `${centerUrl}/reviews/${action.index}`);
+		yield put({ type: 'GET_REVIEWS', response: response.data });
+	} catch (e) {
+		const error = e.response.data.message;
+    console.log(error);
+	}
+}
+
+export function* watchGetReviews() {
+	yield takeEvery('GET_ALL_REVIEWS', getReviews);
+}
+
 export default function* rootSaga() {
 	yield [
-		watchAddUser(),
+    watchAddUser(),
+    watchGetReviews(),
     watchChangePass(),
+    watchAddReview(),
     watchFavoriteCenter(),
 		watchRetrievePass(),
 		watchDeleteEvent(),

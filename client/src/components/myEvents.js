@@ -151,11 +151,11 @@ class Events extends React.Component {
 
               <div className=" ">
                 <h6 id="fsize" className="font3 light"> <i className="fa fa-map-marker red-text" id="" style={{marginRight: 5}} />
-                 {event.Center.location}</h6>
-                 <h6 id="fsize" className="font3 light hide-on-large-only"> <i className="fa fa-clock-o red-text" id="" style={{marginRight: 5}} />
-                 {event.time} - {to + ':00'}</h6>
-                 {/* <h6 id="fsize font3"> <i className="fa fa-clock-o blue-grey-text" id="" style={{marginRight: 5}} />
-                 {event.time}</h6> */}
+                  {event.Center.location}</h6>
+                  <h6 id="fsize" className="font3 light hide-on-large-only"> <i className="fa fa-clock-o red-text" id="" style={{marginRight: 5}} />
+                  {event.time} - {to + ':00'}</h6>
+                  {/* <h6 id="fsize font3"> <i className="fa fa-clock-o blue-grey-text" id="" style={{marginRight: 5}} />
+                  {event.time}</h6> */}
                   <p className="black-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris

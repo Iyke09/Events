@@ -10,7 +10,7 @@ import { GoogleLogin } from 'react-google-login-component';
 
 
 let preloader = false;
-class Centers extends React.Component {
+class Auth extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -73,7 +73,6 @@ class Centers extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     if(this.state.retrieve === ''){
       this.props.loaders();
       if(this.activeRoute('signin')){
@@ -125,7 +124,7 @@ class Centers extends React.Component {
                 <p>Lorem Ipsum It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been<br/><br/> The only five centuries, but also the leap into electronic typesetting, remaining essentially </p>
                 <p>{this.activeRoute('signin') ? 'Not a Member?' : 'Already a Member?'}</p><br/>
                 <Link to={this.activeRoute('signin') ? '/auth/signup' : '/auth/signin'}>
-                  <a id="download-button" className="btn red">{this.activeRoute('signin') ? 'Sign Up' : 'Sign In'}</a>
+                  <span id="download-button" className="btn red">{this.activeRoute('signin') ? 'Sign Up' : 'Sign In'}</span>
                 </Link>
               </div>
               <div className="col s12 m12 l7" style={{paddingTop: 45}}>
@@ -280,4 +279,4 @@ class Centers extends React.Component {
   }
 }
 
-export default Centers;
+export default Auth;
