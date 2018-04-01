@@ -878,5 +878,41 @@ describe('API Integration Tests', () => {
         });
     });
   });
+
+  describe('Add Review', () => {
+    beforeEach(() => {
+      data = {
+        id: 1,
+        username: 'Nigerian',
+        comment: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
+      };
+    });
+
+    it('return 201 if add review is successful', (done) => {
+      request.post(`${adminUrl}/reviews`)
+        .send(data)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body.message).to.equal('review created');
+          done();
+        });
+    });
+  });
+
+  describe('All Reviews', () => {
+    it('return 200 if it gets all reviews', (done) => {
+      request.get(`${adminUrl}/reviews/1`)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.status).to.equal('Success');
+          expect(res.body.message).to.equal('reviews found');
+          expect(res.body.review.length).to.equal(1);
+          done();
+        });
+    });
+  });
+
+
 });
 
