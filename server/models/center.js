@@ -71,6 +71,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'centerId',
       as: 'events',
     });
+    Center.hasMany(models.Favorite, {
+      foreignKey: 'centerId',
+      as: 'favorites',
+    });
   };
 
   return Center;

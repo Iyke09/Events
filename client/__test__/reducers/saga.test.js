@@ -1,16 +1,28 @@
-import centerReducer from '../../src/reducers/centers';
-import loaderReducer from '../../src/reducers/loader';
-import errorReducer from '../../src/reducers/error';
-import singleReducer from '../../src/reducers/singleCenter';
-import eventReducer from '../../src/reducers/events';
-import userReducer from '../../src/reducers/user';
+// import centerReducer from '../../src/reducers/Centers';
+// import loaderReducer from '../../src/reducers/Notifications';
+// import eventReducer from '../../src/reducers/Events';
 import MockAdapter from 'axios-mock-adapter';
 import { call, put, take } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from "redux-saga-test-plan/providers";
 import axios from 'axios';
-import { getCenters, watchGetCenters,watchGetSingleEvent, watchSignUser,watchAddUser, watchAddCenter,
-  watchUpdateCenter, watchGetEvents, watchDeleteEvent, watchRetrievePass, watchUpdateEvent, watchAddEvent } from '../../src/Sagax/saga';
+import {
+  getCenters,
+  watchGetCenters,
+  watchFavoriteCenter,
+  watchGetSingleEvent,
+  watchSignUser,
+  watchAddUser,
+  watchAddCenter,
+  watchUpdateCenter,
+  watchGetEvents,
+  watchDeleteEvent,
+  watchRetrievePass,
+  watchChangePass,
+  watchUpdateEvent,
+  watchAddEvent,
+  watchGetReviews,
+  watchAddReview } from '../../src/Saga/saga';
 
 
 
@@ -25,8 +37,6 @@ describe('Test Sagas', () => {
     };
 
     return expectSaga(watchGetCenters)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.get, '/api/v1/centers?limit=42'), response]])
       // Assert that the `put` will eventually happen.
@@ -35,10 +45,48 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'GET_ALL', index: 42 })
 
-      .hasFinalState({id: 1, name: 'John Smith'})
+      // Start the test. Returns a Promise.
+      .run();
+  });
+
+  it('gets all available reviews', () => {
+    // const action = { index: 42 };
+    const response = { data: 'hello'};
+
+    return expectSaga(watchGetReviews)
+
+      .provide([[call(axios.get, '/api/v1/centers/reviews/42'), response]])
+      // Assert that the `put` will eventually happen.
+      .put({ type: 'GET_REVIEWS', response: 'hello' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'GET_ALL_REVIEWS', index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
+  });
+
+  it('add reviews to the review state', () => {
+    // const action = { index: 42 };
+    const response = { data: 'hello'};
+
+    const action = {
+      id: 1,
+      username: 'doe',
+      comment: 'hello'
+    };
+
+    return expectSaga(watchAddReview)
+
+      .provide([[call(axios.post, '/api/v1/centers/reviews', action), response]])
+      // Assert that the `put` will eventually happen.
+      .put({ type: 'SET_REVIEW', response: 'hello' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'ADD_REVIEW', payload: action })
+
+      // Start the test. Returns a Promise.
+      .run();
   });
 
   it('adds center to the list of centers', () => {
@@ -51,7 +99,6 @@ describe('Test Sagas', () => {
       }
     };
     const action = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -60,8 +107,6 @@ describe('Test Sagas', () => {
       price: 24
     };
     return expectSaga(watchAddCenter)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.post, '/api/v1/centers', action), response]])
       // Assert that the `put` will eventually happen.
@@ -76,10 +121,28 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'ADD_CENTER', payload: action })
 
-      .hasFinalState([{id: 1, name: 'John Smith'}])
+      // Start the test. Returns a Promise.
+      .run(1200);
+  });
+
+  it('favorites a center', () => {
+    // const action = { index: 42 };
+    localStorage.setItem('token', 'hello');
+    const response = '';
+    const data = {
+      match: 'xtra'
+    };
+    return expectSaga(watchFavoriteCenter)
+
+      .provide([[call(axios.put, '/api/v1/centers/favorite/11', data), response]])
+      // Assert that the `put` will eventually happen.
+      //.put({ type: 'GET_ALL', index: 6 })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'FAVORITE_CENTER', index: 11 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('retrieves user password', () => {
@@ -103,6 +166,38 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'RETRIEVE', email: 'awesome' })
 
       // Start the test. Returns a Promise.
+      .run(2000);
+  });
+
+  it('changes user password', () => {
+    // const action = { index: 42 };
+    const response = {
+      data: {token: 'token'}
+    };
+    const payload = {
+      old_pass: 'John',
+      new_pass: 'awesome',
+      con_pass: 'hello',
+    };
+    localStorage.setItem('token', 'hello');
+    return expectSaga(watchChangePass)
+
+      .provide([[call(axios.post, '/api/v1/users/change', {
+        old: 'John',
+        newp: 'awesome',
+        newc: 'hello',
+      }), response]])
+
+      .put({ type: 'ERROR', error: '' })
+
+      .put({ type: 'SUCCESS'})
+
+      .put({ type: '!SUCCESS'})
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'CHANGE_PASSWORD', payload})
+
+      // Start the test. Returns a Promise.
       .run(3000);
   });
 
@@ -118,12 +213,9 @@ describe('Test Sagas', () => {
       password: 400,
     };
     return expectSaga(watchAddUser)
-      //call reducer
-      .withReducer(userReducer)
 
       .provide([[call(axios.post, '/api/v1/users/signup', action), response]])
       // Assert that the `put` will eventually happen.
-      .put({ type: 'INCOMING_TOKEN', response: {token: 'token'}})
 
       .put({ type: 'ERROR', error: '' })
 
@@ -131,15 +223,12 @@ describe('Test Sagas', () => {
 
       .put({ type: 'SUCCESS'})
 
-      .put({ type: '!SUCCESS'})
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'SIGN_UP', payload: action })
 
-      .hasFinalState('')
-
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('signin authenticated user', () => {
@@ -153,12 +242,9 @@ describe('Test Sagas', () => {
       password: 400,
     };
     return expectSaga(watchSignUser)
-      //call reducer
-      .withReducer(userReducer)
 
       .provide([[call(axios.post, '/api/v1/users/signin', action), response]])
       // Assert that the `put` will eventually happen.
-      .put({ type: 'INCOMING_TOKEN', response: {token: 'token'}})
 
       .put({ type: 'ERROR', error: '' })
 
@@ -167,10 +253,8 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'SIGN_IN', payload: action })
 
-      .hasFinalState('')
-
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('updates centers', () => {
@@ -183,7 +267,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -192,8 +275,6 @@ describe('Test Sagas', () => {
       price: 24
     };
     return expectSaga(watchUpdateCenter)
-      //call reducer
-      .withReducer(singleReducer)
 
       .provide([[call(axios.put, '/api/v1/centers/42', data), response]])
       // Assert that the `put` will eventually happen.
@@ -208,10 +289,8 @@ describe('Test Sagas', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'UPDATE_CENTER', payload: data, index: 42 })
 
-      .hasFinalState({id: 1, name: 'John Smith'})
-
       // Start the test. Returns a Promise.
-      .run(4000);
+      .run(1200);
   });
 
   it('get all available events for a user', () => {
@@ -223,20 +302,16 @@ describe('Test Sagas', () => {
       }
     };
     return expectSaga(watchGetEvents)
-      //call reducer
-      .withReducer(eventReducer)
 
-      .provide([[call(axios.get, '/api/v1/events/user?token=hello'), response]])
+      .provide([[call(axios.get, '/api/v1/events/user'), response]])
       // Assert that the `put` will eventually happen.
       .put({ type: 'SET_EVENTS', response: {event: [{ id: 1, name: 'John Smith' }]} })
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'GET_EVENTS' })
 
-      .hasFinalState([{id: 1, name: 'John Smith'}])
-
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('+++ adds events to the list of events', () => {
@@ -249,7 +324,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -259,7 +333,7 @@ describe('Test Sagas', () => {
     };
 
     const action = {
-      value: 'John',
+      center: 'John',
       type: 'awesome',
       time: 400,
       date: 'area 12',
@@ -282,7 +356,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'ADD_EVENT', payload: action })
 
       // Start the test. Returns a Promise.
-      .run(2000);
+      .run(1200);
   });
 
   it('+++ updates events to the list of events', () => {
@@ -295,7 +369,6 @@ describe('Test Sagas', () => {
       }
     };
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -326,7 +399,7 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'UPDATE_EVENT', payload: action, index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run(2000);
   });
 
   it('+++ deletes events from the list of events', () => {
@@ -339,13 +412,13 @@ describe('Test Sagas', () => {
     };
     return expectSaga(watchDeleteEvent)
 
-      .provide([[call(axios.delete, '/api/v1/events/42?token=hello'), response]])
+      .provide([[call(axios.delete, '/api/v1/events/42'), response]])
 
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'DELETE_EVENT', index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 
   it('+++ gets a single events from the list of events', () => {
@@ -367,10 +440,16 @@ describe('Test Sagas', () => {
       .dispatch({ type: 'GET_SINGLE_EVENT', index: 42 })
 
       // Start the test. Returns a Promise.
-      .run(3000);
+      .run();
   });
 });
 
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
 
 describe('Error handler', () => {
   it('test for error handling in the signup', () => {
@@ -417,6 +496,33 @@ describe('Error handler', () => {
       .run(3000);
   });
 
+  it('test for error handling in RETRIEVING password', () => {
+    const error = {response: {data: {message: 'error'}}};
+
+    const payload = {
+      old_pass: 'John',
+      new_pass: 'awesome',
+      con_pass: 'hello',
+    };
+    localStorage.setItem('token', 'hello');
+    return expectSaga(watchChangePass)
+
+      .provide([[call(axios.post, '/api/v1/users/change', {
+        old: 'John',
+        newp: 'awesome',
+        newc: 'hello',
+      }),
+       throwError(error)]])
+
+      .put({ type: 'ERROR', error: 'error' })
+
+      // Dispatch any actions that the saga will `take`.
+      .dispatch({ type: 'CHANGE_PASSWORD', payload })
+
+      // Start the test. Returns a Promise.
+      .run(3000);
+  });
+
   it('test for error handling in the signin', () => {
     const action = {
       email: 'awesome',
@@ -441,7 +547,6 @@ describe('Error handler', () => {
 
   it('tests error handling in add center', () => {
     const action = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -451,8 +556,6 @@ describe('Error handler', () => {
     };
     const error = {response: {data: {message: 'error'}}};
     return expectSaga(watchAddCenter)
-      //call reducer
-      .withReducer(centerReducer)
 
       .provide([[call(axios.post, '/api/v1/centers', action), throwError(error)]])
       // Assert that the `put` will eventually happen.
@@ -465,8 +568,6 @@ describe('Error handler', () => {
       // Dispatch any actions that the saga will `take`.
       .dispatch({ type: 'ADD_CENTER', payload: action })
 
-      .hasFinalState([])
-
       // Start the test. Returns a Promise.
       .run();
   });
@@ -474,7 +575,6 @@ describe('Error handler', () => {
   it('tests error handling in update center', () => {
     const actione = { index: 42 };
     const data = {
-      token: 'hello',
       name: 'John',
       description: 'awesome',
       capacity: 400,
@@ -502,7 +602,6 @@ describe('Error handler', () => {
 
   it('tests error handling in addevents', () => {
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -512,7 +611,7 @@ describe('Error handler', () => {
     };
     const error = {response: {data: {message: 'error'}}};
     const action = {
-      value: 'John',
+      center: 'John',
       type: 'awesome',
       time: 400,
       date: 'area 12',
@@ -538,7 +637,6 @@ describe('Error handler', () => {
 
   it('tests error handling in updates event', () => {
     const data = {
-      token: 'hello',
       name: 'John',
       type: 'awesome',
       time: 400,
@@ -583,7 +681,7 @@ describe('Error handler', () => {
     const error = {response: {data: {message: 'error'}}};
     return expectSaga(watchDeleteEvent)
 
-      .provide([[call(axios.delete, '/api/v1/events/42?token=hello'),
+      .provide([[call(axios.delete, '/api/v1/events/42'),
       throwError(error)]])
 
       .put({ type: 'ERROR', error: 'error' })

@@ -9,6 +9,7 @@ import jwt from 'jwt-decode';
 import swal from 'sweetalert';
 import store from '../store';
 
+
 class Admin extends Component {
   constructor(){
     super();
@@ -30,15 +31,19 @@ class Admin extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.getMore = this.getMore.bind(this);
+    this.clearForm = this.clearForm.bind(this);
+    this.activeRoute = this.activeRoute.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.handleUploadError = this.handleUploadError.bind(this);
     this.handleUploadStart = this.handleUploadStart.bind(this);
     this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.searchCenter = this.searchCenter.bind(this);
+    this.updateCenter = this.updateCenter.bind(this);
   }
 
   componentWillMount(){
-    store.dispatch({type: 'ERROR', error: ''});
+    this.props.errorAction('');
     let decoded = '';
     const token = localStorage.getItem('token');
     if(token === null ){
@@ -53,6 +58,21 @@ class Admin extends Component {
     $(document).ready(function(){
       $('.modal').modal();
     });
+  }
+  componentDidMount(){
+    if(this.props.location.pathname.indexOf('edit') !== -1){
+      this.props.getSingle(this.props.params.id);
+    }
+  }
+  componentWillReceiveProps(newProps){
+    if(newProps.single !== this.props.single){
+      this.setState(newProps.single);
+      this.setState({avatarURL: newProps.single.image});
+    }else{
+      if(newProps.success){
+        this.setState({name: '',description: '', capacity: '', location: '', price: ''});
+      }
+    }
   }
   onChange(e){
     this.setState({ [e.target.name]: e.target.value });
@@ -73,6 +93,9 @@ class Admin extends Component {
   handleUploadError (error){
     this.setState({isUploading: false});
   }
+  activeRoute(routeName) {
+    return this.props.location.pathname.indexOf(routeName) !== -1 ? true : false;
+  }
   handleUploadSuccess (filename) {
     this.setState({avatar: filename, progress: 100, isUploading: false});
     firebase.storage().ref('images').child(filename).getDownloadURL()
@@ -80,21 +103,55 @@ class Admin extends Component {
       this.setState({avatarURL: url, image: url});
     });
   }
-
+  clearForm(){
+    console.log('xxxxxoxo');
+      this.setState({name: '',description: '', capacity: '',
+       location: '', price: '', avatarURL: ''});
+  }
   handleSubmit(e) {
     e.preventDefault();
     this.props.loaders();
-    this.props.addCenter(this.state);
+    if(this.activeRoute('edit')){
+      this.props.updateCenter(this.state, this.props.params.id);
+    }else{
+      this.props.addCenter(this.state);
+    }
     document.getElementById("add-form").reset();
   }
+  searchCenter(e){
+    const { error } = this.props;
+    if(error.indexOf('search') !== -1){
+      this.props.errorAction('');
+    }
+    this.props.getCenters(e.target.value);
+  }
+  updateCenter(index){
+    browserHistory.push(`/admin/edit/${index}`);
+    this.props.getSingle(index);
+  }
   render() {
+    let showElement = false;
     const { centers, error, loader, success } = this.props;
     if(success){
-      return swal("Center Added!", "You've successfully added a new center", "success");
+      if(this.activeRoute('edit')){
+        return swal("Center Updated!", "You've successfully Updated a center", "success");
+      }else{
+        return swal("Center Added!", "You've successfully Added a new center", "success");
+      }
     }
     return (
       <div className="Admin">
         <div className="row">
+          {this.activeRoute('list_center') ?
+          <div className="col l12 s12">
+            <div className="w3-bar">
+               <span className="col l3" />
+               <div className="col l9 s12">
+                 <input type="text" onChange={this.searchCenter}
+                 className="w3-bar-item w3-input" placeholder="Enter a search value..."/>
+               </div>
+            </div>
+          </div> : ''}
           <div className="col l4 s12 m12">
             <ul id="slide-out" className="side-nav fixed white-text" style={{backgroundColor: '#17202A'}}>
               <li><div className="user-view">
@@ -109,62 +166,78 @@ class Admin extends Component {
               <li><a className="white-text" href="#!">ID:3456565646JD</a></li>
               <li><div className="divider" /></li>
               <li>
-                <Link to={"/"}>
-                  <a className="waves-effect white-text">
-                  <i className="fa fa-home grey-text" />HOME</a>
+                <Link to={"/"}><i className="fa fa-home grey-text" />
+                  <span className="waves-effect white-text">
+                  HOME</span>
                 </Link>
               </li>
-              <li><a className="waves-effect white-text waves-light modal-trigger" href="#modal1">
-                 <i className="fa fa-plus grey-text" /> Add Center</a>
+              <li className={this.activeRoute('/admin/add_center') ? 'grey' : ''}>
+              <Link to={"/admin/add_center"}><i className="fa fa-plus white-text" />
+              <span onClick={this.clearForm} className="waves-effect white-text waves-light add" href="#modal1">
+                  ADD CENTER</span></Link>
               </li>
-              <li><a className="waves-effect white-text" href="#!"><i className="fa fa-envelope grey-text" />Messages</a></li>
+              {this.activeRoute('edit') ?
+              <li className={this.activeRoute('edit') ? 'grey' : ''}><Link to={"/admin/add_center"}>
+              <i className="fa fa-edit white-text" />
+              <span className="waves-effect white-text waves-light update" href="#modal1">
+                  EDIT CENTER</span></Link>
+              </li>: ''}
+              <li className={this.activeRoute('/admin/list_center') ? 'grey' : ''}>
+              <Link to={"/admin/list_center"}><i className="fa fa-list white-text" /><span className="waves-effect white-text">
+                CENTERS</span></Link></li>
             </ul>
             <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
           </div>
-          <div className="col s12 m12 l8 " style={{paddingTop: 100}}>
-            <div className="row">
-              {centers.map((center) => {
-                return (
-                  <div className="col s12 m12 l4" key={center.id}>
-                    <div className="card w3sets" id="minor">
-                      <div className="card-image waves-effect waves-block waves-light">
-                        <img style={{height: 300}} className="activator"
-                        src={center.image}/>
-                        <div className="update" id="minor-l">
-                            <Link to={`/user/admin/edit/${center.id}`}>
-                              <span className="fa-stack fa-lg " id="set">
-                                <i className="fa fa-circle fa-stack-2x" />
-                                <i className="fa fa-edit fa-stack-1x fa-inverse" />
-                              </span>
-                            </Link>
+          <div className="col s12 m12 l8 " >
+              {this.activeRoute('/admin/list_center') ?
+                error.indexOf('search') === -1 ?
+                <div className="">
+                  <div className="row" style={{paddingTop: 50}}>
+                    {centers.map((center) => {
+                      return (
+                        <div className="col s12 m12 l4 displayed" key={center.id}>
+                          <div className="card w3sets" id="minor">
+                            <div className="card-image waves-effect waves-block waves-light">
+                              <img style={{height: 300}} className="activator"
+                              src={center.image}/>
+                              <div style={{cursor: 'pointer'}} className="update" id="minor-l" onClick={() => this.updateCenter(center.id)}>
+                                  <span className="fa-stack fa-lg " id="set">
+                                    <i className="fa fa-circle fa-stack-2x" />
+                                    <i className="fa fa-edit fa-stack-1x fa-inverse" />
+                                  </span>
+                              </div>
+                            </div>
+                            <div className="card-content">
+                              <span className="card-title activator grey-text text-darken-4">
+                                {center.name}
+                                <i className="material-icons right">more_vert</i></span>
+                            </div>
+                            <div className="card-reveal">
+                              <span className="card-title grey-text text-darken-4 center">The Emporium
+                                <i className="material-icons right">close</i></span>
+                              <p><i className="material-icons">add_location</i> 25 Victoria Island,Lagos.</p>
+                              <p><i className="material-icons">attach_money</i> 2500/day</p>
+                              <p><i className="material-icons">people</i> 4000 capacity</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="card-content">
-                        <span className="card-title activator grey-text text-darken-4">
-                          {center.name}
-                          <i className="material-icons right">more_vert</i></span>
-                      </div>
-                      <div className="card-reveal">
-                        <span className="card-title grey-text text-darken-4 center">The Emporium
-                          <i className="material-icons right">close</i></span>
-                        <p><i className="material-icons">add_location</i> 25 Victoria Island,Lagos.</p>
-                        <p><i className="material-icons">attach_money</i> 2500/day</p>
-                        <p><i className="material-icons">people</i> 4000 capacity</p>
-                      </div>
+                      );
+                    })}
+                    <br/><br/><br/>
+                    <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 w3-padding-64">
+                      <button className="btn red right"> more centers </button>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-            <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12">
-              <button className="btn red">view more centers </button>
-            </div>
-             <br/><br/><br/><br/>
+                </div> : <h1 className="center grey-text w3-padding-64">
+                  <i className="grey-text fa fa-exclamation-triangle"/><br/>
+                  Oops!!!...No items matched your search. Try again?</h1>
+                : ''
+              }
 
 
-            <div id="modal1" className="modal modal-fixed-footer">
-              <div className="modal-content ">
-            <div className="card " style={{backgroundColor: '#FBFCFC'}}>
+
+          {this.activeRoute('/admin/add_center') || this.activeRoute('edit') ?
+            <div className="card " style={{backgroundColor: '#FBFCFC', marginTop: 20}}>
               <div className="card-content ">
               { error ?
                 <div style={{ borderRadius: 7}} className="w3-panel red white-text error hyper">
@@ -190,7 +263,7 @@ class Admin extends Component {
                   </div> : ''
                 }
 
-                  <h4 className="col s12 center light">Add a Center!</h4>
+                  <h4 className="col s12 center light">{this.activeRoute('edit') ? 'Edit ' : 'Add '}Center!</h4>
                   <small className="col s12 center light font3">
                   Lorem ipsum dolor sit amet</small>
                   <div className="row">
@@ -199,9 +272,10 @@ class Admin extends Component {
                           <p><b>Progress:</b> {this.state.progress}</p>
                         }
                         {this.state.avatarURL &&
-                          <img className="responsive-img" src={this.state.avatarURL} />
+                          <img className="responsive-img" style={{height: 300, width: '100%'}}
+                           src={this.state.avatarURL} />
                         }
-                        <br/>
+                        <br/><br/>
                         <i className="material-icons prefix">add_a_photo</i>
                       <label style=
                       {{backgroundColor: 'steelblue', color: 'white',
@@ -223,48 +297,45 @@ class Admin extends Component {
                     <div className="input-field col m6 s12">
                       <i className="material-icons prefix">home</i>
                       <input id="icon_telephone" type="tel"
-                      onChange={this.onChange} name="name" className="validate" placeholder="Name" required/>
+                      onChange={this.onChange} value={this.state.name} name="name" className="validate" placeholder="Name" required/>
                     </div>
                     <div className="input-field col s12 m6">
                       <i className="material-icons prefix">add_location</i>
                       <input id="icon_telephone" name="location" type="text"
-                      onChange={this.onChange} className="validate" placeholder="Address" required/>
+                      onChange={this.onChange} value={this.state.location} className="validate" placeholder="Address" required/>
                     </div>
                     <div className="row">
                       <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">attach_money</i>
                           <input id="icon_telephone" name="price" type="number"
-                          onChange={this.onChange} className="validate" placeholder="Price" />
+                          onChange={this.onChange} value={this.state.price} className="validate" placeholder="Price" />
                         </div>
                       </div>
                       <div className="col s12 m6">
                         <div className="input-field col s12">
                           <i className="material-icons prefix">people</i>
                           <input id="icon_telephone" name="capacity" type="number"
-                          onChange={this.onChange} className="validate" placeholder="Capacity" required/>
+                          onChange={this.onChange} value={this.state.capacity} className="validate" placeholder="Capacity" required/>
                         </div>
                       </div>
                     </div>
                     <div className="input-field col s12">
                       <i className="material-icons prefix">mode_edit</i>
                       <textarea id="icon_prefix2" onChange={this.onChange} name="description"
-                      className="materialize-textarea" required/>
-                      <label htmlFor="icon_prefix2">Description</label>
+                      className="materialize-textarea" value={this.state.description} required/>
+                      {this.activeRoute('edit') ? '' : <label htmlFor="icon_prefix2">Description</label>}
                     </div>
                     <div className="" style={{textAlign: 'center'}}>
                       <button type="submit"
-                      className="btn waves-effect waves-light red lighten-1">Add Center</button>
+                      className="btn waves-effect waves-light red lighten-1">{this.activeRoute('edit') ? 'Edit ' : 'Add '}Center</button>
                     </div>
                   </div>
                 </form>
               </div>
-            </div>
-              </div>
-              <div className="modal-footer">
-                <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-              </div>
-            </div>
+            </div> : ''
+          }
+
           </div>
         </div>
   </div>

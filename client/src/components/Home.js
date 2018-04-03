@@ -1,24 +1,74 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import jwt from 'jwt-decode';
+import store from '../store';
 
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 
 class Home extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      user: null
+      old_pass: '',
+      new_pass: '',
+      con_pass: ''
     };
     this.getMore = this.getMore.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.setFavoriteCenter = this.setFavoriteCenter.bind(this);
   }
   componentWillMount(){
-    // $(document).ready(function() {
-    //   $(".button-collapse").sideNav();
-    // });
-    this.props.getCenters(3);
+    store.dispatch({type: '!SUCCESS'});
+    $(document).ready(function(){
+      $(".dropdown-button").dropdown();
+      $('.modal').modal();
+    });
+    this.props.getCenters(6);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  addFavorite(index) {
+    const token = localStorage.getItem('token');
+    if(token === null){
+      localStorage.setItem('route', '/');
+      browserHistory.push('/auth/signin');
+    }else{
+      const decoded = jwt(token);
+      if(decoded.user){
+        console.log('fetching...');
+        this.props.addFavorite(index);
+      }else{
+        console.log('admin user');
+        browserHistory.push('/');
+      }
+    }
+  }
+  setFavoriteCenter(centerId){
+    let decoded = '';
+    const token = localStorage.getItem('token');
+    if(token !== null){
+      decoded = jwt(token);
+      let FavoriteCenterId = [];
+      this.props.centers.map((center, key) => {
+        center.favorites.map((favorite, key) => {
+          if (decoded.user && favorite.userId && favorite.userId === decoded.user.id) {
+            FavoriteCenterId.push(favorite.centerId);
+          }
+        });
+      });
+      //console.log(FavoriteCenterId, decoded.user.id);
+      if(FavoriteCenterId.indexOf(centerId) !== -1){
+        return true;
+      }
+      return false;
+    }
+
+    return false;
   }
   getMore(index){
     this.props.getCenters(index);
@@ -26,31 +76,59 @@ class Home extends React.Component {
   logOut(){
     localStorage.removeItem('token');
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.changePassword(this.state);
+    document.getElementById("add-form2").reset();
+  }
+
   render() {
     let decoded = '';
-    const { centers } = this.props;
+    const { centers, error, success } = this.props;
+    console.log(centers);
     const token = localStorage.getItem('token');
     const facebook = localStorage.getItem('facebook');
+    const center = this.props.centers;
+    let base = Math.ceil(center.length / 3);
+    const set1 = center.slice(0,base);
+    const set2 = center.slice(base ,base * 2);
+    const set3 = center.slice(base * 2,base * 3);
     if(token !== null){
        decoded = jwt(token);
     }
     return (
       <div className="Home">
-          <nav className="" role="navigation" style={{backgroundColor: ''}}>
+          <ul id="dropdown1" className="dropdown-content">
+            <li><a href="#!">Notifications</a></li>
+            <li className="divider" />
+            <li><a className="modal-trigger" href="#modal1">Change Password</a></li>
+          </ul>
+          <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
             <div className="nav-wrapper container">
               <a id="logo-container " href="" className="brand-logo white-text">Andela</a>
               <ul className="right hide-on-med-and-down">
                   {token !== null ?
                     <li className="myEvents">
-                      <Link to={"/user/events"}>
+                      <Link to={"/user/events"}><i className="material-icons left">event</i>
                         My Events
                       </Link>
                     </li> : ''
                   }
-                  {token === null && facebook === null ? <li className="login"><Link to={"/auth/signin"}>Login</Link></li> :
-                  <li className="logout" onClick={this.logOut}><a href="">Logout</a></li>}
-                  {decoded.adminUser ? <li className="admin"><Link to={"/user/admin"}>Admin</Link></li> : ''}
-                  <li className="reg"><Link to={"/auth/signup"}>Register</Link></li>
+                  {token === null && facebook === null ?
+                    <li className="login">
+                    <Link to={"/auth/signin"}>Login</Link></li> :
+                  <span>
+                  <li className="logout" onClick={this.logOut}><a href=""><i className="fa fa-sign-out left" />Logout</a></li>
+                  </span>
+                  }
+                  {decoded.adminUser ? <li className="admin">
+                  <Link to={"/admin/list_center"}><i className="material-icons left">account_circle</i>Admin</Link></li> :
+                  ''}
+                  {!decoded.adminUser && token !== null ?
+                    <li><a className="dropdown-button" href="#!"
+                    data-activates="dropdown1">Manage<i className="material-icons right">
+                      arrow_drop_down</i></a></li>: ''}
+                  {/* <li className="reg"><Link to={"/auth/signup"}>Register</Link></li> */}
               </ul>
 
               <ul id="nav-mobile" className="side-nav">
@@ -69,7 +147,7 @@ class Home extends React.Component {
                  Nunc id odio mollis, luctus ex at Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc id odio mollis velit vitae pellentesque....</p>
               <a className="button5 red" href="#features">Explore</a>
-              <span className="button2 blue-grey"><Link to={"/auth/signup"}>Register</Link></span>
+              <span className="button2 blue-grey reg"><Link to={"/auth/signup"}>Register</Link></span>
             </div>
             {/* <section className="overlay"/> */}
           </div>
@@ -118,32 +196,90 @@ class Home extends React.Component {
           <div className="row container">
             <h2 className=" light black-text center">Major Events Center</h2>
             <hr className=""/><br/><br/>
-            {/* <p className="slant grey-text font2 ">Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Nunc id odio mollis, luctus ex at, accumsan magna....</p><br/><br/> */}
-            {centers.map((center) => {
-              return (
-                <div className="font2 col s12 m12 l4 displayed" key={center.id} id="centerx">
-                  <div className="">
-                    <div className="card">
-                      <div className="card-image">
-                         <img style={{height: 200}} src={center.image}/>
+            <div className="col s12 m12 l4 ">
+              {set1.map((center) => {
+                return (
+                  <div id="centerx" className="displayed" key={center.id}>
+                    <div className="card w3sets" id="minor">
+                      <div className="card-image waves-effect waves-block waves-light">
+                        <img style={{height: 350}} className="activator"
+                        src={center.image}/>
                       </div>
-                      <div className="card-content w3-padding-32">
-                        <span className="card-title"><b>{center.name}</b></span>
-                        <p className="truncate" style={{lineHeight: 2, fontSize: 17}}>{center.description}</p>
-                        <p style={{lineHeight: 2,marginTop: 3, fontSize: 15}}>
+                      <div className="card-content">
+                        <span className="card-title grey-text text-darken-4">
                           <Link to={`/centerdetails/${center.id}`}>
-                            <a className="red-text link" >
-                              Learn More <i className="fa fa-arrow-right" />
-                            </a>
+                            <span className="linked">{center.name}</span>
                           </Link>
-                        </p>
+                          <i onClick={() => this.addFavorite(center.id)}
+                          className={"fa fa-heart favorite fa-1x w3-small right " + (
+                          this.setFavoriteCenter(center.id) ? "red-text" : "green-text")}
+                          style={{fontSize: 15, cursor: 'pointer'}} >
+                          <span className="w3-padding-small black-text">{center.favorites.length}</span>
+                          </i>
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
+            <div id="centerx" className="col s12 m12 l4 ">
+              {set2.map((center) => {
+                return (
+                  <div className="displayed" key={center.id}>
+                    <div className="card w3sets" id="minor">
+                      <div className="card-image waves-effect waves-block waves-light">
+                        <img className="activator"
+                        src={center.image} style={{height: 400}}/>
+                      </div>
+                      <div className="card-content">
+                        <span className="card-title grey-text text-darken-4">
+                          <Link to={`/centerdetails/${center.id}`}>
+                            <span className="linked">{center.name}</span>
+                          </Link>
+                          <i onClick={() => this.addFavorite(center.id)}
+                          className={"fa fa-heart fa-1x w3-small right " + (
+                          this.setFavoriteCenter(center.id) ? `red-text test${center.id}` : "green-text")}
+                          style={{fontSize: 15, cursor: 'pointer'}} >
+                          <span className="w3-padding-small black-text">{center.favorites.length}</span>
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div id="centerx" className="col s12 m12 l4">
+              {set3.map((center) => {
+                return (
+                  <div className="displayed" key={center.id}>
+                    <div className="card w3sets" id="minor">
+                      <div className="card-image waves-effect waves-block waves-light">
+                        <img style={{height: 350}} className="activator"
+                        src={center.image}/>
+                      </div>
+                      <div className="card-content">
+                        <span className="card-title grey-text text-darken-4">
+                          <Link to={`/centerdetails/${center.id}`}>
+                            <span className="linked">{center.name}</span>
+                          </Link>
+
+                          <i onClick={() => this.addFavorite(center.id)}
+                          className={"fa fa-heart fav3 fa-1x w3-small right " + (
+                          this.setFavoriteCenter(center.id) ? "red-text" : "green-text")}
+                          style={{fontSize: 15, cursor: 'pointer'}} >
+                          <span className="w3-padding-small black-text">{center.favorites.length}</span>
+                          </i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
             <br/><br/><br/><br/>
             <div className="col s12 center w3-padding-64">
               <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 3)}>view all centers </button>
@@ -186,6 +322,67 @@ class Home extends React.Component {
               </div>
             </div>
         </footer>
+
+
+        <div id="modal1" className="modal modal-fixed-footer" style={{width: 450, height: 440, marginTop: 40}}>
+          <div className="modal-content ">
+            <form id="add-form2" className="col s12" onSubmit={this.handleSubmit}>
+              <h3 className="font2 center red-text">Change Password</h3>
+              { error ?
+                <div style={{ borderRadius: 7}} className=" red white-text error hyper">
+                  <p className="w3-padding-large err_para">
+                    <i className="yellow-text fa fa-exclamation-triangle"
+                  style={{paddingRight:5}} aria-hidden="true" />
+                    <span id="err_msg">{error}</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
+              { success ?
+                <div style={{ borderRadius: 7}} className="w3-panel green white-text error hyper">
+                  <p className="w3-padding-medium err_para"><i className="fa fa-check"
+                  style={{paddingRight:5}} aria-hidden="true" /><span id="err_msg">
+                    Password succesfully changed!</span>
+                  <span style={{cursor: 'pointer'}}
+                  className=" right" >
+                  <a onClick={this.closeErrMsg} className="white-text">x</a></span></p>
+                </div> : ''
+              }
+              <div className="row">
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone3"
+                  name="old_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="Enter your old Password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone3" />
+                </div>
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone2" name="new_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="New Password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone2" />
+                </div>
+                <div className="input-field col s12 ">
+                  <i className="material-icons prefix">lock</i>
+                  <input id="icon_telephone1" name="con_pass" type="password"
+                  onChange={this.onChange}
+                  placeholder="Confirm password"
+                  className="validate " required/>
+                  <label htmlFor="icon_telephone1" />
+                </div>
+              </div>
+              <div className="center" >
+              <button type="submit" style={{borderRadius: 40}} className="waves-effect waves-light btn red"><i
+          className="" />Reset Password</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

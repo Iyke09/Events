@@ -174,7 +174,7 @@ class Users {
    * @return {object} return a recipe oject
    */
   static change(req, res) {
-    const decoded = jwt.decode(req.body.token || req.query.token);
+    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     const { old, newp, newc } = req.body;
     // check the user accessing the route
     if (decoded.adminUser !== undefined) {

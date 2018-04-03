@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'only alphabets are allowed for the title',
         },
         len: {
-          args: [4, 25],
+          args: [4, 125],
           msg: 'title must be at least 4 characters.',
         },
       },

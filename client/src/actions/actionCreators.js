@@ -12,9 +12,30 @@ export function signin(payload) {
   };
 }
 
+export function changePassword(payload) {
+  return {
+    type: 'CHANGE_PASSWORD',
+    payload
+  };
+}
+
 export function loaders() {
   return {
     type: 'LOAD',
+  };
+}
+
+export function getReviews(index) {
+  return {
+    type: 'GET_ALL_REVIEWS',
+    index
+  };
+}
+
+export function addReview(payload) {
+  return {
+    type: 'ADD_REVIEW',
+    payload
   };
 }
 
@@ -51,6 +72,13 @@ export function updateEvent(payload,index) {
 export function getSingle(index) {
   return {
     type: 'GET_SINGLE',
+    index
+  };
+}
+
+export function addFavorite(index) {
+  return {
+    type: 'FAVORITE_CENTER',
     index
   };
 }

@@ -1,21 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-
 // Import Components
-import App from './components/App';
-import Signup from './components/Signup';
-import Signin from './components/Signin';
+import App from './app';
+import Auth from './components/Auth';
 import Home from './components/Home';
-import details from './components/details';
-import admin from './components/admin';
-import Edit from './components/Edit';
+import details from './components/Details';
+import admin from './components/Admin';
 import events from './components/myEvents';
-import addEvent from './components/addEvents';
-import editEvent from './components/editEvents';
+import Events from './components/Events';
 
 import './styles/style.scss';
-
 
 // import react router deps
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -23,21 +18,22 @@ import { Provider } from 'react-redux';
 import store, { history } from './store';
 
 const router = (
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Home} />
-        <Route path="/auth/signin" component={Signin} />
-        <Route path="/auth/signup" component={Signup} />
-        <Route path="/centerdetails/:id" component={details} />
-        <Route path="/user/admin" component={admin} />
-        <Route path="/user/events" component={events} />
-        <Route path="/add/:id" component={addEvent} />
-        <Route path="/user/admin/edit/:id" component={Edit} />
-        <Route path="/events/edit/:id" component={editEvent} />
-      </Route>
-    </Router>
-  </Provider>
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path="/" component={App}>
+				<IndexRoute component={Home} />
+				<Route path="/auth/signin" component={Auth} />
+				<Route path="/auth/signup" component={Auth} />
+				<Route path="/centerdetails/:id" component={details} />
+				<Route path="/admin/add_center" component={admin} />
+				<Route path="/admin/list_center" component={admin} />
+				<Route path="/user/events" component={events} />
+				<Route path="/add/:id" component={Events} />
+				<Route path="/admin/edit/:id" component={admin} />
+				<Route path="/edit_events/:id" component={Events} />
+			</Route>
+		</Router>
+	</Provider>
 );
 
 render(router, document.getElementById('app'));
