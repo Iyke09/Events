@@ -99,7 +99,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
           <ul id="dropdown1" className="dropdown-content">
-            <li><a href="#!">Notifications</a></li>
+            <li><a className="notify" href="#!">Notifications</a></li>
             <li className="divider" />
             <li><a className="modal-trigger" href="#modal1">Change Password</a></li>
           </ul>
@@ -146,11 +146,15 @@ class Home extends React.Component {
               <p className="slant font2 w3-padding-32 white-text hide-on-med-and-down">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc id odio mollis, luctus ex at Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc id odio mollis velit vitae pellentesque....</p>
-              <a className="button5 red" href="#features">Explore</a>
+              <a className="button5 red explore" href="#features">Explore</a>
               <span className="button2 blue-grey reg"><Link to={"/auth/signup"}>Register</Link></span>
             </div>
             {/* <section className="overlay"/> */}
           </div>
+
+
+
+
 
           <div className="about" id="features" style={{background: "#F5F5F5"}}>
             <div className="row center container font2 w3-padding-64">
@@ -192,6 +196,10 @@ class Home extends React.Component {
             </div>
           </div>
 
+
+
+
+
         <div className="listing" id="centers">
           <div className="row container">
             <h2 className=" light black-text center">Major Events Center</h2>
@@ -212,7 +220,7 @@ class Home extends React.Component {
                           </Link>
                           <i onClick={() => this.addFavorite(center.id)}
                           className={"fa fa-heart favorite fa-1x w3-small right " + (
-                          this.setFavoriteCenter(center.id) ? "red-text" : "green-text")}
+                          this.setFavoriteCenter(center.id) ? "red-text checked" : "green-text")}
                           style={{fontSize: 15, cursor: 'pointer'}} >
                           <span className="w3-padding-small black-text">{center.favorites.length}</span>
                           </i>

@@ -147,7 +147,7 @@ class Admin extends Component {
             <div className="w3-bar">
                <span className="col l3" />
                <div className="col l9 s12">
-                 <input type="text" onChange={this.searchCenter}
+                 <input type="text" name="search" onChange={this.searchCenter}
                  className="w3-bar-item w3-input" placeholder="Enter a search value..."/>
                </div>
             </div>

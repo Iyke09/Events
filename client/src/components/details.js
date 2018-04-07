@@ -189,7 +189,7 @@ class Details extends React.Component {
             <ul className="tabs">
               <li className="tab col s3"><a className="active red-text" href="#test1">Upcoming Events</a></li>
               <li className="tab col s3"><a className="red-text" href="#test2">Past Events</a></li>
-              <li className="tab col s3"><a className="red-text" href="#test3">Reviews</a></li>
+              <li className="tab col s3 rev"><a className="red-text" href="#test3">Reviews</a></li>
             </ul>
           </div>
 
@@ -210,7 +210,7 @@ class Details extends React.Component {
                         </div>
                       </div>
                       <div className="col s9 m11 left-align" >
-                          <h2 className="font2 newTitle">{comment.user}
+                          <h2 className="font2 newTitle coUser">{comment.user}
                             <span className="grey-text" style={{fontSize: 14, marginLeft: 6}}><small>{this.setTime(comment.updatedAt)} Ago</small></span></h2>
                           <p className="blue-grey-text">{comment.comment} --> Quisque aliquam dignissim felis,
                               a laoreet magna. Suspendisse suscipit gravida Suspendisse suscipit gravida velit vitae
