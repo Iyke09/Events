@@ -1,9 +1,9 @@
-import Events from '../../src/components/Events';
+import Events from '../../src/components/Events.jsx';
 import React from 'react';
 import jest from 'jest';
 import sinon from 'sinon';
 import mockument from 'mockument';
-// import expect from 'expect';
+import expect from 'expect';
 import { mount, shallow } from 'enzyme';
 
 describe('Test suites for Add events component', () => {
@@ -23,59 +23,54 @@ describe('Test suites for Add events component', () => {
 	beforeEach(() => {
 		mockument(`client/__test__/mocks/index.html`);
 	});
-	it('+++ renders without crashing', () => {
+	it('renders without crashing', () => {
 		localStorage.setItem('token', 'fdfdfd9489483kfd');
     const center = { id: 1 };
     const pathname = {pathname: 'hello'};
-		const wrapper = shallow(<Events location={pathname} getCenters={(index) => index} centers={centers} params={center} />);
-		expect(wrapper).toMatchSnapshot();
+		const wrapper = mount(<Events location={pathname} getCenters={(index) => index} centers={centers} params={center} />);
+		expect(wrapper.length).toEqual(1);
 	});
 
-	it('+++ renders with just one form and 2 options in select', () => {
+	it('renders with just one form ', () => {
 		localStorage.setItem('token', 'fdfdfd9489483kfd');
     const center = { id: 1 };
     const pathname = {pathname: 'hello'};
-		const wrapper = shallow(<Events getCenters={(index) => index} location={pathname} centers={centers} params={center} />);
+		const wrapper = mount(<Events getCenters={(index) => index} location={pathname} centers={centers} params={center} />);
 		expect(wrapper.find('form').length).toEqual(1);
-		expect(wrapper).toMatchSnapshot();
+
 	});
 
-	it('+++ changes  username input field', () => {
+	it('changes input field and the state gets updated', () => {
 		localStorage.setItem('token', 'fdfdfd9489483kfd');
     const center = { id: 1 };
     const pathname = {pathname: 'hello'};
-		const wrapper = shallow(<Events getCenters={(index) => index} location={pathname} centers={centers} params={center} />, {
+		const wrapper = mount(<Events getCenters={(index) => index} location={pathname} centers={centers} params={center} />, {
 			attachTo: document.body
 		});
-		wrapper.find('input').first().simulate('change', {
-			target: {
-				value: 'emporium'
-			}
-		});
-		expect(wrapper).toMatchSnapshot();
+		wrapper.find('input').at(1).simulate('change', {target: {value: 'emporium', name: 'title'}});
+		expect(wrapper.state().title).toEqual('emporium');
 	});
 
-	it('+++ calls the error function', () => {
+	it('calls the error action function', () => {
 		const errorAction = sinon.spy();
 		localStorage.setItem('token', 'fdfdfd9489483kfd');
     const center = { id: 1 };
     const pathname = {pathname: 'hello'};
-		const wrapper = shallow(
+		const wrapper = mount(
 			<Events getCenters={(index) => index} location={pathname} centers={centers} errorAction={errorAction} params={center} />
 		);
 		wrapper.instance().closeErrMsg();
 		expect(errorAction.calledOnce).toEqual(true);
-		expect(wrapper.set);
 	});
 
-	it('+++ calls the addEvent function', () => {
+	it('calls the addEvent function on form submit', () => {
     localStorage.setItem('token', 'fdfdfd9489483kfd');
     const pathname = {pathname: 'hello'};
 		const center = { id: 1 };
 		const addEvent = sinon.spy();
 		const getCenters = sinon.spy();
 		const preventDefault = sinon.spy();
-		const component = shallow(
+		const component = mount(
 			<Events
 				getCenters={(index) => index}
         location={pathname}
@@ -85,15 +80,14 @@ describe('Test suites for Add events component', () => {
 				loaders={() => null}
 			/>
 		);
-		component.find('input').first().simulate('change', {
-			target: {
+		component.find('input').first().simulate('change', {target: {
 				value: 'emporium',
 				name: 'title'
 			}
 		});
 		component.setState({ date: '2019-09-08' });
 		const dummy = {
-			centerSet: '',
+			centerSet: 1,
 			center: 'yo',
 			title: 'emporium',
 			time: '12:00',
@@ -109,7 +103,8 @@ describe('Test suites for Add events component', () => {
 		expect(preventDefault.calledOnce).toEqual(true);
   });
 
-  it('+++ calls the updateEvent function**', () => {
+
+  it('calls the updateEvent function', () => {
     localStorage.setItem('token', 'fdfdfd9489483kfd');
     const pathname = {pathname: 'edit'};
 		const center = { id: 1 };
@@ -117,7 +112,7 @@ describe('Test suites for Add events component', () => {
     const getCenters = sinon.spy();
     const success = true;
 		const preventDefault = sinon.spy();
-		const component = shallow(
+		const component = mount(
 			<Events
 				getCenters={(index) => index}
         location={pathname}
@@ -125,6 +120,7 @@ describe('Test suites for Add events component', () => {
 				params={center}
 				updateEvent={updateEvent}
 				loaders={() => null}
+				getSingleEvents={() => null}
 			/>
 		);
     component.setState({ date: '2019-09-08' });
@@ -141,7 +137,7 @@ describe('Test suites for Add events component', () => {
 		const getCenters = sinon.spy();
 		const errorAction = sinon.spy();
 		const preventDefault = sinon.spy();
-		const component = shallow(
+		const component = mount(
 			<Events
 				getCenters={(index) => index}
 				centers={centers}
@@ -150,6 +146,7 @@ describe('Test suites for Add events component', () => {
 				errorAction={errorAction}
 				addEvent={addEvent}
 				loaders={() => null}
+				getSingleEvents={() => null}
 			/>
 		);
 		component.setState({ date: '2014-09-08' });
@@ -160,11 +157,12 @@ describe('Test suites for Add events component', () => {
 
 	it('addevent component call componentwillrecieveprops', () => {
     const pathname = {pathname: 'hello'};
-    const event = {name: 'jane09'};
-		const component = shallow(<Events  getCenters={(index) => index}
-       location={pathname} singleEvent={event} centers={centers} loaders={() => null} />);
+		const event = {name: 'jane09'};
+		const params = { id: 1 };
+		const component = mount(<Events  getCenters={(index) => index}
+       location={pathname} singleEvent={event} params={params} centers={centers} loaders={() => null} />);
 		component.instance().componentWillReceiveProps(newProps);
-		expect(component).toMatchSnapshot();
+		expect(component.state().name).toEqual('jane');
   });
 
 });

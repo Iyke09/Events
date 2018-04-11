@@ -1,0 +1,998 @@
+swagger: "2.0"
+info:
+  description: "A simple,user friendly Event Manager API for managing centers and hosting user events."
+  version: "1.0.0"
+  title: "Event Manager.io"
+  contact:
+    email: "iykay33@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+# host: "localhost:3000"
+# basePath: "/api/v1"
+
+schemes:
+ - https
+ - http
+
+# tags are used for organizing operations
+tags:
+- name: Center
+  description: Operations partaining to centers which can only be performed by an admin user
+- name: Users
+  description: regular users only
+- name: Events
+  description: Operations about events and which can only be performed by an authenticated user
+
+paths:
+  /users/signup:
+    post:
+      tags:
+      - "Users"
+      summary: "Create a new user"
+      description: "This endpoint is called to create a new user on the application"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "userName"
+          in: "formData"
+          description: "The username of the user."
+          required: true
+          type: "string"
+        - name: "email"
+          in: "formData"
+          description: "The email address of the new user on the application."
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          description: "A password for the new user on the application."
+          required: true
+          type: "string"
+          minLength: 6
+      responses:
+        201:
+          description: "User successfully created"
+          schema:
+            type: "object"
+            properties:
+              user:
+                type: "object"
+                description: "The user details of the newly created user"
+              token:
+                type: "string"
+                description: "A token generated for authenticaticating subsequent requests"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+            
+  /users/reset:
+    post:
+      tags:
+      - "Users"
+      summary: "resets a user's password"
+      description: "This endpoint is called to reset a user's password on the application"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "email"
+          in: "formData"
+          description: "The email address of the user trying to retrieve their password"
+          required: true
+          type: "string"
+      responses:
+        201:
+          description: "User successfully created"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+        404:
+          description: "operation unsuccessfully/email not found"
+          schema:
+            type: "string"
+            properties:
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+        500:
+          description: "An error occured"
+          schema:
+            type: "string"
+            properties:
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+                
+  /users/change:
+    post:
+      tags:
+      - "Users"
+      summary: "changes a user's password"
+      description: "This endpoint is called to change a user's password on the application"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "old_password"
+          in: "formData"
+          description: "The old password of the user"
+          required: true
+          type: "string"
+        - name: "new_password"
+          in: "formData"
+          description: "The new password of the user"
+          required: true
+          type: "string"
+        - name: "confirm_password"
+          in: "formData"
+          description: "Confirm the user's new password"
+          required: true
+          type: "string"
+      responses:
+        201:
+          description: "operation successfully"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+        403:
+          description: "operation unsuccessfully"
+          schema:
+            type: "string"
+            properties:
+              message:
+                type: "string"
+                description: "Admin not allowed to access route"
+        400:
+          description: "operation unsuccessfully"
+          schema:
+            type: "string"
+            properties:
+              message:
+                type: "string"
+                description: "A message stating an Invalid password or that the passwords do not match"
+        500:
+          description: "An error occured"
+          schema:
+            type: "string"
+            properties:
+              message:
+                type: "string"
+                description: "An message sent by the api describing the result"
+            
+  /users/signin:
+    post:
+      tags:
+      - Users
+      summary: Logs in a user
+      operationId: loginUser
+      description: logs in a user object into the system
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "email"
+        in: "formData"
+        description: "The email address of the user"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        description: "An already existoing password"
+        required: true
+        type: "string"
+        minLength: 6
+      responses:
+        201:
+          description: |
+            Successfully logged in 
+          schema:
+            type: "object"
+            properties:
+              token:
+                type: "string"
+                description: "A token generated for authenticaticating subsequent requests"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+  /centers:
+    post:
+      tags:
+      - "Center"
+      summary: "Add a new center to the store"
+      description: "adds a new center to the list of centers"
+      operationId: "addCenter"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "Name"
+          in: "formData"
+          description: "The name of the center the user intends to add to the store."
+          required: true
+          type: "string"
+        - name: "image"
+          in: "formData"
+          description: "The image Url"
+          type: "string"
+        - name: "description"
+          in: "formData"
+          description: "A short description of the center"
+          required: true
+          type: "string"
+          minLength: 10
+        - name: "capacity"
+          in: "formData"
+          description: "The capacity the center can hold"
+          required: true
+          type: "number"
+        - name: "location"
+          in: "formData"
+          description: "The location of the center"
+          required: true
+          type: "string"
+        - name: "price"
+          in: "formData"
+          description: "Price of the center"
+          required: true
+          type: "number"
+        
+      responses:
+        201:
+          description: "The new center was successfully created"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The center details that was created "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+    get:
+      tags:
+      - "Center"
+      summary: "Returns all available center in the store"
+      description: "returns all available centers if no query parameter is present or limits the nmber of returned centers based on limit query params.it also searches center's store matching the name or category query params provided"
+      operationId: "getAllCenter"
+      consumes:
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "max number of center to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "name"
+        in: "query"
+        description: "name of center to search for"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "The center was successfully retrieved"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The center details that was created "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+    
+  /centers/centerId:
+    put:
+      tags:
+      - "Center"
+      summary: "Updates a center with the given Id"
+      description: ""
+      operationId: "updateCenter"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "centerId"
+          in: "path"
+          description: "ID of the center to be updated"
+          required: true
+          type: "integer"
+          format: "int64"
+        - name: "Name"
+          in: "formData"
+          description: "The name of the center the user intends to add to the store."
+          required: true
+          type: "string"
+        - name: "image"
+          in: "formData"
+          description: "The image Url"
+          type: "string"
+        - name: "description"
+          in: "formData"
+          description: "A short description of the center"
+          required: true
+          type: "string"
+          minLength: 10
+        - name: "capacity"
+          in: "formData"
+          description: "The capacity the center can hold"
+          required: true
+          type: "number"
+        - name: "location"
+          in: "formData"
+          description: "The location of the center"
+          required: true
+          type: "string"
+        - name: "price"
+          in: "formData"
+          description: "Price of the center"
+          required: true
+          type: "number"
+        
+      responses:
+        201:
+          description: "The new center was successfully updated"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The center details that was updated "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+    get:
+      tags:
+      - "Center"
+      summary: "Return a single center matching the Id provided"
+      description: ""
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "centerId"
+        in: "path"
+        description: "ID of center to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "The operation was succesful"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The center details that was retrieved "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+  
+  /centers/favorite/centerId:
+    put:
+      tags:
+      - "Center"
+      summary: "favorites a center with the given Id"
+      description: ""
+      operationId: "favoriteCenter"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "centerId"
+          in: "path"
+          description: "ID of the center to be favorited"
+          required: true
+          type: "integer"
+          format: "int64"
+
+      responses:
+        201:
+          description: "The center was successfully favorited or unfavorited"
+          schema:
+            type: "object"
+            properties:
+              favorites:
+                type: "object"
+                description: "The details of the center favorited"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+                
+        200:
+          description: "The center was successfully unfavorited"
+          schema:
+            type: "object"
+            properties:
+              favorites:
+                type: "object"
+                description: "The details of the center favorited"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+  /centers/reviews:
+    post:
+      tags:
+      - "Center"
+      summary: "adds review for a center with the given Id"
+      description: ""
+      operationId: "addReviewCenter"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "Id"
+          in: "formData"
+          description: "The id of the center to be reviewed"
+          required: true
+          type: "number"
+        - name: "userName"
+          in: "formData"
+          description: "The username of the user adding the review"
+          required: true
+          type: "string"
+        - name: "comment"
+          in: "formData"
+          description: "The review to be added"
+          type: "string"
+        
+      responses:
+        201:
+          description: "The operation was successful"
+          schema:
+            type: "object"
+            properties:
+              review:
+                type: "object"
+                description: "The details of the review added"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+  /centers/reviews/centerId:
+    get:
+      tags:
+      - "Center"
+      summary: "gets all review for a center with the given Id"
+      description: ""
+      operationId: "getReviews"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "centerId"
+          in: "path"
+          description: "ID of the center to be whose reviews are to be retrieved"
+          required: true
+          type: "integer"
+          format: "int64"
+        
+      responses:
+        200:
+          description: "The operation was successful"
+          schema:
+            type: "object"
+            properties:
+              review:
+                type: "object"
+                description: "The details of the review retrieved"
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+            
+  /events/userId:
+    get:
+      tags:
+      - "Events"
+      summary: "Returned all events added by a particular user"
+      description: "returns all events whose userId field matches the userId provided"
+      operationId: "getUserEvents"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of the user to return events for"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "The operation was succesful"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The user event details that was retrieved "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+          
+            
+  /events:
+    post:
+      tags:
+      - "Events"
+      summary: "Add a new event to the store"
+      description: "adds a new event to the list of events"
+      operationId: "addEvent"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "title"
+          in: "formData"
+          description: "The title of the event to created by the user"
+          required: true
+          type: "string"
+        - name: "center"
+          in: "formData"
+          description: "The center the event is going to hold in"
+          type: "string"
+        - name: "guests"
+          in: "formData"
+          description: "Number of guests expected"
+          required: true
+          type: "string"
+          minLength: 10
+        - name: "time"
+          in: "formData"
+          description: "The time the event will hold"
+          required: true
+          type: "string"
+        - name: "date"
+          in: "formData"
+          description: "The date the event will hold"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "The new event was successfully created"
+          schema:
+            type: "object"
+            properties:
+              event:
+                type: "object"
+                description: "The event details that was created "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        400:
+          description: "Maximum capacity exceeded for that center"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+            
+   
+            
+  /events/eventId:
+    get:
+      tags:
+      - "Events"
+      summary: "Return a single event matching the Id provided"
+      description: ""
+      operationId: "singleEvent"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "ID of event to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Event found"
+          schema:
+            type: "object"
+            properties:
+              event:
+                type: "object"
+                description: "The event details that was retrieved "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The event was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+            
+    put:
+      tags:
+      - "Events"
+      summary: "Updates an event matching the Id provided"
+      description: ""
+      operationId: "updateEvent"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "eventId"
+          in: "path"
+          description: "ID of the center to be updated"
+          required: true
+          type: "integer"
+          format: "int64"
+        - name: "title"
+          in: "formData"
+          description: "The title of the event to created by the user"
+          required: true
+          type: "string"
+        - name: "center"
+          in: "formData"
+          description: "The center the event is going to hold in"
+          type: "string"
+        - name: "guests"
+          in: "formData"
+          description: "Number of guests expected"
+          required: true
+          type: "string"
+          minLength: 10
+        - name: "time"
+          in: "formData"
+          description: "The time the event will hold"
+          required: true
+          type: "string"
+        - name: "date"
+          in: "formData"
+          description: "The date the event will hold"
+          required: true
+          type: "string"
+        
+      responses:
+        201:
+          description: "The event that was successfully updated"
+          schema:
+            type: "object"
+            properties:
+              center:
+                type: "object"
+                description: "The event details that was updated "
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The center was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+    delete:
+      tags:
+      - "Events"
+      summary: "Removes an event from the store"
+      description: "removes an event from the store whose Id matches the eventId provided"
+      operationId: "addEvents"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "ID of event to be deleted"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "The event was successfully deleted"
+          schema:
+            type: "object"
+            properties:
+              success:
+                type: "boolean"
+                default: true
+                description: "And indication of if the operation was successful or not"
+              message:
+                type: "string"
+                description: "A message stating that the operation was successful"
+        404:
+          description: "The event was not found"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        401:
+          description: "The user is not authorized to delete the event"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+        500:
+          description: "An error occured"
+          schema:
+            $ref: "#/definitions/DefaultResponseStructure"
+  
+            
+definitions:
+  DefaultResponseStructure:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+        example: false
+        description: "And indication of if the operation was successful or not"
+      message:
+        type: "string"
+        description: "An message sent by the api describing the result"
+  User:
+    type: object
+    required:
+    - username
+    - password
+    - email
+    properties:
+      username:
+        type: string
+        example: appcypher
+      password:
+        type: string
+        example: down the rabbit hole
+      email:
+        type: string
+        example: appcypher@outlook.com
+  Center:
+    type: object
+    required:
+    - name
+    - description
+    - capacity
+    - location
+    properties:
+      name:
+        type: string
+        example: Emporium
+      image:
+        type: string
+        example: /images/img.jsx
+      description:
+        type: string
+        example: lorem ipsum sid quor nil
+      capacity:
+        type: "integer"
+        format: "int64"
+      price:
+        type: "integer"
+        format: "int64"
+      location:
+        type: string
+        example: 45 lorem ipsum sid quor nil
+        
+  single:
+    type: object
+    required:
+    - name
+    - description
+    - capacity
+    - location
+    properties:
+      name:
+        type: string
+        example: Emporium
+      image:
+        type: string
+        example: /images/img.jsx
+      description:
+        type: string
+        example: lorem ipsum sid quor nil
+      capacity:
+        type: "integer"
+        format: "int64"
+      price:
+        type: "integer"
+        format: "int64"
+      location:
+        type: string
+        example: 45 lorem ipsum sid quor nil
+      events:
+        type: object
+        $ref: '#/definitions/Event'
+  Event:
+    type: object
+    required:
+    - title
+    - time
+    - date
+    - guests
+    properties:
+      title:
+        type: string
+        example: Google dev meetup
+      center:
+        type: string
+        example: The emporium
+      guests:
+        type: "integer"
+        example: 2000
+      time:
+        type: "string"
+        format: "date-time"
+      date:
+        type: "string"
+        format: "date-time"
+      
+      
+
+  UserLogin:
+    type: object
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        example: appcypher
+      password:
+        type: string
+        example: down the rabbit hole
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /and84/ikenna/1.0.0

@@ -37,7 +37,8 @@ class Users {
             message: 'invalid login details',
           });
         }// compare password
-        if (!bcrypt.compareSync(req.body.email, req.body.password) && !bcrypt.compareSync(req.body.password, user.password)) {
+        if (!bcrypt.compareSync(req.body.email, req.body.password) 
+        && !bcrypt.compareSync(req.body.password, user.password)) {
           return res.status(400).send({
             message: 'Incorrect password',
           });
@@ -49,7 +50,10 @@ class Users {
           })
             .then((adminUser) => {
             // create token
-              const token = jwt.sign({ adminUser }, 'secret', { expiresIn: '48 hour' });
+              const token = jwt.sign(
+                { adminUser }, 'secret', 
+                { expiresIn: '48 hour' }
+              );
               res.status(200).send({// send success message
                 status: 'Success',
                 message: 'Successfully logged in as Admin',
@@ -104,7 +108,10 @@ class Users {
           })
             .then((adminUser) => {
             // create token
-              const token = jwt.sign({ adminUser }, 'secret', { expiresIn: '48 hour' });
+              const token = jwt.sign(
+                { adminUser }, 'secret', 
+                { expiresIn: '48 hour' }
+              );
               res.status(200).send({// send success message
                 status: 'Success',
                 message: 'Successfully logged in as Admin',
@@ -136,7 +143,6 @@ class Users {
    */
   static retrieve(req, res) {
     // find a user matching the email passed in
-    console.log(req.body.email);
     User.findOne({
       where: {
         email: req.body.email,
@@ -145,7 +151,7 @@ class Users {
       .then((userx) => {
         // send back error message if no user found
         if (!userx) {
-          return res.status(400).send({
+          return res.status(404).send({
             message: 'email does not exist',
           });
         }// create a password and store it in the database
@@ -155,10 +161,13 @@ class Users {
           .then((user) => {
             // send the new created password to user email
             const title = 'Password Retrieval';
-            const message = `hello ${user.username}, this is your new password - ${user.password}`;
+            const message = `hello ${user.username}, 
+            this is your new password - ${user.password}`;
             messageMailer(user, message, title);
             // success message
-            res.status(200).send({ message: 'password sent to your email address' });
+            res.status(200).send(
+              { message: 'password sent to your email address' }
+            );
           });
         // .catch(err => res.status(500).send(err.toString()));
       })
@@ -174,7 +183,9 @@ class Users {
    * @return {object} return a recipe oject
    */
   static change(req, res) {
-    const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
+    const decoded = jwt.decode(
+      req.body.token || req.query.token || req.headers.token
+    );
     const { old, newp, newc } = req.body;
     // check the user accessing the route
     if (decoded.adminUser !== undefined) {
@@ -190,7 +201,8 @@ class Users {
     })
       .then((user) => {
         // check if the password entered actually exists
-        if (!bcrypt.compareSync(old, user.password) && !bcrypt.compareSync(user.email, old)) {
+        if (!bcrypt.compareSync(old, user.password) 
+        && !bcrypt.compareSync(user.email, old)) {
           return res.status(400).send({
             message: 'invalid password',
           });

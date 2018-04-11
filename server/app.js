@@ -12,25 +12,6 @@ import swaggerJSDoc from 'swagger-jsdoc';
 
 const app = express();
 
-let swaggerDefinition = {
-  info: {
-    title: 'Node Swagger API',
-    version: '2.0.0',
-    description: 'Demonstrating how to describe a RESTful API with Swagger',
-  },
-};
-
-// options for the swagger docs
-let options = {
-  // import swaggerDefinitions
-  swaggerDefinition: swaggerDefinition,
-  // path to the API docs
-  apis: ['./routes/adminRouter.js'],
-};
-
-// initialize swagger-jsdoc
-let swaggerSpec = swaggerJSDoc(options);
-
 const compiler = webpack(config);
 
 // Log requests to the console.

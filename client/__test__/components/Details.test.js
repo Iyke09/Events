@@ -1,33 +1,38 @@
-import Detail from '../../src/components/details';
+import Detail from '../../src/components/Details.jsx';
 import store from '../../src/store';
 import React from 'react';
 import jest from 'jest';
 import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import mockument from 'mockument';
-// import expect from 'expect';
+import expect from 'expect';
 import { mount, shallow } from 'enzyme';
 
 describe('Test suites for Detail component', () => {
   const single ={name: 'emporium', description: 'awesome place', price: 400, events: [
     {
+      id: 1,
       title: 'emporium',
       description: 'awesome place',
       date: '09-09-2019'
     },
     {
+      id: 2,
       title: 'emporium2',
       description: 'awesome place',
       date: '09-09-2019'
     },
   ]};
+
   const newEvents = [
     {
+      id: 1,
       title: 'emporium',
       description: 'awesome place',
       date: '09-09-2019'
     },
     {
+      id: 2,
       title: 'emporium2',
       description: 'awesome place',
       date: '09-09-2014'
@@ -35,17 +40,20 @@ describe('Test suites for Detail component', () => {
   ];
   const prevEvents = [
     {
+      id: 1,
       title: 'emporium',
       description: 'awesome place',
       date: '09-09-2019'
     }
   ];
   const newProps = {single: {events: [{
-      date: '2019-04-05',
+      id: 1,
+      date: '2020-04-05',
       name: 'algo',
     },
     {
-      date: '2018-09-07',
+      id: 2,
+      date: '2016-09-07',
       name: 'op'
     }
   ]}};
@@ -61,45 +69,44 @@ describe('Test suites for Detail component', () => {
   });
 
   it('detail comp renders without crashing', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     expect(wrapper.length).toEqual(1);
-    expect(wrapper.contains(
-      <button className="btn red" style={{marginRight: 25}}>BOOK CENTER</button>)).toEqual(true);
-    expect(wrapper).toMatchSnapshot();
   });
 
-  it('detail component renders upcoming events for that center', () => {
-    const wrapper = shallow(
+  it('renders all upcoming events for that center', () => {
+    const wrapper = mount(
       <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.setState({newArr1: newEvents});
-    expect(wrapper.find('.newTitle').length).toEqual(3);
-    expect(wrapper.contains(<h2 className="font2 newTitle">emporium</h2>)).toEqual(true);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('.new').length).toEqual(2);
+    expect(wrapper.contains(<h2 className="font2 new">emporium</h2>)).toEqual(true);
   });
 
   it('detail component renders past events', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.setState({pastArr1: prevEvents});
-    expect(wrapper.find('.prevTitle').length).toEqual(1);
-    expect(wrapper.contains(<h2 className="font2 prevTitle">emporium</h2>)).toEqual(true);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('.past').length).toEqual(1);
+    expect(wrapper.contains(<h2 className="font2 past">emporium</h2>)).toEqual(true);
   });
 
-  it('detail component renders past events', () => {
-    const wrapper = shallow(
+  it('calls the componentWillReceiveProps and updates state', () => {
+    const wrapper = mount(
       <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.instance().componentWillReceiveProps(newProps);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.state().newArr1).toEqual([{
+      id: 1,
+      date: '2020-04-05',
+      name: 'algo',
+    }]);
   });
 
-  it('detail comp renders past events for that center', () => {
-    const wrapper = shallow(
+  it('renders all the past events for that center', () => {
+    const wrapper = mount(
       <Detail getSingle={(index) => index} review={review}
         getReviews={(index) => index} params={center} single={single} />
     );
@@ -111,9 +118,9 @@ describe('Test suites for Detail component', () => {
     const preventDefault = sinon.spy();
     const addReview = sinon.spy();
     const params = {id: 1};
-    const wrapper = shallow(
+    const wrapper = mount(
       <Detail getSingle={(index) => index}
-        review={review} addReview={addReview} params={params} getReviews={(index) => index} params={center} single={single} />
+        review={review} addReview={addReview} params={params} getReviews={(index) => index} single={single} />
     );
     wrapper.find('#add-form').simulate('submit', { preventDefault });
     expect(addReview.calledOnce).toEqual(true);

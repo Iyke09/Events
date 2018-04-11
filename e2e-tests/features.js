@@ -219,7 +219,7 @@ module.exports = {
       })
       .pause(500);
   },
-  'return error if name field less than 4 characters ': (client) => {
+  'return error if name field less than 4 chlaracters ': (client) => {
     client
       .url('http://localhost:3000/admin/add_center')
       .verify.elementPresent('form')

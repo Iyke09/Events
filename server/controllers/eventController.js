@@ -12,8 +12,10 @@ let check = '';
 class Event {
   /**
    *
+   * @description adds a new event object
    * @param {object} req a review object
    * @param {object} res a review object
+   * 
    * @return {object} return a recipe oject
    */
   static addEvents(req, res) {
@@ -37,7 +39,8 @@ class Event {
           res.status(404).send({
             message: 'center not found or is currently not available',
           });
-        }// else find an event matching all 3 criteria of time,date and centerId
+        }
+        // else find an event matching all 3 criteria of time,date and centerId
         Eevent.findOne({ where: { centerId: center.id, time, date } })
           .then((event) => {
           // if actually found then that center has an event happening at the said time
@@ -52,7 +55,8 @@ class Event {
               return res.status(400).send({
                 message: 'Sorry!!! please select another hall, maximum capacity exceeded',
               });
-            }// else create an event
+            }
+            // else create an event
             return Eevent.create({
               title,
               type,
@@ -61,14 +65,16 @@ class Event {
               date,
               centerId: center.id,
               userId: check,
-            })// send back success message
+            })
+            // send back success message
               .then((cente) => {
                 res.status(201).send({
                   status: 'Success',
                   message: 'Event created',
                   cente,
                 });
-              })// error handler
+              })
+              // error handler
               .catch(error => res.status(500).send({
                 message: error.errors[0].message,
               }));
@@ -84,14 +90,15 @@ class Event {
 
   /**
    *
+   * @description removes an event object
    * @param {object} req a review object
    * @param {object} res a review object
+   * 
    * @return {object} return a recipe oject
    */
   static deleteEvent(req, res) {
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
-    console.log('deletedd ' + decoded);
     // find an event where the event d matches the req.params.id
     Eevent.findOne({ where: { id: req.params.id } })
       .then((event) => {
@@ -121,13 +128,14 @@ class Event {
             });
           // .catch(error => res.status(500).send(error.toString()));
         } else {
-          // if user not equal to admin
-          // check if the user's id matches the event.user id
+          /** if user not equal to admin
+          check if the user's id matches the event.user id */
           if (event.userId !== decoded.user.id) {
             return res.status(401).json({
               message: 'Not Authorized',
             });
-          }// if true cancel event
+          }
+          // if true cancel event
           return event
             .destroy()
             .then(() => res.status(200).send({
@@ -135,7 +143,8 @@ class Event {
               message: 'event deleted',
             }));
         }
-      })// error handler
+      })
+      // error handler
       .catch(error => res.status(500).send(error.toString()));
   }
 
@@ -143,9 +152,11 @@ class Event {
 
     /**
    *
+   * @description return an array of events for a user
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {object} return a recipe oject
+   * 
+   * @return {} return an array of events
    */
   static userEvent(req, res) {
     // decode token
@@ -205,6 +216,7 @@ class Event {
         }
         return res.status(200).send({
           status: 'Success',
+          message: 'event successfully retrieved',
           event
         });
       })// error handler

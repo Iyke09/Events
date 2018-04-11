@@ -3,12 +3,12 @@ import { render } from 'react-dom';
 
 // Import Components
 import App from './app';
-import Auth from './components/Auth';
-import Home from './components/Home';
-import details from './components/Details';
-import admin from './components/Admin';
-import events from './components/myEvents';
-import Events from './components/Events';
+import Auth from './components/Auth.jsx';
+import Home from './components/Home.jsx';
+import details from './components/Details.jsx';
+import admin from './components/Admin.jsx';
+import events from './components/myEvents.jsx';
+import Events from './components/Events.jsx';
 
 import './styles/style.scss';
 
