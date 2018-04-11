@@ -2,6 +2,11 @@
 
 exports[`Test suites for Auth component +++ changes  username input field 1`] = `
 ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
   "length": 1,
   "node": <div
     className="Centers"
@@ -96,12 +101,12 @@ ShallowWrapper {
               style={Object {}}
               to="/auth/signin"
             >
-              <a
+              <span
                 className="btn red"
                 id="download-button"
               >
                 Sign In
-              </a>
+              </span>
             </Link>
           </div>
           <div
@@ -171,78 +176,23 @@ ShallowWrapper {
                         <div
                           className="row"
                         >
-                          <form
-                            className="col s12"
-                            id="add-form"
-                            onSubmit={[Function]}
-                          >
-                            
-                            
-                            <div
-                              className="row"
-                            >
-                              
-                              <div
-                                className="input-field col s12"
-                              >
-                                <i
-                                  className="material-icons prefix"
-                                >
-                                  mail
-                                </i>
-                                <input
-                                  className="validate"
-                                  id="icon_telephone"
-                                  name="email"
-                                  onChange={[Function]}
-                                  placeholder="Email"
-                                  type="text"
-                                />
-                                <label
-                                  htmlFor="icon_telephone"
-                                />
-                              </div>
-                              <div
-                                className="input-field col s12"
-                              >
-                                <i
-                                  className="material-icons prefix"
-                                >
-                                  lock
-                                </i>
-                                <input
-                                  className="validate passwordz"
-                                  id="icon_telephone2"
-                                  name="password"
-                                  onChange={[Function]}
-                                  placeholder="Password"
-                                  type="password"
-                                />
-                                <label
-                                  htmlFor="icon_telephone2"
-                                />
-                              </div>
-                              
-                            </div>
-                            <div
-                              className=""
-                              style={
-                                Object {
-                                  "textAlign": "center",
-                                }
+                          <Form
+                            activeRoute={[Function]}
+                            clearError={[Function]}
+                            closeErrMsg={[Function]}
+                            error={undefined}
+                            handleSubmit={[Function]}
+                            loader={undefined}
+                            onChange={[Function]}
+                            state={
+                              Object {
+                                "email": "",
+                                "password": "",
+                                "retrieve": "",
+                                "username": "",
                               }
-                            >
-                              <button
-                                className="waves-effect waves-light btn red"
-                                type="submit"
-                              >
-                                <i
-                                  className=""
-                                />
-                                Create Account
-                              </button>
-                            </div>
-                          </form>
+                            }
+                          />
                           <div
                             className="modal modal-fixed-footer"
                             id="modal1"
@@ -261,58 +211,14 @@ ShallowWrapper {
                               >
                                 Retrieve Password
                               </h3>
-                              <form
-                                className="col s12"
-                                id="add-form2"
-                                onSubmit={[Function]}
-                              >
-                                
-                                
-                                <div
-                                  className="row"
-                                >
-                                  <div
-                                    className="input-field col s12 "
-                                  >
-                                    <i
-                                      className="material-icons prefix"
-                                    >
-                                      mail
-                                    </i>
-                                    <input
-                                      className="validate "
-                                      id="icon_telephone"
-                                      name="retrieve"
-                                      onChange={[Function]}
-                                      placeholder=""
-                                      type="email"
-                                    />
-                                    <label
-                                      htmlFor="icon_telephone"
-                                    >
-                                      Email
-                                    </label>
-                                  </div>
-                                </div>
-                                <div
-                                  className="center"
-                                >
-                                  <button
-                                    className="waves-effect waves-light btn red"
-                                    style={
-                                      Object {
-                                        "borderRadius": 40,
-                                      }
-                                    }
-                                    type="submit"
-                                  >
-                                    <i
-                                      className=""
-                                    />
-                                    Submit
-                                  </button>
-                                </div>
-                              </form>
+                              <Forms
+                                activeRoute={[Function]}
+                                closeErrMsg={[Function]}
+                                error={undefined}
+                                handleSubmit={[Function]}
+                                onChange={[Function]}
+                                success={undefined}
+                              />
                             </div>
                           </div>
                         </div>
@@ -421,12 +327,12 @@ ShallowWrapper {
                 style={Object {}}
                 to="/auth/signin"
               >
-                <a
+                <span
                   className="btn red"
                   id="download-button"
                 >
                   Sign In
-                </a>
+                </span>
               </Link>
             </div>
             <div
@@ -496,78 +402,23 @@ ShallowWrapper {
                           <div
                             className="row"
                           >
-                            <form
-                              className="col s12"
-                              id="add-form"
-                              onSubmit={[Function]}
-                            >
-                              
-                              
-                              <div
-                                className="row"
-                              >
-                                
-                                <div
-                                  className="input-field col s12"
-                                >
-                                  <i
-                                    className="material-icons prefix"
-                                  >
-                                    mail
-                                  </i>
-                                  <input
-                                    className="validate"
-                                    id="icon_telephone"
-                                    name="email"
-                                    onChange={[Function]}
-                                    placeholder="Email"
-                                    type="text"
-                                  />
-                                  <label
-                                    htmlFor="icon_telephone"
-                                  />
-                                </div>
-                                <div
-                                  className="input-field col s12"
-                                >
-                                  <i
-                                    className="material-icons prefix"
-                                  >
-                                    lock
-                                  </i>
-                                  <input
-                                    className="validate passwordz"
-                                    id="icon_telephone2"
-                                    name="password"
-                                    onChange={[Function]}
-                                    placeholder="Password"
-                                    type="password"
-                                  />
-                                  <label
-                                    htmlFor="icon_telephone2"
-                                  />
-                                </div>
-                                
-                              </div>
-                              <div
-                                className=""
-                                style={
-                                  Object {
-                                    "textAlign": "center",
-                                  }
+                            <Form
+                              activeRoute={[Function]}
+                              clearError={[Function]}
+                              closeErrMsg={[Function]}
+                              error={undefined}
+                              handleSubmit={[Function]}
+                              loader={undefined}
+                              onChange={[Function]}
+                              state={
+                                Object {
+                                  "email": "",
+                                  "password": "",
+                                  "retrieve": "",
+                                  "username": "",
                                 }
-                              >
-                                <button
-                                  className="waves-effect waves-light btn red"
-                                  type="submit"
-                                >
-                                  <i
-                                    className=""
-                                  />
-                                  Create Account
-                                </button>
-                              </div>
-                            </form>
+                              }
+                            />
                             <div
                               className="modal modal-fixed-footer"
                               id="modal1"
@@ -586,58 +437,14 @@ ShallowWrapper {
                                 >
                                   Retrieve Password
                                 </h3>
-                                <form
-                                  className="col s12"
-                                  id="add-form2"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    <div
-                                      className="input-field col s12 "
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate "
-                                        id="icon_telephone"
-                                        name="retrieve"
-                                        onChange={[Function]}
-                                        placeholder=""
-                                        type="email"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      >
-                                        Email
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="center"
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      style={
-                                        Object {
-                                          "borderRadius": 40,
-                                        }
-                                      }
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Submit
-                                    </button>
-                                  </div>
-                                </form>
+                                <Forms
+                                  activeRoute={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  onChange={[Function]}
+                                  success={undefined}
+                                />
                               </div>
                             </div>
                           </div>
@@ -658,14 +465,14 @@ ShallowWrapper {
     "_instance": ShallowComponentWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
-      "_currentElement": <Centers
+      "_currentElement": <Auth
         location={
           Object {
             "pathname": "hello",
           }
         }
       />,
-      "_instance": Centers {
+      "_instance": Auth {
         "_reactInternalInstance": [Circular],
         "activeRoute": [Function],
         "authenticate": [Function],
@@ -685,7 +492,6 @@ ShallowWrapper {
           "email": "",
           "password": "",
           "retrieve": "",
-          "undefined": "janedoe",
           "username": "",
         },
         "updater": Object {
@@ -801,12 +607,12 @@ ShallowWrapper {
                     style={Object {}}
                     to="/auth/signin"
                   >
-                    <a
+                    <span
                       className="btn red"
                       id="download-button"
                     >
                       Sign In
-                    </a>
+                    </span>
                   </Link>
                 </div>
                 <div
@@ -876,78 +682,23 @@ ShallowWrapper {
                               <div
                                 className="row"
                               >
-                                <form
-                                  className="col s12"
-                                  id="add-form"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate"
-                                        id="icon_telephone"
-                                        name="email"
-                                        onChange={[Function]}
-                                        placeholder="Email"
-                                        type="text"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      />
-                                    </div>
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        lock
-                                      </i>
-                                      <input
-                                        className="validate passwordz"
-                                        id="icon_telephone2"
-                                        name="password"
-                                        onChange={[Function]}
-                                        placeholder="Password"
-                                        type="password"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone2"
-                                      />
-                                    </div>
-                                    
-                                  </div>
-                                  <div
-                                    className=""
-                                    style={
-                                      Object {
-                                        "textAlign": "center",
-                                      }
+                                <Form
+                                  activeRoute={[Function]}
+                                  clearError={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  loader={undefined}
+                                  onChange={[Function]}
+                                  state={
+                                    Object {
+                                      "email": "",
+                                      "password": "",
+                                      "retrieve": "",
+                                      "username": "",
                                     }
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Create Account
-                                    </button>
-                                  </div>
-                                </form>
+                                  }
+                                />
                                 <div
                                   className="modal modal-fixed-footer"
                                   id="modal1"
@@ -966,58 +717,14 @@ ShallowWrapper {
                                     >
                                       Retrieve Password
                                     </h3>
-                                    <form
-                                      className="col s12"
-                                      id="add-form2"
-                                      onSubmit={[Function]}
-                                    >
-                                      
-                                      
-                                      <div
-                                        className="row"
-                                      >
-                                        <div
-                                          className="input-field col s12 "
-                                        >
-                                          <i
-                                            className="material-icons prefix"
-                                          >
-                                            mail
-                                          </i>
-                                          <input
-                                            className="validate "
-                                            id="icon_telephone"
-                                            name="retrieve"
-                                            onChange={[Function]}
-                                            placeholder=""
-                                            type="email"
-                                          />
-                                          <label
-                                            htmlFor="icon_telephone"
-                                          >
-                                            Email
-                                          </label>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className="center"
-                                      >
-                                        <button
-                                          className="waves-effect waves-light btn red"
-                                          style={
-                                            Object {
-                                              "borderRadius": 40,
-                                            }
-                                          }
-                                          type="submit"
-                                        >
-                                          <i
-                                            className=""
-                                          />
-                                          Submit
-                                        </button>
-                                      </div>
-                                    </form>
+                                    <Forms
+                                      activeRoute={[Function]}
+                                      closeErrMsg={[Function]}
+                                      error={undefined}
+                                      handleSubmit={[Function]}
+                                      onChange={[Function]}
+                                      success={undefined}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1125,12 +832,12 @@ ShallowWrapper {
                     style={Object {}}
                     to="/auth/signin"
                   >
-                    <a
+                    <span
                       className="btn red"
                       id="download-button"
                     >
                       Sign In
-                    </a>
+                    </span>
                   </Link>
                 </div>
                 <div
@@ -1200,78 +907,23 @@ ShallowWrapper {
                               <div
                                 className="row"
                               >
-                                <form
-                                  className="col s12"
-                                  id="add-form"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate"
-                                        id="icon_telephone"
-                                        name="email"
-                                        onChange={[Function]}
-                                        placeholder="Email"
-                                        type="text"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      />
-                                    </div>
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        lock
-                                      </i>
-                                      <input
-                                        className="validate passwordz"
-                                        id="icon_telephone2"
-                                        name="password"
-                                        onChange={[Function]}
-                                        placeholder="Password"
-                                        type="password"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone2"
-                                      />
-                                    </div>
-                                    
-                                  </div>
-                                  <div
-                                    className=""
-                                    style={
-                                      Object {
-                                        "textAlign": "center",
-                                      }
+                                <Form
+                                  activeRoute={[Function]}
+                                  clearError={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  loader={undefined}
+                                  onChange={[Function]}
+                                  state={
+                                    Object {
+                                      "email": "",
+                                      "password": "",
+                                      "retrieve": "",
+                                      "username": "",
                                     }
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Create Account
-                                    </button>
-                                  </div>
-                                </form>
+                                  }
+                                />
                                 <div
                                   className="modal modal-fixed-footer"
                                   id="modal1"
@@ -1290,58 +942,14 @@ ShallowWrapper {
                                     >
                                       Retrieve Password
                                     </h3>
-                                    <form
-                                      className="col s12"
-                                      id="add-form2"
-                                      onSubmit={[Function]}
-                                    >
-                                      
-                                      
-                                      <div
-                                        className="row"
-                                      >
-                                        <div
-                                          className="input-field col s12 "
-                                        >
-                                          <i
-                                            className="material-icons prefix"
-                                          >
-                                            mail
-                                          </i>
-                                          <input
-                                            className="validate "
-                                            id="icon_telephone"
-                                            name="retrieve"
-                                            onChange={[Function]}
-                                            placeholder=""
-                                            type="email"
-                                          />
-                                          <label
-                                            htmlFor="icon_telephone"
-                                          >
-                                            Email
-                                          </label>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className="center"
-                                      >
-                                        <button
-                                          className="waves-effect waves-light btn red"
-                                          style={
-                                            Object {
-                                              "borderRadius": 40,
-                                            }
-                                          }
-                                          type="submit"
-                                        >
-                                          <i
-                                            className=""
-                                          />
-                                          Submit
-                                        </button>
-                                      </div>
-                                    </form>
+                                    <Forms
+                                      activeRoute={[Function]}
+                                      closeErrMsg={[Function]}
+                                      error={undefined}
+                                      handleSubmit={[Function]}
+                                      onChange={[Function]}
+                                      success={undefined}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -1365,7 +973,7 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <Centers
+  "unrendered": <Auth
     location={
       Object {
         "pathname": "hello",
@@ -1377,6 +985,11 @@ ShallowWrapper {
 
 exports[`Test suites for Auth component +++ renders without crashing 1`] = `
 ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
   "length": 1,
   "node": <div
     className="Centers"
@@ -1471,12 +1084,12 @@ ShallowWrapper {
               style={Object {}}
               to="/auth/signin"
             >
-              <a
+              <span
                 className="btn red"
                 id="download-button"
               >
                 Sign In
-              </a>
+              </span>
             </Link>
           </div>
           <div
@@ -1546,78 +1159,23 @@ ShallowWrapper {
                         <div
                           className="row"
                         >
-                          <form
-                            className="col s12"
-                            id="add-form"
-                            onSubmit={[Function]}
-                          >
-                            
-                            
-                            <div
-                              className="row"
-                            >
-                              
-                              <div
-                                className="input-field col s12"
-                              >
-                                <i
-                                  className="material-icons prefix"
-                                >
-                                  mail
-                                </i>
-                                <input
-                                  className="validate"
-                                  id="icon_telephone"
-                                  name="email"
-                                  onChange={[Function]}
-                                  placeholder="Email"
-                                  type="text"
-                                />
-                                <label
-                                  htmlFor="icon_telephone"
-                                />
-                              </div>
-                              <div
-                                className="input-field col s12"
-                              >
-                                <i
-                                  className="material-icons prefix"
-                                >
-                                  lock
-                                </i>
-                                <input
-                                  className="validate passwordz"
-                                  id="icon_telephone2"
-                                  name="password"
-                                  onChange={[Function]}
-                                  placeholder="Password"
-                                  type="password"
-                                />
-                                <label
-                                  htmlFor="icon_telephone2"
-                                />
-                              </div>
-                              
-                            </div>
-                            <div
-                              className=""
-                              style={
-                                Object {
-                                  "textAlign": "center",
-                                }
+                          <Form
+                            activeRoute={[Function]}
+                            clearError={[Function]}
+                            closeErrMsg={[Function]}
+                            error={undefined}
+                            handleSubmit={[Function]}
+                            loader={undefined}
+                            onChange={[Function]}
+                            state={
+                              Object {
+                                "email": "",
+                                "password": "",
+                                "retrieve": "",
+                                "username": "",
                               }
-                            >
-                              <button
-                                className="waves-effect waves-light btn red"
-                                type="submit"
-                              >
-                                <i
-                                  className=""
-                                />
-                                Create Account
-                              </button>
-                            </div>
-                          </form>
+                            }
+                          />
                           <div
                             className="modal modal-fixed-footer"
                             id="modal1"
@@ -1636,58 +1194,14 @@ ShallowWrapper {
                               >
                                 Retrieve Password
                               </h3>
-                              <form
-                                className="col s12"
-                                id="add-form2"
-                                onSubmit={[Function]}
-                              >
-                                
-                                
-                                <div
-                                  className="row"
-                                >
-                                  <div
-                                    className="input-field col s12 "
-                                  >
-                                    <i
-                                      className="material-icons prefix"
-                                    >
-                                      mail
-                                    </i>
-                                    <input
-                                      className="validate "
-                                      id="icon_telephone"
-                                      name="retrieve"
-                                      onChange={[Function]}
-                                      placeholder=""
-                                      type="email"
-                                    />
-                                    <label
-                                      htmlFor="icon_telephone"
-                                    >
-                                      Email
-                                    </label>
-                                  </div>
-                                </div>
-                                <div
-                                  className="center"
-                                >
-                                  <button
-                                    className="waves-effect waves-light btn red"
-                                    style={
-                                      Object {
-                                        "borderRadius": 40,
-                                      }
-                                    }
-                                    type="submit"
-                                  >
-                                    <i
-                                      className=""
-                                    />
-                                    Submit
-                                  </button>
-                                </div>
-                              </form>
+                              <Forms
+                                activeRoute={[Function]}
+                                closeErrMsg={[Function]}
+                                error={undefined}
+                                handleSubmit={[Function]}
+                                onChange={[Function]}
+                                success={undefined}
+                              />
                             </div>
                           </div>
                         </div>
@@ -1796,12 +1310,12 @@ ShallowWrapper {
                 style={Object {}}
                 to="/auth/signin"
               >
-                <a
+                <span
                   className="btn red"
                   id="download-button"
                 >
                   Sign In
-                </a>
+                </span>
               </Link>
             </div>
             <div
@@ -1871,78 +1385,23 @@ ShallowWrapper {
                           <div
                             className="row"
                           >
-                            <form
-                              className="col s12"
-                              id="add-form"
-                              onSubmit={[Function]}
-                            >
-                              
-                              
-                              <div
-                                className="row"
-                              >
-                                
-                                <div
-                                  className="input-field col s12"
-                                >
-                                  <i
-                                    className="material-icons prefix"
-                                  >
-                                    mail
-                                  </i>
-                                  <input
-                                    className="validate"
-                                    id="icon_telephone"
-                                    name="email"
-                                    onChange={[Function]}
-                                    placeholder="Email"
-                                    type="text"
-                                  />
-                                  <label
-                                    htmlFor="icon_telephone"
-                                  />
-                                </div>
-                                <div
-                                  className="input-field col s12"
-                                >
-                                  <i
-                                    className="material-icons prefix"
-                                  >
-                                    lock
-                                  </i>
-                                  <input
-                                    className="validate passwordz"
-                                    id="icon_telephone2"
-                                    name="password"
-                                    onChange={[Function]}
-                                    placeholder="Password"
-                                    type="password"
-                                  />
-                                  <label
-                                    htmlFor="icon_telephone2"
-                                  />
-                                </div>
-                                
-                              </div>
-                              <div
-                                className=""
-                                style={
-                                  Object {
-                                    "textAlign": "center",
-                                  }
+                            <Form
+                              activeRoute={[Function]}
+                              clearError={[Function]}
+                              closeErrMsg={[Function]}
+                              error={undefined}
+                              handleSubmit={[Function]}
+                              loader={undefined}
+                              onChange={[Function]}
+                              state={
+                                Object {
+                                  "email": "",
+                                  "password": "",
+                                  "retrieve": "",
+                                  "username": "",
                                 }
-                              >
-                                <button
-                                  className="waves-effect waves-light btn red"
-                                  type="submit"
-                                >
-                                  <i
-                                    className=""
-                                  />
-                                  Create Account
-                                </button>
-                              </div>
-                            </form>
+                              }
+                            />
                             <div
                               className="modal modal-fixed-footer"
                               id="modal1"
@@ -1961,58 +1420,14 @@ ShallowWrapper {
                                 >
                                   Retrieve Password
                                 </h3>
-                                <form
-                                  className="col s12"
-                                  id="add-form2"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    <div
-                                      className="input-field col s12 "
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate "
-                                        id="icon_telephone"
-                                        name="retrieve"
-                                        onChange={[Function]}
-                                        placeholder=""
-                                        type="email"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      >
-                                        Email
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="center"
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      style={
-                                        Object {
-                                          "borderRadius": 40,
-                                        }
-                                      }
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Submit
-                                    </button>
-                                  </div>
-                                </form>
+                                <Forms
+                                  activeRoute={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  onChange={[Function]}
+                                  success={undefined}
+                                />
                               </div>
                             </div>
                           </div>
@@ -2033,14 +1448,14 @@ ShallowWrapper {
     "_instance": ShallowComponentWrapper {
       "_calledComponentWillUnmount": false,
       "_context": Object {},
-      "_currentElement": <Centers
+      "_currentElement": <Auth
         location={
           Object {
             "pathname": "hello",
           }
         }
       />,
-      "_instance": Centers {
+      "_instance": Auth {
         "_reactInternalInstance": [Circular],
         "activeRoute": [Function],
         "authenticate": [Function],
@@ -2175,12 +1590,12 @@ ShallowWrapper {
                     style={Object {}}
                     to="/auth/signin"
                   >
-                    <a
+                    <span
                       className="btn red"
                       id="download-button"
                     >
                       Sign In
-                    </a>
+                    </span>
                   </Link>
                 </div>
                 <div
@@ -2250,78 +1665,23 @@ ShallowWrapper {
                               <div
                                 className="row"
                               >
-                                <form
-                                  className="col s12"
-                                  id="add-form"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate"
-                                        id="icon_telephone"
-                                        name="email"
-                                        onChange={[Function]}
-                                        placeholder="Email"
-                                        type="text"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      />
-                                    </div>
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        lock
-                                      </i>
-                                      <input
-                                        className="validate passwordz"
-                                        id="icon_telephone2"
-                                        name="password"
-                                        onChange={[Function]}
-                                        placeholder="Password"
-                                        type="password"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone2"
-                                      />
-                                    </div>
-                                    
-                                  </div>
-                                  <div
-                                    className=""
-                                    style={
-                                      Object {
-                                        "textAlign": "center",
-                                      }
+                                <Form
+                                  activeRoute={[Function]}
+                                  clearError={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  loader={undefined}
+                                  onChange={[Function]}
+                                  state={
+                                    Object {
+                                      "email": "",
+                                      "password": "",
+                                      "retrieve": "",
+                                      "username": "",
                                     }
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Create Account
-                                    </button>
-                                  </div>
-                                </form>
+                                  }
+                                />
                                 <div
                                   className="modal modal-fixed-footer"
                                   id="modal1"
@@ -2340,58 +1700,14 @@ ShallowWrapper {
                                     >
                                       Retrieve Password
                                     </h3>
-                                    <form
-                                      className="col s12"
-                                      id="add-form2"
-                                      onSubmit={[Function]}
-                                    >
-                                      
-                                      
-                                      <div
-                                        className="row"
-                                      >
-                                        <div
-                                          className="input-field col s12 "
-                                        >
-                                          <i
-                                            className="material-icons prefix"
-                                          >
-                                            mail
-                                          </i>
-                                          <input
-                                            className="validate "
-                                            id="icon_telephone"
-                                            name="retrieve"
-                                            onChange={[Function]}
-                                            placeholder=""
-                                            type="email"
-                                          />
-                                          <label
-                                            htmlFor="icon_telephone"
-                                          >
-                                            Email
-                                          </label>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className="center"
-                                      >
-                                        <button
-                                          className="waves-effect waves-light btn red"
-                                          style={
-                                            Object {
-                                              "borderRadius": 40,
-                                            }
-                                          }
-                                          type="submit"
-                                        >
-                                          <i
-                                            className=""
-                                          />
-                                          Submit
-                                        </button>
-                                      </div>
-                                    </form>
+                                    <Forms
+                                      activeRoute={[Function]}
+                                      closeErrMsg={[Function]}
+                                      error={undefined}
+                                      handleSubmit={[Function]}
+                                      onChange={[Function]}
+                                      success={undefined}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -2499,12 +1815,12 @@ ShallowWrapper {
                     style={Object {}}
                     to="/auth/signin"
                   >
-                    <a
+                    <span
                       className="btn red"
                       id="download-button"
                     >
                       Sign In
-                    </a>
+                    </span>
                   </Link>
                 </div>
                 <div
@@ -2574,78 +1890,23 @@ ShallowWrapper {
                               <div
                                 className="row"
                               >
-                                <form
-                                  className="col s12"
-                                  id="add-form"
-                                  onSubmit={[Function]}
-                                >
-                                  
-                                  
-                                  <div
-                                    className="row"
-                                  >
-                                    
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        mail
-                                      </i>
-                                      <input
-                                        className="validate"
-                                        id="icon_telephone"
-                                        name="email"
-                                        onChange={[Function]}
-                                        placeholder="Email"
-                                        type="text"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone"
-                                      />
-                                    </div>
-                                    <div
-                                      className="input-field col s12"
-                                    >
-                                      <i
-                                        className="material-icons prefix"
-                                      >
-                                        lock
-                                      </i>
-                                      <input
-                                        className="validate passwordz"
-                                        id="icon_telephone2"
-                                        name="password"
-                                        onChange={[Function]}
-                                        placeholder="Password"
-                                        type="password"
-                                      />
-                                      <label
-                                        htmlFor="icon_telephone2"
-                                      />
-                                    </div>
-                                    
-                                  </div>
-                                  <div
-                                    className=""
-                                    style={
-                                      Object {
-                                        "textAlign": "center",
-                                      }
+                                <Form
+                                  activeRoute={[Function]}
+                                  clearError={[Function]}
+                                  closeErrMsg={[Function]}
+                                  error={undefined}
+                                  handleSubmit={[Function]}
+                                  loader={undefined}
+                                  onChange={[Function]}
+                                  state={
+                                    Object {
+                                      "email": "",
+                                      "password": "",
+                                      "retrieve": "",
+                                      "username": "",
                                     }
-                                  >
-                                    <button
-                                      className="waves-effect waves-light btn red"
-                                      type="submit"
-                                    >
-                                      <i
-                                        className=""
-                                      />
-                                      Create Account
-                                    </button>
-                                  </div>
-                                </form>
+                                  }
+                                />
                                 <div
                                   className="modal modal-fixed-footer"
                                   id="modal1"
@@ -2664,58 +1925,14 @@ ShallowWrapper {
                                     >
                                       Retrieve Password
                                     </h3>
-                                    <form
-                                      className="col s12"
-                                      id="add-form2"
-                                      onSubmit={[Function]}
-                                    >
-                                      
-                                      
-                                      <div
-                                        className="row"
-                                      >
-                                        <div
-                                          className="input-field col s12 "
-                                        >
-                                          <i
-                                            className="material-icons prefix"
-                                          >
-                                            mail
-                                          </i>
-                                          <input
-                                            className="validate "
-                                            id="icon_telephone"
-                                            name="retrieve"
-                                            onChange={[Function]}
-                                            placeholder=""
-                                            type="email"
-                                          />
-                                          <label
-                                            htmlFor="icon_telephone"
-                                          >
-                                            Email
-                                          </label>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className="center"
-                                      >
-                                        <button
-                                          className="waves-effect waves-light btn red"
-                                          style={
-                                            Object {
-                                              "borderRadius": 40,
-                                            }
-                                          }
-                                          type="submit"
-                                        >
-                                          <i
-                                            className=""
-                                          />
-                                          Submit
-                                        </button>
-                                      </div>
-                                    </form>
+                                    <Forms
+                                      activeRoute={[Function]}
+                                      closeErrMsg={[Function]}
+                                      error={undefined}
+                                      handleSubmit={[Function]}
+                                      onChange={[Function]}
+                                      success={undefined}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -2739,7 +1956,7 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <Centers
+  "unrendered": <Auth
     location={
       Object {
         "pathname": "hello",

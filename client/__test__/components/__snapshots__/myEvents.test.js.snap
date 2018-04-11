@@ -2,6 +2,11 @@
 
 exports[`Test suites for My Event component +++ renders with all list of user events 1`] = `
 ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
   "length": 1,
   "node": <div
     className="events"
@@ -2483,6 +2488,11 @@ ShallowWrapper {
 
 exports[`Test suites for My Event component +++ renders with all list of user events 2`] = `
 ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
   "length": 1,
   "node": <div
     className="events"
@@ -4967,6 +4977,11 @@ ShallowWrapper {
 
 exports[`Test suites for My Event component +++ renders without crashing 1`] = `
 ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
   "length": 1,
   "node": <div
     className="events"

@@ -7,8 +7,8 @@ import { browserHistory } from 'react-router';
 const userUrl = '/api/v1/users';
 const centerUrl = '/api/v1/centers';
 const eventUrl = '/api/v1/events';
-const token = localStorage.getItem('token');
-axios.defaults.headers.common['token'] = token;
+//const token = localStorage.getItem('token');
+//axios.defaults.headers.common['token'] = token;
 
 export function* addUserAsync(action) {
 	try {

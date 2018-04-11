@@ -5,7 +5,7 @@ const mailer = (user, msg, title) => {
     service: 'Gmail',
     auth: {
       user: 'iykay33@gmail.com',
-      pass: 'p3nn1s001',
+      pass: '0000',
     },
   });
   const mailOptions = {

@@ -1,9 +1,9 @@
-import Event from '../../src/components/myEvents';
+import Event from '../../src/components/myEvents.jsx';
 import React from 'react';
 import jest from 'jest';
 import sinon from 'sinon';
 import mockument from 'mockument';
-// import expect from 'expect';
+import expect from 'expect';
 import { mount, shallow } from 'enzyme';
 
 describe('Test suites for My Event component', () => {
@@ -34,7 +34,6 @@ describe('Test suites for My Event component', () => {
 	});
 	it('+++ renders without crashing', () => {
 		const wrapper = shallow(<Event getEvents={() => null} />);
-		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('+++ renders with all list of user events', () => {
@@ -51,7 +50,6 @@ describe('Test suites for My Event component', () => {
 			)
 		).toEqual(true);
 		expect(wrapper.find('.test').length).toEqual(2);
-		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('+++ renders with all list of user events', () => {
@@ -60,11 +58,5 @@ describe('Test suites for My Event component', () => {
 		wrapper.find('.test1').first().simulate('click');
 		wrapper.find('.test2').first().simulate('click');
 		expect(deleteEvent.calledOnce).toEqual(true);
-		expect(wrapper).toMatchSnapshot();
 	});
-
-	// it('+++ renders link to home page', () => {
-	//   const wrapper = shallow(<Signup />);
-	//   expect(wrapper.find('Link').first().prop('to')).toEqual('/');
-	// });
 });

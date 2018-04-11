@@ -1,7 +1,3 @@
-// import addCenterMethod from './add-center';
-// import updateCenterMethod from './update';
-// import centerDetailsMethod from './details';
-// import allCentersMethod from './all-centers';
 import jwt from 'jsonwebtoken';
 import {
   Center,
@@ -17,10 +13,11 @@ import {
  */
 class Admin {
    /**
+    * @description creates a new center object
    *
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {object} return a recipe oject
+   * @return {array} return an array of objects
    */
   static addCenter(req, res) {
     Center.create({
@@ -43,12 +40,14 @@ class Admin {
 
 
   /**
-   *
+   * @description updates a center
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {object} return a recipe oject
+   * 
+   * @return {object} return a center oject
    */
   static updateCenter(req, res) {
+    const {name, image, description, capacity, price, location} = req.body;
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
         // if center not found return unsuccessful message back to user
@@ -59,12 +58,12 @@ class Admin {
         }// else update the found center with user inputs
         return center
           .update({
-            name: req.body.name || center.name,
-            image: req.body.image || center.image,
-            description: req.body.description || center.description,
-            capacity: req.body.capacity || center.capacity,
-            price: req.body.price || center.price,
-            location: req.body.location || center.location,
+            name: name || center.name,
+            image: image || center.image,
+            description: description || center.description,
+            capacity: capacity || center.capacity,
+            price: price || center.price,
+            location: location || center.location,
             isAvailable: !center.isAvailable,
           })// if update successful return a success message back to user
           .then(center =>
@@ -84,13 +83,15 @@ class Admin {
    *
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {object} return a recipe oject
+   * 
+   * @return {object} return a center oject
    */
   static centerDetails(req, res) {
   // find all centers where the id matches the req.params.id
     Center.findOne({
       where: { id: req.params.id },
-      include: [{// include all events with event.centerId matching the the center id found
+      // include all events with event.centerId matching the the center id found
+      include: [{
         model: Eevent,
         as: 'events',
       }],
@@ -101,7 +102,8 @@ class Admin {
           return res.status(404).send({
             message: 'center Not Found',
           });
-        }// else return the center found and it's events
+        }
+        // else return the center found and it's events
         return res.status(200).send({
           status: 'Success',
           message: 'center found',
@@ -120,7 +122,7 @@ class Admin {
     const { name, capacity } = req.query;
     // check if user is sending in query parameters
     if (name !== undefined || capacity !== undefined) {
-      // if query parameters is true then perform search on center model based on user input
+      // if query parameters is true model based on user input
       Center.findAll({
         where: {
           $or: [
@@ -149,7 +151,7 @@ class Admin {
         });
       //  .catch(error => res.status(400).send(error.toString()));
     } else {
-      // if query parameters not present then query center model for all available center
+      // find all centers
       Center.findAll({
           limit: req.query.limit,
           order:[['updatedAt', 'DESC']],
@@ -168,13 +170,16 @@ class Admin {
   }
     /**
    *
+   * @description favorites a user center
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {object} return a recipe oject
+   * 
+   * @return {object} returns a favorited center object
    */
   static favoriteCenters(req, res) {
-    //console.log(req.headers.token);
-    const decoded = jwt.decode(req.query.token || req.body.token || req.headers.token);
+    const decoded = jwt.decode(req.query.token || 
+      req.body.token || req.headers.token);
+    // find a user center by Id
       Center.findById(req.params.id)
         .then((center) => {
           if (!center) {
@@ -182,6 +187,7 @@ class Admin {
               message: 'not Found',
             });
           }
+          // find a favorite object matching the userId and centerId
           Favorite.findOne({
             where: {
               centerId: req.params.id,
@@ -190,6 +196,7 @@ class Admin {
           })
             .then((favCenter) => {
               if (!favCenter) {
+                // create a favorite object
                 return Favorite.create({
                   centerId: req.params.id,
                   userId: decoded.user.id,
@@ -203,6 +210,7 @@ class Admin {
                   })
                   .catch(error => res.status(500).send(error.toString()));
               }
+              // destroy the favorite object if found in DB
               favCenter
                 .destroy()
                 .then(() => {
@@ -211,16 +219,17 @@ class Admin {
                     message: 'Center unfavorited',
                   });
                 })
-                .catch(error => res.status(403).send(error.toString()));
+                .catch(error => res.status(500).send(error.toString()));
             });
         })
-        .catch(error =>  console.log(error.toString()));
+        .catch(error => res.status(500).send(error.toString()));
   }
 
      /**
    *
    * @param {object} req a review object
    * @param {object} res a review object
+   * 
    * @return {object} return a recipe oject
    */
   static addReview(req, res) {
@@ -229,20 +238,23 @@ class Admin {
       centerId: id,
       user: username,
       comment
-    })// return message to user if operation was successful
+    })
+    // return message to user if operation was successful
       .then(review => res.status(201).send({
         status: 'Success',
         message: 'review created',
         review
-      }))// catch errors
+      }))
+      // catch errors
       .catch(error => res.status(500).send(error.toString()));
   }
 
-       /**
-   *
+    /**
+     * @description gets all available reviews
    * @param {object} req a review object
    * @param {object} res a review object
-   * @return {array} return a review array
+   * 
+   * @return {array} return an array of center reviews
    */
   static getReviews(req, res) {
     Review.findAll({
@@ -250,11 +262,13 @@ class Admin {
       limit: 3,
       order:[['updatedAt', 'DESC']]
      })
+     // return a success message if operation successful
     .then(review => res.status(200).send({
       status: 'Success',
       message: 'reviews found',
       review,
     }))
+    // catch errors
     .catch(error => res.status(500).send(error.toString()));
   }
 }

@@ -15,6 +15,9 @@ export default {
     publicPath: '/static/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   devServer: {
     contentBase: path.resolve(__dirname, 'client/src')
   },
@@ -32,7 +35,12 @@ export default {
       {
         test: /\.js$/,
         include: path.join(__dirname, 'client/src'),
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: "babel-loader"
       },
       {
         test: /\.(scss|css)$/,

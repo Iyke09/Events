@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "pass",
+    "password": "5432",
     "database": "events",
     "host": "127.0.0.1",
     "port":5432,
