@@ -36,11 +36,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-// app.get('/swagger.json', function(req, res){
-//   res.setHeader('Content-Type', 'application/json');
-//   res.send(swaggerSpec);
-// });
-
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../client/index.html'));
   console.log('running on development dev server!!!!');

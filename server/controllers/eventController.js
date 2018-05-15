@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import formatDate from 'simple-format-date';
-import messageMailer,{ updateHelper } from '../helpers/mailer';
+import messageMailer,{ updateHelper } from '../helpers/helperFunc';
 import { Center, Eevent, User } from '../models';
 
 
@@ -8,7 +8,7 @@ import { Center, Eevent, User } from '../models';
  * Creates a new Person.
  * @class
  */
-let check = '';
+let userID = '';
 class Event {
   /**
    *
@@ -28,9 +28,9 @@ class Event {
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     // check if it is a user or admin user trying to access route
     if (decoded.adminUser === undefined) {
-      check = decoded.user.id;
+      userID = decoded.user.id;
     } else {
-      check = decoded.adminUser.id;
+      userID = decoded.adminUser.id;
     }// find a center where the name column is eq to req.body.name and where available is set to true
     Center.findOne({ where: { name } })
       .then((center) => {
@@ -40,7 +40,7 @@ class Event {
             message: 'center not found or is currently not available',
           });
         }
-        // else find an event matching all 3 criteria of time,date and centerId
+        // else check if an event already exist in that time and place
         Eevent.findOne({ where: { centerId: center.id, time, date } })
           .then((event) => {
           // if actually found then that center has an event happening at the said time
@@ -64,7 +64,7 @@ class Event {
               time,
               date,
               centerId: center.id,
-              userId: check,
+              userId: userID,
             })
             // send back success message
               .then((cente) => {
@@ -162,16 +162,16 @@ class Event {
     // decode token
     const decoded = jwt.decode(req.body.token ||
       req.query.token || req.headers.token);
-    console.log(decoded);
     // check if it is a user or admin user trying to access route
+    const {id} = decoded.user;
     if (decoded.adminUser === undefined) {
-      check = decoded.user.id;
+      userID = id;
     } else {
-      check = decoded.adminUser.id;
+      userID = decoded.adminUser.id;
     }
     // find an event where the event d matches the req.params.id
     Eevent.findAll({
-      where: { userId: check },
+      where: { userId: userID },
       include: [{
         model: Center
       }],
@@ -185,6 +185,7 @@ class Event {
         }
         return res.status(200).send({
           status: 'Success',
+          message: 'event successfully retrieved',
           event
         });
       })// error handler

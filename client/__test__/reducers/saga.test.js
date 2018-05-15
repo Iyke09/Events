@@ -7,22 +7,29 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from "redux-saga-test-plan/providers";
 import axios from 'axios';
 import {
-  getCenters,
-  watchGetCenters,
-  watchFavoriteCenter,
-  watchGetSingleEvent,
-  watchSignUser,
-  watchAddUser,
-  watchAddCenter,
-  watchUpdateCenter,
-  watchGetEvents,
-  watchDeleteEvent,
-  watchRetrievePass,
-  watchChangePass,
-  watchUpdateEvent,
-  watchAddEvent,
-  watchGetReviews,
-  watchAddReview } from '../../src/Saga/saga';
+	watchGetCenters,
+	watchGetSingle,
+	watchAddCenter,
+	watchUpdateCenter,
+	watchGetReviews,
+	watchAddReview,
+	watchFavoriteCenter
+} from '../../src/Saga/center';
+
+import {
+	watchSignUser,
+	watchAddUser,
+	watchRetrievePass,
+	watchChangePass,
+} from '../../src/Saga/user';
+
+import {
+	watchGetSingleEvent,
+	watchGetEvents,
+	watchDeleteEvent,
+	watchUpdateEvent,
+	watchAddEvent
+} from '../../src/Saga/events';
 
 
 

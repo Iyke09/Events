@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models';
-import messageMailer from '../helpers/mailer';
+import messageMailer from '../helpers/helperFunc';
 
 /**
  * Creates a new Person.
@@ -15,17 +15,20 @@ class Users {
    * @return {object} return a recipe oject
    */
   static signin(req, res) {
-    if (!req.body.email) { // prevent empty email fields
+    // prevent empty email fields
+    if (!req.body.email) { 
       return res.status(400).json({
         message: 'please fill in the required fields',
       });
     }
-    if (!req.body.password) { // prevent empty password fields
+    if (!req.body.password) { 
+      // prevent empty password fields
       return res.status(400).json({
         message: 'please fill in the required fields',
       });
     }
-    return User.findOne({// find a user matching the email been passed in
+    return User.findOne({
+      // find a user matching the email been passed in
       where: {
         email: req.body.email,
       },
@@ -36,7 +39,8 @@ class Users {
           return res.status(400).send({
             message: 'invalid login details',
           });
-        }// compare password
+        }
+        // compare password
         if (!bcrypt.compareSync(req.body.email, req.body.password) 
         && !bcrypt.compareSync(req.body.password, user.password)) {
           return res.status(400).send({
@@ -54,14 +58,15 @@ class Users {
                 { adminUser }, 'secret', 
                 { expiresIn: '48 hour' }
               );
-              res.status(200).send({// send success message
+              res.status(200).send({
+                // send success message
                 status: 'Success',
                 message: 'Successfully logged in as Admin',
                 token,
               });
             })// error handler
             .catch(error => res.status(500).send({
-              message: error.toString(),
+              message: error.errors[0].message,
             }));
         }
         // if not first in db...just create a token
@@ -119,7 +124,7 @@ class Users {
               });
             })// error handler
             .catch(error => res.status(500).send({
-              message: error.toString(),
+              message: error.errors[0].message,
             }));
         }
         // if not first in db...just create a token

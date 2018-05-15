@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 
 export const Auth = (req, res, next) => {
   const token = req.body.token || req.query.token || req.headers.token;
-  console.log(token);
   jwt.verify(token, 'secret', (err, decoded) => {
     if (err) {
       return res.status(401).json({

@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --coverage",
     "test-e2e": "nightwatch",
-    "test:db": "set NODE_ENV=test&&sequelize db:migrate:undo:all&&sequelize db:migrate && cross-env NODE_ENV=test nyc mocha --timeout 15000 server/00-test/server-test.js",
+    "test:db": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && cross-env NODE_ENV=test nyc mocha --timeout 15000 server/00-test/main.spec.js",
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "start:devx": "nodemon --exec babel-node server/bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

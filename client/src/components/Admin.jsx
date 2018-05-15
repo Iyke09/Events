@@ -52,12 +52,12 @@ class Admin extends Component {
         let decoded = '';
         const token = localStorage.getItem('token');
         if(token === null ){
-        browserHistory.push('/auth/signin');
+            browserHistory.push('/auth/signin');
         }else{
-        decoded = jwt(token);
-        if(decoded.adminUser === undefined){
-            browserHistory.push('/');
-        }
+            decoded = jwt(token);
+            if(decoded.adminUser === undefined){
+                browserHistory.push('/');
+            }
         }
         this.props.getCenters(3);
         $(document).ready(function(){
@@ -116,9 +116,9 @@ class Admin extends Component {
         e.preventDefault();
         this.props.loaders();
         if(this.activeRoute('edit')){
-        this.props.updateCenter(this.state, this.props.params.id);
+            this.props.updateCenter(this.state, this.props.params.id);
         }else{
-        this.props.addCenter(this.state);
+            this.props.addCenter(this.state);
         }
         document.getElementById("add-form").reset();
     }
