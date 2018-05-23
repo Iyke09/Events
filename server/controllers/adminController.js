@@ -20,7 +20,14 @@ class Admin {
    * @return {array} return an array of objects
    */
   static addCenter(req, res) {
-    const {name, image, description, capacity, price, location} = req.body;
+    const {
+      name,
+      image, 
+      description, 
+      capacity, 
+      price, 
+      location
+    } = req.body;
     Center.create({
       name,
       image,
@@ -69,7 +76,7 @@ class Admin {
             location: location || center.location,
             isAvailable: !center.isAvailable,
           })// if update successful return a success message back to user
-          .then(center =>
+          .then(center => /* eslint-disable-line */
             res.status(201).send({
               status: 'success',
               message: 'center updated',
@@ -157,7 +164,7 @@ class Admin {
     } else {
       // find all centers
       Center.findAll({
-          limit: req.query.limit,
+          limit: req.query.limit || 10,
           order:[['updatedAt', 'DESC']],
           include: [{
             model: Favorite,
@@ -236,45 +243,27 @@ class Admin {
    * 
    * @return {object} return a recipe oject
    */
-  static addReview(req, res) {
-    const {id, username, comment} = req.body;
+  static addReview(req, res){
+    const {centerId, comment, user} = req.body;
+
     Review.create({
-      centerId: id,
-      user: username,
-      comment
+      centerId,
+      comment,
+      user
     })
-      // return message to user if operation was successful
-      .then(review => res.status(201).send({
-        status: 'Success',
-        message: 'review created',
+    .then((review)=>{
+      res.status(201).send({
+        message: "Review successfully created",
         review
-      }))
-      // catch errors
-      .catch(error => res.status(500).send(error.toString()));
+      });
+    })
+    .catch((error)=>{
+      res.status(500).send({
+        message: error.errors[0].message,
+      });
+    });
   }
 
-    /**
-     * @description gets all available reviews
-   * @param {object} req a review object
-   * @param {object} res a review object
-   * 
-   * @return {array} return an array of center reviews
-   */
-  static getReviews(req, res) {
-    Review.findAll({
-      where: { centerId: req.params.id },
-      limit: 3,
-      order:[['updatedAt', 'DESC']]
-     })
-     // return a success message if operation successful
-    .then(review => res.status(200).send({
-      status: 'Success',
-      message: 'reviews found',
-      review,
-    }))
-    // catch errors
-    .catch(error => res.status(500).send(error.toString()));
-  }
 }
 
 // const adminController = new Admin();
