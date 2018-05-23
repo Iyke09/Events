@@ -36,116 +36,116 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             });
         });
     
-        it('return 500 for an already existing username ', (done) => {
+        it('return 400 for an already existing username ', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.username = 'janedoe';
           invalidData.email = 'enahooo@gmail.com';
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('Oops. An account already exist with this username');
               done();
             });
         });
     
-        it('return 500 for an already existing email', (done) => {
+        it('return 400 for an already existing email', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.email = 'enaho331@gmail.com';
           invalidData.username = 'enaho540';
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('Oops.The email you entered already exists');
               done();
             });
         });
     
-        it('return 500 for a username of length 3 ', (done) => {
+        it('return 400 for a username of length 3 ', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.username = 'jan';
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('Username must be btw 5 - 10 characters');
               done();
             });
         });
     
-        it('return 500 for a username which is not alphanumeric ', (done) => {
+        it('return 400 for a username which is not alphanumeric ', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.username = 'ja $$%n';
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('Username must start with a letter, have no spaces');
               done();
             });
         });
     
-        it('return 500 for an invalid email', (done) => {
+        it('return 400 for an invalid email', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.username = 'iyke09';
           invalidData.email = 'iykay';
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('The email you entered is not valid');
               done();
             });
         });
     
-        it('return 500 for if no email is passed ', (done) => {
+        it('return 400 for if no email is passed ', (done) => {
           const invalidData = Object.assign({}, data);
           delete invalidData.email;
     
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('User.email cannot be null');
               done();
             });
         });
     
-        it('return 500 for if no username is not passed ', (done) => {
+        it('return 400 for if no username is not passed ', (done) => {
           const invalidData = Object.assign({}, data);
           delete invalidData.username;
     
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('User.username cannot be null');
               done();
             });
         });
     
-        it('return 500 for if no password is passed ', (done) => {
+        it('return 400 for if no password is passed ', (done) => {
           const invalidData = Object.assign({}, data);
           delete invalidData.password;
     
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
-              expect(res.body.message).to.equal('password is required');
+              expect(res.status).to.equal(400);
+              expect(res.body.message).to.equal('password field is required');
               done();
             });
         });
     
-        it('return 500 for if password less than 6 character ', (done) => {
+        it('return 400 for if password less than 6 character ', (done) => {
           const invalidData = Object.assign({}, data);
           invalidData.password = 'jant';
     
           request.post(signupURl)
             .send(invalidData)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('password must be greater than 6 characters');
               done();
             });
@@ -191,7 +191,7 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             });
         });
     
-        it('return 500 for wrong email and password', (done) => {
+        it('return 400 for wrong email and password', (done) => {
           const wrongPassword = Object.assign({}, data);
           wrongPassword.password = 'wrongpassword';
           wrongPassword.email = 'wrongpard';
@@ -214,7 +214,7 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             .end((err, res) => {
               const wrongPasswordToken = res.body.token;
               expect(res.status).to.equal(400);
-              expect(res.body.message).to.equal('Incorrect password');
+              expect(res.body.message).to.equal('invalid login details');
               expect(wrongPasswordToken).to.be.a('undefined');
               done();
             });
@@ -227,7 +227,7 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             .send(invalidData)
             .end((err, res) => {
               expect(res.status).to.equal(400);
-              expect(res.body.message).to.equal('please fill in the required fields');
+              expect(res.body.message).to.equal('password field cannot be empty');
               done();
             });
         });
@@ -239,7 +239,7 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             .send(data1)
             .end((err, res) => {
               expect(res.status).to.equal(400);
-              expect(res.body.message).to.equal('please fill in the required fields');
+              expect(res.body.message).to.equal('email field cannot be empty');
               done();
             });
         });
@@ -319,6 +319,58 @@ const userTest = (expect, request, usersUrl, userToken1, userToken2, jwt) => {
             done();
           });
         });
+    });
+
+    describe('Add Review', () => {
+      beforeEach(() => {
+        data = {
+          id: 1,
+          username: 'Nigerian',
+          comment: 'Nigerian Fried Rice puts a spicy, flavorful spin on the traditional',
+        };
+      });
+      it('should return 404 if center not found', (done) => {
+        request.post(`${usersUrl}/reviews/8?token=${userToken2}`)
+          .send(data)
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body.message).to.equal('center does not exist');
+            done();
+          });
+      });
+  
+      it('should return 201 if review is successfully created', (done) => {
+        request.post(`${usersUrl}/reviews/1?token=${userToken2}`)
+          .send(data)
+          .end((err, res) => {
+            expect(res.status).to.equal(201);
+            expect(res.body.message).to.equal('review created');
+            done();
+          });
+      });
+    });
+  
+    describe('All Reviews', () => {
+      it('return 404 no review is not available', (done) => {
+        request.get(`${usersUrl}/reviews/5?token=${userToken2}`)
+          .send()
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body.message).to.equal('No reviews available');
+            done();
+          });
+      });
+      it('return 200 if it gets all reviews', (done) => {
+        request.get(`${usersUrl}/reviews/1?token=${userToken2}`)
+          .send()
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body.status).to.equal('Success');
+            expect(res.body.message).to.equal('reviews found');
+            expect(res.body.review.length).to.equal(1);
+            done();
+          });
+      });
     });
     
 };

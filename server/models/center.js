@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'price field cannot be empty',
         },
-        isDecimal: {
-          args: true,
+        is: {
+          args: /^[+-]?([0-9]*[.])?[0-9]+$/,
           msg: 'Only numbers are allowed for the price of a center',
         },
       },

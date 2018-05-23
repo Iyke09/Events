@@ -37,7 +37,7 @@ describe("CENTERS TEST",  () => {
         });
     
         // check if token is passed
-        it('return 400 if token is not present', (done) => {
+        it('should return 401 if token is not present', (done) => {
           request.post(adminUrl)
             .send({data})
             .end((err, res) => {
@@ -47,7 +47,7 @@ describe("CENTERS TEST",  () => {
             });
         });
     
-        it('return 400 if token is not for an admin user', (done) => {
+        it('should return 401 if token is not for an admin user', (done) => {
           request.post(`${adminUrl}?token=${userToken2}`)
             .send(data)
             .end((err, res) => {
@@ -57,7 +57,7 @@ describe("CENTERS TEST",  () => {
         });
     
         // test if name is passed when creating a recipe
-        it('return 500 if center name is less than 3', (done) => {
+        it('should return 400 if center name is less than 3', (done) => {
           const noName = Object.assign({}, data);
           noName.name = 'er';
           request.post(`${adminUrl}?token=${userToken1}`)
@@ -69,38 +69,38 @@ describe("CENTERS TEST",  () => {
             });
         });
     
-        it('return 500 if center name does not contain only letters', (done) => {
+        it('should return 400 if center name does not contain only letters', (done) => {
           const noName = Object.assign({}, data);
           noName.name = 'errr$%';
           request.post(`${adminUrl}?token=${userToken1}`)
             .send(noName)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('name must be alphanumeric');
               done();
             }); 
         });
     
-        it('return 500 if center description is less than 10 char', (done) => {
+        it('should return 400 if center description is less than 10 char', (done) => {
           const noName = Object.assign({}, data);
           noName.description = 'ab';
           request.post(`${adminUrl}?token=${userToken1}`)
             .send(noName)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('description must be atleast 10 characters');
               done();
             });
         });
     
-        it('return 500 if capacity contains letters', (done) => {
+        it('should return 500 if capacity contains letters', (done) => {
           const noName = Object.assign({}, data);
           noName.capacity = 'hellloo45';
           request.post(`${adminUrl}?token=${userToken1}`)
             .send(noName)
             .end((err, res) => {
-              expect(res.status).to.equal(500);
-              expect(res.body.message).to.equal('only numbers are allowed');
+              expect(res.status).to.equal(400);
+              expect(res.body.message).to.equal('only numbers are allowed for the capacity of the center');
               done();
             });
         });
@@ -218,7 +218,7 @@ describe("CENTERS TEST",  () => {
           request.put(`${adminUrl}/1?token=${userToken1}`)
             .send({ name: 'chi*c ken' })
             .end((err, res) => {
-              expect(res.status).to.equal(500);
+              expect(res.status).to.equal(400);
               expect(res.body.message).to.equal('name must be alphanumeric');
               done();
             });
@@ -264,7 +264,7 @@ describe("CENTERS TEST",  () => {
               expect(res.status).to.equal(200);
               expect(res.body.status).to.equal('Success');
               expect(res.body.message).to.equal('centers found');
-              expect(res.body.center.length).to.equal(1);
+              expect(res.body.centers.length).to.equal(1);
               done();
             });
         });
@@ -275,7 +275,7 @@ describe("CENTERS TEST",  () => {
             .end((err, res) => {
               expect(res.status).to.equal(200);
               expect(res.body.message).to.equal('centers found');
-              expect(res.body.center.length).to.equal(1);
+              expect(res.body.centers.length).to.equal(1);
               done();
             });
         });

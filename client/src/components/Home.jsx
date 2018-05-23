@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 import jwt from 'jwt-decode';
 import store from '../store';
 import Navigation from '../helperComponent/home/navBar';

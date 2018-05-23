@@ -6,7 +6,7 @@ import { browserHistory, Link } from 'react-router';
 
 function Event(props) {
     return (
-        <div className="">
+        <div className="test">
             <div className="col s12 w3-padding-32">
                 <div className="col s12 m12 l3 hide-on-med-and-down">
                     <h3 className="center black-text" style={{lineHeight: 8}}>
@@ -17,7 +17,7 @@ function Event(props) {
                 <div className="col s12 m12 l4 center w3-display-container">
                 <img
                     className="responsive-img img-event"
-                    src={props.event.Center.image} style={{width: '100%',height: 250}}/>
+                    src={props.event.image} style={{width: '100%',height: 250}}/>
                     <div className="middle">
                         <h3 className="white-text font center">
                         <span className="w3-medium red-text">{timeConverter(props.event).date}</span><br/> {timeConverter(props.event).month}
@@ -34,7 +34,7 @@ function Event(props) {
                             id={`r${props.event.title}`}>edit</i>
                         </Link>
                         <span className="right">
-                        <a id={event.title} onClick={() => props.setId(props.event.id)}
+                        <a id={props.event.title} onClick={() => props.setId(props.event.id)}
                             className="red white-text w3-medium modal-trigger tooltipped test1"
                             data-position="bottom" data-delay="50" data-tooltip="Cancel Event!" href="#modal1"
                         style={{paddingRight: 4, paddingLeft: 4, paddingTop: 2, paddingBottom: 2}}><b>x</b></a>
@@ -44,7 +44,7 @@ function Event(props) {
 
                     <div className=" ">
                         <h6 id="fsize" className="font3 light"> <i className="fa fa-map-marker red-text" id="" style={{marginRight: 5}} />
-                        {props.event.Center.location}</h6>
+                        {props.event.centerLocation}</h6>
                         <h6 id="fsize" className="font3 light hide-on-large-only"> 
                         <i className="fa fa-clock-o red-text" id="" style={{marginRight: 5}} />
                         {props.event.time} - {timeConverter(props.event).to + ':00'}</h6>

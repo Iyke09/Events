@@ -53,6 +53,13 @@ export function getCenters(index) {
   };
 }
 
+export function centerEvents(index) {
+  return {
+    type: 'GET_CENTER_EVENTS',
+    index
+  };
+}
+
 export function retrieve(email) {
   return {
     type: 'RETRIEVE',

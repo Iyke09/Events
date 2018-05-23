@@ -164,11 +164,11 @@ class Admin extends Component {
                         {this.activeRoute('/admin/list_center') ? error.indexOf('search') === -1 ?
                             <div className="">
                                 <div className="row" style={{paddingTop: 50}}>
-                                    {centers.map((center) => {
+                                    {centers ? centers.map((center) => {
                                         return (
                                             <Centers key={center.id} center={center} updateCenter={this.updateCenter}/>
                                         );
-                                    })}
+                                    }) : ''}
                                     <br/><br/><br/>
                                     <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 w3-padding-64 more">
                                         <button className="btn red right"> more centers </button>

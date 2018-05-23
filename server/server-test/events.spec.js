@@ -6,11 +6,10 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
     console.log(eventUrl);
     describe("EVENTS TEST",  () => {
         before((done) => {
-            request.post(`${usersUrl}/signup`)
+            request.post(`${usersUrl}/signin`)
             .send({
-                username: 'jay-jay3',
-                password: '123456',
-                email: 'enaho336@gmail.com',
+              password: '123456',
+              email: 'enaho331@gmail.com',
             })
             .end((err, res) => {
               userToken1 = res.body.token;
@@ -33,7 +32,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                 title: 'Concert',
                 type: 'Musical',
                 guests: 4000,
-                time: '09:00pm',
+                time: '09:00',
                 date: '2017-08-24'
               };
             });
@@ -49,13 +48,13 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                     });
             });
         
-            it('return 500 if title contains not only letters', (done) => {
+            it('return 400 if title contains not only letters', (done) => {
               const noName = Object.assign({}, data);
               noName.title = 'ab^ hj';
               request.post(`${eventUrl}?token=${userToken2}`)
                 .send(noName)
                 .end((err, res) => {
-                  expect(res.status).to.equal(500);
+                  expect(res.status).to.equal(400);
                   expect(res.body.message).to.equal('only alphabets are allowed for the title');
                   done();
                 });
@@ -68,18 +67,18 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                 .send(noName)
                 .end((err, res) => {
                   expect(res.status).to.equal(400);
-                  expect(res.body.message).to.equal('Sorry!!! please select another hall, maximum capacity exceeded');
+                  expect(res.body.message).to.equal(`Sorry!!! please select another hall, maximum capacity exceeded`);
                   done();
                 });
             });
         
-            it('return 500 if guests contains not only letters', (done) => {
+            it('return 400 if guests contains not only letters', (done) => {
               const noName = Object.assign({}, data);
               noName.guests = 'ajsbd';
               request.post(`${eventUrl}?token=${userToken1}`)
                 .send(noName)
                 .end((err, res) => {
-                  expect(res.status).to.equal(500);
+                  expect(res.status).to.equal(400);
                   expect(res.body.message).to.equal('only numbers are allowed for guests field');
                   done();
                 });
@@ -100,11 +99,11 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
             it('return 201 if successful--ly', (done) => {
               const noName = Object.assign({}, data);
               noName.date = '28';
-              noName.time = '08:34am';
+              noName.time = '08:34';
               request.post(`${eventUrl}?token=${userToken2}`)
                 .send(noName)
                 .end((err, res) => {
-                  checkId = res.body.cente.id;
+                  checkId = res.body.events.id;
                   expect(res.status).to.equal(201);
                   expect(res.body.status).to.equal('Success');
                   expect(res.body.message).to.equal('Event created');
@@ -116,7 +115,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
             it('return 201 if successful--ly created by admin user', (done) => {
               const noName = Object.assign({}, data);
               noName.date = '2016-05-20';
-              noName.time = '02:37am';
+              noName.time = '02:37';
               request.post(`${eventUrl}?token=${userToken1}`)
                 .send(noName)
                 .end((err, res) => {
@@ -127,7 +126,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                 });
             });
         
-            it('return 500 if center does not exist', (done) => {
+            it('return 400 if center does not exist', (done) => {
               const noName = Object.assign({}, data);
               noName.name = 'emporium3';
               request.post(`${eventUrl}?token=${userToken1}`)
@@ -185,7 +184,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
         
             it('return 400 if admin user trying to update event----', (done) => {
               request.put(`${eventUrl}/${checkId}?token=${userToken1}`)
-                .send({ date: '2017-08-28', time: '08:34am' })
+                .send({ date: '2017-08-28', time: '08:38' })
                 .end((err, res) => {
                   expect(res.status).to.equal(401);
                   expect(res.body.message).to.equal('Not Authorized');
@@ -196,7 +195,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
         
             it('return 201 if event is updated by admin user', (done) => {
               request.put(`${eventUrl}/3?token=${userToken1}`)
-                .send({ title: 'Concert', date: '2019-02-09', time: '09:40pm' })
+                .send({ title: 'Concert', date: '2019-02-09', time: '09:40' })
                 .end((err, res) => {
                   expect(res.status).to.equal(201);
                   expect(res.body.message).to.equal('event updated');
@@ -207,7 +206,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
         
             it('return 201 if event is updated', (done) => {
               request.put(`${eventUrl}/1?token=${userToken2}`)
-                .send({ title: 'Concert', date: '2019-05-09', time: '09:45pm' })
+                .send({ title: 'Concert', date: '2019-05-09', time: '09:45' })
                 .end((err, res) => {
                   expect(res.status).to.equal(201);
                   expect(res.body.message).to.equal('event updated');
@@ -217,7 +216,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
             });
         
         
-            it('return 500 if recipe title contains spacd', (done) => {
+            it('return 400 if recipe title contains spacd', (done) => {
               request.put(`${eventUrl}/1?token=${userToken2}`)
                 .send({ title: 'chi*c ken' })
                 .end((err, res) => {
@@ -226,6 +225,28 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                   done();
                 });
             });
+        });
+
+        describe('Center Event', () => {
+          it('return 404 if no event for that center', (done) => {
+            request.get(`${eventUrl}/7/centers`)
+              .send()
+              .end((err, res) => {
+                expect(res.status).to.equal(404);
+                expect(res.body.message).to.equal('No events for this center');
+                done();
+              });
+          });
+      
+          it('return 200 if events are available for that center', (done) => {
+            request.get(`${eventUrl}/1/centers`)
+              .send()
+              .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body.message).to.equal('center events successfully retrieved');
+                done();
+              });
+          });
         });
         
         

@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
         // fields: [sequelize.fn('lower', sequelize.col('email'))]
       },
       validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Username field cannot be empty',
+        },
         len: {
           args: [5, 10],
           msg: 'Username must be btw 5 - 10 characters',
@@ -29,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         // fields: [sequelize.fn('lower', sequelize.col('email'))]
       },
       validate: {
+        notEmpty: {
+          args: true,
+          msg: 'email field cannot be empty',
+        },
         isEmail: {
           args: true,
           msg: 'The email you entered is not valid',
@@ -43,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        notEmpty: {
+          args: true,
+          msg: 'password field cannot be empty',
+        },
         len: {
           args: [6],
           msg: 'The password you entered is less than 3 characters',

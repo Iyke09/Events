@@ -10,10 +10,11 @@ export function* getCenters(action) {
 	try {
         let response = {};
         if(typeof(action.index) !== 'number'){
+			console.log('watamaguwa');
             response = yield call(axios.get, `${centerUrl}?name=${action.index}`);
         }else{
             response = yield call(axios.get, `${centerUrl}?limit=${action.index}`);
-        }
+		}
 		yield put({ type: 'GET_CENTER', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
@@ -125,39 +126,4 @@ export function* favoriteCenter(action) {
 
 export function* watchFavoriteCenter() {
 	yield takeEvery('FAVORITE_CENTER', favoriteCenter);
-}
-
-//----------------- Reviews ---------------------------//
-
-export function* addReview(action) {
-	try {
-    const {id, username, comment} = action.payload;
-		const response = yield call(axios.post, `${centerUrl}/reviews`, {
-			id,
-			username,
-			comment,
-		});
-		yield put({ type: 'SET_REVIEW', response: response.data });
-	} catch (e) {
-		const error = e.response.data.message;
-		console.log(error);
-	}
-}
-
-export function* watchAddReview() {
-	yield takeEvery('ADD_REVIEW', addReview);
-}
-
-export function* getReviews(action) {
-	try {
-        const response = yield call(axios.get, `${centerUrl}/reviews/${action.index}`);
-		yield put({ type: 'GET_REVIEWS', response: response.data });
-	} catch (e) {
-		const error = e.response.data.message;
-        console.log(error);
-	}
-}
-
-export function* watchGetReviews() {
-	yield takeEvery('GET_ALL_REVIEWS', getReviews);
 }

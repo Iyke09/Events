@@ -108,7 +108,7 @@ export function* getSingleEvents(action) {
 	try {
 		const token = localStorage.getItem('token');
     axios.defaults.headers.common['token'] = token;
-		const response = yield call(axios.get, `${eventUrl}/single/${action.index}`);
+		const response = yield call(axios.get, `${eventUrl}/${action.index}`);
 		yield put({ type: 'SET_SINGLE_EVENT', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
@@ -118,4 +118,20 @@ export function* getSingleEvents(action) {
 
 export function* watchGetSingleEvent() {
 	yield takeEvery('GET_SINGLE_EVENT', getSingleEvents);
+}
+
+export function* getCenterEvents(action) {
+	try {
+		const response = yield call(axios.get, `${eventUrl}/${action.index}/centers`);
+		yield put({ type: 'SET_CENTER_EVENT', response: response.data });
+	} catch (e) {
+		const error = e.response.data.message;
+		console.log(error);
+		let response = {data: {event: []}};
+		yield put({ type: 'SET_CENTER_EVENT', response: response.data });
+	}
+}
+
+export function* watchCenterEvents() {
+	yield takeEvery('GET_CENTER_EVENTS', getCenterEvents);
 }

@@ -11,8 +11,6 @@ import {
 	watchGetSingle,
 	watchAddCenter,
 	watchUpdateCenter,
-	watchGetReviews,
-	watchAddReview,
 	watchFavoriteCenter
 } from '../../src/Saga/center';
 
@@ -20,7 +18,9 @@ import {
 	watchSignUser,
 	watchAddUser,
 	watchRetrievePass,
-	watchChangePass,
+  watchChangePass,
+  watchGetReviews,
+	watchAddReview,
 } from '../../src/Saga/user';
 
 import {
@@ -62,7 +62,7 @@ describe('Test Sagas', () => {
 
     return expectSaga(watchGetReviews)
 
-      .provide([[call(axios.get, '/api/v1/centers/reviews/42'), response]])
+      .provide([[call(axios.get, '/api/v1/users/reviews/42'), response]])
       // Assert that the `put` will eventually happen.
       .put({ type: 'GET_REVIEWS', response: 'hello' })
 
@@ -77,20 +77,25 @@ describe('Test Sagas', () => {
     // const action = { index: 42 };
     const response = { data: 'hello'};
 
-    const action = {
+    const data = {
       id: 1,
+      username: 'doe',
+      comment: 'hello'
+    };
+
+    const action = {
       username: 'doe',
       comment: 'hello'
     };
 
     return expectSaga(watchAddReview)
 
-      .provide([[call(axios.post, '/api/v1/centers/reviews', action), response]])
+      .provide([[call(axios.post, '/api/v1/users/reviews/1', action), response]])
       // Assert that the `put` will eventually happen.
       .put({ type: 'SET_REVIEW', response: 'hello' })
 
       // Dispatch any actions that the saga will `take`.
-      .dispatch({ type: 'ADD_REVIEW', payload: action })
+      .dispatch({ type: 'ADD_REVIEW', payload: data})
 
       // Start the test. Returns a Promise.
       .run();
@@ -438,7 +443,7 @@ describe('Test Sagas', () => {
     };
     return expectSaga(watchGetSingleEvent)
 
-      .provide([[call(axios.get, '/api/v1/events/single/42'), response]])
+      .provide([[call(axios.get, '/api/v1/events/42'), response]])
 
       // Assert that the `put` will eventually happen.
       .put({ type: 'SET_SINGLE_EVENT', response: {message: 'deleted!'} })

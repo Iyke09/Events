@@ -117,3 +117,37 @@ export function* changePassword(action) {
 export function* watchChangePass() {
 	yield takeEvery('CHANGE_PASSWORD', changePassword);
 }
+
+//----------------- Reviews ---------------------------//
+
+export function* addReview(action) {
+	try {
+    const {id, username, comment} = action.payload;
+		const response = yield call(axios.post, `${userUrl}/reviews/${id}`, {
+			username,
+			comment,
+		});
+		yield put({ type: 'SET_REVIEW', response: response.data });
+	} catch (e) {
+		const error = e.response.data.message;
+		console.log(error);
+	}
+}
+
+export function* watchAddReview() {
+	yield takeEvery('ADD_REVIEW', addReview);
+}
+
+export function* getReviews(action) {
+	try {
+        const response = yield call(axios.get, `${userUrl}/reviews/${action.index}`);
+		yield put({ type: 'GET_REVIEWS', response: response.data });
+	} catch (e) {
+		const error = e.response.data.message;
+        console.log(error);
+	}
+}
+
+export function* watchGetReviews() {
+	yield takeEvery('GET_ALL_REVIEWS', getReviews);
+}

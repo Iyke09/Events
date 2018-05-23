@@ -1,16 +1,20 @@
 {
-  "name": "Events",
+  "name": "Eventz",
   "jest": {
     "setupFiles": [
       "jest-localstorage-mock",
       "./client/__test__/mocks/test-env.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "client/src/**/*.{js,jsx}"
     ]
   },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest client/__test__/**/*.js --coverage",
     "test-e2e": "nightwatch",
     "test:db": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && cross-env NODE_ENV=test nyc mocha --timeout 15000 server/00-test/main.spec.js",
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
@@ -83,6 +87,7 @@
     "jquery": "2.2.3",
     "jsonwebtoken": "^7.4.1",
     "jwt-decode": "^2.2.0",
+    "materialize-css": "^1.0.0-rc.1",
     "morgan": "^1.7.0",
     "node-sass": "^4.7.2",
     "nodemailer": "^4.1.0",
@@ -147,7 +152,7 @@
     "eventsource-polyfill": "0.9.6",
     "expect": "1.19.0",
     "extract-text-webpack-plugin": "1.0.1",
-    "file-loader": "0.8.5",
+    "file-loader": "^0.8.5",
     "istanbul": "^0.4.5",
     "jest-localstorage-mock": "^2.2.0",
     "jsdom": "8.5.0",
@@ -165,6 +170,6 @@
     "selenium-standalone": "^6.12.0",
     "sinon": "^4.1.4",
     "supertest": "^3.0.0",
-    "url-loader": "0.5.7"
+    "url-loader": "^0.5.7"
   }
 }

@@ -5,8 +5,6 @@ import {
 	watchGetSingle,
 	watchAddCenter,
 	watchUpdateCenter,
-	watchGetReviews,
-	watchAddReview,
 	watchFavoriteCenter
 } from './center';
 
@@ -15,6 +13,8 @@ import {
 	watchAddUser,
 	watchRetrievePass,
 	watchChangePass,
+	watchGetReviews,
+	watchAddReview,
 } from './user';
 
 import {
@@ -22,26 +22,28 @@ import {
 	watchGetEvents,
 	watchDeleteEvent,
 	watchUpdateEvent,
-	watchAddEvent
+	watchAddEvent,
+	watchCenterEvents
 } from './events';
 
 export default function* rootSaga() {
 	yield [
-    watchAddUser(),
-    watchGetReviews(),
-    watchChangePass(),
-    watchAddReview(),
-    watchFavoriteCenter(),
-	watchRetrievePass(),
-	watchDeleteEvent(),
-	watchUpdateCenter(),
-	watchUpdateEvent(),
-	watchAddEvent(),
-	watchGetSingleEvent(),
-	watchGetEvents(),
-	watchSignUser(),
-	watchGetCenters(),
-	watchGetSingle(),
-	watchAddCenter()
+		watchAddUser(),
+		watchGetReviews(),
+		watchChangePass(),
+		watchAddReview(),
+		watchFavoriteCenter(),
+		watchRetrievePass(),
+		watchDeleteEvent(),
+		watchUpdateCenter(),
+		watchUpdateEvent(),
+		watchAddEvent(),
+		watchGetSingleEvent(),
+		watchCenterEvents(),
+		watchGetEvents(),
+		watchSignUser(),
+		watchGetCenters(),
+		watchGetSingle(),
+		watchAddCenter()
 	];
 }

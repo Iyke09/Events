@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 import formatDate from 'simple-format-date';
+import sequelize from 'sequelize';
+import errorHelper from '../helpers/errorHelper';
 import messageMailer,{ updateHelper } from '../helpers/helperFunc';
 import { Center, Eevent, User } from '../models';
 
@@ -20,9 +22,7 @@ class Event {
    */
   static addEvents(req, res) {
     // get values from user
-    const {
-      title, type, guests, name, date, time,
-    } = req.body;
+    const { title, type, guests, name, date, time} = req.body;
 
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
@@ -36,7 +36,7 @@ class Event {
       .then((center) => {
         // if no center matches criteria send back unsuccesful message
         if (!center) {
-          res.status(404).send({
+          return res.status(404).send({
             message: 'center not found or is currently not available',
           });
         }
@@ -53,7 +53,7 @@ class Event {
             // check if guests entered is greater than the capacity of the center
             if (guests > center.capacity) {
               return res.status(400).send({
-                message: 'Sorry!!! please select another hall, maximum capacity exceeded',
+                message: `Sorry!!! please select another hall, maximum capacity exceeded`,
               });
             }
             // else create an event
@@ -67,25 +67,19 @@ class Event {
               userId: userID,
             })
             // send back success message
-              .then((cente) => {
+              .then((events) => {
                 res.status(201).send({
                   status: 'Success',
                   message: 'Event created',
-                  cente,
+                  events,
                 });
               })
               // error handler
-              .catch(error => res.status(500).send({
-                message: error.errors[0].message,
-              }));
-          });
-        // .catch(err => res.status(500).send({
-        //   message: err.toString()
-        // }));
+              .catch(error => errorHelper(error, res));
+          })
+          .catch(error => errorHelper(error, res));
       })
-      .catch(err => res.status(500).send({
-        message: err.toString(),
-      }));
+      .catch(error => errorHelper(error, res));
   }
 
   /**
@@ -145,7 +139,7 @@ class Event {
         }
       })
       // error handler
-      .catch(error => res.status(500).send(error.toString()));
+      .catch(error => errorHelper(error, res));
   }
 
 
@@ -156,24 +150,37 @@ class Event {
    * @param {object} req a review object
    * @param {object} res a review object
    * 
-   * @return {} return an array of events
+   * @return {obj} return an array of events
    */
   static userEvent(req, res) {
     // decode token
     const decoded = jwt.decode(req.body.token ||
       req.query.token || req.headers.token);
     // check if it is a user or admin user trying to access route
-    const {id} = decoded.user;
+    //const {id} = decoded.user;
     if (decoded.adminUser === undefined) {
-      userID = id;
+      userID = decoded.user.id;
     } else {
       userID = decoded.adminUser.id;
     }
     // find an event where the event d matches the req.params.id
     Eevent.findAll({
       where: { userId: userID },
+      limit: 100,
+      attributes: [
+        'id',
+        'title', 
+        'type',
+        'guests',  
+        'date', 
+        'time',
+        [sequelize.col('Center.id'), 'centerId'],
+        [sequelize.col('Center.location'), 'centerLocation'],
+        [sequelize.col('Center.image'), 'image']
+      ] ,
       include: [{
-        model: Center
+        model: Center,
+        attributes: []
       }],
     })
       .then((event) => {
@@ -189,7 +196,7 @@ class Event {
           event
         });
       })// error handler
-      .catch(error => res.status(500).send(error.toString()));
+      .catch(error => errorHelper(error, res));
   }
 
 
@@ -204,8 +211,19 @@ class Event {
     // find an event where the event d matches the req.params.id
     Eevent.findOne({
       where: { id: req.params.id },
+      attributes: [        
+        'id',
+        'title', 
+        'type',
+        'guests',  
+        'date', 
+        'time',
+        [sequelize.col('Center.id'), 'centerId'],
+        [sequelize.col('Center.name'), 'centerName'],
+      ],
       include: [{
-        model: Center
+        model: Center,
+        attributes: []
       }],
     })
       .then((event) => {
@@ -221,7 +239,32 @@ class Event {
           event
         });
       })// error handler
-      .catch(error => res.status(500).send(error.toString()));
+      .catch(error => errorHelper(error, res));
+  }
+
+  static centerEvents(req, res) {
+    // find an event where the event d matches the req.params.id
+    Eevent.findAll({
+      where: { centerId: req.params.id },
+      attributes: { exclude: ["updatedAt", "createdAt"] },
+      limit: 5,
+      order:[['updatedAt', 'DESC']]
+    })
+      .then((event) => {
+        // if not found send back a 404 status code of not found
+        if (event.length === 0) {
+          return res.status(404).send({
+            message: 'No events for this center',
+          });
+        }
+        return res.status(200).send({
+          status: 'Success',
+          message: 'center events successfully retrieved',
+          event
+        });
+      })
+      // error handler
+      .catch(error => errorHelper(error, res));
   }
   /**
    *
@@ -285,7 +328,7 @@ class Event {
             });
         }
       })
-      .catch(error => res.status(400).send(error.toString()));
+      .catch(error => errorHelper(error, res));
   }
 }
 
