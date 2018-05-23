@@ -1,5 +1,4 @@
 import express from 'express';
-
 import user from './userRouter';
 import center from './adminRouter';
 import event from './eventRouter';

@@ -19,9 +19,9 @@ describe('API Integration Tests', () => {
     const signupURl = `${usersUrl}/signup`;
     beforeEach(() => {
       data = {
-        username: 'jane56',
+        username: 'janeet',
         password: '123456',
-        email: 'enaho31@gmail.com'
+        email: 'enaho330@gmail.com'
       };
     });
 
@@ -39,9 +39,9 @@ describe('API Integration Tests', () => {
     it('return 200 for a second successful account creation', (done) => {
       request.post(signupURl)
         .send({
-          username: 'jane562',
+          username: 'janedoe',
           password: '123456',
-          email: 'enaho33@gmail.com',
+          email: 'enaho331@gmail.com',
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -53,8 +53,8 @@ describe('API Integration Tests', () => {
 
     it('return 500 for an already existing username ', (done) => {
       const invalidData = Object.assign({}, data);
-      invalidData.username = 'jane56';
-      invalidData.email = 'enaho3611@gmail.com';
+      invalidData.username = 'janedoe';
+      invalidData.email = 'enahooo@gmail.com';
       request.post(signupURl)
         .send(invalidData)
         .end((err, res) => {
@@ -66,8 +66,8 @@ describe('API Integration Tests', () => {
 
     it('return 500 for an already existing email', (done) => {
       const invalidData = Object.assign({}, data);
-      invalidData.email = 'enaho31@gmail.com';
-      invalidData.username = 'enaho54';
+      invalidData.email = 'enaho331@gmail.com';
+      invalidData.username = 'enaho540';
       request.post(signupURl)
         .send(invalidData)
         .end((err, res) => {
@@ -173,7 +173,7 @@ describe('API Integration Tests', () => {
     beforeEach(() => {
       data = {
         password: '123456',
-        email: 'enaho31@gmail.com',
+        email: 'enaho330@gmail.com',
       };
     });
     // main user login
@@ -191,11 +191,11 @@ describe('API Integration Tests', () => {
           done();
         });
     });
-    it('return 200 for a successful login and is Admin', (done) => {
+    it('return 200 for a successful login ', (done) => {
       request.post(loginURl)
         .send({
           password: '123456',
-          email: 'enaho33@gmail.com',
+          email: 'enaho331@gmail.com',
         })
         .end((err, res) => {
           userToken2 = res.body.token;
@@ -322,7 +322,7 @@ describe('API Integration Tests', () => {
       request.post(`${usersUrl}/reset`)
       .send({ email: 'foo@foo.com' })
       .end((err, res) => {
-        expect(res.status).to.equal(400);
+        expect(res.status).to.equal(404);
         expect(res.body.message).to.equal('email does not exist');
         done();
       });
@@ -330,7 +330,7 @@ describe('API Integration Tests', () => {
 
     it('return 200 if email does exist', (done) => {
       request.post(`${usersUrl}/reset`)
-      .send({ email: 'enaho33@gmail.com' })
+      .send({ email: 'enaho330@gmail.com' })
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.body.message).to.equal('password sent to your email address');
@@ -838,7 +838,7 @@ describe('API Integration Tests', () => {
       request.get(`${adminUrl}/err`)
         .send()
         .end((err, res) => {
-          expect(res.status).to.equal(500);
+          expect(res.status).to.equal(400);
           done();
         });
     });

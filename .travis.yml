@@ -18,8 +18,6 @@ cache:
 services:
 - postgresql
 
-
-
 before_script:
 - createuser events -s -U postgres
 - createdb mydb --username=postgres

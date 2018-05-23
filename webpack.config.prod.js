@@ -34,17 +34,20 @@ module.exports = {
   },
   module: {
     loaders: [
-    // js
-    {
-      test: /\.js$/,
-      include: path.join(__dirname, 'client/src'),
-      loaders: ['babel-loader']
-    },
-    // CSS
-    {
-      test: /\.scss$/,
-      loaders: ['style-loader','css-loader', 'sass-loader']
-    }
+      {
+        test: /\.js$/,
+        include: path.join(__dirname, 'client/src'),
+        loaders: ['babel-loader'],
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: "babel-loader"
+      },
+      {
+        test: /\.(scss|css)$/,
+        loaders: ['style-loader','css-loader', 'sass-loader']
+      }
     ]
   }
 };

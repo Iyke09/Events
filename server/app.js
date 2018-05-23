@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 if(process.env.NODE_ENV === 'production'){
   app.use('/static', express.static(path.resolve(__dirname, '..', 'client/dist')));
-  console.log('running on production dev server!!!!');
 }
 app.use('/api/v1', routes);
 
@@ -36,14 +35,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-// app.get('/swagger.json', function(req, res){
-//   res.setHeader('Content-Type', 'application/json');
-//   res.send(swaggerSpec);
-// });
+app.get('/api/v1/*', function(req, res) {
+  res.status(404).send({message: 'what the???'});
+});
 
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../client/index.html'));
-  console.log('running on development dev server!!!!');
 });
 
 module.exports = app;

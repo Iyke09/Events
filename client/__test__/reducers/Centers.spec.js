@@ -9,7 +9,7 @@ describe('Test Centers state ',() => {
   });
 
   it('should update the center state', () => {
-    store.dispatch({type: 'GET_CENTER', response: {center: [{id: 1, name: 'emporium'}] }});
+    store.dispatch({type: 'GET_CENTER', response: {centers: [{id: 1, name: 'emporium'}] }});
     const data = store.getState().centers;
     expect(data).toEqual({center: [{id: 1, name: 'emporium'}], singleCenter: {}});
   });

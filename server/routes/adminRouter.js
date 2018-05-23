@@ -1,24 +1,27 @@
 import express from 'express';
 import adminController from '../controllers/index';
-import authToken from '../middleware/tokenAuth';
+import authToken from '../middleware/adminToken';
+import verifyParams from '../middleware/verify';
 
 const router = express.Router();
 
+
 router.get('/', adminController.allCenter);
 
-router.get('/:id', adminController.detailCenter);
+router.get('/:id', verifyParams, adminController.detailCenter);
 
-router.put('/favorite/:id', adminController.favoriteCenter);
-
-router.post('/reviews', adminController.addReview);
-
-router.get('/reviews/:id', adminController.getReviews);
+router.put('/favorite/:id', verifyParams, adminController.favoriteCenter);
 
 router.use('/', authToken);
 
 router.post('/', adminController.addCenter);
 
-router.put('/:id', adminController.updateCenter);
+router.put('/:id', verifyParams, adminController.updateCenter);
+
+
+
+
+
 
 
 export default router;

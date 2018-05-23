@@ -1,7 +1,12 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { User } from '../models';
-import messageMailer from '../helpers/mailer';
+import errorHelper from '../helpers/errorHelper';
+import { 
+  User,
+  Review,
+  Center 
+} from '../models';
+import messageMailer from '../helpers/helperFunc';
 
 /**
  * Creates a new Person.
@@ -15,17 +20,20 @@ class Users {
    * @return {object} return a recipe oject
    */
   static signin(req, res) {
-    if (!req.body.email) { // prevent empty email fields
+    // prevent empty email fields
+    if (!req.body.email) { 
       return res.status(400).json({
-        message: 'please fill in the required fields',
+        message: 'email field cannot be empty',
       });
     }
-    if (!req.body.password) { // prevent empty password fields
+    if (!req.body.password) { 
+      // prevent empty password fields
       return res.status(400).json({
-        message: 'please fill in the required fields',
+        message: 'password field cannot be empty',
       });
     }
-    return User.findOne({// find a user matching the email been passed in
+    return User.findOne({
+      // find a user matching the email been passed in
       where: {
         email: req.body.email,
       },
@@ -36,11 +44,12 @@ class Users {
           return res.status(400).send({
             message: 'invalid login details',
           });
-        }// compare password
+        }
+        // compare password
         if (!bcrypt.compareSync(req.body.email, req.body.password) 
         && !bcrypt.compareSync(req.body.password, user.password)) {
           return res.status(400).send({
-            message: 'Incorrect password',
+            message: 'invalid login details',
           });
         }
         // if the user is the first in the database make him the admin
@@ -49,21 +58,22 @@ class Users {
             isAdmin: true,
           })
             .then((adminUser) => {
+              adminUser.password = null;
             // create token
               const token = jwt.sign(
                 { adminUser }, 'secret', 
                 { expiresIn: '48 hour' }
               );
-              res.status(200).send({// send success message
+              res.status(200).send({
+                // send success message
                 status: 'Success',
                 message: 'Successfully logged in as Admin',
                 token,
               });
             })// error handler
-            .catch(error => res.status(500).send({
-              message: error.toString(),
-            }));
+            .catch(error => errorHelper(error, res));
         }
+        user.password = null;
         // if not first in db...just create a token
         const token = jwt.sign({ user }, 'secret', { expiresIn: '48 hour' });
         res.status(200).send({
@@ -71,10 +81,8 @@ class Users {
           message: 'Successfully logged in',
           token,
         });
-      });
-    // .catch(error => res.status(500).send({
-    //   message: error.toString()
-    // }));
+      })
+      .catch(error => errorHelper(error, res));
   }
 
   /**
@@ -86,14 +94,14 @@ class Users {
   static signup(req, res) {
     if (req.body.password) {
       if (req.body.password.length < 6) {
-        return res.status(500).json({
+        return res.status(400).json({
           message: 'password must be greater than 6 characters',
         });
       }
     }
     if (!req.body.password) {
-      return res.status(500).json({
-        message: 'password is required',
+      return res.status(400).json({
+        message: 'password field is required',
       });
     }
     return User.create({
@@ -107,6 +115,7 @@ class Users {
             isAdmin: true,
           })
             .then((adminUser) => {
+              adminUser.password = null;
             // create token
               const token = jwt.sign(
                 { adminUser }, 'secret', 
@@ -118,10 +127,9 @@ class Users {
                 token,
               });
             })// error handler
-            .catch(error => res.status(500).send({
-              message: error.toString(),
-            }));
+            .catch(error => errorHelper(error, res));
         }
+        user.password = null;
         // if not first in db...just create a token
         const token = jwt.sign({ user }, 'secret', { expiresIn: '48 hour' });
         res.status(200).send({
@@ -130,9 +138,7 @@ class Users {
           token,
         });
       })
-      .catch(error => res.status(500).send({
-        message: error.errors[0].message,
-      }));
+      .catch(error => errorHelper(error, res));
   }
 
   /**
@@ -171,9 +177,7 @@ class Users {
           });
         // .catch(err => res.status(500).send(err.toString()));
       })
-      .catch(error => res.status(500).send({
-        message: error.toString(),
-      }));
+      .catch(error => errorHelper(error, res));
   }
 
   /**
@@ -220,7 +224,74 @@ class Users {
             message: 'password successfully changed',
           }));
       })
-      .catch(error => res.status(500).send(error.toString()));
+      .catch(error => errorHelper(error, res));
+  }
+
+
+     /**
+   *
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * 
+   * @return {object} return a recipe oject
+   */
+  static addReview(req, res) {
+    const { username, comment} = req.body;
+    Center.findOne({ where: { id: req.params.id } })
+    .then((center) => {
+      // if center not found return unsuccessful message back to user
+      if (!center) {
+        return res.status(404).send({
+          status: 'unsuccessful',
+          message: 'center does not exist',
+        });
+      }
+      Review.create({
+        centerId: center.id,
+        user: username,
+        comment
+      })
+        // return message to user if operation was successful
+        .then(review => res.status(201).send({
+          status: 'Success',
+          message: 'review created',
+          review
+        }))
+        // catch errors
+        .catch(error => errorHelper(error, res));
+    })
+    .catch(error => errorHelper(error, res));
+  }
+
+    /**
+     * @description gets all available reviews
+   * @param {object} req a review object
+   * @param {object} res a review object
+   * 
+   * @return {array} return an array of center reviews
+   */
+  static getReviews(req, res) {
+    Review.findAll({
+      where: { centerId: req.params.id },
+      limit: 3,
+      order:[['updatedAt', 'DESC']]
+     })
+     // return a success message if operation successful
+    .then(review => {
+      if(review.length === 0){
+        return res.status(404).send({
+          status: 'unsuccessful',
+          message: 'No reviews available',
+        });
+      }
+      res.status(200).send({
+        status: 'Success',
+        message: 'reviews found',
+        review,
+      });
+    })
+    // catch errors
+    .catch(error => errorHelper(error, res));
   }
 }
 

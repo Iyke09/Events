@@ -1,18 +1,19 @@
 import express from 'express';
 import userController from '../controllers/index';
-import authToken from '../middleware/token2';
+import authToken from '../middleware/userToken';
+import verifyParams from '../middleware/verify';
 
 const router = express.Router();
-
-router.get('/', (req, res) => res.status(200).send({
-  message: 'Welcome to the your Favorite API!!!!!!!!!!!!',
-}));
 
 router.post('/signup', userController.userSignup);
 
 router.post('/signin', userController.userSignin);
 
 router.post('/reset', userController.passRetrieve);
+
+router.post('/reviews/:id', userController.addReview);
+
+router.get('/reviews/:id', verifyParams, userController.getReviews);
 
 router.use('/', authToken);
 

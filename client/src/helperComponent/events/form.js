@@ -27,10 +27,10 @@ function Form(props) {
                             onChange={props.handleChange} disabled={props.activeRoute('edit')}>
                             {
                                 props.centers.map((center) => {
-                                return (
-                                    <option key={center.id} value={center.name}
-                                    selected={props.centerSet === center.name || props.state.Center.name === center.name ? true : false}>{center.name}</option>
-                                );
+                                    return (
+                                        <option key={center.id} value={center.name}
+                                        selected={props.centerSet === center.name || props.state.centerName === center.name ? true : false}>{center.name}</option>
+                                    );
                                 })
                             }
                         </select>

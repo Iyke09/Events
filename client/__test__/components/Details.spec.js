@@ -46,7 +46,7 @@ describe('Test suites for Detail component', () => {
       date: '09-09-2019'
     }
   ];
-  const newProps = {single: {events: [{
+  const newProps = {events: [{
       id: 1,
       date: '2020-04-05',
       name: 'algo',
@@ -56,7 +56,7 @@ describe('Test suites for Detail component', () => {
       date: '2016-09-07',
       name: 'op'
     }
-  ]}};
+  ]};
   const center = {id: 1};
   const review = [{comment: 'hello', user: 'aje'}];
   beforeEach(() => {
@@ -68,16 +68,16 @@ describe('Test suites for Detail component', () => {
     E3MzkyLCJleHAiOjE1MjA4OTAxOTJ9.vtV9eRx_6OpJOw_cvBIlztCmQVRqvuJFwmo2trxy1B0`);
   });
 
-  it('detail comp renders without crashing', () => {
+  it('rendersnthe detail component without crashing', () => {
     const wrapper = mount(
-      <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
+      <Detail getSingle={(index) => index} centerEvents={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     expect(wrapper.length).toEqual(1);
   });
 
   it('renders all upcoming events for that center', () => {
     const wrapper = mount(
-      <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
+      <Detail getSingle={(index) => index} centerEvents={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.setState({newArr1: newEvents});
     expect(wrapper.find('.new').length).toEqual(2);
@@ -86,7 +86,7 @@ describe('Test suites for Detail component', () => {
 
   it('detail component renders past events', () => {
     const wrapper = mount(
-      <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
+      <Detail getSingle={(index) => index} centerEvents={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.setState({pastArr1: prevEvents});
     expect(wrapper.find('.past').length).toEqual(1);
@@ -95,7 +95,7 @@ describe('Test suites for Detail component', () => {
 
   it('calls the componentWillReceiveProps and updates state', () => {
     const wrapper = mount(
-      <Detail getSingle={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
+      <Detail getSingle={(index) => index} centerEvents={(index) => index} review={review} getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.instance().componentWillReceiveProps(newProps);
     expect(wrapper.state().newArr1).toEqual([{
@@ -107,7 +107,7 @@ describe('Test suites for Detail component', () => {
 
   it('renders all the past events for that center', () => {
     const wrapper = mount(
-      <Detail getSingle={(index) => index} review={review}
+      <Detail centerEvents={(index) => index} getSingle={(index) => index} review={review}
         getReviews={(index) => index} params={center} single={single} />
     );
     wrapper.setState({pastArr1: prevEvents});
@@ -119,7 +119,7 @@ describe('Test suites for Detail component', () => {
     const addReview = sinon.spy();
     const params = {id: 1};
     const wrapper = mount(
-      <Detail getSingle={(index) => index}
+      <Detail centerEvents={(index) => index} getSingle={(index) => index}
         review={review} addReview={addReview} params={params} getReviews={(index) => index} single={single} />
     );
     wrapper.find('#add-form').simulate('submit', { preventDefault });

@@ -52,12 +52,12 @@ class Admin extends Component {
         let decoded = '';
         const token = localStorage.getItem('token');
         if(token === null ){
-        browserHistory.push('/auth/signin');
+            browserHistory.push('/auth/signin');
         }else{
-        decoded = jwt(token);
-        if(decoded.adminUser === undefined){
-            browserHistory.push('/');
-        }
+            decoded = jwt(token);
+            if(decoded.adminUser === undefined){
+                browserHistory.push('/');
+            }
         }
         this.props.getCenters(3);
         $(document).ready(function(){
@@ -116,9 +116,9 @@ class Admin extends Component {
         e.preventDefault();
         this.props.loaders();
         if(this.activeRoute('edit')){
-        this.props.updateCenter(this.state, this.props.params.id);
+            this.props.updateCenter(this.state, this.props.params.id);
         }else{
-        this.props.addCenter(this.state);
+            this.props.addCenter(this.state);
         }
         document.getElementById("add-form").reset();
     }
@@ -143,66 +143,66 @@ class Admin extends Component {
         }
     }
     return (
-      <div className="Admin">
-        <div className="row">
-            {this.activeRoute('list_center') ?
-                <div className="col l12 s12">
-                    <div className="w3-bar">
-                        <span className="col l3" />
-                        <div className="col l9 s12">
-                        <input type="text" name="search" onChange={this.searchCenter}
-                        className="w3-bar-item w3-input" placeholder="Enter a search value..."/>
+        <div className="Admin">
+            <div className="row">
+                {this.activeRoute('list_center') ?
+                    <div className="col l12 s12">
+                        <div className="w3-bar">
+                            <span className="col l3" />
+                            <div className="col l9 s12">
+                            <input type="text" name="search" onChange={this.searchCenter}
+                            className="w3-bar-item w3-input" placeholder="Enter a search value..."/>
+                            </div>
                         </div>
-                    </div>
-                </div> : ''
-            }
-            <Navigation 
-                clearForm={this.clearForm}
-                activeRoute={this.activeRoute}
-            />
-            <div className="col s12 m12 l8 " >
-                    {this.activeRoute('/admin/list_center') ? error.indexOf('search') === -1 ?
-                        <div className="">
-                            <div className="row" style={{paddingTop: 50}}>
-                                {centers.map((center) => {
-                                    return (
-                                        <Centers key={center.id} center={center} updateCenter={this.updateCenter}/>
-                                    );
-                                })}
-                                <br/><br/><br/>
-                                <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 w3-padding-64 more">
-                                    <button className="btn red right"> more centers </button>
+                    </div> : ''
+                }
+                <Navigation 
+                    clearForm={this.clearForm}
+                    activeRoute={this.activeRoute}
+                />
+                <div className="col s12 m12 l8 " >
+                        {this.activeRoute('/admin/list_center') ? error.indexOf('search') === -1 ?
+                            <div className="">
+                                <div className="row" style={{paddingTop: 50}}>
+                                    {centers ? centers.map((center) => {
+                                        return (
+                                            <Centers key={center.id} center={center} updateCenter={this.updateCenter}/>
+                                        );
+                                    }) : ''}
+                                    <br/><br/><br/>
+                                    <div onClick={(e) => this.getMore(centers.length + 3)} className="col s12 w3-padding-64 more">
+                                        <button className="btn red right"> more centers </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div> : 
-                        <h1 className="center grey-text w3-padding-64">
-                            <i className="grey-text fa fa-exclamation-triangle"/><br/>
-                            Oops!!!...No items matched your search. Try again?
-                        </h1>  : ''
-                    }
+                            </div> : 
+                            <h1 className="center grey-text w3-padding-64">
+                                <i className="grey-text fa fa-exclamation-triangle"/><br/>
+                                Oops!!!...No items matched your search. Try again?
+                            </h1>  : ''
+                        }
 
-                    {this.activeRoute('/admin/add_center') || this.activeRoute('edit') ?
-                        <div className="card " style={{backgroundColor: '#FBFCFC', marginTop: 20}}>
-                            <div className="card-content ">
-                            { error ? <Error error={error} closeErrMsg={this.closeErrMsg}/> : ''}
-                            <Form 
-                                state={this.state}
-                                loader={loader} 
-                                onChange={this.onChange}
-                                //firebase={firebase.storage().ref('images')}
-                                handleUploadStart={this.handleUploadStart}
-                                handleUploadError={this.handleUploadError}
-                                handleUploadSuccess={this.handleUploadSuccess}
-                                handleProgress={this.handleProgress}
-                                activeRoute={this.activeRoute}
-                                handleSubmit={this.handleSubmit}
-                            />
-                            </div>
-                        </div> : ''
-                    }
+                        {this.activeRoute('/admin/add_center') || this.activeRoute('edit') ?
+                            <div className="card " style={{backgroundColor: '#FBFCFC', marginTop: 20}}>
+                                <div className="card-content ">
+                                { error ? <Error error={error} closeErrMsg={this.closeErrMsg}/> : ''}
+                                <Form 
+                                    state={this.state}
+                                    loader={loader} 
+                                    onChange={this.onChange}
+                                    //firebase={firebase.storage().ref('images')}
+                                    handleUploadStart={this.handleUploadStart}
+                                    handleUploadError={this.handleUploadError}
+                                    handleUploadSuccess={this.handleUploadSuccess}
+                                    handleProgress={this.handleProgress}
+                                    activeRoute={this.activeRoute}
+                                    handleSubmit={this.handleSubmit}
+                                />
+                                </div>
+                            </div> : ''
+                        }
+                </div>
             </div>
         </div>
-  </div>
     );
   }
 }

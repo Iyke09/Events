@@ -7,8 +7,6 @@ import Events from '../helperComponent/details/event';
 import Reviews from '../helperComponent/details/review';
 import Navigation from '../helperComponent/details/navBar';
 
-let newArr = [];
-let pastArr = [];
 class Details extends React.Component {
   constructor(){
     super();
@@ -22,34 +20,34 @@ class Details extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.setTime = this.setTime.bind(this);
   }
-  componentWillMount() {
-    this.props.getSingle(this.props.params.id);
-    this.props.getReviews(this.props.params.id);
-    $(document).ready(function () {
-      $('ul.tabs').tabs();
-    });
-  }
-  componentWillReceiveProps(newProps) {
-    const { single } = this.props;
-    let newArr1, pastArr1 = [];
-    console.log('hello majiks ' + newProps.single.events);
-    if (newProps.single.events) {
-      if (newProps.single.events.length !== 0) {
-        newProps.single.events.map((event, key) => {
-          if (new Date().getTime() < new Date(event.date).getTime()) {
-            this.setState((prev, next) => {
-              return { newArr1: [...prev.newArr1, event] };
-            });
-          } else {
-            this.setState((prev, next) => {
-              return { pastArr1: [...prev.pastArr1, event] };
-            });
-          }
+    componentWillMount() {
+        this.props.getSingle(this.props.params.id);
+        this.props.getReviews(this.props.params.id);
+        this.props.centerEvents(this.props.params.id);
+        $(document).ready(function () {
+        $('ul.tabs').tabs();
         });
-      }
+        
+    }
+    componentWillReceiveProps(newProps) {
+        const { single } = this.props;
+        if(newProps.events.length > 0){
+            newProps.events.map((event, key) => {
+                if (new Date().getTime() < new Date(event.date).getTime()) {
+                    this.setState((prev, next) => {
+                        return { newArr1: [...prev.newArr1, event] };
+                    });
+                } else {
+                    this.setState((prev, next) => {
+                        return { pastArr1: [...prev.pastArr1, event] };
+                    });
+                }
+            });
+        }else{
+            this.setState({newArr1: [], pastArr1: [], comment: ''});
+        }
 
     }
-  }
   setRedirect() {
     const {single} = this.props;
     localStorage.setItem('route', `/add/${single.name}`);
@@ -101,7 +99,6 @@ class Details extends React.Component {
     if(token !== null){
       decoded = jwt(token);
     }
-
     return (
         <div className="Details">
             <Navigation token={token}/>
@@ -189,26 +186,24 @@ class Details extends React.Component {
                     </div>
 
 
-
                     <div id="test1" className="col s12 m12 l12">
-                        {single.events ?
-                            newArr1.length !== 0 ?
+                        { newArr1.length !== 0 ?
                             newArr1.map((event) => {
                             return (
                                 <Events period="new" key={event.id} event={event}/>
                             );
-                        })  :
+                            })  :
                         <div className="container center">
                             <h2 className="font2" style={{fontSize: 20}}>
                                 <i className="yellow-text fa fa-exclamation-triangle"
                                 style={{paddingRight:5}} aria-hidden="true" />
                                 No events available for this center
                             </h2>
-                        </div> : ''
+                        </div> 
                         }
                     </div>
                     <div id="test2" className="col s12 m12 l12">
-                        {single.events ?
+                        {
                             pastArr1.length !== 0 ?
                             pastArr1.map((event) => {
                             return (
@@ -220,7 +215,7 @@ class Details extends React.Component {
                                 <i className="yellow-text fa fa-exclamation-triangle" style={{paddingRight:5}} aria-hidden="true" />
                                     No past events available for this center
                             </h2>
-                        </div> : ''
+                        </div> 
                         }
                     </div>
                 </div>

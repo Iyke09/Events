@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import errorHelper from '../helpers/errorHelper';
 import {
   Center,
   Eevent,
@@ -20,22 +21,28 @@ class Admin {
    * @return {array} return an array of objects
    */
   static addCenter(req, res) {
+    const {
+      name,
+      image, 
+      description, 
+      capacity, 
+      price, 
+      location
+    } = req.body;
     Center.create({
-      name: req.body.name,
-      image: req.body.image,
-      description: req.body.description,
-      capacity: req.body.capacity,
-      price: req.body.price,
-      location: req.body.location,
+      name,
+      image,
+      description,
+      capacity,
+      price,
+      location,
     })// return message to user if operation was successful
       .then(center => res.status(201).send({
         status: 'Success',
         message: 'Center created',
         center
       }))// catch errors
-      .catch(error => res.status(500).send({
-        message: error.errors[0].message,
-      }));
+      .catch(error => errorHelper(error, res));
   }
 
 
@@ -48,7 +55,8 @@ class Admin {
    */
   static updateCenter(req, res) {
     const {name, image, description, capacity, price, location} = req.body;
-    Center.findOne({ where: { id: req.params.id } })
+    const { id } = req.params;
+    Center.findOne({ where: { id } })
       .then((center) => {
         // if center not found return unsuccessful message back to user
         if (!center) {
@@ -66,17 +74,15 @@ class Admin {
             location: location || center.location,
             isAvailable: !center.isAvailable,
           })// if update successful return a success message back to user
-          .then(center =>
+          .then(center => /* eslint-disable-line */
             res.status(201).send({
               status: 'success',
               message: 'center updated',
               center,
             }))// error handler
-          .catch(error => res.status(500).send({
-            message: error.errors[0].message,
-          }));
+            .catch(error => errorHelper(error, res));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => errorHelper(error, res));
   }
 
   /**
@@ -88,13 +94,9 @@ class Admin {
    */
   static centerDetails(req, res) {
   // find all centers where the id matches the req.params.id
+    const { id } = req.params;
     Center.findOne({
-      where: { id: req.params.id },
-      // include all events with event.centerId matching the the center id found
-      include: [{
-        model: Eevent,
-        as: 'events',
-      }],
+      where: { id },
     })
       .then((center) => {
         // if array length equal to zero return unsuccesful message
@@ -108,9 +110,10 @@ class Admin {
           status: 'Success',
           message: 'center found',
           center,
+          event: `http://localhost:3000/api/v1/events/${id}/centers`
         });
       })
-      .catch(error => res.status(500).send(error.toString()));
+      .catch(error => errorHelper(error, res));
   }
   /**
    *
@@ -119,7 +122,13 @@ class Admin {
    * @return {object} return a recipe oject
    */
   static allCenters(req, res) {
-    const { name, capacity } = req.query;
+    let newlimit;
+    const { name, capacity, limit } = req.query;
+    if(limit > 100){
+      newlimit = 100;
+    }else{
+      newlimit = limit;
+    }
     // check if user is sending in query parameters
     if (name !== undefined || capacity !== undefined) {
       // if query parameters is true model based on user input
@@ -135,37 +144,36 @@ class Admin {
           ],
         },
       })
-        .then((center) => {
+        .then((centers) => {
         // if search returned no value send unsuccessful message back to user
-          if (center.length === 0) {
-            res.status(404).send({
+          if (centers.length === 0) {
+            return res.status(404).send({
               message: 'Oops!!..sorry no items matched your search',
             });
-          } else {
-          // if successful return the items found back to user
-            res.status(200).send({
-              message: 'centers found',
-              center,
-            });
           }
+          // if successful return the items found back to user
+          return res.status(200).send({
+            message: 'centers found',
+            centers,
+          });
         });
       //  .catch(error => res.status(400).send(error.toString()));
     } else {
       // find all centers
       Center.findAll({
-          limit: req.query.limit,
+          limit: newlimit || 10,
           order:[['updatedAt', 'DESC']],
           include: [{
             model: Favorite,
             as: 'favorites',
           }],
          })
-        .then(center => res.status(200).send({
+        .then(centers => res.status(200).send({
           status: 'Success',
           message: 'centers found',
-          center,
+          centers,
         }))
-        .catch(error => res.status(400).send(error.toString()));
+        .catch(error => errorHelper(error, res));
     }
   }
     /**
@@ -208,7 +216,7 @@ class Admin {
                       favorites,
                     });
                   })
-                  .catch(error => res.status(500).send(error.toString()));
+                  .catch(error => errorHelper(error, res));
               }
               // destroy the favorite object if found in DB
               favCenter
@@ -219,57 +227,10 @@ class Admin {
                     message: 'Center unfavorited',
                   });
                 })
-                .catch(error => res.status(500).send(error.toString()));
+                .catch(error => errorHelper(error, res));
             });
         })
-        .catch(error => res.status(500).send(error.toString()));
-  }
-
-     /**
-   *
-   * @param {object} req a review object
-   * @param {object} res a review object
-   * 
-   * @return {object} return a recipe oject
-   */
-  static addReview(req, res) {
-    const {id, username, comment} = req.body;
-    Review.create({
-      centerId: id,
-      user: username,
-      comment
-    })
-    // return message to user if operation was successful
-      .then(review => res.status(201).send({
-        status: 'Success',
-        message: 'review created',
-        review
-      }))
-      // catch errors
-      .catch(error => res.status(500).send(error.toString()));
-  }
-
-    /**
-     * @description gets all available reviews
-   * @param {object} req a review object
-   * @param {object} res a review object
-   * 
-   * @return {array} return an array of center reviews
-   */
-  static getReviews(req, res) {
-    Review.findAll({
-      where: { centerId: req.params.id },
-      limit: 3,
-      order:[['updatedAt', 'DESC']]
-     })
-     // return a success message if operation successful
-    .then(review => res.status(200).send({
-      status: 'Success',
-      message: 'reviews found',
-      review,
-    }))
-    // catch errors
-    .catch(error => res.status(500).send(error.toString()));
+        .catch(error => errorHelper(error, res));
   }
 }
 

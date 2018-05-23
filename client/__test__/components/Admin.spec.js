@@ -53,7 +53,7 @@ describe('Test suites for Home component', () => {
 		//expect(wrapper).toMatchSnapshot();
 	});
 
-	it('+++ admin page renders with all list of centers and calls the get more function', () => {
+	it(' admin page renders with all list of centers and calls the get more function', () => {
     const getCenters= sinon.spy();
     const errorAction = sinon.spy();
     const error = 'jefe!';
@@ -65,7 +65,7 @@ describe('Test suites for Home component', () => {
 		expect(getCenters.calledWith(6)).toEqual(true);
   });
 
-  it('+++ admin page renders with all list of centers and calls the update function', () => {
+  it(' admin page renders with all list of centers and calls the update function', () => {
     const getCenters= sinon.spy();
     const getSingle= sinon.spy();
     const errorAction = sinon.spy();
@@ -130,7 +130,7 @@ describe('Test suites for Home component', () => {
     expect(getCenters.calledWith('hello')).toEqual(true);
   });
 
-  it('+++ admin page calls the componentdidmount function', () => {
+  it(' admin page calls the componentdidmount function', () => {
     const getCenters = sinon.spy();
     const getSingle = sinon.spy();
     const params = {id: 1};

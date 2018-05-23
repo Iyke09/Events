@@ -36,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'time field cannot be empty',
         },
+        is: {
+          args: /^\d{2,}:\d{2}$/,
+          msg: 'invalid time format',
+        },
       },
     },
     date: {

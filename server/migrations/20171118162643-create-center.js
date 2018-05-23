@@ -9,6 +9,7 @@ module.exports = {
     name: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true
     },
     image: {
       type: Sequelize.STRING,
@@ -24,7 +25,7 @@ module.exports = {
       type: Sequelize.INTEGER,
     },
     price: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.FLOAT,
     },
     isAvailable: {
       type: Sequelize.BOOLEAN,

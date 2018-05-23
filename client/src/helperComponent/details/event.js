@@ -5,7 +5,7 @@ import timeConverter from './timeConverter';
 
 function Events(props) {
     return (
-        <div className="col s12 m12 l4 displayed">
+        <div className="">
             <div className="eventz" id="eventz">
                 <div className="col s10 m2 center" >
                 <div className="black white-text" >

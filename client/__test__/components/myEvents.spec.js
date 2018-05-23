@@ -13,9 +13,9 @@ describe('Test suites for My Event component', () => {
 			date: '2014-06-04',
 			title: 'emporium',
 			time: '12:00',
+			image: '/images/img.jsx',
 			Center: {
 				location: 'emporium',
-				image: '/images/img.jsx'
 			}
 		},
 		{
@@ -23,9 +23,9 @@ describe('Test suites for My Event component', () => {
 			date: '2014-06-04',
 			title: 'emporium',
 			time: '12:00',
+			image: '/images/img.jsx',
 			Center: {
 				location: 'emporium',
-				image: '/images/img.jsx'
 			}
 		}
 	];
@@ -38,7 +38,7 @@ describe('Test suites for My Event component', () => {
 
 	it('+++ renders with all list of user events', () => {
 		const getEvents = sinon.spy();
-		const wrapper = shallow(<Event getEvents={getEvents} events={events} />);
+		const wrapper = mount(<Event getEvents={getEvents} events={events} />);
 		expect(getEvents.calledOnce).toEqual(true);
 		expect(
 			wrapper.contains(

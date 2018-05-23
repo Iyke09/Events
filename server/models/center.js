@@ -6,23 +6,31 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         args: true,
         msg: 'Oops. Center name must be unique',
-        // fields: [sequelize.fn('lower', sequelize.col('email'))]
       },
       validate: {
-        is: {
-          args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
-          msg: 'name must be alphanumeric',
+        notEmpty: {
+          args: true,
+          msg: 'name field cannot be empty',
         },
         len: {
           args: [4, 25],
           msg: 'name must be atleast 4 characters long',
         },
+        is: {
+          args: /^[a-zA-Z0-9-,]+(\s{0,1}[a-zA-Z0-9-, ])*$/,
+          msg: 'name must be alphanumeric',
+        },
       },
     },
     description: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
       validate: {
+        notEmpty: {
+          args: true,
+          msg: 'description field cannot be empty',
+        },
         len: {
           args: [10, 250],
           msg: 'description must be atleast 10 characters',
@@ -43,18 +51,26 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
+        notEmpty: {
+          args: true,
+          msg: 'capacity field cannot be empty',
+        },
         is: {
           args: /^[0-9]*$/,
-          msg: 'only numbers are allowed',
+          msg: 'only numbers are allowed for the capacity of the center',
         },
       },
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       validate: {
-        isNumeric: {
+        notEmpty: {
           args: true,
-          msg: 'Only numbers are allowed',
+          msg: 'price field cannot be empty',
+        },
+        is: {
+          args: /^[+-]?([0-9]*[.])?[0-9]+$/,
+          msg: 'Only numbers are allowed for the price of a center',
         },
       },
     },
@@ -64,7 +80,16 @@ module.exports = (sequelize, DataTypes) => {
     isAvailable: {
       type: DataTypes.BOOLEAN,
     },
-  });
+  }, {
+    validate: {
+      bothCoordsOrNone() {
+        if ((this.latitude === null) !== (this.longitude === null)) {
+          throw new Error('Require either both latitude and longitude or neither');
+        }
+      }
+    }
+  }
+);
 
   Center.associate = (models) => {
     Center.hasMany(models.Eevent, {
