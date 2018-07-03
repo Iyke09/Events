@@ -7,9 +7,6 @@ import Success from '../notifications/success';
 
 function Form(props) {
     return (
-        <div className="">
-            <div id="modal1" className="modal modal-fixed-footer" style={{width: 450, height: 440, marginTop: 40}}>
-                <div className="modal-content ">
                     <form id="add-form2" className="col s12" onSubmit={props.handleSubmit}>
                         <h3 className="font2 center red-text">Change Password</h3>
                         { props.error ? <Error error={props.error} closeErrMsg={props.closeErrMsg} /> : ''}
@@ -47,9 +44,6 @@ function Form(props) {
                             </button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
     );
 }
 

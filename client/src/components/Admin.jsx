@@ -189,7 +189,7 @@ class Admin extends Component {
                                     state={this.state}
                                     loader={loader} 
                                     onChange={this.onChange}
-                                    //firebase={firebase.storage().ref('images')}
+                                    firebase={this.props.test ? "" : firebase.storage().ref('images')}
                                     handleUploadStart={this.handleUploadStart}
                                     handleUploadError={this.handleUploadError}
                                     handleUploadSuccess={this.handleUploadSuccess}

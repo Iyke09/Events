@@ -12,10 +12,18 @@
           "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
        }
     },
+    "basePath": "/api/v1",
     "schemes": [
-       "https",
-       "http"
+       "http",
+       "https"
     ],
+    "securityDefinitions": {
+        "UserToken": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "token"
+        }
+    },
     "tags": [
        {
           "name": "Center",
@@ -178,6 +186,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "old_password",
@@ -329,9 +340,12 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
-                   "name": "Name",
+                   "name": "name",
                    "in": "formData",
                    "description": "The name of the center the user intends to add to the store.",
                    "required": true,
@@ -485,6 +499,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "centerId",
@@ -646,6 +663,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "centerId",
@@ -728,6 +748,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "Id",
@@ -852,6 +875,9 @@
                 "application/xml",
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "userId",
@@ -913,6 +939,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "title",
@@ -1007,6 +1036,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "eventId",
@@ -1066,6 +1098,9 @@
              "produces": [
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "eventId",
@@ -1162,6 +1197,9 @@
                 "application/xml",
                 "application/json"
              ],
+             "security":[{
+                "UserToken": []
+             }],
              "parameters": [
                 {
                    "name": "eventId",
@@ -1371,7 +1409,5 @@
              }
           }
        }
-    },
-    "host": "virtserver.swaggerhub.com",
-    "basePath": "/and84/ikenna/1.0.0"
+    }
  }

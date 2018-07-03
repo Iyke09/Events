@@ -26,15 +26,15 @@ class Auth extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.clearError = this.clearError.bind(this);
         this.closeErrMsg = this.closeErrMsg.bind(this);
-        this.authenticate = this.authenticate.bind(this);
+        // this.authenticate = this.authenticate.bind(this);
         this.activeRoute = this.activeRoute.bind(this);
-        this.responseGoogle = this.responseGoogle.bind(this);
+        // this.responseGoogle = this.responseGoogle.bind(this);
         //this.responseGoogleLogout = this.responseGoogleLogout.bind(this);
     }
     componentWillMount(){
-        // $(document).ready(function(){
-        //     $('.modal').modal();
-        // });
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -42,24 +42,10 @@ class Auth extends React.Component {
     clearError(){
         store.dispatch({type: 'ERROR', error: ''});
     }
-    authenticate(response){
-        const randName = new Rwg().generate();
-        if(response.accessToken){
-        const facebookName = response.accessToken.slice(0, 5);
-        this.props.signin({email: `foo${response.id}@gTa.com`, password: 'annonymous'});
-        }
-    }
     activeRoute(routeName) {
         return this.props.location.pathname.indexOf(routeName) !== -1 ? true : false;
     }
-    responseGoogle(response){
-        let { error } = this.props;
-        const id_token = response.Zi.id_token;
-        if(id_token){
-        const googleName = id_token.slice(0, 10);
-        this.props.signin({email: `${googleName}@gTa.com`, password: 'annonymous'});
-        }
-    }
+
     closeErrMsg(){
         this.props.errorAction('');
     }
@@ -128,30 +114,6 @@ class Auth extends React.Component {
                                         <div className="row">
                                             <div className="card col m8 offset-m2">
                                                 <div className="card-content white lighten-4" style={{color: '#212F3C'}}>
-                                                    {/* <div className="col l8 offset-l2">
-                                                        <div className="col s6">
-                                                            <FacebookLogin socialId="1835467386744019"
-                                                            language="en_US"
-                                                            scope="public_profile,email"
-                                                            responseHandler={this.authenticate}
-                                                            xfbml
-                                                            fields="id,email,name"
-                                                            version="v2.5"
-                                                            className="facebook-login waves-effect waves-light btn blue"
-                                                            buttonText="Facebook"/>
-                                                            </div>
-                                                        <div className="col s6">
-                                                            <GoogleLogin
-                                                                socialId="994244618792-vcuu6ftsds0bv98gu1urlup3rh6923hk.apps.googleusercontent.com"
-                                                                className="google-login waves-effect waves-light btn red"
-                                                                id="google"
-                                                                scope="profile"
-                                                                fetchBasicProfile={false}
-                                                                responseHandler={this.responseGoogle}
-                                                                buttonText="Google"
-                                                            />
-                                                        </div>
-                                                    </div> */}
                                                     <div id="test4">
                                                         <div className="row">
                                                             <Form 
