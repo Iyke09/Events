@@ -26,4 +26,5 @@ exclude_paths:
   - "**/test/*.js"
   - "**/*.test.js"
   - "client/src/actions/"
+  - "bin/*"
 
