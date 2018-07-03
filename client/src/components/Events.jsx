@@ -49,7 +49,7 @@ class Events extends Component {
       if(newProps.success){
         this.setState({title: '',guests: '', type: '', date: ''});
       }
-    }
+    }      
   }
   closeErrMsg(){
     this.props.errorAction('');

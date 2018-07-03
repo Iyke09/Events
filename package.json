@@ -4,10 +4,6 @@
     "setupFiles": [
       "jest-localstorage-mock",
       "./client/__test__/mocks/test-env.js"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "client/src/**/*.{js,jsx}"
     ]
   },
   "version": "1.0.0",
@@ -74,8 +70,10 @@
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
+    "brotli-webpack-plugin": "^1.0.0",
     "cloudinary": "^1.9.1",
     "cloudinary-react": "^1.0.4",
+    "compression-webpack-plugin": "^1.1.11",
     "css-loader": "^0.23.1",
     "dotenv": "^4.0.0",
     "eslint-config-airbnb": "^16.1.0",

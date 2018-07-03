@@ -167,6 +167,7 @@ class Event {
     Eevent.findAll({
       where: { userId: userID },
       limit: 100,
+      order:[['updatedAt', 'DESC']],
       attributes: [
         'id',
         'title', 

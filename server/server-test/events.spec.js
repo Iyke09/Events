@@ -91,6 +91,7 @@ const eventTest = (expect, request, eventUrl, usersUrl) => {
                   expect(res.status).to.equal(201);
                   expect(res.body.status).to.equal('Success');
                   expect(res.body.message).to.equal('Event created');
+                  expect(res.body.events.title).to.equal('Concert');
                   done();
                 });
             });

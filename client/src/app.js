@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from './actions/actionCreators';
 import Main from './components/Main.jsx';
 
-function mapStateToProps(state) {
+export const mapStateToProps = (state) => {
   return {
     centers: state.centers.center,
     single: state.centers.singleCenter,
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 
     //user: state.user,
   };
-}
+};
 
 function mapDispachToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);

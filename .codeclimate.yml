@@ -12,10 +12,18 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "client/**/*.js"
+  - "client/src/**/*.js"
+  - "client/src/**/*.jsx"
   - "server/**/*.js"
 exclude_paths:
   - "node_modules/"
   - "template/*"
-  - "client/"
-  - "server/test"
+  - "client/__test__/**/*.js"
+  - "server/server-test"
+  - "server/public/*"
+  - "server/migrations/"
+  - "server/models/"
+  - "**/test/*.js"
+  - "**/*.test.js"
+  - "client/src/actions/"
+

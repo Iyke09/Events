@@ -28,8 +28,10 @@ class Home extends React.Component {
   componentWillMount(){
     store.dispatch({type: '!SUCCESS'});
     $(document).ready(function(){
+        $('.modal').modal();
+    });
+    $(document).ready(function(){
       $(".dropdown-button").dropdown();
-      $('.modal').modal();
     });
     this.props.getCenters(6);
   }
@@ -98,7 +100,7 @@ class Home extends React.Component {
        decoded = jwt(token);
     }
     return (
-      <div className="Home">
+        <div className="Home">
             <Navigation
                 facebook={facebook}
                 token={token}
@@ -160,67 +162,71 @@ class Home extends React.Component {
                 </div>
             </div>
 
-        <div className="listing" id="centers">
-            <div className="row container">
-                <h2 className=" light black-text center">Major Events Center</h2>
-                <hr className=""/><br/><br/>
-                <div className="col s12 m12 l4 ">
-                    {set1.map((center) => {
-                        return (
-                            <Centers 
-                                height="350"
-                                key={center.id}
-                                setFavoriteCenter={this.setFavoriteCenter}
-                                center={center}
-                                addFavorite={this.addFavorite}
-                            />
-                        );
-                    })}
-                </div>
+            <div className="listing" id="centers">
+                <div className="row container">
+                    <h2 className=" light black-text center">Major Events Center</h2>
+                    <hr className=""/><br/><br/>
+                    <div className="col s12 m12 l4 ">
+                        {set1.map((center) => {
+                            return (
+                                <Centers 
+                                    height="350"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
 
-                <div id="centerx" className="col s12 m12 l4 ">
-                    {set2.map((center) => {
-                        return (
-                            <Centers
-                                height="400"
-                                key={center.id}
-                                setFavoriteCenter={this.setFavoriteCenter}
-                                center={center}
-                                addFavorite={this.addFavorite}
-                            />
-                        );
-                    })}
-                </div>
+                    <div id="centerx" className="col s12 m12 l4 ">
+                        {set2.map((center) => {
+                            return (
+                                <Centers
+                                    height="400"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
 
-                <div id="centerx" className="col s12 m12 l4">
-                    {set3.map((center) => {
-                        return (
-                            <Centers
-                                height="350"
-                                key={center.id}
-                                setFavoriteCenter={this.setFavoriteCenter}
-                                center={center}
-                                addFavorite={this.addFavorite}
-                            />
-                        );
-                    })}
+                    <div id="centerx" className="col s12 m12 l4">
+                        {set3.map((center) => {
+                            return (
+                                <Centers
+                                    height="350"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
+                    <br/><br/><br/><br/>
+                    <div className="col s12 center w3-padding-64">
+                        <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 3)}>all centers </button>
+                    </div>
                 </div>
-                <br/><br/><br/><br/>
-                <div className="col s12 center w3-padding-64">
-                    <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 3)}>all centers </button>
+            </div>
+
+            <Footer />
+            <div id="modal1" className="modal modal-fixed-footer" style={{width: 450, height: 440, marginTop: 40}}>
+                <div className="modal-content ">
+                    <Form 
+                        error={error}
+                        success={success}
+                        handleSubmit={this.handleSubmit}
+                        closeErrMsg={this.closeErrMsg}
+                        onChange={this.onChange}
+                    />
                 </div>
             </div>
         </div>
-
-        <Footer />
-        <Form 
-            error={error}
-            success={success}
-            handleSubmit={this.handleSubmit}
-            closeErrMsg={this.closeErrMsg}
-            onChange={this.onChange}
-        />
-      </div>
     );
   }
 }
