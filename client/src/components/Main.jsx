@@ -17,11 +17,13 @@ class Main extends Component {
     };
   }
   componentWillMount(){
+    console.ignoredYellowBox = [
+      'Warning: You are manually calling a React.PropTypes validation',
+    ];
     const token = localStorage.getItem('token');
     if(token !== null){
       const decoded = jwt(token);
       const curr_time = new Date().getTime() / 1000;
-      console.log('the value is ' + decoded.exp, curr_time);
       if(curr_time > decoded.exp){
         localStorage.setItem('route', window.location.pathname);
         localStorage.removeItem('token');
@@ -29,10 +31,7 @@ class Main extends Component {
       }
     }
     store.dispatch({type: 'ERROR', error: ''});
-    $(document).ready(function() {
-      $('select').material_select();
-      $(".button-collapse").sideNav();
-    });
+
     let config = {
       apiKey: "AIzaSyB79V1_PDfy7IkLHjwscQyWFM1T-YuQdTY",
       authDomain: "events-6f28c.firebaseapp.com",

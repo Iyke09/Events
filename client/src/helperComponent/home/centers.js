@@ -34,7 +34,7 @@ Centers.propTypes = {
     center: PropTypes.object,
     setFavoriteCenter: PropTypes.func,
     addFavorite: PropTypes.func,
-    height: PropTypes.number
+    height: PropTypes.string
 };
 
 

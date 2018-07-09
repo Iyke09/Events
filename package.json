@@ -15,7 +15,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest client/__test__/**/*.js --coverage",
-    "test-e2e": "nightwatch",
+    "test-e2e": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && cross-env NODE_ENV=test nightwatch",
     "test:db": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && cross-env NODE_ENV=test nyc mocha --timeout 15000 server/server-test/main.spec.js",
     "migrate": "sequelize db:migrate:undo:all&&sequelize db:migrate",
     "start:devx": "nodemon --exec babel-node server/bin/www",
@@ -97,7 +97,7 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.10",
     "random-word-generator": "^0.9.9",
-    "react": "15.0.2",
+    "react": "^15.3.0",
     "react-addons-test-utils": "15.0.2",
     "react-bootstrap": "^0.32.1",
     "react-datetime": "^2.14.0",

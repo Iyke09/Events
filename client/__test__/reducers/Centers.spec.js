@@ -1,5 +1,5 @@
 import store from '../../src/store';
-
+// import expect from 'expect';
 describe('Test Centers state ',() => {
 
   it('should have a default lenght of zero', () => {

@@ -29,7 +29,7 @@ function Form(props) {
                                 props.centers.map((center) => {
                                     return (
                                         <option key={center.id} value={center.name}
-                                        selected={props.centerSet === center.name || props.state.centerName === center.name ? true : false}>{center.name}</option>
+                                        defaultValue={props.centerSet === center.name || props.state.centerName === center.name ? true : false}>{center.name}</option>
                                     );
                                 })
                             }

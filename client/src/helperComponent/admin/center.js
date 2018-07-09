@@ -8,7 +8,7 @@ function Centers(props) {
         <div className="col s12 m12 l4 displayed">
             <div className="card w3sets" id="minor">
                 <div className="card-image waves-effect waves-block waves-light">
-                    <img style={{height: 300}} className="activator" src={props.center.image}/>
+                    <img style={{height: "300px"}} className="activator" src={props.center.image}/>
                     <Link to={`/admin/edit/${props.center.id}`}>
                         <div style={{cursor: 'pointer'}} className="update" id="minor-l" 
                             onClick={() => props.updateCenter(props.center.id)}>

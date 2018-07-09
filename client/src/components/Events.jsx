@@ -14,7 +14,7 @@ class Events extends Component {
       center: '',
       title: '',
       time: '12:00',
-      date: 0,
+      date: "0",
       guests: 0,
       type: '',
       Center: 'testing',
@@ -40,6 +40,7 @@ class Events extends Component {
     }
     $(document).ready(function() {
       $('select').material_select();
+      $(".button-collapse").sideNav();
     });
   }
   componentWillReceiveProps(newProps){
@@ -95,7 +96,7 @@ class Events extends Component {
         <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
             <div className="nav-wrapper container">
                 <Link to={"/"}>
-                <a id="logo-container " className="brand-logo white-text">Andela</a>
+                <span id="logo-container " className="brand-logo white-text">Andela</span>
                 </Link>
                 <ul className="right hide-on-med-and-down">
                     <li>
@@ -106,7 +107,14 @@ class Events extends Component {
                 </ul>
 
                 <ul id="nav-mobile" className="side-nav">
-                <li><a href="#" /></li>
+                <Link to={"/"}>
+                <span id="logo-container " className="brand-logo white-text">Andela</span>
+                </Link>
+                <li>
+                    <Link to={"/user/events"}>
+                        My Events
+                    </Link>
+                    </li>
                 </ul>
                 <a href="" data-activates="nav-mobile" className="button-collapse">
                     <i className="material-icons">menu</i>
@@ -154,7 +162,7 @@ Events.propTypes = {
   updateEvent: PropTypes.func,
   getCenters: PropTypes.func,
   addEvent: PropTypes.func,
-  centers: PropTypes.array.isRequired,
+  centers: PropTypes.array,
   getSingleEvents: PropTypes.func,
   location: PropTypes.object,
   params: PropTypes.number,

@@ -33,6 +33,12 @@ class Home extends React.Component {
     });
     this.props.getCenters(6);
   }
+//   componentDidMount(){
+//     $(document).ready(function(){
+//         $(".button-collapse").sideNav();
+//         $(".dropdown-button").dropdown();
+//     });
+//   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -160,36 +166,55 @@ class Home extends React.Component {
                 </div>
             </div>
 
-        <div className="listing" id="centers">
-            <div className="row container">
-                <h2 className=" light black-text center">Major Events Center</h2>
-                <hr className=""/><br/><br/>
-                <div className="col s12 m12 l4 ">
-                    {set1.map((center) => {
-                        return (
-                            <Centers 
-                                height="350"
-                                key={center.id}
-                                setFavoriteCenter={this.setFavoriteCenter}
-                                center={center}
-                                addFavorite={this.addFavorite}
-                            />
-                        );
-                    })}
-                </div>
+            <div className="listing" id="centers">
+                <div className="row container">
+                    <h2 className=" light black-text center">Major Events Center</h2>
+                    <hr className=""/><br/><br/>
+                    <div className="col s12 m12 l4 ">
+                        {set1.map((center) => {
+                            return (
+                                <Centers 
+                                    height="350px"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
 
-                <div id="centerx" className="col s12 m12 l4 ">
-                    {set2.map((center) => {
-                        return (
-                            <Centers
-                                height="400"
-                                key={center.id}
-                                setFavoriteCenter={this.setFavoriteCenter}
-                                center={center}
-                                addFavorite={this.addFavorite}
-                            />
-                        );
-                    })}
+                    <div id="centerx" className="col s12 m12 l4 ">
+                        {set2.map((center) => {
+                            return (
+                                <Centers
+                                    height="400px"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    <div id="centerx" className="col s12 m12 l4">
+                        {set3.map((center) => {
+                            return (
+                                <Centers
+                                    height="350px"
+                                    key={center.id}
+                                    setFavoriteCenter={this.setFavoriteCenter}
+                                    center={center}
+                                    addFavorite={this.addFavorite}
+                                />
+                            );
+                        })}
+                    </div>
+                    <br/><br/><br/><br/>
+                    <div className="col s12 center w3-padding-64">
+                        <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 3)}>all centers </button>
+                    </div>
                 </div>
 
                 <div id="centerx" className="col s12 m12 l4">
@@ -210,7 +235,7 @@ class Home extends React.Component {
                     <button className="btn red testx" onClick={(e) => this.getMore(centers.length + 3)}>all centers </button>
                 </div>
             </div>
-        </div>
+
 
         <Footer />
         <Form 
@@ -226,13 +251,13 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  centers: PropTypes.array.isRequired,
+  centers: PropTypes.array,
   getCenters: PropTypes.func,
   errorAction: PropTypes.func,
   addFavorite: PropTypes.func,
   changePassword: PropTypes.func,
   location: PropTypes.object,
-  params: PropTypes.number,
+  params: PropTypes.object,
   loaders: PropTypes.func,
   loader: PropTypes.bool,
   error: PropTypes.string,

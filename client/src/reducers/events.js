@@ -5,7 +5,6 @@ function events(state = {event: [], singleEvent: {}}, action) {
     case 'SET_SINGLE_EVENT' :
       return {event: state.event, singleEvent: action.response.event};
     case 'SET_CENTER_EVENT' :
-    console.log('reducerll....', action.response);
       return {event: [...action.response.event], singleEvent: state.singleEvent};
   default:
       return state;

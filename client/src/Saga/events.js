@@ -15,7 +15,6 @@ export function* getEvents(action) {
 		yield put({ type: 'SET_EVENTS', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log('leggooo '+error);
 	}
 }
 
@@ -42,7 +41,6 @@ export function* addEvents(action) {
 		yield put({ type: '!SUCCESS' });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
 		yield delay(1000);
 		yield put({ type: 'UNLOAD' });
 		yield put({ type: '!SUCCESS' });
@@ -74,7 +72,7 @@ export function* updateEvent(action) {
 		yield put({ type: '!SUCCESS' });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 		yield delay(1000);
 		yield put({ type: 'UNLOAD' });
 		yield put({ type: '!SUCCESS' });
@@ -95,7 +93,7 @@ export function* deleteEvents(action) {
 		console.log(response.data.message);
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 		yield put({ type: 'ERROR', error });
 	}
 }
@@ -112,7 +110,7 @@ export function* getSingleEvents(action) {
 		yield put({ type: 'SET_SINGLE_EVENT', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 	}
 }
 
@@ -126,7 +124,7 @@ export function* getCenterEvents(action) {
 		yield put({ type: 'SET_CENTER_EVENT', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 		let response = {data: {event: []}};
 		yield put({ type: 'SET_CENTER_EVENT', response: response.data });
 	}

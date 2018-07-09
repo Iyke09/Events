@@ -16,6 +16,13 @@
        "https",
        "http"
     ],
+    "securityDefinitions": {
+        "UserToken": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "token"
+        }
+    },
     "tags": [
        {
           "name": "Center",
@@ -429,8 +436,7 @@
                    "name": "name",
                    "in": "query",
                    "description": "name of center to search for",
-                   "required": true,
-                   "type": "integer",
+                   "type": "string",
                    "format": "int64"
                 }
              ],
@@ -444,7 +450,7 @@
                             "type": "object",
                             "description": "The center details that was created "
                          },
-                         "success": {
+                         "status": {
                             "type": "boolean",
                             "default": true,
                             "description": "And indication of if the operation was successful or not"
@@ -471,7 +477,7 @@
              }
           }
        },
-       "/centers/centerId": {
+       "/centers/{centerId}": {
           "put": {
              "tags": [
                 "Center"
@@ -490,7 +496,6 @@
                    "name": "centerId",
                    "in": "path",
                    "description": "ID of the center to be updated",
-                   "required": true,
                    "type": "integer",
                    "format": "int64"
                 },
@@ -498,7 +503,6 @@
                    "name": "Name",
                    "in": "formData",
                    "description": "The name of the center the user intends to add to the store.",
-                   "required": true,
                    "type": "string"
                 },
                 {
@@ -511,7 +515,6 @@
                    "name": "description",
                    "in": "formData",
                    "description": "A short description of the center",
-                   "required": true,
                    "type": "string",
                    "minLength": 10
                 },
@@ -519,14 +522,12 @@
                    "name": "capacity",
                    "in": "formData",
                    "description": "The capacity the center can hold",
-                   "required": true,
                    "type": "number"
                 },
                 {
                    "name": "location",
                    "in": "formData",
                    "description": "The location of the center",
-                   "required": true,
                    "type": "string"
                 },
                 {
@@ -591,8 +592,7 @@
                    "in": "path",
                    "description": "ID of center to return",
                    "required": true,
-                   "type": "integer",
-                   "format": "int64"
+                   "type": "string"
                 }
              ],
              "responses": {
@@ -632,7 +632,7 @@
              }
           }
        },
-       "/centers/favorite/centerId": {
+       "/centers/favorite/{centerId}": {
           "put": {
              "tags": [
                 "Center"
@@ -781,7 +781,7 @@
              }
           }
        },
-       "/centers/reviews/centerId": {
+       "/centers/reviews/{centerId}": {
           "get": {
              "tags": [
                 "Center"
@@ -836,7 +836,7 @@
              }
           }
        },
-       "/events/userId": {
+       "/events/{userId}": {
           "get": {
              "tags": [
                 "Events"
@@ -993,7 +993,7 @@
              }
           }
        },
-       "/events/eventId": {
+       "/events/{eventId}": {
           "get": {
              "tags": [
                 "Events"

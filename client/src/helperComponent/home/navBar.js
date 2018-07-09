@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { browserHistory, Link } from 'react-router';
 
 function Navigator(props) {
+    $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $(".dropdown-button").dropdown();
+    });
     return (
         <div className="">
             <ul id="dropdown1" className="dropdown-content">
@@ -56,7 +60,39 @@ function Navigator(props) {
                     </ul>
 
                     <ul id="nav-mobile" className="side-nav">
-                        <li><a href="#" /></li>
+                    {props.token !== null ?
+                            <li className="myEvents">
+                                <Link to={"/user/events"}><i className="material-icons left">event</i>
+                                    My Events
+                                </Link>
+                            </li> : ''
+                        }
+                        {props.token === null && props.facebook === null ?
+                            <li className="login">
+                                <Link to={"/auth/signin"}>Login</Link>
+                            </li> :
+                            <span>
+                                <li className="logout" onClick={props.logOut}>
+                                    <a href=""><i className="fa fa-sign-out left" />Logout</a>
+                                </li>
+                            </span>
+                        }
+                        {props.decoded.adminUser ? 
+                            <li className="admin">
+                                <Link to={"/admin/list_center"}>
+                                    <i className="material-icons left">account_circle</i>Admin
+                                </Link>
+                            </li> : ''
+                        }
+                        {!props.decoded.adminUser && props.token !== null ?
+                            <li>
+                                <a className="dropdown-button" href="#!" data-activates="dropdown1">Manage
+                                    <i className="material-icons right">
+                                        arrow_drop_down
+                                    </i>
+                                </a>
+                            </li> : ''
+                        }
                     </ul>
                     <a data-activates="nav-mobile"
                         className="button-collapse"><i className="material-icons">menu</i>

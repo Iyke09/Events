@@ -32,9 +32,10 @@ class Auth extends React.Component {
         //this.responseGoogleLogout = this.responseGoogleLogout.bind(this);
     }
     componentWillMount(){
-        // $(document).ready(function(){
-        //     $('.modal').modal();
-        // });
+        $(document).ready(function(){
+            $('.modal').modal();
+            $(".button-collapse").sideNav();
+        });
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -95,7 +96,7 @@ class Auth extends React.Component {
                     <nav className="" role="navigation" style={{backgroundColor: '#212F3C'}}>
                         <div className="nav-wrapper container">
                             <Link to={"/"}>
-                                <a id="logo-container " className="brand-logo white-text">Andela</a>
+                                <span id="logo-container " className="brand-logo white-text">Andela</span>
                             </Link>
                             <ul className="right hide-on-med-and-down" />
 
@@ -195,7 +196,7 @@ class Auth extends React.Component {
 
 Auth.propTypes = {
   errorAction: PropTypes.func,
-  centers: PropTypes.array.isRequired,
+  centers: PropTypes.array,
   signin: PropTypes.func,
   signup: PropTypes.func,
   retrieve: PropTypes.func,

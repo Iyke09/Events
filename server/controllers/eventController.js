@@ -23,7 +23,6 @@ class Event {
   static addEvents(req, res) {
     // get values from user
     const { title, type, guests, name, date, time} = req.body;
-
     // decode token
     const decoded = jwt.decode(req.body.token || req.query.token || req.headers.token);
     // check if it is a user or admin user trying to access route
@@ -166,7 +165,8 @@ class Event {
     // find an event where the event d matches the req.params.id
     Eevent.findAll({
       where: { userId: userID },
-      limit: 100,
+      limit: req.query.limit || 10,
+      order:[['updatedAt', 'DESC']],
       attributes: [
         'id',
         'title', 
@@ -195,7 +195,8 @@ class Event {
           message: 'event successfully retrieved',
           event
         });
-      })// error handler
+      })
+      // error handler
       .catch(error => errorHelper(error, res));
   }
 

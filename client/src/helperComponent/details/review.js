@@ -53,7 +53,7 @@ function Reviews(props) {
 Reviews.propTypes = {
     event: PropTypes.object,
     onChange: PropTypes.func,
-    handleSubmit: PropTypes.object,
+    handleSubmit: PropTypes.func,
     state: PropTypes.object,
     token: PropTypes.string,
     decoded: PropTypes.object,

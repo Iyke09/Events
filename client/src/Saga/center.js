@@ -10,7 +10,6 @@ export function* getCenters(action) {
 	try {
         let response = {};
         if(typeof(action.index) !== 'number'){
-			console.log('watamaguwa');
             response = yield call(axios.get, `${centerUrl}?name=${action.index}`);
         }else{
             response = yield call(axios.get, `${centerUrl}?limit=${action.index}`);
@@ -18,7 +17,7 @@ export function* getCenters(action) {
 		yield put({ type: 'GET_CENTER', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-        console.log(error);
+        // console.log(error);
         yield put({ type: 'ERROR', error });
 	}
 }
@@ -33,7 +32,7 @@ export function* getSingle(action) {
 		yield put({ type: 'SET_SINGLE', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 	}
 }
 
@@ -64,7 +63,7 @@ export function* addCenter(action) {
 		yield put({ type: '!SUCCESS' });
 		yield put({ type: 'UNLOAD' });
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 		yield put({ type: 'ERROR', error });
 		//yield put({ type: 'ERROR', error: '' });
 	}
@@ -96,7 +95,7 @@ export function* updateCenter(action) {
 		yield put({ type: '!SUCCESS' });
 		yield put({ type: 'UNLOAD' });
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 		yield delay(1000);
 		yield put({ type: 'ERROR', error });
 	}

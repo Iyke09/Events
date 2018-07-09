@@ -62,6 +62,7 @@ class Admin extends Component {
         this.props.getCenters(3);
         $(document).ready(function(){
         $('.modal').modal();
+        $(".button-collapse").sideNav();
         });
     }
     componentDidMount(){
@@ -209,7 +210,7 @@ class Admin extends Component {
 
 Admin.propTypes = {
   errorAction: PropTypes.func,
-  centers: PropTypes.array.isRequired,
+  centers: PropTypes.array,
   getCenters: PropTypes.func,
   location: PropTypes.object,
   getSingle: PropTypes.func,

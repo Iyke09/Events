@@ -130,7 +130,7 @@ export function* addReview(action) {
 		yield put({ type: 'SET_REVIEW', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-		console.log(error);
+		// console.log(error);
 	}
 }
 
@@ -144,7 +144,7 @@ export function* getReviews(action) {
 		yield put({ type: 'GET_REVIEWS', response: response.data });
 	} catch (e) {
 		const error = e.response.data.message;
-        console.log(error);
+        // console.log(error);
 	}
 }
 

@@ -16,6 +16,7 @@ class Events extends React.Component {
     this.props.getEvents();
     $(document).ready(function(){
       $('.modal').modal();
+      $(".button-collapse").sideNav();
     });
     $(document).ready(function(){
       $('.tooltipped').tooltip({delay: 50});

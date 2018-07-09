@@ -16,7 +16,7 @@ describe('Test suites for Auth component', () => {
     expect(wrapper.length).toEqual(1);
   });
 
-  it('+++ renders with just one form', () => {
+  it('renders with just two forms', () => {
     const pathname = {pathname: 'hello'};
     const wrapper = mount(<Auth location={pathname} />);
     expect(wrapper.find('form').length).toEqual(2);

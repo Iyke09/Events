@@ -1,3 +1,4 @@
+const Rwg = require('random-word-generator');
 module.exports = {
   'Render landing page': (client) => {
     client
@@ -29,17 +30,6 @@ module.exports = {
     client
       .url('http://localhost:3000/admin/list_center')
       .verify.urlContains('signin')
-      .pause(500);
-  },
-  'Redirect to details page on clicking on a center': (client) => {
-    client
-      .url('http://localhost:3000')
-      .waitForElementVisible('body', 5000)
-      .verify.urlEquals('http://localhost:3000/')
-      .verify.title('Event Manager.io')
-      .verify.elementPresent('nav')
-      .click('.linked')
-      .verify.urlContains('centerdetails')
       .pause(500);
   },
   'Redirect to signin page if user is not authenticated and trying to book center': (client) => {
@@ -92,32 +82,6 @@ module.exports = {
       .assert.containsText('#err_msg', 'Oops.The email you entered already exists')
       .pause(500);
   },
-
-  'User should be able to signin in with changed password and favorite center ': (client) => {
-    client
-      .url('http://localhost:3000/auth/signin')
-      .verify.elementPresent('form')
-      .setValue('input[name="email"]', 'foo245@foo.com')
-      .setValue('.passwordz', '1234567')
-      .click('button[type="submit"]')
-      .waitForElementPresent('.reg', 15000)
-      .click('.explore')
-      .click('.favorite')
-      .waitForElementVisible('.checked', 5000)
-      //.verify.elementPresent('.checked')
-      .click('.linked')
-      .assert.urlContains('centerdetails')
-      .click('.rev')
-      .verify.elementPresent('form')
-      .setValue('textarea', 'awesome place to host all manner of functions')
-      .click('button[type="submit"]', () => {
-        client
-          .pause(5000)
-          .verify.elementPresent('.coUser')
-          .verify.containsText('.coUser', 'janedoe01')
-      })
-      .pause(500);
-  },
   'User should be able to  signin in ': (client) => {
     client
       .url('http://localhost:3000/auth/signin')
@@ -125,7 +89,7 @@ module.exports = {
       .setValue('input[name="email"]', 'foo@foo.com')
       .setValue('.passwordz', '123456')
       .click('button[type="submit"]')
-      .waitForElementPresent('.reg', 15000)
+      // .waitForElementPresent('.reg', 15000)
 
       .pause(500);
   },
@@ -138,6 +102,83 @@ module.exports = {
 
       .pause(500);
   },
+  'return error if name field less than 4 characters ': (client) => {
+    client
+      .url('http://localhost:3000/admin/add_center')
+      .verify.elementPresent('form')
+      .setValue('input[name="name"]', 'em')
+      .setValue('input[name="location"]', '24 airport road, lagos state.')
+      .setValue('input[name="capacity"]', 4000)
+      .setValue('input[name="price"]', 750)
+      .setValue('textarea', 'awesome place to host all manner of functions')
+      .click('button[type="submit"]', () => {
+        client
+          .pause(5000)
+          .verify.elementPresent('.error')
+          .verify.containsText('#err_msg', 'name must be atleast 4 characters long');
+      })
+      .pause(500);
+  },
+  'return error if name field less than 4 chlaracters ': (client) => {
+    let word = new Rwg().generate();
+    client
+      .url('http://localhost:3000/admin/add_center')
+      .verify.elementPresent('form')
+      .setValue('input[name="name"]', `emtest ${word}`)
+      .setValue('input[name="location"]', '24 airport road, lagos state.')
+      .setValue('input[name="capacity"]', 400)
+      .setValue('input[name="price"]', 750)
+      .setValue('textarea', 'awesome place to host all manner of functions')
+      .click('button[type="submit"]', () => {
+        client
+          .pause(5000)
+          // .verify.elementNotPresent('.error')
+          .keys(client.Keys.ESCAPE)
+          .url('http://localhost:3000/admin/list_center')
+          .verify.containsText('span.card-title', `emtest ${word}`);
+
+      })
+      .pause(500);
+  },
+  'should return a search value based on input': (client) => {
+    client
+      .url('http://localhost:3000/admin/list_center')
+      .setValue('input[name="search"]', 'em')
+      .verify.containsText('span.card-title', 'emtest')
+      .pause(500);
+  },
+  'admin user should be able to update center': (client) => {
+    client
+      .url('http://localhost:3000/admin/list_center')
+      .waitForElementPresent('.update', 15000)
+      .assert.elementPresent('.update')
+      .click('.update')
+      .pause(3000)
+      .assert.urlContains('edit')
+      .verify.elementPresent('form')
+      .clearValue('input[name="capacity"]')
+      .setValue('input[name="capacity"]', 1500)
+      .click('button[type="submit"]', () => {
+        client
+          .pause(5000)
+          .verify.elementNotPresent('.error')
+          .keys(client.Keys.ESCAPE)
+          .url('http://localhost:3000/admin/list_center')
+          .waitForElementPresent('.card-title', 5000);
+      })
+      .pause(500);
+  },
+  'Redirect to details page on clicking on a center': (client) => {
+    client
+      .url('http://localhost:3000')
+      .waitForElementVisible('body', 5000)
+      .verify.urlEquals('http://localhost:3000/')
+      .verify.title('Event Manager.io')
+      .verify.elementPresent('nav')
+      .click('.linked')
+      .verify.urlContains('centerdetails')
+      .pause(500);
+  },
   'User should be able to addevents after signin in ': (client) => {
     client
       .url('http://localhost:3000/add/events')
@@ -147,7 +188,7 @@ module.exports = {
       .setValue('input[name="title"]', 'google1')
       .setValue('input[name="date"]', '20/12/2019')
       .setValue('input[name="type"]', 'google')
-      .setValue('input[name="guests"]', 300)
+      .setValue('input[name="guests"]', 3)
       .click('button[type="submit"]', () => {
         client
           .pause(5000)
@@ -196,75 +237,34 @@ module.exports = {
       .click('#google2')
       .waitForElementPresent('#modal1', 5000)
       .click('.test2')
-      .pause(3000)
+      .pause(7000)
       .url('http://localhost:3000/user/events')
-      .verify.elementNotPresent('#google2')
-
-      .pause(500);
+      // .verify.elementNotPresent('#rgoogle2')
+      .end();
   },
-  'return error if name field less than 4 characters ': (client) => {
+  'User should be able to signin and favorite center ': (client) => {
     client
-      .url('http://localhost:3000/admin/add_center')
+      .url('http://localhost:3000/auth/signin')
       .verify.elementPresent('form')
-      .setValue('input[name="name"]', 'em')
-      .setValue('input[name="location"]', '24 airport road, lagos state.')
-      .setValue('input[name="capacity"]', 4000)
-      .setValue('input[name="price"]', 750)
+      .setValue('input[name="email"]', 'foo01@bar.com')
+      .setValue('.passwordz', '1234567')
+      .click('button[type="submit"]')
+      .url('http://localhost:3000/')
+      .waitForElementPresent('.reg', 15000)
+      .click('.explore')
+      .click('.favorite')
+      .waitForElementVisible('.checked', 5000)
+      //.verify.elementPresent('.checked')
+      .click('.linked')
+      .assert.urlContains('centerdetails')
+      .click('.rev')
+      .verify.elementPresent('form')
       .setValue('textarea', 'awesome place to host all manner of functions')
       .click('button[type="submit"]', () => {
         client
           .pause(5000)
-          .verify.elementPresent('.error')
-          .verify.containsText('#err_msg', 'name must be atleast 4 characters long');
-      })
-      .pause(500);
-  },
-  'return error if name field less than 4 chlaracters ': (client) => {
-    client
-      .url('http://localhost:3000/admin/add_center')
-      .verify.elementPresent('form')
-      .setValue('input[name="name"]', 'emtest')
-      .setValue('input[name="location"]', '24 airport road, lagos state.')
-      .setValue('input[name="capacity"]', 4000)
-      .setValue('input[name="price"]', 750)
-      .setValue('textarea', 'awesome place to host all manner of functions')
-      .click('button[type="submit"]', () => {
-        client
-          .pause(5000)
-          .verify.elementNotPresent('.error')
-          .keys(client.Keys.ESCAPE)
-          .url('http://localhost:3000/admin/list_center')
-          .verify.containsText('span.card-title', 'emtest');
-
-      })
-      .pause(500);
-  },
-  'should return a search value based on input': (client) => {
-    client
-      .url('http://localhost:3000/admin/list_center')
-      .setValue('input[name="search"]', 'em')
-      .verify.containsText('span.card-title', 'emtest')
-      .pause(500);
-  },
-  'admin user should be able to update center': (client) => {
-    client
-      .url('http://localhost:3000/admin/list_center')
-      .waitForElementPresent('.update', 15000)
-      .assert.elementPresent('.update')
-      .click('.update')
-      .pause(3000)
-      .assert.urlContains('edit')
-      .verify.elementPresent('form')
-      .clearValue('input[name="name"]')
-      .setValue('input[name="name"]', 'Rozinberg')
-      .click('button[type="submit"]', () => {
-        client
-          .pause(5000)
-          .verify.elementNotPresent('.error')
-          .keys(client.Keys.ESCAPE)
-          .url('http://localhost:3000/admin/list_center')
-          .waitForElementPresent('.card-title', 5000)
-          .verify.containsText('.card-title', 'Rozinberg');
+          .verify.elementPresent('.coUser')
+          .verify.containsText('.coUser', 'janedoe05');
       })
       .pause(500);
   },

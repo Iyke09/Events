@@ -26,6 +26,7 @@ class Details extends React.Component {
         this.props.centerEvents(this.props.params.id);
         $(document).ready(function () {
         $('ul.tabs').tabs();
+        $(".button-collapse").sideNav();
         });
         
     }
