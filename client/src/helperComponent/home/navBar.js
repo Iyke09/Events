@@ -7,6 +7,7 @@ function Navigator(props) {
     $(document).ready(function(){
         $(".button-collapse").sideNav();
         $(".dropdown-button").dropdown();
+        $('.modal').modal();
     });
     return (
         <div className="">

@@ -27,12 +27,6 @@ class Home extends React.Component {
   }
   componentWillMount(){
     store.dispatch({type: '!SUCCESS'});
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
-    $(document).ready(function(){
-      $(".dropdown-button").dropdown();
-    });
     this.props.getCenters(6);
   }
 //   componentDidMount(){

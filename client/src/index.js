@@ -1,13 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-// import '../../node_modules/jquery/dist/jquery.min.js';
-// import '../../node_modules/materialize-css/dist/js/materialize.min.js';
-
-// // import '../../node_modules/materialize-css/dist/css/materialize.min.css';
-// import 'materialize-css/dist/css/materialize.min.css';
-
-
 // Import Components
 import App from './app';
 import Auth from './components/Auth.jsx';
