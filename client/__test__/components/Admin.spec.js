@@ -48,30 +48,30 @@ describe('Test suites for Home component', () => {
     const pathname = {pathname: 'list_center'};
     const errorAction = sinon.spy();
     const wrapper = shallow((<Admin mock={'hello'} errorAction={errorAction} 
-    location={pathname} getCenters={(index) => index} centers={centers} />));
+    location={pathname} test getCenters={(index) => index} centers={centers} />));
 		expect(wrapper.length).toEqual(1);
 		//expect(wrapper).toMatchSnapshot();
 	});
 
-	it(' admin page renders with all list of centers and calls the get more function', () => {
+	it('renders with all list of centers and calls the get more function', () => {
     const getCenters= sinon.spy();
     const errorAction = sinon.spy();
     const error = 'jefe!';
     const pathname = {pathname: '/admin/list_center'};
-    const wrapper = mount(<Admin mock={'hello'} location={pathname} errorAction={errorAction} error={error} getCenters={getCenters} centers={centers} />);
+    const wrapper = mount(<Admin test mock={'hello'} location={pathname} errorAction={errorAction} error={error} getCenters={getCenters} centers={centers} />);
     expect(getCenters.calledOnce).toEqual(true);
     expect(wrapper.find('.displayed').length).toEqual(3);
 		wrapper.find('.more').simulate('click');
 		expect(getCenters.calledWith(6)).toEqual(true);
   });
 
-  it(' admin page renders with all list of centers and calls the update function', () => {
+  it('renders with all list of centers and calls the update function', () => {
     const getCenters= sinon.spy();
     const getSingle= sinon.spy();
     const errorAction = sinon.spy();
     const error = 'jefe!';
     const pathname = {pathname: '/admin/list_center'};
-    const wrapper = mount(<Admin mock={'hello'} location={pathname} errorAction={errorAction} error={error} getSingle={getSingle}
+    const wrapper = mount(<Admin test mock={'hello'} location={pathname} errorAction={errorAction} error={error} getSingle={getSingle}
     getCenters={getCenters} centers={centers} />);
     expect(getCenters.calledOnce).toEqual(true);
     //wrapper.find('.update').simulate('click');
@@ -87,7 +87,7 @@ describe('Test suites for Home component', () => {
     const preventDefault = sinon.spy();
     const addCenter = sinon.spy();
     const pathname = {pathname: '/admin/add_center'};
-    const component = mount(<Admin mock={'hello'} location={pathname}
+    const component = mount(<Admin test mock={'hello'} location={pathname}
     getCenters={getCenters} addCenter={addCenter} errorAction={errorAction} loaders={loaders} centers={centers} />);
     component.find('#add-form').simulate('submit', { preventDefault });
     expect(addCenter.calledOnce).toEqual(true);
@@ -104,7 +104,7 @@ describe('Test suites for Home component', () => {
     const params = {id: 1};
     const errorAction = sinon.spy();
     const pathname = {pathname: 'edit'};
-    const component = mount(<Admin mock={'hello'} location={pathname}
+    const component = mount(<Admin test mock={'hello'} location={pathname}
     getCenters={getCenters} updateCenter={updateCenter} getSingle={getSingle} 
     errorAction={errorAction} params={params} loaders={loaders} centers={centers} />);
     component.find('#add-form').simulate('submit', { preventDefault });
@@ -122,7 +122,7 @@ describe('Test suites for Home component', () => {
     const pathname = {pathname: 'edit'};
     const params = {id: 1};
     const error = 'searching';
-    const component = mount(<Admin mock={'hello'} location={pathname}
+    const component = mount(<Admin test mock={'hello'} location={pathname}
       getCenters={getCenters} errorAction={errorAction} params={params} getSingle={getSingle} 
       error={error} centers={centers} />);
     component.instance().searchCenter(e);
@@ -130,13 +130,13 @@ describe('Test suites for Home component', () => {
     expect(getCenters.calledWith('hello')).toEqual(true);
   });
 
-  it(' admin page calls the componentdidmount function', () => {
+  it('calls the componentdidmount function', () => {
     const getCenters = sinon.spy();
     const getSingle = sinon.spy();
     const params = {id: 1};
     const errorAction = sinon.spy();
     const pathname = {pathname: 'edit'};
-    const component = shallow(<Admin mock={'hello'} location={pathname}
+    const component = shallow(<Admin test mock={'hello'} location={pathname}
     getCenters={getCenters} getSingle={getSingle} errorAction={errorAction} params={params} centers={centers} />);
     component.instance().componentDidMount();
     expect(getSingle.calledOnce).toEqual(true);
@@ -151,13 +151,13 @@ describe('Test suites for Home component', () => {
     const pathname = {pathname: 'edit'};
     const single = 'helloo0';
     const wrapper = mount(
-      <Admin location={pathname}
+      <Admin test location={pathname}
         getCenters={getCenters} mock={'hello'} errorAction={errorAction} single={single} getSingle={getSingle} params={params} centers={centers} />
     );
     wrapper.instance().componentWillReceiveProps(newProps);
   });
 
-  it('should call the componentwillrecieveprops with newprops', () => {
+  it('should call the upload function', () => {
     const getCenters = sinon.spy();
     const getSingle = sinon.spy();
     const errorAction = sinon.spy();
@@ -166,7 +166,7 @@ describe('Test suites for Home component', () => {
     newProps = {single: 'hello', success: true};
     const single = 'hello';
     const wrapper = mount(
-      <Admin location={pathname}
+      <Admin test location={pathname}
         getCenters={getCenters} mock={'hello'} errorAction={errorAction} single={single} getSingle={getSingle}
         params={params} centers={centers} />
     );

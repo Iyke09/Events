@@ -10,26 +10,26 @@ describe('Test suites for Auth component', () => {
   beforeEach(() => {
     mockument(`client/__test__/mocks/index.html`);
   });
-  it('+++ renders without crashing', () => {
+  it('renders without crashing', () => {
     const pathname = {pathname: 'hello'};
     const wrapper = shallow(<Auth location={pathname} />);
     expect(wrapper.length).toEqual(1);
   });
 
-  it('renders with just two forms', () => {
+  it('renders with just one form', () => {
     const pathname = {pathname: 'hello'};
     const wrapper = mount(<Auth location={pathname} />);
     expect(wrapper.find('form').length).toEqual(2);
   });
 
-  it('+++ renders link to home page', () => {
+  it('renders link to home page', () => {
     const pathname = {pathname: 'hello'};
     const wrapper = shallow(<Auth location={pathname} />);
     expect(wrapper.find('Link').first().prop('to')).toEqual('/');
   });
 
 
-  it('+++ calls the signin function', () => {
+  it('calls the signin function', () => {
     const signin = sinon.spy();
     const signup = sinon.spy();
     const preventDefault = sinon.spy();
@@ -47,7 +47,7 @@ describe('Test suites for Auth component', () => {
     expect(preventDefault.calledOnce).toEqual(true);
   });
 
-  it('+++ calls the retrieve function', () => {
+  it('calls the retrieve function', () => {
     const retrieve = sinon.spy();
     const errorAction = sinon.spy();
     const preventDefault = sinon.spy();

@@ -111,7 +111,8 @@ describe("CENTERS TEST",  () => {
             .end((err, res) => {
               expect(res.status).to.equal(201);
               expect(res.body.message).to.equal('Center created');
-              expect(res.body.status).to.equal('Success');
+              expect(res.body.message).to.equal('Center created');
+              expect(res.body.center.name).to.equal('emporium');
               done();
             });
         });

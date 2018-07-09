@@ -20,7 +20,7 @@ function Reviews(props) {
                         </div>
                       </div>
                       <div className="col s9 m11 left-align" >
-                          <h2 className="font2 newTitle coUser">{comment.user}
+                          <h2 className="font2 newTitle"><span className="coUser">{comment.user}</span>
                             <span className="grey-text" style={{fontSize: 14, marginLeft: 6}}><small>
                             {props.setTime(comment.updatedAt)} Ago</small></span></h2>
                           <p className="blue-grey-text">{comment.comment} --> Quisque aliquam dignissim felis,
