@@ -59,10 +59,11 @@ class Admin extends Component {
                 browserHistory.push('/');
             }
         }
+        
         this.props.getCenters(3);
         $(document).ready(function(){
-        $('.modal').modal();
-        $(".button-collapse").sideNav();
+            $('.modal').modal();
+            $(".button-collapse").sideNav();
         });
     }
     componentDidMount(){

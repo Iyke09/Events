@@ -215,13 +215,6 @@ class Home extends React.Component {
             </div>
 
             <Footer />
-        <Form 
-            error={error}
-            success={success}
-            handleSubmit={this.handleSubmit}
-            closeErrMsg={this.closeErrMsg}
-            onChange={this.onChange}
-        />
       </div>
     );
   }
